@@ -16,7 +16,7 @@ Sammlung meiner Forschungsberichte. Jeder Bericht ist eine einzelne HTML-Datei. 
 ```
 .
 ├── index.html                      Übersichtsseite mit Suchfeld
-├── motivation/index.html           Motivationsseite (Zitate, Posts, Bilder; Daten lokal im Browser)
+├── motivation/index.html           Motivationsseite: Bilder aus motivation/ als Grid
 ├── .nojekyll                       GitHub Pages ohne Jekyll
 ├── .gitignore
 └── researches/
