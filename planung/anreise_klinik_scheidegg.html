@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anreise zur Klinik Maximilian in Scheidegg</title>
+<style>
+  :root { --bg:#f6f7f9; --fg:#1c1f24; --card:#fff; --muted:#5b6470; --accent:#2457d6; --line:#e1e4e8; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#14171c; --fg:#e8eaed; --card:#1d2128; --muted:#9aa3af; --accent:#7aa2ff; --line:#2c323b; }
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif; background:var(--bg); color:var(--fg); }
+  main { max-width:960px; margin:0 auto; padding:2.2rem 1.2rem 4rem; }
+
+  .back { display:inline-block; margin-bottom:1.2rem; color:var(--accent); text-decoration:none; font-size:.92rem; }
+  .back:hover, .back:focus-visible { text-decoration:underline; outline:none; }
+
+  h1 { margin:0 0 .4rem; font-size:1.7rem; line-height:1.25; }
+  .sub { color:var(--muted); margin:0 0 1.6rem; font-size:.95rem; }
+  h2 { margin:2.2rem 0 .8rem; font-size:1.2rem; }
+  p { margin:0 0 .9rem; }
+
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:1.1rem 1.2rem; }
+
+  .intro { font-size:.97rem; }
+  .intro p:last-child { margin-bottom:0; }
+
+  .notice { margin:1.2rem 0 0; border-left:4px solid var(--accent); background:var(--card); border-radius:12px; padding:.9rem 1.1rem; font-size:.93rem; }
+  .notice strong { display:block; margin-bottom:.2rem; }
+
+  .tabs { display:flex; flex-wrap:wrap; gap:.4rem; margin:1rem 0 1.1rem; }
+  .tab { font:inherit; font-size:.88rem; padding:.4rem .85rem; border:1px solid var(--line); border-radius:999px; background:var(--card); color:var(--fg); cursor:pointer; }
+  .tab:hover { border-color:var(--accent); }
+  .tab[aria-pressed="true"] { border-color:var(--accent); background:var(--accent); color:#fff; }
+  .tab:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  @media (prefers-color-scheme: dark) { .tab[aria-pressed="true"] { color:#10131a; } }
+
+  .opts { display:grid; gap:1rem; }
+  .opt { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:1.1rem 1.2rem 1.2rem; }
+  .opt[hidden] { display:none; }
+  .opt.chosen { border-color:var(--accent); box-shadow:0 0 0 2px rgba(36,87,214,.16); }
+  @media (prefers-color-scheme: dark) { .opt.chosen { box-shadow:0 0 0 2px rgba(122,162,255,.22); } }
+
+  .opt-head { display:flex; flex-wrap:wrap; align-items:baseline; gap:.5rem; }
+  .opt-head h3 { margin:0; font-size:1.05rem; }
+  .badge { font-size:.75rem; padding:.1rem .5rem; border:1px solid var(--line); border-radius:999px; color:var(--muted); }
+  .opt.chosen .badge.chooser { border-color:var(--accent); color:var(--accent); font-weight:600; }
+  .opt-sub { margin:.35rem 0 1rem; color:var(--muted); font-size:.9rem; }
+
+  ol.tl { list-style:none; margin:0; padding:0; }
+  ol.tl li { position:relative; padding:0 0 1rem 1.9rem; }
+  ol.tl li::before { content:""; position:absolute; left:.28rem; top:.62rem; width:.55rem; height:.55rem; border-radius:50%; background:var(--accent); }
+  ol.tl li::after { content:""; position:absolute; left:.53rem; top:1.3rem; bottom:0; width:2px; background:var(--line); }
+  ol.tl li:last-child::after { display:none; }
+  ol.tl li.chg::before { background:transparent; border:2px solid var(--line); left:.22rem; top:.56rem; width:.6rem; height:.6rem; }
+  ol.tl li.chg .row { color:var(--muted); }
+  .row { display:flex; flex-wrap:wrap; align-items:baseline; gap:.45rem; }
+  .t { font-variant-numeric:tabular-nums; font-weight:700; }
+  .act { color:var(--muted); font-size:.85rem; }
+  .meta { color:var(--muted); font-size:.85rem; }
+  li.chg .meta { font-style:italic; }
+  .lastmile { margin-top:.4rem; padding:.85rem 1rem; border:1px dashed var(--line); border-radius:10px; font-size:.9rem; }
+  .lastmile p { margin:0 0 .5rem; }
+  .lastmile p:last-child { margin-bottom:0; }
+  .lastmile .lm-t { font-weight:600; }
+
+  .sum { margin:.9rem 0 0; font-size:.9rem; color:var(--muted); border-top:1px solid var(--line); padding-top:.75rem; }
+  .sum b { color:var(--fg); }
+
+  .choose { margin-top:.9rem; font:inherit; font-size:.88rem; padding:.5rem .95rem; border-radius:10px; border:1px solid var(--line); background:var(--bg); color:var(--fg); cursor:pointer; }
+  .choose:hover { border-color:var(--accent); }
+  .choose:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .opt.chosen .choose { border-color:var(--accent); color:var(--accent); font-weight:600; }
+
+  .hint { margin-top:1rem; font-size:.85rem; color:var(--muted); }
+
+  ul.check { list-style:none; margin:0; padding:0; display:grid; gap:.7rem; }
+  ul.check li { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:.85rem 1rem; }
+  ul.check label { display:flex; gap:.7rem; align-items:flex-start; cursor:pointer; }
+  ul.check input { flex:0 0 auto; width:1.15rem; height:1.15rem; margin:.2rem 0 0; accent-color:var(--accent); cursor:pointer; }
+  ul.check input:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  ul.check .ct { font-weight:600; display:block; }
+  ul.check .cd { display:block; font-size:.9rem; color:var(--muted); }
+  ul.check li:has(input:checked) { border-color:var(--accent); }
+  ul.check li:has(input:checked) .ct { text-decoration:line-through; text-decoration-thickness:1px; color:var(--muted); }
+
+  footer { margin-top:2.5rem; font-size:.82rem; color:var(--muted); }
+
+  @media (max-width:520px) {
+    main { padding:1.5rem .9rem 3rem; }
+    h1 { font-size:1.4rem; }
+  }
+  @media print {
+    .tabs, .choose, .back { display:none; }
+    .opt[hidden] { display:block; }
+    body { background:#fff; color:#000; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="../index.html">← Zur Übersicht</a>
+
+  <h1>Anreise zur Klinik Maximilian in Scheidegg</h1>
+  <p class="sub">Donnerstag, 11. Februar 2027 · Dresden Hbf → Röthenbach (Allgäu) → Scheidegg</p>
+
+  <section class="card intro" aria-label="Überblick">
+    <p>Zielbahnhof ist <strong>Röthenbach (Allgäu)</strong>, von dort sind es rund 12 km bis zur Klinik. Die schnellste Verbindung führt über die Hochgeschwindigkeitsstrecke (VDE 8) mit zwei Umstiegen (Leipzig Hbf und München Hbf). Durch den 2-Stunden-Grundtakt gibt es passend abgestimmte Verbindungen.</p>
+  </section>
+
+  <div class="notice" role="note">
+    <strong>Bitte vorher prüfen</strong>
+    Alle Zeiten sind eine Planung nach dem typischen Takt. Vor der Buchung im DB Navigator oder auf bahn.de prüfen – der Fahrplan für Februar 2027 kann abweichen.
+  </div>
+
+  <h2>Verbindungen im Vergleich</h2>
+
+  <div class="tabs" role="group" aria-label="Verbindung auswählen">
+    <button type="button" class="tab" data-filter="all" aria-pressed="true">Alle anzeigen</button>
+    <button type="button" class="tab" data-filter="1" aria-pressed="false">Option 1 · Früh</button>
+    <button type="button" class="tab" data-filter="2" aria-pressed="false">Option 2 · Standard</button>
+    <button type="button" class="tab" data-filter="3" aria-pressed="false">Option 3 · Spät</button>
+  </div>
+
+  <div class="opts">
+    <!-- Option 1 -->
+    <article class="opt" id="opt1" data-opt="1">
+      <div class="opt-head">
+        <h3>Option 1 – Die Früh-Verbindung</h3>
+        <span class="badge">Ankunft früher Nachmittag</span>
+        <span class="badge chooser" hidden>Ihre Wahl</span>
+      </div>
+      <p class="opt-sub">Ideal, um in Ruhe anzukommen, das Zimmer zu beziehen und vor dem Abendessen alles zu erledigen.</p>
+
+      <ol class="tl">
+        <li>
+          <div class="row"><span class="t">06:11</span><span class="act">ab</span><strong>Dresden Hbf</strong></div>
+          <div class="meta">ICE 1654 · Richtung Wiesbaden</div>
+        </li>
+        <li>
+          <div class="row"><span class="t">07:20</span><span class="act">an</span><strong>Leipzig Hbf</strong></div>
+        </li>
+        <li class="chg">
+          <div class="row"><span class="t">29 Min.</span><span>Umsteigezeit in Leipzig</span></div>
+          <div class="meta">Ebenerdiger Bahnsteigwechsel in der Querbahnsteighalle.</div>
+        </li>
+        <li>
+          <div class="row"><span class="t">07:49</span><span class="act">ab</span><strong>Leipzig Hbf</strong></div>
+          <div class="meta">ICE 701 · Richtung München Hbf über Erfurt &amp; Nürnberg</div>
+        </li>
+        <li>
+          <div class="row"><span class="t">10:42</span><span class="act">an</span><strong>München Hbf</strong></div>
+        </li>
+        <li class="chg">
+          <div class="row"><span class="t">28 Min.</span><span>Umsteigezeit in München</span></div>
+          <div class="meta">Genug Puffer für den Weg zu den Flügelbahnhöfen und einen kleinen Kaffee.</div>
+        </li>
+        <li>
+          <div class="row"><span class="t">11:10</span><span class="act">ab</span><strong>München Hbf</strong></div>
+          <div class="meta">RE 70 · Direktzug Richtung Lindau-Reutin</div>
+        </li>
+        <li>
+          <div class="row"><span class="t">13:27</span><span class="act">an</span><strong>Röthenbach (Allgäu)</strong></div>
+        </li>
+      </ol>
+
+      <div class="lastmile">
+        <p><span class="lm-t">Letzte Meile nach Scheidegg:</span> Klinik-Shuttle holt Sie um ca. 13:30 Uhr direkt am Bahnsteig ab (vorherige Anmeldung in der Klinik).</p>
+        <p><span class="lm-t">Alternativ Bus 11:</span> Abfahrt Bahnhof Röthenbach ca. 13:35 Uhr ➔ Ankunft Scheidegg Kurhaus/Zentrum ca. 13:55 Uhr.</p>
+      </div>
+
+      <p class="sum">Reisezeit bis Röthenbach: <b>7 Std. 16 Min.</b> · Umstiege: <b>2</b></p>
+      <button type="button" class="choose" data-choice="1">Diese Verbindung wähle ich</button>
+    </article>
+
+    <!-- Option 2 -->
+    <article class="opt" id="opt2" data-opt="2">
+      <div class="opt-head">
+        <h3>Option 2 – Die Standard-Verbindung</h3>
+        <span class="badge">Ankunft Nachmittag – Klinik-Klassiker</span>
+        <span class="badge chooser" hidden>Ihre Wahl</span>
+      </div>
+      <p class="opt-sub">Die beliebteste Reisezeit für Kur- und Reha-Anreisen ohne frühes Aufstehen.</p>
+
+      <ol class="tl">
+        <li>
+          <div class="row"><span class="t">08:11</span><span class="act">ab</span><strong>Dresden Hbf</strong></div>
+          <div class="meta">ICE 1652 · oder 07:00 Uhr mit IC 2606 für noch mehr Puffer in Leipzig</div>
+        </li>
+        <li>
+          <div class="row"><span class="t">09:20</span><span class="act">an</span><strong>Leipzig Hbf</strong></div>
+        </li>
+        <li class="chg">
+          <div class="row"><span class="t">29 Min.</span><span>Umsteigezeit in Leipzig</span></div>
+        </li>
+        <li>
+          <div class="row"><span class="t">09:49</span><span class="act">ab</span><strong>Leipzig Hbf</strong></div>
+          <div class="meta">ICE · Richtung München Hbf</div>
+        </li>
+        <li>
+          <div class="row"><span class="t">12:42</span><span class="act">an</span><strong>München Hbf</strong></div>
+        </li>
+        <li class="chg">
+          <div class="row"><span class="t">28 Min.</span><span>Umsteigezeit in München</span></div>
+        </li>
+        <li>
+          <div class="row"><span class="t">13:10</span><span class="act">ab</span><strong>München Hbf</strong></div>
+          <div class="meta">RE 70 · Direktzug Richtung Lindau-Reutin</div>
+        </li>
+        <li>
+          <div class="row"><span class="t">15:27</span><span class="act">an</span><strong>Röthenbach (Allgäu)</strong></div>
+        </li>
+      </ol>
+
+      <div class="lastmile">
+        <p><span class="lm-t">Letzte Meile:</span> Klinik-Shuttle Abholung um ca. 15:30 Uhr.</p>
+        <p><span class="lm-t">Alternativ Bus 11:</span> Abfahrt ca. 15:35 Uhr ➔ Ankunft Scheidegg Kurhaus/Zentrum ca. 15:55 Uhr.</p>
+      </div>
+
+      <p class="sum">Reisezeit bis Röthenbach: <b>7 Std. 16 Min.</b> · Umstiege: <b>2</b></p>
+      <button type="button" class="choose" data-choice="2">Diese Verbindung wähle ich</button>
+    </article>
+
+    <!-- Option 3 -->
+    <article class="opt" id="opt3" data-opt="3">
+      <div class="opt-head">
+        <h3>Option 3 – Die Spät-Verbindung</h3>
+        <span class="badge">Ankunft am frühen Abend</span>
+        <span class="badge chooser" hidden>Ihre Wahl</span>
+      </div>
+      <p class="opt-sub">Für alle, die erst am Vormittag in Dresden starten möchten.</p>
+
+      <ol class="tl">
+        <li>
+          <div class="row"><span class="t">10:11</span><span class="act">ab</span><strong>Dresden Hbf</strong></div>
+          <div class="meta">ICE 1650</div>
+        </li>
+        <li>
+          <div class="row"><span class="t">11:20</span><span class="act">an</span><strong>Leipzig Hbf</strong></div>
+        </li>
+        <li class="chg">
+          <div class="row"><span class="t">29 Min.</span><span>Umsteigezeit in Leipzig</span></div>
+        </li>
+        <li>
+          <div class="row"><span class="t">11:49</span><span class="act">ab</span><strong>Leipzig Hbf</strong></div>
+          <div class="meta">ICE 707 · Richtung München Hbf</div>
+        </li>
+        <li>
+          <div class="row"><span class="t">14:42</span><span class="act">an</span><strong>München Hbf</strong></div>
+        </li>
+        <li class="chg">
+          <div class="row"><span class="t">28 Min.</span><span>Umsteigezeit in München</span></div>
+        </li>
+        <li>
+          <div class="row"><span class="t">15:10</span><span class="act">ab</span><strong>München Hbf</strong></div>
+          <div class="meta">RE 70 · Direktzug Richtung Lindau-Reutin</div>
+        </li>
+        <li>
+          <div class="row"><span class="t">17:27</span><span class="act">an</span><strong>Röthenbach (Allgäu)</strong></div>
+        </li>
+      </ol>
+
+      <div class="lastmile">
+        <p><span class="lm-t">Letzte Meile:</span> Ankunft in der Klinik gegen 17:50 Uhr (rechtzeitig zum Abendessen).</p>
+      </div>
+
+      <p class="sum">Reisezeit bis Röthenbach: <b>7 Std. 16 Min.</b> · Umstiege: <b>2</b></p>
+      <button type="button" class="choose" data-choice="3">Diese Verbindung wähle ich</button>
+    </article>
+  </div>
+
+  <p class="hint" id="wahlStand">Noch keine Verbindung gewählt.</p>
+
+  <h2>Wichtige Hinweise für die Buchung</h2>
+  <ul class="check">
+    <li>
+      <label>
+        <input type="checkbox" data-check="ticket" aria-label="Durchgehendes Ticket kaufen">
+        <span>
+          <span class="ct">Durchgehendes Ticket kaufen (Dresden ➔ Röthenbach Allgäu)</span>
+          <span class="cd">Die Fahrt komplett in einem Ticket buchen (auch wenn man z. B. ein Deutschlandticket besitzt). Nur bei einer durchgehenden Fernverkehrskarte greifen die Fahrgastrechte: Hat ein ICE Verspätung, darf man automatisch jeden nächsten Zug nehmen.</span>
+        </span>
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" data-check="sitzplatz" aria-label="Sitzplatzreservierung">
+        <span>
+          <span class="ct">Sitzplatzreservierung</span>
+          <span class="cd">Unbedingt einen Sitzplatz für die ICE-Teilstrecke Leipzig–München reservieren, da dieser Abschnitt zu den meistfrequentierten in Deutschland gehört.</span>
+        </span>
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" data-check="fahrdienst" aria-label="Klinik-Fahrdienst vorab reservieren">
+        <span>
+          <span class="ct">Klinik-Fahrdienst vorab reservieren</span>
+          <span class="cd">Der Patientenaufnahme der Maximilian Klinik Scheidegg 1–2 Wochen vor dem 11.02.2027 die genaue Ankunftszeit in Röthenbach durchgeben, damit der klinikeigene Kleinbus direkt am Bahnsteig wartet.</span>
+        </span>
+      </label>
+    </li>
+  </ul>
+
+  <footer>
+    <p>Planungsstand: 18.11.2026. Alle Angaben ohne Gewähr – maßgeblich ist der Fahrplan zum Buchungszeitpunkt.</p>
+  </footer>
+</main>
+
+<script>
+  (function () {
+    var WAHL = 'anreise-scheidegg-wahl';
+    var CHECK = 'anreise-scheidegg-check';
+
+    function safeGet(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+    function safeSet(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
+
+    /* ---------- Tabs / Filter ---------- */
+    var tabs = document.querySelectorAll('.tab');
+    var opts = document.querySelectorAll('.opt');
+
+    function filter(val) {
+      opts.forEach(function (o) {
+        o.hidden = !(val === 'all' || o.dataset.opt === val);
+      });
+      tabs.forEach(function (t) {
+        t.setAttribute('aria-pressed', String(t.dataset.filter === val));
+      });
+    }
+
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () { filter(t.dataset.filter); });
+    });
+
+    /* ---------- Wahl speichern ---------- */
+    var stand = document.getElementById('wahlStand');
+    var buttons = document.querySelectorAll('.choose');
+    var namen = { '1': 'Option 1 – Früh-Verbindung', '2': 'Option 2 – Standard-Verbindung', '3': 'Option 3 – Spät-Verbindung' };
+
+    function markiere(wahl) {
+      opts.forEach(function (o) {
+        var aktiv = o.dataset.opt === wahl;
+        o.classList.toggle('chosen', aktiv);
+        var badge = o.querySelector('.chooser');
+        if (badge) badge.hidden = !aktiv;
+      });
+      buttons.forEach(function (b) {
+        b.textContent = (b.dataset.choice === wahl) ? '✓ Diese Verbindung ist gewählt' : 'Diese Verbindung wähle ich';
+        b.setAttribute('aria-pressed', String(b.dataset.choice === wahl));
+      });
+      if (stand) {
+        stand.textContent = wahl
+          ? 'Gewählt: ' + (namen[wahl] || wahl) + ' (gespeichert auf diesem Gerät).'
+          : 'Noch keine Verbindung gewählt.';
+      }
+    }
+
+    var wahl = safeGet(WAHL) || '';
+    if (!namen[wahl]) wahl = '';
+    markiere(wahl);
+
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var val = b.dataset.choice;
+        wahl = (wahl === val) ? '' : val;
+        safeSet(WAHL, wahl);
+        markiere(wahl);
+      });
+    });
+
+    /* ---------- Checkliste ---------- */
+    var boxes = document.querySelectorAll('input[data-check]');
+    var gespeichert = (safeGet(CHECK) || '').split(',').filter(Boolean);
+
+    boxes.forEach(function (b) {
+      b.checked = gespeichert.indexOf(b.dataset.check) !== -1;
+      b.addEventListener('change', function () {
+        var liste = [];
+        boxes.forEach(function (x) { if (x.checked) liste.push(x.dataset.check); });
+        safeSet(CHECK, liste.join(','));
+      });
+    });
+  })();
+</script>
+</body>
+</html>
