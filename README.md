@@ -8,6 +8,8 @@ Sammlung meiner Forschungsberichte. Jeder Bericht ist eine einzelne HTML-Datei. 
 
 | Datum | Thema | Bericht |
 | --- | --- | --- |
+| 18.11.2026 | Manuelle Flockenquetsche für Haferflocken (Produktsuche) | [bericht.html](researches/26.11.18_flockenquetsche_haferflocken/bericht.html) |
+| 18.11.2026 | Balance Board für Plattfüße (Produktsuche) | [bericht.html](researches/26.11.18_balance_board_plattfuesse/bericht.html) |
 | 17.11.2026 | Alle Business-Ideen von Chris Koerner (350 Videos) | [bericht.html](researches/26.11.17_chris_koerner_business_ideas/bericht.html) |
 | 12.11.2026 | Wie wird man laut Paul Graham reich? | [bericht.html](researches/26.11.12_paul_graham_reichtum/bericht.html) |
 | 12.11.2026 | James Altucher: Wie wird man reich? | [bericht.html](researches/26.11.12_james_altucher_reichtum/bericht.html) |
@@ -16,7 +18,7 @@ Sammlung meiner Forschungsberichte. Jeder Bericht ist eine einzelne HTML-Datei. 
 
 ```
 .
-├── index.html                      Übersichtsseite mit Suchfeld
+├── index.html                      Übersichtsseite mit Suchfeld, nach Kategorien gegliedert
 ├── motivation/index.html           Motivationsseite: Bilder aus motivation/ als Grid
 ├── .nojekyll                       GitHub Pages ohne Jekyll
 ├── .gitignore

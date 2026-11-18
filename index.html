@@ -10,56 +10,143 @@
     :root { --bg:#14171c; --fg:#e8eaed; --card:#1d2128; --muted:#9aa3af; --accent:#7aa2ff; --line:#2c323b; }
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior:smooth; }
   body { margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif; background:var(--bg); color:var(--fg); }
-  main { max-width:820px; margin:0 auto; padding:2.5rem 1.2rem 4rem; }
+  main { max-width:960px; margin:0 auto; padding:2.5rem 1.2rem 4rem; }
   h1 { margin:0 0 .3rem; font-size:1.9rem; }
   .sub { color:var(--muted); margin:0 0 1.5rem; }
-  input { width:100%; padding:.7rem .9rem; font-size:1rem; border:1px solid var(--line); border-radius:10px; background:var(--card); color:var(--fg); margin-bottom:1.2rem; }
-  ul { list-style:none; padding:0; margin:0; display:grid; gap:.8rem; }
-  a.card { display:block; padding:1rem 1.2rem; background:var(--card); border:1px solid var(--line); border-radius:12px; text-decoration:none; color:inherit; transition:border-color .15s, transform .15s; }
+  input { width:100%; padding:.7rem .9rem; font-size:1rem; border:1px solid var(--line); border-radius:10px; background:var(--card); color:var(--fg); margin-bottom:1rem; }
+  nav { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:2rem; }
+  nav a { display:inline-flex; align-items:center; gap:.4rem; padding:.35rem .8rem; border:1px solid var(--line); border-radius:999px; background:var(--card); color:var(--fg); text-decoration:none; font-size:.9rem; }
+  nav a:hover, nav a:focus-visible { border-color:var(--accent); outline:none; }
+  nav .n { color:var(--muted); font-size:.8rem; }
+  section { margin-bottom:2.2rem; scroll-margin-top:1rem; }
+  section h2 { display:flex; align-items:center; gap:.6rem; margin:0 0 .2rem; font-size:1.3rem; }
+  section h2 .ico { font-size:1.4rem; }
+  section .desc { margin:0 0 .8rem; color:var(--muted); font-size:.92rem; }
+  ul { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:.8rem; }
+  a.card { display:block; height:100%; padding:1rem 1.2rem; background:var(--card); border:1px solid var(--line); border-radius:12px; text-decoration:none; color:inherit; transition:border-color .15s, transform .15s; }
   a.card:hover, a.card:focus-visible { border-color:var(--accent); transform:translateY(-2px); outline:none; }
   .date { font-size:.85rem; color:var(--muted); }
   .title { font-weight:600; color:var(--accent); }
+  .placeholder { padding:.9rem 1.2rem; border:1px dashed var(--line); border-radius:12px; color:var(--muted); font-size:.9rem; }
   .empty { display:none; color:var(--muted); }
 </style>
 </head>
 <body>
 <main>
   <h1>Deep Research</h1>
-  <p class="sub">Meine Forschungsberichte. Jeder Bericht ist eine eigene Seite. · <a href="motivation/index.html" style="color:var(--accent)">Meine Motivation →</a></p>
-  <input id="q" type="search" placeholder="Berichte durchsuchen …" aria-label="Berichte durchsuchen">
-  <ul id="list">
-    <li data-s="chris koerner business ideen geschäftsideen side hustle koerner office podcast youtube nebenverdienst ki agentur lokale dienstleistungen">
-      <a class="card" href="researches/26.11.17_chris_koerner_business_ideas/bericht.html">
-        <div class="date">17.11.2026</div>
-        <div class="title">Alle Business-Ideen von Chris Koerner</div>
-      </a>
-    </li>
-    <li data-s="james altucher wie wird man reich synthese">
-      <a class="card" href="researches/26.11.12_james_altucher_reichtum/bericht.html">
-        <div class="date">12.11.2026</div>
-        <div class="title">James Altucher: Wie wird man reich?</div>
-      </a>
-    </li>
-    <li data-s="paul graham wie wird man reich forschungsbericht">
-      <a class="card" href="researches/26.11.12_paul_graham_reichtum/bericht.html">
-        <div class="date">12.11.2026</div>
-        <div class="title">Wie wird man laut Paul Graham reich?</div>
-      </a>
-    </li>
-  </ul>
+  <p class="sub">Meine Forschungsberichte und Seiten, nach Themen sortiert. Jeder Bericht ist eine eigene Seite.</p>
+  <input id="q" type="search" placeholder="Alles durchsuchen …" aria-label="Alles durchsuchen">
+
+  <nav aria-label="Kategorien">
+    <a href="#business">💡 Business-Ideen <span class="n">3</span></a>
+    <a href="#gesundheit">🧬 Gesundheit / Langlebigkeit <span class="n">0</span></a>
+    <a href="#attraktivitaet">✨ Attraktivität <span class="n">0</span></a>
+    <a href="#produktsuche">🛒 Produktsuche <span class="n">2</span></a>
+    <a href="#motivation">🔥 Motivation <span class="n">1</span></a>
+    <a href="#habits">🔁 Habits <span class="n">0</span></a>
+  </nav>
+
+  <section id="business">
+    <h2><span class="ico">💡</span>Business-Ideen</h2>
+    <p class="desc">Geschäftsideen, Reichtum und wie andere ihr Geld verdienen.</p>
+    <ul>
+      <li data-s="chris koerner business ideen geschäftsideen side hustle koerner office podcast youtube nebenverdienst ki agentur lokale dienstleistungen">
+        <a class="card" href="researches/26.11.17_chris_koerner_business_ideas/bericht.html">
+          <div class="date">17.11.2026</div>
+          <div class="title">Alle Business-Ideen von Chris Koerner</div>
+        </a>
+      </li>
+      <li data-s="james altucher wie wird man reich synthese">
+        <a class="card" href="researches/26.11.12_james_altucher_reichtum/bericht.html">
+          <div class="date">12.11.2026</div>
+          <div class="title">James Altucher: Wie wird man reich?</div>
+        </a>
+      </li>
+      <li data-s="paul graham wie wird man reich forschungsbericht">
+        <a class="card" href="researches/26.11.12_paul_graham_reichtum/bericht.html">
+          <div class="date">12.11.2026</div>
+          <div class="title">Wie wird man laut Paul Graham reich?</div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="gesundheit">
+    <h2><span class="ico">🧬</span>Gesundheit / Langlebigkeit</h2>
+    <p class="desc">Gesund bleiben, länger leben, Körper und Geist pflegen.</p>
+    <div class="placeholder" data-s="gesundheit langlebigkeit">Noch keine Berichte.</div>
+  </section>
+
+  <section id="attraktivitaet">
+    <h2><span class="ico">✨</span>Attraktivität</h2>
+    <p class="desc">Aussehen, Ausstrahlung und Auftreten.</p>
+    <div class="placeholder" data-s="attraktivität attraktivitaet">Noch keine Berichte.</div>
+  </section>
+
+  <section id="produktsuche">
+    <h2><span class="ico">🛒</span>Produktsuche</h2>
+    <p class="desc">Produkte vergleichen und das Passende finden.</p>
+    <ul>
+      <li data-s="flockenquetsche haferflocken eschenfelder korn-quetsche salzburger flockenmeister küche getreide">
+        <a class="card" href="researches/26.11.18_flockenquetsche_haferflocken/bericht.html">
+          <div class="date">18.11.2026</div>
+          <div class="title">Manuelle Flockenquetsche für Haferflocken</div>
+        </a>
+      </li>
+      <li data-s="balance board plattfüße plattfuß blackboard mobo fußtraining füße">
+        <a class="card" href="researches/26.11.18_balance_board_plattfuesse/bericht.html">
+          <div class="date">18.11.2026</div>
+          <div class="title">Balance Board für Plattfüße</div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="motivation">
+    <h2><span class="ico">🔥</span>Motivation</h2>
+    <p class="desc">Bilder und Sprüche, die mich antreiben.</p>
+    <ul>
+      <li data-s="motivation bilder sprüche inspiration">
+        <a class="card" href="motivation/index.html">
+          <div class="date">Bildersammlung</div>
+          <div class="title">Meine Motivation</div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="habits">
+    <h2><span class="ico">🔁</span>Habits</h2>
+    <p class="desc">Gewohnheiten aufbauen und beibehalten.</p>
+    <div class="placeholder" data-s="habits gewohnheiten">Noch keine Berichte.</div>
+  </section>
+
   <p class="empty" id="empty">Keine Treffer.</p>
 </main>
 <script>
-  var q = document.getElementById('q'), items = document.querySelectorAll('#list li'), empty = document.getElementById('empty');
+  var q = document.getElementById('q'), empty = document.getElementById('empty');
+  var sections = document.querySelectorAll('section');
   q.addEventListener('input', function () {
-    var t = q.value.toLowerCase().trim(), n = 0;
-    items.forEach(function (li) {
-      var show = li.dataset.s.indexOf(t) !== -1 || li.textContent.toLowerCase().indexOf(t) !== -1;
-      li.style.display = show ? '' : 'none';
-      if (show) n++;
+    var t = q.value.toLowerCase().trim(), total = 0;
+    sections.forEach(function (sec) {
+      var shown = 0;
+      sec.querySelectorAll('li').forEach(function (li) {
+        var show = !t || li.dataset.s.indexOf(t) !== -1 || li.textContent.toLowerCase().indexOf(t) !== -1;
+        li.style.display = show ? '' : 'none';
+        if (show) shown++;
+      });
+      var ph = sec.querySelector('.placeholder');
+      if (ph) {
+        var hit = !t || sec.querySelector('h2').textContent.toLowerCase().indexOf(t) !== -1 || ph.dataset.s.indexOf(t) !== -1;
+        ph.style.display = hit ? '' : 'none';
+        if (hit) shown++;
+      }
+      sec.style.display = shown ? '' : 'none';
+      total += shown;
     });
-    empty.style.display = n ? 'none' : 'block';
+    empty.style.display = total ? 'none' : 'block';
   });
 </script>
 </body>
