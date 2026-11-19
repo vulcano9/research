@@ -8,6 +8,7 @@ Sammlung meiner Forschungsberichte. Jeder Bericht ist eine einzelne HTML-Datei. 
 
 | Datum | Thema | Bericht |
 | --- | --- | --- |
+| 19.11.2026 | Ist das Universum eine Entpackungsmaschine? (Quantenrauschen, ewiger Zyklus, weiße Löcher) | [bericht.html](researches/26.11.19_universum_entpackungsmaschine/bericht.html) |
 | 18.11.2026 | Manuelle Flockenquetsche für Haferflocken (Produktsuche) | [bericht.html](researches/26.11.18_flockenquetsche_haferflocken/bericht.html) |
 | 18.11.2026 | Balance Board für Plattfüße (Produktsuche) | [bericht.html](researches/26.11.18_balance_board_plattfuesse/bericht.html) |
 | 18.11.2026 | 3D-Druck-Fußgewölbetrainer gegen Plattfüße (Produktsuche) | [bericht.html](researches/26.11.18_3d_druck_fussgewoelbetrainer/bericht.html) |
