@@ -1,0 +1,1379 @@
+[
+{
+"id": 1723,
+"n": "Atmospheric Braking",
+"d": "Using a planet's atmosphere to gradually decelerate a spacecraft.",
+"p": "Aerobraking",
+"x": "Using atmosphere to slow"
+},
+{
+"id": 1724,
+"n": "Atomician Sign Language",
+"d": "Specialized sign language used by those who work with atomics."
+},
+{
+"id": 1725,
+"n": "Automatic Defensors",
+"d": "Devices that follow along with you, providing extra viewpoints."
+},
+{
+"id": 1726,
+"n": "Beltway",
+"d": "A moving sidewalk."
+},
+{
+"id": 1727,
+"n": "Brain Erasure",
+"d": "Deleting selected knowledge from the brain using electrical impulses.",
+"p": "Memory manipulation"
+},
+{
+"id": 1728,
+"n": "Crimestop",
+"d": "The faculty of stopping short, as though by instict, at the threshold of any dangerous thought.",
+"p": "Thought control"
+},
+{
+"id": 1729,
+"n": "Dobridust",
+"d": "A fully automated cleaning machine; it cleans till it runs out of energy."
+},
+{
+"id": 1730,
+"n": "Doublethink",
+"d": "A mental discipline that is an exact contradiction to the basic principles of scientific inquiry.",
+"p": "Reality denial"
+},
+{
+"id": 1731,
+"n": "Electro-Education",
+"d": "The latest thing in electrically stimulated learning.",
+"p": "Electronic learning"
+},
+{
+"id": 1732,
+"n": "Gravity Centrifuge",
+"d": "Used in low gravity environments to build up muscle for visits to Earth, or other high gravity worlds."
+},
+{
+"id": 1733,
+"n": "High-Frequency Oven",
+"d": "This describes the essence of a microwave.",
+"p": "Microwave ovens"
+},
+{
+"id": 1734,
+"n": "Learning-Cap",
+"d": "A special metal helmet for electro-education."
+},
+{
+"id": 1735,
+"n": "Memory Hole",
+"d": "A receptacle for unwanted documents."
+},
+{
+"id": 1736,
+"n": "Metal Lark",
+"d": "A device that adjusts the vocal chords and helps the user to be the best singer possible."
+},
+{
+"id": 1737,
+"n": "Microwavable Food",
+"d": "Food that is prepared specifically for use in a microwave (high-frequency) oven.",
+"p": "Microwaveable meals",
+"x": "Prepared for microwave cooking"
+},
+{
+"id": 1738,
+"n": "Moonbase (or Moon Base)",
+"d": "A base of operations on Earth's moon.",
+"p": "Lunar bases",
+"x": "Habitats on the Moon"
+},
+{
+"id": 1739,
+"n": "Moonquake-Proof Habitats",
+"d": "Moonbases that are built to withstand quakes on the Moon."
+},
+{
+"id": 1740,
+"n": "Nerve Control Lines",
+"d": "Designs that take control of human nervous systems."
+},
+{
+"id": 1741,
+"n": "Novel-Writing Machines",
+"d": "A device that automatically produces fiction.",
+"p": "Automated writing"
+},
+{
+"id": 1742,
+"n": "Personal Rocket Jet",
+"d": "A small, handheld jet pack that can be used to maneuver freely in space.",
+"x": "Individual rocket device"
+},
+{
+"id": 1743,
+"n": "Portable Telephone",
+"d": "The essence of a cell phone.",
+"x": "Wireless personal communication"
+},
+{
+"id": 1744,
+"n": "Precog (v)",
+"d": "To see the future."
+},
+{
+"id": 1745,
+"n": "Rewriting History",
+"d": "Use of sophisticated technology to continuously rewrite the historical record.",
+"p": "Historical revisionism"
+},
+{
+"id": 1746,
+"n": "Rotohouse",
+"d": "A house that turns upon a central pivot."
+},
+{
+"id": 1747,
+"n": "Solidograph-Projector",
+"d": "A device that projected a 3D image of objects or a person.",
+"x": "3D image projection"
+},
+{
+"id": 1748,
+"n": "Space Ark",
+"d": "A very large ship used to transport a large group of people."
+},
+{
+"id": 1749,
+"n": "Speakwrite",
+"d": "A dictation machine that also transcribes the speech into typed words."
+},
+{
+"id": 1750,
+"n": "Star Drive",
+"d": "The propulsion unit for an interstellar space craft.",
+"p": "FTL propulsion"
+},
+{
+"id": 1751,
+"n": "Survey Craft",
+"d": "Light duty ship for use in atmosphere, to explore planets."
+},
+{
+"id": 1752,
+"n": "Tag-Along Balloon",
+"d": "A bladder-like device that both finds and temporarily fixes leaks in moon tunnels or space station habitats.",
+"p": "Habitat maintenance"
+},
+{
+"id": 1753,
+"n": "Telescreen",
+"d": "Very early use of the idea of using technology to monitor human activity at a distance.",
+"x": "Remote monitoring"
+},
+{
+"id": 1754,
+"n": "Thiotimoline",
+"d": "Remarkable substance dissolves about 1.12 seconds before contact with a solvent."
+},
+{
+"id": 1755,
+"n": "Tubecar",
+"d": "A pneumatic tube that carries people."
+},
+{
+"id": 1756,
+"n": "Versificator",
+"d": "A device that composes words to music.",
+"p": "Automatic music composition"
+},
+{
+"id": 1757,
+"n": "Vizi-math",
+"d": "A device that accepts written equations and then provides a visualization of what it has been given."
+},
+{
+"id": 1758,
+"n": "Bolt Anti-Grav",
+"d": "This device produces a torus-shaped discharge that causes weightlessness."
+},
+{
+"id": 1759,
+"n": "Bubble Armor Space Suit",
+"d": "Steel bubble-shaped space suit."
+},
+{
+"id": 1760,
+"n": "Cybernetic Brain",
+"d": "An artificial brain to control the movements of an prosthetic leg using nerve impulses."
+},
+{
+"id": 1761,
+"n": "Desert Cabbage",
+"d": "A giant plant that regulates its internal temperature even on Mars."
+},
+{
+"id": 1762,
+"n": "Emergency Treatment Tank (Chamber)",
+"d": "A fully enclosed regeneration device."
+},
+{
+"id": 1763,
+"n": "Fluor Strips",
+"d": "Lighting long narrow devices.",
+"p": "Fluorescent lighting",
+"x": "Gas-discharge illumination"
+},
+{
+"id": 1764,
+"n": "Fresher",
+"d": "Short for 'refreshing chamber', a device that performs various personal services."
+},
+{
+"id": 1765,
+"n": "Gee",
+"d": "Using the standard letter designation in physics for gravity.",
+"x": "Acceleration due to gravity"
+},
+{
+"id": 1766,
+"n": "Herculoy",
+"d": "A very strong alloy like steel."
+},
+{
+"id": 1767,
+"n": "Martian Canal Ice",
+"d": "Open water ice on the fourth planet."
+},
+{
+"id": 1768,
+"n": "Metal Calculator Planet",
+"d": "A planet covered entirely with machinery to a height of twenty miles and covered with a metal roof."
+},
+{
+"id": 1769,
+"n": "Mind-Lock",
+"d": "A device that confines a mind within its own shielded area.",
+"p": "Telepathy blocker"
+},
+{
+"id": 1770,
+"n": "Mind-Parasite",
+"d": "Takes over the cognition of a host organism."
+},
+{
+"id": 1771,
+"n": "Painted Respirator Masks",
+"d": "Children choose to decorate otherwise uniform equipment masks."
+},
+{
+"id": 1772,
+"n": "Plastiskin",
+"d": "Artificial human skin to cover prosthetics."
+},
+{
+"id": 1773,
+"n": "Quizzer",
+"d": "An autonomous mind-probe.",
+"p": "Mind probe"
+},
+{
+"id": 1774,
+"n": "Repulsor",
+"d": "A device that inhibits the action of a spacewarp drive."
+},
+{
+"id": 1775,
+"n": "Resilian",
+"d": "A natural fiber that is as strong as steel."
+},
+{
+"id": 1776,
+"n": "Robot Introspection",
+"d": "A robotic brain grows and learns about itself."
+},
+{
+"id": 1777,
+"n": "Self-Igniter",
+"d": "A self-lighting cigarette."
+},
+{
+"id": 1778,
+"n": "Shari",
+"d": "A multipurpose net worn as clothing."
+},
+{
+"id": 1779,
+"n": "Skimmer",
+"d": "Low-flying, hovering vehicle."
+},
+{
+"id": 1780,
+"n": "Space Scurvy (Kenoalgia)",
+"d": "A wasting disease of space travel.",
+"p": "Fictional disease"
+},
+{
+"id": 1781,
+"n": "Spacewarp Drive",
+"d": "A means of faster-than-light travel."
+},
+{
+"id": 1782,
+"n": "Stationary Automatic Blaster",
+"d": "An automated defensive blaster.",
+"p": "Defensive turret"
+},
+{
+"id": 1783,
+"n": "Synthetigrav",
+"d": "General term for any of the fields produced by synthetic gravity devices."
+},
+{
+"id": 1784,
+"n": "Telepath Transmitter",
+"d": "A device for long distance communication that makes use of telepathy.",
+"p": "Telepathic communication"
+},
+{
+"id": 1785,
+"n": "Three Generation Work (Century Piece)",
+"d": "An artwork created by three consecutive generations of artists, in exactly one century.",
+"p": "Fictional artform"
+},
+{
+"id": 1786,
+"n": "Visiglobe",
+"d": "A display that provided a spherical, 3D visualization of a scene."
+},
+{
+"id": 1787,
+"n": "Vivo-Gel",
+"d": "Semi-living material."
+},
+{
+"id": 1788,
+"n": "Aircoat",
+"d": "A flying device."
+},
+{
+"id": 1789,
+"n": "Anti-Tri-D Shot",
+"d": "Counteracts the deadly pesticide Tri-D."
+},
+{
+"id": 1790,
+"n": "Automatic Light Switch",
+"d": "A device that senses if an illuminated room is empty, and turns off the light.",
+"p": "Smart lights",
+"x": "Automated home lighting"
+},
+{
+"id": 1791,
+"n": "Black Bag",
+"d": "A medical kit from the future."
+},
+{
+"id": 1792,
+"n": "Building With Lunar Materials",
+"d": "Using a planet's materials to make what you need."
+},
+{
+"id": 1793,
+"n": "Colloid Dielectric",
+"d": "A non-living receptacle for a human mind."
+},
+{
+"id": 1794,
+"n": "Computer-Controlled House",
+"d": "A residence that is an autonomous robotic system.",
+"p": "Smart homes",
+"x": "Networked appliances"
+},
+{
+"id": 1795,
+"n": "Culture Tank",
+"d": "Germs that eat garbage and produce oil.",
+"p": "Alien life studies"
+},
+{
+"id": 1796,
+"n": "Diaheliper",
+"d": "Offers delivery of diapers by air."
+},
+{
+"id": 1797,
+"n": "Earther",
+"d": "A person born on planet Earth.",
+"p": "Fictional demonym"
+},
+{
+"id": 1798,
+"n": "Earthport",
+"d": "A massive spaceport that reared up from the surface of the earth to the edge of the atmosphere."
+},
+{
+"id": 1799,
+"n": "Fontema",
+"d": "A strange two 'wheeled' animal."
+},
+{
+"id": 1800,
+"n": "FTL",
+"d": "Abbreviation for \"faster than light\".",
+"p": "Hyperspace travel"
+},
+{
+"id": 1801,
+"n": "Genetic Adjustment",
+"d": "Fixing one lifeform so it can survive on a non-native world."
+},
+{
+"id": 1802,
+"n": "Gravity Drive",
+"d": "A spaceship propulsion method that uses gravity or gravity waves."
+},
+{
+"id": 1803,
+"n": "Great Pain of Space",
+"d": "A kind of fatal space sickness afflicting humans who travel in space."
+},
+{
+"id": 1804,
+"n": "Haberman",
+"d": "Modified humans controlled by cybernetic implants."
+},
+{
+"id": 1805,
+"n": "Heat Trap",
+"d": "Using the greenhouse effect to terraform a planet or moon."
+},
+{
+"id": 1806,
+"n": "Helicab",
+"d": "A taxi cab that flies using helicopter rotors.",
+"p": "Air taxis",
+"x": "On-demand air transport"
+},
+{
+"id": 1807,
+"n": "Hive-Mind",
+"d": "A group mind.",
+"p": "Group mind"
+},
+{
+"id": 1808,
+"n": "Hybrid Mass Driver",
+"d": "A device for launching space craft on the first stage of a journey to space.",
+"p": "Space launcher"
+},
+{
+"id": 1809,
+"n": "Intelligent Living Village",
+"d": "Seemingly a living space, it is able to discern the needs of a traveler."
+},
+{
+"id": 1810,
+"n": "Mass-Conversion Ship",
+"d": "A spacecraft that uses the ultimate in fuel sources."
+},
+{
+"id": 1811,
+"n": "Nexialist",
+"d": "A person with a coordinative knowledge across a variety of sciences."
+},
+{
+"id": 1812,
+"n": "Nucleocat Cureall",
+"d": "Only human cells can survive contact."
+},
+{
+"id": 1813,
+"n": "Palm Key-Plate",
+"d": "A plate that accepts palms that have been verified."
+},
+{
+"id": 1814,
+"n": "Perm (Permanent Hookup)",
+"d": "A lifetime of immersive entertainment."
+},
+{
+"id": 1815,
+"n": "Quickthaw",
+"d": "A microwave oven to heat food items quickly.",
+"p": "Microwaves"
+},
+{
+"id": 1816,
+"n": "Regeneration Tank",
+"d": "A nutrient bath large enough to enclose a person that preserved life and treated disease."
+},
+{
+"id": 1817,
+"n": "Repair Robots",
+"d": "Autonomous robots that carry out maintenance functions on a space ship.",
+"x": "Automated manual work"
+},
+{
+"id": 1818,
+"n": "Robot Farm",
+"d": "A farm staffed and run entirely by robots."
+},
+{
+"id": 1819,
+"n": "Robot Mice",
+"d": "Tiny cleaning robots."
+},
+{
+"id": 1820,
+"n": "Robot Rabbit",
+"d": "A robotic bunny."
+},
+{
+"id": 1821,
+"n": "Robotic Dishwasher",
+"d": "A fully automated solution to the dishwashing problem.",
+"p": "Dishwashers",
+"x": "Automated dish cleaning"
+},
+{
+"id": 1822,
+"n": "Sand Ship",
+"d": "A wind-powered vehicle in the desert."
+},
+{
+"id": 1823,
+"n": "Shipboard Medical Treatment",
+"d": "An elaborate system to guard against infection in returning space explorers.",
+"x": "Health care for space travelers"
+},
+{
+"id": 1824,
+"n": "Shuttle",
+"d": "A space craft that travels point to point in space."
+},
+{
+"id": 1825,
+"n": "Space Platform",
+"d": "The Space Platform for Checking Aggression is a military orbital weapons platform."
+},
+{
+"id": 1826,
+"n": "Stratovideo (Television Plane)",
+"d": "An aircraft with studios that continuously broadcast line-of-sight television.",
+"w": "Broadcasters",
+"p": "Television planes",
+"x": "Aerial video transmission"
+},
+{
+"id": 1827,
+"n": "Synthetic Rubberoid Skin",
+"d": "An artful recreation of a human face, indistinguishable from the original."
+},
+{
+"id": 1828,
+"n": "Syntho-Steak",
+"d": "Artificially produced meat."
+},
+{
+"id": 1829,
+"n": "Talking Nail",
+"d": "Used by scanners when not talking."
+},
+{
+"id": 1830,
+"n": "The Machines",
+"d": "A few of these can run a planetary economy."
+},
+{
+"id": 1831,
+"n": "Torch",
+"d": "The orifice from which issued the reaction mass of an atomic powered space craft.",
+"x": "Reaction mass propulsion"
+},
+{
+"id": 1832,
+"n": "Tractatruck",
+"d": "Combination tractor and truck used for hauling and exploration."
+},
+{
+"id": 1833,
+"n": "Tri-D",
+"d": "A remarkable pesticide.",
+"p": "3D TV",
+"x": "Stereoscopic 3D displays"
+},
+{
+"id": 1834,
+"n": "Two-Wheeled Ground Car",
+"d": "A gyro-stabilized vehicle like an enclosed motorcycle."
+},
+{
+"id": 1835,
+"n": "Underpeople",
+"d": "An animal modified to be human in shape and intellect."
+},
+{
+"id": 1836,
+"n": "Voice-Clock",
+"d": "A clock that could state the time out loud.",
+"p": "Talking clocks",
+"x": "Verbal time announcements"
+},
+{
+"id": 1837,
+"n": "Walker Wagon",
+"d": "Robotic vehicle with a trough-like body and many mechanical legs.",
+"p": "Lunar rovers",
+"x": "Surface transportation"
+},
+{
+"id": 1838,
+"n": "Water From Lunar Gypsum",
+"d": "Extracting water (and therefore oxygen, by electrolysis) from apparently dry lunar material.",
+"p": "Space resource utilization"
+},
+{
+"id": 1839,
+"n": "Yeast Steak",
+"d": "Growing custom strains of yeast as food.",
+"p": "Mycoprotein",
+"x": "Fungal protein food"
+},
+{
+"id": 1840,
+"n": "Agricultural World",
+"d": "Planet set aside for the production of food for another world.",
+"x": "Fictional farm planet"
+},
+{
+"id": 1841,
+"n": "Air Speedster",
+"d": "Highly maneuverable air vehicle for hunting.",
+"x": "Early personal aerial vehicles"
+},
+{
+"id": 1842,
+"n": "Airtight Tent",
+"d": "A temporary structure for living on an airless moon or asteroid.",
+"x": "Early space habitats"
+},
+{
+"id": 1843,
+"n": "Ant Evolution",
+"d": "Forcing ants to evolve out of their cul-de-sac."
+},
+{
+"id": 1844,
+"n": "Anti-Spying Device",
+"d": "Foolproof means of defending against spy beams."
+},
+{
+"id": 1845,
+"n": "Artificial Intelligence",
+"d": "A machine or other created system able to respond in a human-like way to questions or problems."
+},
+{
+"id": 1846,
+"n": "Asteroid Garden",
+"d": "A method for building a greenhouse on a small, airless body.",
+"x": "Early asteroid farming"
+},
+{
+"id": 1847,
+"n": "Asteroid Homesteaders' School",
+"d": "An institution of learning where regular folks learned how to start a farm on an asteroid.",
+"x": "Fictional spacesteading"
+},
+{
+"id": 1848,
+"n": "Audio Relay",
+"d": "A communication device implanted behind the ear; also used as an alarm for wake-up calls.",
+"x": "Early implant tech"
+},
+{
+"id": 1849,
+"n": "Autocab",
+"d": "An fully automated taxi cab."
+},
+{
+"id": 1850,
+"n": "Automated Bomber",
+"d": "A bombing plane that automatically targets, drops, returns for fuel and more munitions, all automatically."
+},
+{
+"id": 1851,
+"n": "Automatic Fuel Hose",
+"d": "A robotic snakelike hose to refuel aircraft."
+},
+{
+"id": 1852,
+"n": "Automatic Loader",
+"d": "Entirely automated system for replenishing the arms on a bomber plane."
+},
+{
+"id": 1853,
+"n": "Boarding Space-Line",
+"d": "A method for two ships to connect at a distance, allowing a passenger to move safely between ships."
+},
+{
+"id": 1854,
+"n": "Booklegger",
+"d": "A smuggler of books.",
+"x": "Fictional book smuggling"
+},
+{
+"id": 1855,
+"n": "Butler-Valet Robot",
+"d": "A gentleman's servant, roboticized.",
+"x": "Early personal robot"
+},
+{
+"id": 1856,
+"n": "Calculator Pad",
+"d": "Used to make psychohistoric calculations"
+},
+{
+"id": 1857,
+"n": "Coffee Cube",
+"d": "Concentrated coffee that boils itself!",
+"x": "Early instant coffee"
+},
+{
+"id": 1858,
+"n": "Cold-Sleep",
+"d": "A form of induced suspended animation, in which a person enters a state like hibernation.",
+"x": "Early cryonics ideas"
+},
+{
+"id": 1859,
+"n": "Directional Ticket",
+"d": "A ticket that also has the property of glowing while you are going toward what you bought.",
+"x": "Fictional navigation"
+},
+{
+"id": 1860,
+"n": "Dirt-Farming",
+"d": "An archaic method of food production.",
+"x": "Real non-soil farming"
+},
+{
+"id": 1861,
+"n": "Dominator",
+"d": "Device implants a psychological block."
+},
+{
+"id": 1862,
+"n": "Finger Watch",
+"d": "A ring that contains a working timepiece and a display.",
+"w": "Designers",
+"x": "Early smart rings"
+},
+{
+"id": 1863,
+"n": "Flavor-Fix Rheostat",
+"d": "Technology makes sure that the flavor of automatically-produced food is perfect.",
+"x": "Fictional food tech"
+},
+{
+"id": 1864,
+"n": "Flea Robot",
+"d": "It was a tiny as a flea... but it ticked."
+},
+{
+"id": 1865,
+"n": "Flying Saucer",
+"d": "Spacecraft flown by the androgynes of Titan - under control of the Puppetmasters.",
+"x": "Fictional UFO"
+},
+{
+"id": 1866,
+"n": "Force-Field Penknife",
+"d": "A pocket-sized knife, the blade of which is a force-field."
+},
+{
+"id": 1867,
+"n": "Genetic Engineering",
+"d": "Direct manipulation of genetic material",
+"x": "Real genetic engineering"
+},
+{
+"id": 1868,
+"n": "Gravitic Repulsion Elevator",
+"d": "The elevator was of the new sort that ran by gravitic repulsion.",
+"x": "Fictional gravity tech"
+},
+{
+"id": 1869,
+"n": "Guided Missile Control Station",
+"d": "An orbital missile base.",
+"x": "Real missile control"
+},
+{
+"id": 1870,
+"n": "Gulbrandsen Machine",
+"d": "Device strips away every mediating impulse, leaving a person with only the most intense drives."
+},
+{
+"id": 1871,
+"n": "Half-Sphere Force Field",
+"d": "A protective force field that can manifest even as a half-sphere."
+},
+{
+"id": 1872,
+"n": "Happylife Home",
+"d": "An automated multi-media home, which provided the good life to its inhabitants.",
+"x": "Early smart homes"
+},
+{
+"id": 1873,
+"n": "Helmet-Mounted Display Screen",
+"d": "A small electronic display mounted for easy viewing.",
+"x": "Real HUDs"
+},
+{
+"id": 1874,
+"n": "Jump Through Hyperspace",
+"d": "Device that makes faster-than-light travel possible.",
+"x": "Fictional FTL"
+},
+{
+"id": 1875,
+"n": "Machine Test Scoring",
+"d": "A device that scans a specially prepared grade sheet and determines a student's score.",
+"x": "Early ed tech"
+},
+{
+"id": 1876,
+"n": "Martian Perambulator",
+"d": "A mechanized transport for heavy gravity environments for beings born in lower gravity environments.",
+"x": "Early Mars rover ideas"
+},
+{
+"id": 1877,
+"n": "Mechanical Grease Monkey",
+"d": ""
+},
+{
+"id": 1878,
+"n": "Mechanical Teacher",
+"d": "A computer device able to teach children.",
+"x": "Early teaching machines"
+},
+{
+"id": 1879,
+"n": "Mentophone",
+"d": "A device that facilitates long-distance telepathy.",
+"x": "Fictional telepathy"
+},
+{
+"id": 1880,
+"n": "Meson Filter",
+"d": "Provides robots with the ability to tell the difference between jokes that provide a chuckle and jokes that provide a belly laugh."
+},
+{
+"id": 1881,
+"n": "Metal Foil Advertisement",
+"d": "An advertising circular made out of metal.",
+"x": "Fictional ads"
+},
+{
+"id": 1882,
+"n": "Microwire",
+"d": "A very thin wire used for recording purposes.",
+"x": "Early miniaturization"
+},
+{
+"id": 1883,
+"n": "Mobile Televisor Guard",
+"d": "An automated device that surveils and area, with a hook-up back to a central station."
+},
+{
+"id": 1884,
+"n": "Molecule Matrix",
+"d": "Storing information in individual molecules and atoms.",
+"x": "Early nanotech ideas"
+},
+{
+"id": 1885,
+"n": "Movable Slideway",
+"d": "A slideway (moving sidewalk) that can be extended to a spaceship to ease the debarkation process.",
+"x": "Early moving walkways"
+},
+{
+"id": 1886,
+"n": "Negative Molecular Motion",
+"d": "A state of matter that has a temperature below absolute zero."
+},
+{
+"id": 1887,
+"n": "Neuronic Whip",
+"d": "A weapon that stimulated the nerve endings to cause extreme discomfort.",
+"x": "Fictional neural weapon"
+},
+{
+"id": 1888,
+"n": "Neutron Disruption Blaster",
+"d": "Beam pistol which splits neutrons into protons and electrons, releasing enormous energy."
+},
+{
+"id": 1889,
+"n": "Nuclear Shears",
+"d": "Device uses nuclear power to accomplish basic shop tasks.",
+"x": "Fictional power tools"
+},
+{
+"id": 1890,
+"n": "Odorophonics",
+"d": "A system capable of reproducing selected scents capable of fooling the human nervous system.",
+"x": "Early sensory tech"
+},
+{
+"id": 1891,
+"n": "Ontogenetic Adaptation",
+"d": "Immediate genetic-level ability to eat alien plants.",
+"x": "Fictional evolution"
+},
+{
+"id": 1892,
+"n": "Oxygen Concentrator",
+"d": "Gathers oxygen from a thin atmosphere until it is breathable, supporting life.",
+"x": "Real oxygen extraction"
+},
+{
+"id": 1893,
+"n": "Oxygen Weeds",
+"d": "Plants that create oxygen on a planet with little breathable air.",
+"x": "Fictional oxygen plants"
+},
+{
+"id": 1894,
+"n": "Pail of Air",
+"d": "A small bucket filled with (liquid) air.",
+"x": "Fictional air storage"
+},
+{
+"id": 1895,
+"n": "Personal Capsule",
+"d": "An impenetrable device containing information for your eyes only.",
+"x": "Fictional data security"
+},
+{
+"id": 1896,
+"n": "Personal Force-Shield",
+"d": "A portable force-shield small enough to be carried by a single man.",
+"x": "Fictional personal shield"
+},
+{
+"id": 1897,
+"n": "Planetruck",
+"d": "Huge vehicle for planetary surface transport.",
+"x": "Early planetary rovers"
+},
+{
+"id": 1898,
+"n": "Plasto-Textile",
+"d": "A fabric that cannot be stained.",
+"x": "Early synthetics"
+},
+{
+"id": 1899,
+"n": "Pocket Nucleo-Bulb",
+"d": "A nuclear-powered pocket-sized flashlight.",
+"x": "Fictional portable reactor"
+},
+{
+"id": 1900,
+"n": "Pocket Nucleo-Bulb (Atomo Bulb)",
+"d": "A nuclear-powered pocket-sized flashlight."
+},
+{
+"id": 1901,
+"n": "Polaron Beam",
+"d": "A unique beam of energy that scatters some of its light at right angles to the direction of propagation."
+},
+{
+"id": 1902,
+"n": "Powered artificial exoskeleton",
+"d": "A robotic device designed to support someone too weak to comfortably move in high gravity.",
+"x": "Early exosuits"
+},
+{
+"id": 1903,
+"n": "Psychohistory",
+"d": "Branch of mathematics describes the behavior of human beings en masses.",
+"x": "Fictional math forecasting"
+},
+{
+"id": 1904,
+"n": "Retard-Jets",
+"d": "Rockets to slow down."
+},
+{
+"id": 1905,
+"n": "Robass",
+"d": "A robotic beast of burden."
+},
+{
+"id": 1906,
+"n": "Robot Comedian",
+"d": "Joke-telling feature added to a standard butler robot.",
+"x": "Early humor AI"
+},
+{
+"id": 1907,
+"n": "Robot Detector",
+"d": "A device that can sense robotics."
+},
+{
+"id": 1908,
+"n": "Robotic Chess Expert",
+"d": "A robot that plays chess at a level that no human can match.",
+"x": "Early game AI"
+},
+{
+"id": 1909,
+"n": "Security Restraint Field",
+"d": "A force field that restricts personal movement."
+},
+{
+"id": 1910,
+"n": "Selector Card",
+"d": "Pneumatic delivery of book films by using a mechanical form of data storage; selector cards - probably punch cards.",
+"x": "Real punch card tech"
+},
+{
+"id": 1911,
+"n": "Self-Adjusting Furniture",
+"d": "Automatic adjustment for a perfect fit.",
+"x": "Early adjustable furniture"
+},
+{
+"id": 1912,
+"n": "Self-Sealing Plastic",
+"d": "Transparent sheeting with a layer of material that would flow to staunch tiny leaks."
+},
+{
+"id": 1913,
+"n": "Shuttle Ship",
+"d": "A spacecraft that could take off from a planet, rendezvous with an object in orbit, and fly back to the surface like a glider."
+},
+{
+"id": 1914,
+"n": "Single Vehicle Tunnel",
+"d": "A small diameter tunnel that accepts a single vehicle to a single destination.",
+"x": "Early transit tunnels"
+},
+{
+"id": 1915,
+"n": "Smarter People Having Fewer Children",
+"d": "The original argument that less suitable human pairs are having proportionally more children.",
+"x": "Early dysgenics argument"
+},
+{
+"id": 1916,
+"n": "Space Station One",
+"d": "Describes an early space station similar to the International Space Station, that grew over time by accretion.",
+"x": "Early space stations"
+},
+{
+"id": 1917,
+"n": "Space Transfer Station",
+"d": "An orbiting space station primarily used as a stepping-off point from Earth.",
+"x": "Real space stations"
+},
+{
+"id": 1918,
+"n": "Spinning Pressurized Drum",
+"d": "Put a spin on just a part of a space station.",
+"x": "Early artificial gravity"
+},
+{
+"id": 1919,
+"n": "Spy Beam",
+"d": "A surveillance device that projects energy into a room, revealing conversation taking place.",
+"x": "Real surveillance tech"
+},
+{
+"id": 1920,
+"n": "Star-Globe (Ship)",
+"d": "A spherical spacecraft."
+},
+{
+"id": 1921,
+"n": "Static Field",
+"d": "A defense against a spy beam.",
+"x": "Fictional surveillance counter"
+},
+{
+"id": 1922,
+"n": "Suction Mail Tube",
+"d": "An evacuated tube system carrying mail to residences.",
+"x": "Real pneumatic tubes"
+},
+{
+"id": 1923,
+"n": "Sun Dome",
+"d": "Used on Venus to give relief from the endless rain.",
+"x": "Fictional habitat"
+},
+{
+"id": 1924,
+"n": "Sun-Room",
+"d": "On a planet-wide city, the only way to get some sun without going to the roof.",
+"x": "Real sunrooms"
+},
+{
+"id": 1925,
+"n": "Surrogate Skin",
+"d": "False skin that is sprayed onto damaged areas."
+},
+{
+"id": 1926,
+"n": "Suspensine",
+"d": "Slows biological functions enough to survive in airless space - for a time."
+},
+{
+"id": 1927,
+"n": "Telebook",
+"d": "A book made available in text on a television screen.",
+"x": "Early ebooks"
+},
+{
+"id": 1928,
+"n": "Teledar",
+"d": "Three-dimensional television.",
+"x": "Early 3D TV"
+},
+{
+"id": 1929,
+"n": "The Veldt",
+"d": "A nursery that comes alive for the viewer.",
+"x": "Early VR"
+},
+{
+"id": 1930,
+"n": "Trantor",
+"d": "A city that covers the entire surface of the planet.",
+"x": "Fictional planetwide city"
+},
+{
+"id": 1931,
+"n": "Ultra-Light",
+"d": "Allows the user to see into rock or other solid matter.",
+"x": "Fictional x-ray vision"
+},
+{
+"id": 1932,
+"n": "Ultrawave Relay or Hyperwave Relay",
+"d": "Instantaneous, faster-than-light communication system."
+},
+{
+"id": 1933,
+"n": "Variable Modifier",
+"d": "Provides the capability of altering standard jokes to fit new circumstances."
+},
+{
+"id": 1934,
+"n": "Vat Meat (Albert)",
+"d": "Meat grown in a vat."
+},
+{
+"id": 1935,
+"n": "Veldt",
+"d": "A nursery that comes alive for the viewer."
+},
+{
+"id": 1936,
+"n": "Vibratory Mass Penetrator",
+"d": "A device that allows a person to walk through earth and even solid rock.",
+"x": "Fictional mining tech"
+},
+{
+"id": 1937,
+"n": "Vocalex Kitchen",
+"d": "Voice command automatic kitchen.",
+"x": "Early voice control"
+},
+{
+"id": 1938,
+"n": "Winged Rocket Shuttle",
+"d": "A sort of plane that briefly reached space while traveling between points on a planet."
+},
+{
+"id": 1939,
+"n": "Zag House",
+"d": "A means of implanting dreams."
+},
+{
+"id": 1940,
+"n": "Airjeep",
+"d": "A small military air vehicle."
+},
+{
+"id": 1941,
+"n": "Airplane Window Ads",
+"d": "An airplane window that allows you to - see advertisements!",
+"p": "In-flight advertising"
+},
+{
+"id": 1942,
+"n": "Analogue Treatment",
+"d": "Hypnotic drug treatment that normalizes behavior in humans.",
+"p": "Fictional treatment"
+},
+{
+"id": 1943,
+"n": "Animal-tissue Culture Vat",
+"d": "A means of producing artificial meat for food."
+},
+{
+"id": 1944,
+"n": "Automated Wake-Up Call",
+"d": "A device that provides automated wake-up calls.",
+"x": "Voice-activated assistants"
+},
+{
+"id": 1945,
+"n": "Automatic Pilot",
+"d": "A device to control the movement of aircraft using computer components.",
+"p": "Autopilots",
+"x": "Automatic aircraft control"
+},
+{
+"id": 1946,
+"n": "Barytrine Field",
+"d": "Very large scale stasis field.",
+"p": "Stasis field"
+},
+{
+"id": 1947,
+"n": "Beeper",
+"d": "A handheld radar set, used to find items that have drifted off.",
+"p": "Aircraft transponders",
+"x": "Location tracking device"
+},
+{
+"id": 1948,
+"n": "Broomstick",
+"d": "Device to ease movement in a zero-gravity environment.",
+"p": "Zero-g maneuvering device"
+},
+{
+"id": 1949,
+"n": "Chicken Little",
+"d": "Very early reference to meat grown in a vat for food."
+},
+{
+"id": 1950,
+"n": "Chlorella Plantation",
+"d": "A skyscraper designed for food production."
+},
+{
+"id": 1951,
+"n": "Coffiest",
+"d": "It's coffee that you can't live without.",
+"p": "Fictional beverage"
+},
+{
+"id": 1952,
+"n": "Compulsive Subsonics",
+"d": "An advertising agency works with every part of the audience's brain.",
+"p": "Subliminal advertising"
+},
+{
+"id": 1953,
+"n": "Contraceptone",
+"d": "A contraceptive with 100% success, for men and women."
+},
+{
+"id": 1954,
+"n": "Contragravity Suit",
+"d": "A suit with antigravity."
+},
+{
+"id": 1955,
+"n": "Counselor",
+"d": "An electronic source of advice for humans."
+},
+{
+"id": 1956,
+"n": "Cylinder Space Suit",
+"d": "A mostly rigid, cylindrical space suit."
+},
+{
+"id": 1957,
+"n": "Decorate an Asteroid",
+"d": "Detailed artwork presented on a huge asteroid."
+},
+{
+"id": 1958,
+"n": "Depilatory Soap",
+"d": "A labor-saving combination of soap and a agent that removes hair.",
+"w": "Cosmetics",
+"p": "Hair removal",
+"x": "Chemical hair removal"
+},
+{
+"id": 1959,
+"n": "Droid (First Use)",
+"d": "Contraction of \"android\".",
+"w": "Lucasfilm",
+"p": "Droids",
+"x": "Robots in Star Wars universe"
+},
+{
+"id": 1960,
+"n": "Electronic Spy",
+"d": "An autonomous device that kept itself hidden while keeping track of an individual's activity.",
+"p": "Electronic surveillance"
+},
+{
+"id": 1961,
+"n": "Engineered Plague",
+"d": "A virus that primarily attacks one sex."
+},
+{
+"id": 1962,
+"n": "Esper",
+"d": "A person to perceive the contents of another person's mind.",
+"p": "Psionic ability"
+},
+{
+"id": 1963,
+"n": "Flat Cat",
+"d": "A nearly two-dimensional furry little beast."
+},
+{
+"id": 1964,
+"n": "Flavor-Capsule",
+"d": "A small pill used to turn ordinary water into a flavored beverage.",
+"p": "Artificial flavoring"
+},
+{
+"id": 1965,
+"n": "Flesh Men",
+"d": "Thinking beings that are not mechanical robots - human beings.",
+"p": "Fictional term"
+},
+{
+"id": 1966,
+"n": "Free Robot",
+"d": "A robot without a master.",
+"p": "Autonomous robot"
+},
+{
+"id": 1967,
+"n": "Gas Giant",
+"d": "Large planet consisting primarily of gas with a solid core.",
+"p": "Gas giants",
+"x": "Giant gaseous planets"
+},
+{
+"id": 1968,
+"n": "Gravital Unit",
+"d": "Device that maintains Earth-comparable gravity on an asteroid."
+}
+]

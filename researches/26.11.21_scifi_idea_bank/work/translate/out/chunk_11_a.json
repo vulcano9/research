@@ -1,0 +1,348 @@
+[
+{
+"id": 2461,
+"n": "Phymech",
+"d": "Ein Roboterarzt.",
+"x": "Frühe medizinische KI"
+},
+{
+"id": 2462,
+"n": "Planetares Computernetz",
+"d": "Ein weltweites Datennetz."
+},
+{
+"id": 2463,
+"n": "Polizei-Spürroboter",
+"d": "Ein automatischer Roboter zur Spurensicherung.",
+"x": "Echte Forensik-Roboter"
+},
+{
+"id": 2464,
+"n": "Oberster Befehl",
+"d": "Ein universeller Befehl oder Grundsatz, den jedes Robotergerät ausführt."
+},
+{
+"id": 2465,
+"n": "Projekt X",
+"d": "Ein Gerät, das Schallstrahlen erzeugt, die für Lebewesen unerträglich sind."
+},
+{
+"id": 2466,
+"n": "Missionierungsroboter",
+"d": "Ein Roboterprediger, gedacht für den Einsatz dort, wo Gläubige unerwünscht sind.",
+"x": "Früher Religionsroboter"
+},
+{
+"id": 2467,
+"n": "Prothesen-Roboterarm (gedankengesteuert)",
+"d": "Ein abnehmbarer Roboterarm, der direkt über eine neuronale Verbindung gesteuert wird.",
+"x": "Echte Neuroprothesen"
+},
+{
+"id": 2468,
+"n": "Ferngesteuertes Taxi",
+"d": "Ein Taxi, das von einem Fahrer aus der Ferne gelenkt wird."
+},
+{
+"id": 2469,
+"n": "Robobus",
+"d": "Ein selbstfahrendes Fahrzeug, das eine bestimmte Zahl von Fahrgästen aufnimmt."
+},
+{
+"id": 2470,
+"n": "Robozid",
+"d": "Die vorsätzliche Zerstörung von Robotern."
+},
+{
+"id": 2471,
+"n": "Robocop",
+"d": "Ein Roboter-Polizist."
+},
+{
+"id": 2472,
+"n": "Roboter-Situationsneurose",
+"d": "Roboter werden verrückt, wenn sie widersprüchliche Anweisungen bekommen.",
+"x": "Frühes harmloses KI-Konzept"
+},
+{
+"id": 2473,
+"n": "Roboter-Chirurg",
+"d": "Ein autonom arbeitender Roboterchirurg."
+},
+{
+"id": 2474,
+"n": "Roboterhand mit OP-Werkzeugen",
+"d": "Ein spezieller Ersatz für die Hand eines Roboters."
+},
+{
+"id": 2475,
+"n": "Roboter-Schiedsrichter",
+"d": "Ein autonomer Roboter als Kampfrichter bei Sportveranstaltungen."
+},
+{
+"id": 2476,
+"n": "Roller",
+"d": "Ein Zweisitzer-Fahrzeug für den Geländeeinsatz auf fremden Planeten.",
+"x": "Frühe Idee eines Planetenrovers"
+},
+{
+"id": 2477,
+"n": "Weltraumpanzerung",
+"d": "Gepanzerte Raumanzüge für den Einsatz im Vakuum.",
+"x": "Echte Raumanzug-Entwürfe"
+},
+{
+"id": 2478,
+"n": "Raumfahrtnation",
+"d": "Ein Volk oder Staat, das im Weltraum forscht und Handel treibt.",
+"x": "Konzept raumfahrender Kulturen"
+},
+{
+"id": 2479,
+"n": "Spindizzy",
+"d": "Ein Gerät, das den Zusammenhang zwischen Elektronenspin, Elektromagnetismus und Gravitation nutzte, sodass jedes Objekt die Erdoberfläche verlassen konnte."
+},
+{
+"id": 2480,
+"n": "Stellare Analogrechner",
+"d": "Spezielle Systeme, mit denen sichere „Sprünge“ für interstellare Reisen berechnet wurden.",
+"x": "Fiktive Navigationscomputer"
+},
+{
+"id": 2481,
+"n": "Storer-Möwenflügel",
+"d": "Freizeitausrüstung für Mondkolonisten: leichte Flügel zum Fliegen in Höhlen.",
+"x": "Frühe Idee für Freizeit im Weltraum"
+},
+{
+"id": 2482,
+"n": "Teleoperierter Käferwagen",
+"d": "Ein ferngesteuertes Roboterfahrzeug, das Telepräsenz ermöglichte."
+},
+{
+"id": 2483,
+"n": "Teleoperierter Laborroboter",
+"d": "Ein Roboter führt Experimente in einer Umgebung aus, die für Menschen zu extrem ist.",
+"x": "Echte teleoperierte Roboter"
+},
+{
+"id": 2484,
+"n": "Die Maschine (M)",
+"d": "Ein autonomer Roboter, der sein Aussehen und seine Funktionen nach Belieben ändern kann.",
+"x": "Früher rekonfigurierbarer Roboter"
+},
+{
+"id": 2485,
+"n": "Blechdroschke (fliegendes Robotertaxi)",
+"d": "Ein autonom gesteuertes fliegendes Taxi."
+},
+{
+"id": 2486,
+"n": "Toposkop",
+"d": "Ein spezieller Helm für eine Form des Lernens im Schlaf."
+},
+{
+"id": 2487,
+"n": "Asteroidenmetall",
+"d": "Metall, das aus Asteroiden gewonnen wird."
+},
+{
+"id": 2488,
+"n": "Gehirnklasse",
+"d": "Ein Gehirn der Klasse zehn ist das niedrigste."
+},
+{
+"id": 2489,
+"n": "Ein Planet aus Asteroiden",
+"d": "Die Idee, dass man genug Asteroiden des Sonnensystems sammeln kann, um aus den Brocken einen Planeten zu „bauen“.",
+"x": "Frühes Terraforming-Konzept"
+},
+{
+"id": 2490,
+"n": "Himmelsatlas",
+"d": "Beschreibungen Planet für Planet im gesamten bekannten Raum."
+},
+{
+"id": 2491,
+"n": "Kinnplatten",
+"d": "Eine Steuerung im Helm eines Raumanzugs: Mit dem Kinn schaltet man zwischen Optionen um.",
+"x": "Echte Raumanzug-Steuerungen"
+},
+{
+"id": 2492,
+"n": "Kinnfenster",
+"d": "Eine Öffnung, durch die ein Astronaut seine eigenen Füße sehen kann, was ein größeres Sichtfeld ergibt.",
+"x": "Echtes Raumanzug-Detail"
+},
+{
+"id": 2493,
+"n": "Zerstörungssperrschaltung",
+"d": "Sorgt dafür, dass Roboter die Pflicht übernehmen, ihre Herren zufriedenzustellen und ihren Befehlen zu gehorchen."
+},
+{
+"id": 2494,
+"n": "Computer entwerfen Computer",
+"d": "Die Idee, dass Computer immer leistungsfähigere Computer entwerfen können.",
+"x": "Echtes maschinelles Lernen"
+},
+{
+"id": 2495,
+"n": "Schallschutzkegel",
+"d": "Ein Störfeld, das die Reichweite von Stimmen und anderen Schwingungen begrenzt. Es dämpft Lärm mit einem um 180 Grad phasenverschobenen Schwingungsbild.",
+"x": "Fiktive Schalldämpfung"
+},
+{
+"id": 2496,
+"n": "Randbedienung",
+"d": "Ein taschengroßes Gerät mit Bedienelementen am Rand, sodass die Vorderseite nur der Anzeige dient.",
+"x": "Frühes Design für Mobilgeräte"
+},
+{
+"id": 2497,
+"n": "Spionage-Maschine",
+"d": "Eine Maschine, mit der man die Empfindungen einer anderen Person aus der Ferne miterleben kann.",
+"x": "Frühe Telepräsenz-Idee"
+},
+{
+"id": 2498,
+"n": "Salon für ethischen Selbstmord",
+"d": "Eine gemütliche Umgebung, in der man ethischen Selbstmord begehen und damit der Gesellschaft dienen kann.",
+"x": "Fiktive Sterbehilfe"
+},
+{
+"id": 2499,
+"n": "Mondrückseite",
+"d": "Der Teil der Mondoberfläche, der von der Erde abgewandt ist.",
+"x": "Beschreibung der Mondgeografie"
+},
+{
+"id": 2500,
+"n": "Feuerkrankenwagen",
+"d": "Ein Krankenwagen, der mit Feuer sterilisieren kann."
+},
+{
+"id": 2501,
+"n": "Flexible Wandfolienanzeige",
+"d": "Eine große, klare Folie, die Informationen anzeigt.",
+"x": "Frühe flexible Displays"
+},
+{
+"id": 2502,
+"n": "Zweirädriger Kreisel-Lastwagen",
+"d": "Ein kreiselstabilisierter Lastwagen mit nur zwei Rädern."
+},
+{
+"id": 2503,
+"n": "Spritzenarm",
+"d": "Ein Roboterarm, der Patienten selbstständig Medikamente verabreicht.",
+"x": "Echte Medizinroboter"
+},
+{
+"id": 2504,
+"n": "Einschlagkörper bestimmt die Zusammensetzung",
+"d": "Ein Einschlagkörper wird in einen kleinen Himmelskörper geschossen. Aus dem Einschlag lässt sich die Zusammensetzung des Körpers bestimmen.",
+"x": "Echte Einschlaganalyse"
+},
+{
+"id": 2505,
+"n": "Landebeine",
+"d": "Vorsprünge am Boden eines Raumfahrzeugs, die eine aufrechte Landung bei Schwerkraft erlauben."
+},
+{
+"id": 2506,
+"n": "Lebensdetektor",
+"d": "Ein Gerät, das lebendes Gewebe in einem bestimmten Umkreis aufspüren konnte.",
+"x": "Echte Technik zur Lebendortung"
+},
+{
+"id": 2507,
+"n": "Lebensdetektor-Schirm",
+"d": "Ein elektronisches Feld, das lebendes Gewebe vor einem Lebensdetektor abschirmen soll.",
+"x": "Fiktiver Sensorgegner"
+},
+{
+"id": 2508,
+"n": "Mondobservatorium",
+"d": "Ein Observatorium auf der Rückseite des Mondes könnte Vorteile haben.",
+"x": "Echte Mondobservatorien"
+},
+{
+"id": 2509,
+"n": "Selbstmord einer Maschine",
+"d": "Ein selbstbewusstes Computersystem will sich selbst zerstören.",
+"x": "Frühes Konzept der KI-Sicherheit"
+},
+{
+"id": 2510,
+"n": "Magnetische Fesseln",
+"d": "Ferngesteuerte elektromagnetische Handschellen."
+},
+{
+"id": 2511,
+"n": "Mensch tötet Dienroboter",
+"d": "Der Fall, dass der Herr eines Roboters am Ende seiner Kräfte ist."
+},
+{
+"id": 2512,
+"n": "Metamenschen",
+"d": "Ein menschliches Gehirn in einem rein mechanischen Roboterkörper.",
+"x": "Frühes Cyborg-Konzept"
+},
+{
+"id": 2513,
+"n": "Neutronen-Abschirmung",
+"d": "Eine sehr dichte Abschirmung aus einer einzigen Molekülschicht.",
+"x": "Echte Neutronenabschirmung"
+},
+{
+"id": 2514,
+"n": "Nasenkanone",
+"d": "Ein hoch angebrachtes Waffensystem.",
+"x": "Fiktive Waffenmontage"
+},
+{
+"id": 2515,
+"n": "Handflächenplatte",
+"d": "Ein Gerät, das vor dem Öffnen einer Tür einen Handabdruck prüfte.",
+"x": "Frühe Biometrie"
+},
+{
+"id": 2516,
+"n": "Paralysierstrahl",
+"d": "Ein Energiestrahl, der das Opfer lähmt."
+},
+{
+"id": 2517,
+"n": "Lichtspur-Auge",
+"d": "Ein Fahrzeuggerät, das automatisch einer weißen Fahrbahnlinie folgt und das Auto selbst lenkt.",
+"x": "Frühe Selbstfahrtechnik"
+},
+{
+"id": 2518,
+"n": "Plastotek",
+"d": "Eine Tarnung aus falscher Haut."
+},
+{
+"id": 2519,
+"n": "Taschencomputer",
+"d": "Ein Computer im Taschenformat.",
+"x": "Frühe Handcomputer"
+},
+{
+"id": 2520,
+"n": "Polizeiroboter",
+"d": "Ein vollautonomer, menschenförmiger Roboter-Polizist."
+},
+{
+"id": 2521,
+"n": "Vorhersehbares Verbrechen",
+"d": "Eine Straftat, die Computer im Voraus erkennen konnten.",
+"x": "Frühe algorithmische Vorhersage"
+},
+{
+"id": 2522,
+"n": "Druckfestes Penthouse",
+"d": "Ein Luftsitz in der Stratosphäre. Wenn Gebäude hoch genug sind, braucht man ihn.",
+"x": "Frühe Arkologie-Idee"
+}
+]

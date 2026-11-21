@@ -1,0 +1,349 @@
+[
+{
+"id": 2707,
+"n": "Talisman",
+"d": "Ein Gerät, das Wesen in seiner Nähe Wahrheit und Frieden erleben lässt; wirkt nur in den Händen seltener Adepten.",
+"x": "Fiktives Friedensartefakt"
+},
+{
+"id": 2708,
+"n": "Fußfessel",
+"d": "Ein Gerät wird einem Verdächtigen angelegt und sorgt dafür, dass sein Aufenthaltsort immer bekannt ist.",
+"x": "Echte Überwachung von Straftätern"
+},
+{
+"id": 2709,
+"n": "Transparente, reibungsfreie Beschichtung",
+"d": "Eine völlig reibungsfreie, undurchdringliche Beschichtung."
+},
+{
+"id": 2710,
+"n": "Unicephalon 40-D",
+"d": "Ein Supercomputer zur Problemlösung."
+},
+{
+"id": 2711,
+"n": "Wegstation",
+"d": "Ein Gerät, mit dem man Personen durch die Galaxis befördert."
+},
+{
+"id": 2712,
+"n": "Materialisator der Wegstation",
+"d": "Indem man Impulse, die ein Lebewesen beschreiben, von Stern zu Stern schickt, gelingt die Reise durch die Galaxis."
+},
+{
+"id": 2713,
+"n": "Einstellbares Fernsehen",
+"d": "Ein Fernseher, mit dem Zuschauer den Inhalt politischer Reden anpassen konnten.",
+"x": "Frühe Idee personalisierter Medien"
+},
+{
+"id": 2714,
+"n": "Anpassung",
+"d": "Dafür sorgen, dass der Mensch zur Arbeit passt!"
+},
+{
+"id": 2715,
+"n": "Agfom Potent-Shot",
+"d": "Ein Spezialfilm erlaubt es, ein Bild von dem zu machen, was in den nächsten dreißig Minuten geschieht.",
+"x": "Fiktive Kamera mit Vorausblick"
+},
+{
+"id": 2716,
+"n": "Ampek F-a2 Aufnahmesystem",
+"d": "Ein Gerät mit lebendem Protoplasma, das als Aufnahme- und Wiedergabesystem diente."
+},
+{
+"id": 2717,
+"n": "Artif-Org",
+"d": "Eine mechanische Version eines menschlichen Organs."
+},
+{
+"id": 2718,
+"n": "Autopilot mit Kursberechnung",
+"d": "Ein Gerät, das das Fahrzeug nicht nur steuert, sondern auch einen Kurs für dich berechnet.",
+"x": "Echte Autopiloten"
+},
+{
+"id": 2719,
+"n": "Automatikschaufel",
+"d": "Automatisierte Bergbaugeräte für den Einsatz im Weltraum.",
+"x": "Echter automatisierter Bergbau"
+},
+{
+"id": 2720,
+"n": "Automatisches Labor",
+"d": "Ein vollautomatischer Apparat des Erfindens."
+},
+{
+"id": 2721,
+"n": "Autonomes Lebensmittelverarbeitungssystem",
+"d": "Die Technik erlaubt es, Essen zuzubereiten, ohne dass Menschenhand es berührt.",
+"x": "Echte automatisierte Essenszubereitung"
+},
+{
+"id": 2722,
+"n": "Autonomer Pflug",
+"d": "Eine Reihe von Landmaschinen, die sich zu einer Waffe zusammenfügen und als solche wirken können.",
+"x": "Fiktiver Agrarroboter"
+},
+{
+"id": 2723,
+"n": "Bibs",
+"d": "Menschen, die in den Kälteschlaf versetzt werden, weil die Gesellschaft keinen Platz für sie hat."
+},
+{
+"id": 2724,
+"n": "Boulder",
+"d": "Ein Gerät, das auf das Gehirnwellenmuster einer Person zielt; eine sehr gezielte Attentatswaffe.",
+"x": "Fiktive zielgerichtete Waffe"
+},
+{
+"id": 2725,
+"n": "Abhörjäger",
+"d": "Geräte gegen Überwachung."
+},
+{
+"id": 2726,
+"n": "Kephalischer Schnüffler",
+"d": "Ein Gerät kann eine Person anhand ihrer Gehirnmuster aufspüren.",
+"x": "Fiktive Hirnwellentechnik"
+},
+{
+"id": 2727,
+"n": "Kephalotroper Pfeil",
+"d": "Ein schlankes Gerät für kurze Entfernungen, das auf das Gehirnwellenmuster des Ziels zielt.",
+"x": "Fiktives zielsuchendes Geschoss"
+},
+{
+"id": 2728,
+"n": "Stuhlhund",
+"d": "Ein lebendiger, teilweise empfindungsfähiger Stuhl, der sich der sitzenden Person anpasst.",
+"x": "Frühe intelligente Möbel"
+},
+{
+"id": 2729,
+"n": "Chalf (Schnellschreiber-Pulver)",
+"d": "Ein spezielles Pulver, das sich selbst zu Wörtern und Zeichen formt."
+},
+{
+"id": 2730,
+"n": "Chalf-Gedächtnisstab",
+"d": "Ein Gerät, das speziellen Staub zu Wörtern und Zeichen anordnet."
+},
+{
+"id": 2731,
+"n": "Cholinesterase-zerstörendes Gas",
+"d": "Ein entsetzliches Gift gegen Menschen.",
+"x": "Echte Chemiewaffen"
+},
+{
+"id": 2732,
+"n": "Farbgenerator",
+"d": "Eine Lichtquelle mit veränderbarem Spektrum.",
+"x": "Echte Lichttechnik"
+},
+{
+"id": 2733,
+"n": "Werbefliege",
+"d": "Ein autonomes, fliegengroßes künstliches Lebewesen, das Werbung zeigt."
+},
+{
+"id": 2734,
+"n": "Steuergeschirr",
+"d": "Verbindet sich mit Gehirn und Nervensystem eines Wirtsorganismus, um ihn zu steuern."
+},
+{
+"id": 2735,
+"n": "Roboter-Gerichtsschreiber",
+"d": "Ein juristischer Roboterangestellter.",
+"x": "Frühe juristische KI"
+},
+{
+"id": 2736,
+"n": "Gerichtsarena",
+"d": "Eine Mischung aus Gerichtshof und Kampfarena, in der jeder Teilnehmer unter rechtmäßigen Umständen herausgerufen und hingerichtet werden konnte.",
+"x": "Fiktives Rechtssystem"
+},
+{
+"id": 2737,
+"n": "Gläubiger-Düsenballon",
+"d": "Ein kleines schwebendes Gerät, das Schuldner verfolgt.",
+"x": "Fiktive Schuldeneintreibung"
+},
+{
+"id": 2738,
+"n": "Downtime",
+"d": "Die Reise in die Vergangenheit."
+},
+{
+"id": 2739,
+"n": "Empathie-Box",
+"d": "Ein Gerät, mit dem eine Gruppe von Menschen mit einer einzigen Person mitfühlen kann, so wie das Fernsehen viele Menschen dieselbe Sendung sehen lässt.",
+"x": "Fiktive Empathie-Technik"
+},
+{
+"id": 2740,
+"n": "Falschgeldprüfer",
+"d": "Ein taschengroßer Prüfer für Falschgeld.",
+"x": "Echte Falschgeldprüfgeräte"
+},
+{
+"id": 2741,
+"n": "Famnexdo",
+"d": "Ein Satz von vier Doppelgängern: ein erwachsener Mann, eine erwachsene Frau und zwei Kinder, die Familie von nebenan.",
+"x": "Fiktive Androiden"
+},
+{
+"id": 2742,
+"n": "Biegsamer Schaft",
+"d": "Ein langer biegsamer Schlauch, dessen Länge sich schnell ausdehnen und zusammenziehen lässt."
+},
+{
+"id": 2743,
+"n": "Stubenfliegen-Späher",
+"d": "Eine lebende Fliege, die mit Sensoren für Überwachungsarbeit ausgestattet ist.",
+"x": "Frühe Idee tierischer Cyborgs"
+},
+{
+"id": 2744,
+"n": "Ident-Schlüssel",
+"d": "Ermöglicht den Abruf der gesamten Lesegeschichte einer Person und damit die Vorhersage ihres künftigen Denkens.",
+"x": "Fiktive Profiling-Technik"
+},
+{
+"id": 2745,
+"n": "Identifikator",
+"d": "Ein Hologrammprojektor, mit dem Türschilder aufblitzen."
+},
+{
+"id": 2746,
+"n": "Düsen-Wasserboot",
+"d": "Ein übermotorisiertes Boot für die Wasseroberfläche.",
+"x": "Echte Jetboote"
+},
+{
+"id": 2747,
+"n": "Sprungpunkt",
+"d": "Ein bestimmter Ort im Weltraum, an dem ein interstellarer Sprung möglich ist.",
+"x": "Fiktiver Überlichtpunkt"
+},
+{
+"id": 2748,
+"n": "Lawagon",
+"d": "Ein Polizeiauto mit zusätzlichen Extras."
+},
+{
+"id": 2749,
+"n": "Lebendige Notiz",
+"d": "Eine Papiernotiz oder ein kurzer Brief, der sich selbst vorliest und sogar mit dem Leser streiten oder ihn ermahnen kann.",
+"x": "Fiktive Papier-Bedienoberfläche"
+},
+{
+"id": 2750,
+"n": "Handbedienter Schrank",
+"d": "Ein altmodischer Aufbewahrungsraum für Kleidung, in dem der Nutzer die Kleidungsstücke von Hand ablegen und ordnen musste.",
+"x": "Beschreibung nicht automatisierter Arbeit"
+},
+{
+"id": 2751,
+"n": "Mikrorob",
+"d": "Roboter von kleiner Gestalt."
+},
+{
+"id": 2752,
+"n": "Brustwarzen-Gerät",
+"d": "Ein vielseitiges elektronisches Gerät, das auf der Brustwarze getragen wird.",
+"x": "Fiktives tragbares Gerät"
+},
+{
+"id": 2753,
+"n": "Phantomatic-Generator (virtuelle Realität)",
+"d": "Ein computergeneriertes Erlebnis.",
+"x": "Echte VR"
+},
+{
+"id": 2754,
+"n": "Plattformflieger",
+"d": "Ein kleines Fahrzeug, geeignet für Reisen dicht über dem Boden."
+},
+{
+"id": 2755,
+"n": "Unsichtbarer Gift-Handschuh",
+"d": "Eine hautartige Bekleidung für die Hände, mit der Gift verabreicht wird.",
+"x": "Fiktive Tarnwaffe"
+},
+{
+"id": 2756,
+"n": "Kraft-Skier",
+"d": "Genau die richtige Ausrüstung für die Erkundung, je nach Welt."
+},
+{
+"id": 2757,
+"n": "Pry-Vie (Roboter-Detektiv)",
+"d": "Ein robotischer Privatdetektiv; autonome Ermittlungsdienste.",
+"x": "Frühe Ermittlungs-KI"
+},
+{
+"id": 2758,
+"n": "Berichtsmaschine",
+"d": "Ein Roboter als mobiler Reporter."
+},
+{
+"id": 2759,
+"n": "Rhetorizer",
+"d": "Ein computergestützter Assistent für Autoren.",
+"x": "Echte KI-Schreibassistenten"
+},
+{
+"id": 2760,
+"n": "Roboter-Hilfskellner",
+"d": "Ein Robotergerät, das in einem Restaurant selbstständig Tische abräumt.",
+"x": "Echte Restaurantsroboter"
+},
+{
+"id": 2761,
+"n": "Simulakrum (Sim)",
+"d": "Ein autonomes Gebilde, das einem Menschen vollkommen gleicht."
+},
+{
+"id": 2762,
+"n": "Einsitzer-Roller",
+"d": "Ein Einrad zur Selbstbedienung."
+},
+{
+"id": 2763,
+"n": "Hauttönung",
+"d": "Mit künstlichen Mitteln eine vorübergehende Änderung der Hautfarbe erreichen.",
+"x": "Frühe Idee intelligenter Kosmetik"
+},
+{
+"id": 2764,
+"n": "Aufwind-Solarturm",
+"d": "Ein Konzept für erneuerbare Energie, das Strom aus der Luftbewegung in einem hohen Kamin gewinnt.",
+"x": "Echte Aufwind-Solartürme"
+},
+{
+"id": 2765,
+"n": "Klebwanze",
+"d": "Ein allgemeiner Begriff für Überwachungsgeräte, die einer Zielperson folgen und Sprache oder Video aufzeichnen.",
+"x": "Echte Wanzen"
+},
+{
+"id": 2766,
+"n": "Selbstmordzahn",
+"d": "Ein künstlicher Zahn, der Gift enthält.",
+"w": "Geheimdienste",
+"x": "Echte Spionagetechnik"
+},
+{
+"id": 2767,
+"n": "Oberflächengleiter",
+"d": "Ein kleines, leichtes Fahrzeug."
+},
+{
+"id": 2768,
+"n": "Chirurgische Hand",
+"d": "Eine spezielle Roboterhand für Operationen."
+}
+]

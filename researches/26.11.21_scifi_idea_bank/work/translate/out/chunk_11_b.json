@@ -1,0 +1,360 @@
+[
+{
+"id": 2523,
+"n": "Roboterbruder",
+"d": "Ein Robotiker bringt für seinen leiblichen Sohn einen Roboterbruder mit nach Hause."
+},
+{
+"id": 2524,
+"n": "Roboter-Schaffner",
+"d": "Ein Roboter, der im Bus den Schaffner macht."
+},
+{
+"id": 2525,
+"n": "Roboterschlange",
+"d": "Ein mechanisches Reptil ohne Beine."
+},
+{
+"id": 2526,
+"n": "Selbstbedienungs-Cafeteria",
+"d": "Essen auf Abruf.",
+"w": "Wirtschaft",
+"x": "Echter Automat"
+},
+{
+"id": 2527,
+"n": "Wende-Manöver (Skew-Flip)",
+"d": "Ein Manöver, das Fusionsschiffe auf halbem Weg zum Ziel fliegen, um vor dem Ziel abzubremsen.",
+"x": "Fiktives Raumschiffmanöver"
+},
+{
+"id": 2528,
+"n": "Rückspiegel im Raumanzughelm",
+"d": "Eine Möglichkeit, im Raumanzug leicht hinter sich zu sehen."
+},
+{
+"id": 2529,
+"n": "Einem Roboter etwas beibringen",
+"d": "Einem Roboter Anweisungen geben, dessen Gehirn nicht vorprogrammiert und nicht auf eine bestimmte Aufgabe zugeschnitten ist."
+},
+{
+"id": 2530,
+"n": "Der Hub",
+"d": "Ein großes Weltraumresort aus bewohnbaren Blasen in einem Metallgerüst.",
+"x": "Frühe Idee bewohnbarer Weltraumstationen"
+},
+{
+"id": 2531,
+"n": "Gedächtnishelm",
+"d": "Ein tragbares Geschichtsbuch.",
+"x": "Fiktives gespeichertes Gedächtnis"
+},
+{
+"id": 2532,
+"n": "Tik-Talker",
+"d": "Ein Verfahren, gesprochene Sprache für eine verschlüsselte Übertragung zu verwürfeln.",
+"x": "Echte Verschlüsselung"
+},
+{
+"id": 2533,
+"n": "Aufschließroboter",
+"d": "Ein autonomes Gerät, das nach Bedarf Türen aufschloss."
+},
+{
+"id": 2534,
+"n": "Schwebende Städte auf der Venus",
+"d": "Wolkenstädte auf der Venus.",
+"x": "Frühe Ideen zur Besiedlung des Weltraums"
+},
+{
+"id": 2535,
+"n": "Laufende Mühle",
+"d": "Der ultimative Mähdrescher: Ein riesiger Metalltausendfüßler läuft über die Felder, erntet Weizen, drischt, mahlt und backt das Brot schließlich direkt auf dem Feld.",
+"x": "Früher Landwirtschaftsroboter"
+},
+{
+"id": 2536,
+"n": "Maßstäbe",
+"d": "Kleinere Menschen brauchen weniger Platz."
+},
+{
+"id": 2537,
+"n": "Gehirnwanze",
+"d": "Eine Kaste, die auf Intelligenz spezialisiert ist."
+},
+{
+"id": 2538,
+"n": "Klon",
+"d": "Die Gesamtheit der Einzelorganismen, die durch ungeschlechtliche Vermehrung aus einem einzigen geschlechtlich erzeugten Individuum hervorgehen.",
+"w": "Biotechnologie",
+"x": "Ungeschlechtliches Kopieren von Organismen, DOLLY"
+},
+{
+"id": 2539,
+"n": "Elektromechanischer Lehrer",
+"d": "Eine automatische Lehrmaschine.",
+"p": "Lehrmaschine"
+},
+{
+"id": 2540,
+"n": "Fliegendes Auge",
+"d": "Ein ferngesteuertes Gerät zur Überwachung aus der Luft."
+},
+{
+"id": 2541,
+"n": "Grasteppich",
+"d": "Ein Bodenbelag für Haus oder Büro: lebendiges Gras."
+},
+{
+"id": 2542,
+"n": "Freihand-Helm",
+"d": "Der Helm eines Kampfanzugs hat Steuerungen, die durch Kopfbewegungen ausgelöst werden.",
+"p": "Helm mit erweiterter Realität"
+},
+{
+"id": 2543,
+"n": "Menschliche Aufsicht über Roboter",
+"d": "Die Vorstellung, dass es eine Regel geben sollte, nach der Robotergruppen immer von Menschen beaufsichtigt und geleitet werden."
+},
+{
+"id": 2544,
+"n": "Hyperraum-Bake",
+"d": "Im normalen Raum aufgestellt, liefern diese Geräte Bezugspunkte im Hyperraum, die eine Navigation erst möglich machen.",
+"p": "Hyperraumnavigation"
+},
+{
+"id": 2545,
+"n": "Magnetisch schwebende Möbel",
+"d": "Möbel, die mit Magnetkraft auf der richtigen Höhe gehalten werden.",
+"p": "Magnetlevitation"
+},
+{
+"id": 2546,
+"n": "Mark IV Türroboter",
+"d": "Ein Robotergerät, das Besucher an der Tür empfängt und dabei prüft.",
+"p": "Türroboter"
+},
+{
+"id": 2547,
+"n": "Memo-Stimme",
+"d": "Papiernotizen, die sich selbst laut vorlesen.",
+"p": "Sprechendes Papier"
+},
+{
+"id": 2548,
+"n": "Metall-Marx",
+"d": "Ein Roboter, der für bessere Arbeitsbedingungen streikt.",
+"p": "Roboter als Arbeiteraktivist"
+},
+{
+"id": 2549,
+"n": "Neohund",
+"d": "Ein vom Hund abstammendes Tier, gentechnisch auf mehr Intelligenz und Sprachfähigkeit gezüchtet.",
+"p": "Hochgezüchteter Hund"
+},
+{
+"id": 2550,
+"n": "Tod der Persönlichkeit",
+"d": "Eine Strafe, bei der der Körper unversehrt bleibt.",
+"p": "Strafmethode"
+},
+{
+"id": 2551,
+"n": "Kraftrüstung (Kampfanzug)",
+"d": "Ein gepanzerter Anzug, der die Muskelkraft des Soldaten verstärkt, zusammen mit weiteren Waffen.",
+"p": "Angetriebenes Exoskelett"
+},
+{
+"id": 2552,
+"n": "Richterroboter",
+"d": "Eine juristische Maschine mit künstlicher Intelligenz, mitsamt Robe."
+},
+{
+"id": 2553,
+"n": "Roboter-Spektralanalysator",
+"d": "Ein Gerät, mit dem man seine Position im normalen Raum bestimmt.",
+"p": "Navigationsroboter"
+},
+{
+"id": 2554,
+"n": "Robotermülleimer",
+"d": "Ein mit Sensoren bestückter Abfalleimer, der selbstständig reinigt und auch rechtliche Urteile fällt.",
+"p": "Autonomer Mülleimer"
+},
+{
+"id": 2555,
+"n": "Sattel",
+"d": "Ein bequemer Reitsattel ohne Pferd.",
+"p": "Fliegender Sattel"
+},
+{
+"id": 2556,
+"n": "Verurteilter",
+"d": "Ein Mensch, der unsozial handelt und in der Gesellschaft lebt, aber unter eingeschränkten Verhältnissen."
+},
+{
+"id": 2557,
+"n": "Sprechende Bombe",
+"d": "Eine Waffe der psychologischen Kriegsführung, die mit dem Feind spricht.",
+"p": "Psychologische Kriegsführung"
+},
+{
+"id": 2558,
+"n": "Spielzeug-Prüfpuppe",
+"d": "Ein kindergroßes Gerät, mit dem verdächtiges Spielzeug getestet wird.",
+"p": "Produkttests"
+},
+{
+"id": 2559,
+"n": "Transmog",
+"d": "Ein kleines Gerät, das sich leicht in einen Roboter einbauen lässt, um seine Fähigkeiten zu ändern."
+},
+{
+"id": 2560,
+"n": "Adiabatische Kapseln",
+"d": "Winzige Raumkapseln, gerade groß genug für einen Passagier.",
+"p": "Einmann-Raumfahrzeug"
+},
+{
+"id": 2561,
+"n": "Kunsthaut (Art-Derm)",
+"d": "Künstliche Haut, die direkt auf den Körper gesprüht wird."
+},
+{
+"id": 2562,
+"n": "Bakterientötende Strahlung",
+"d": "Ein spezieller Strahl, der für Operationen ein keimfreies Feld erzeugte.",
+"p": "Sterilisierstrahl"
+},
+{
+"id": 2563,
+"n": "Kugel-Hammer-Schiff",
+"d": "Ein Raumschiff aus zwei Abschnitten, die durch einen Schaft verbunden sind."
+},
+{
+"id": 2564,
+"n": "Bolo",
+"d": "Ein hochmoderner Kampfpanzer, der von einer ausgeklügelten künstlichen Intelligenz gesteuert wird.",
+"p": "Autonomer Panzer"
+},
+{
+"id": 2565,
+"n": "Chamäleon-Kampfanzug",
+"d": "Eine Tarnung, mit der der Träger optisch mit der Umgebung verschmilzt.",
+"p": "Adaptive Tarnung"
+},
+{
+"id": 2566,
+"n": "Kältepack",
+"d": "Technik zur zeitlich unbegrenzten Kältelagerung von Menschen.",
+"p": "Kryokonservierung"
+},
+{
+"id": 2567,
+"n": "Hautspray",
+"d": "Eine Farbschicht für die Haut, aufgetragen als Dampfstrahl.",
+"p": "Hautbeschichtung"
+},
+{
+"id": 2568,
+"n": "Dixon-Pumpe",
+"d": "Ein vorübergehendes mechanisches Herz, das das Blut in Bewegung hält.",
+"p": "Herzunterstützungssysteme",
+"x": "Mechanische Blutpumpen"
+},
+{
+"id": 2569,
+"n": "Kuppel-Kartenanzeige",
+"d": "Eine beleuchtete halbkugelförmige Kartenanzeige.",
+"p": "Halbkugelanzeige"
+},
+{
+"id": 2570,
+"n": "Flüssigmetall-Buchstaben",
+"d": "Eine glatte Metallanzeige, die Wörter darstellen kann.",
+"p": "Dynamische Anzeige"
+},
+{
+"id": 2571,
+"n": "Hammer",
+"d": "Eine fliegende Waffe für stumpfe Gewalt, ferngesteuert von einem Computer mit künstlicher Intelligenz.",
+"p": "Fliegende Nahkampfwaffe"
+},
+{
+"id": 2572,
+"n": "Unzerstörbarer Vertrag",
+"d": "Ein Rechtsdokument, das sich nicht leicht ändern oder beschädigen lässt.",
+"p": "Manipulationssichere Dokumente"
+},
+{
+"id": 2573,
+"n": "Infiltratoren",
+"d": "Überwachungsgeräte, klein und insektenartig.",
+"p": "Spionageroboter"
+},
+{
+"id": 2574,
+"n": "Interaktive Tafel",
+"d": "Eine frühe Beschreibung eines interaktiven Anzeigegeräts für Vorlesungen und Vorführungen.",
+"w": "Bildungsunternehmen",
+"p": "Interaktive Whiteboards",
+"x": "Touchscreen im Klassenzimmer"
+},
+{
+"id": 2575,
+"n": "Lernender Roboter",
+"d": "Ein Roboter, der aus eigenen Erfahrungen lernt.",
+"p": "Maschinelles Lernen"
+},
+{
+"id": 2576,
+"n": "Metallvögel",
+"d": "Überwachungsroboter, die neben ihrem Metallkörper auch Waffen trugen.",
+"p": "Kampfdrohne"
+},
+{
+"id": 2577,
+"n": "Bleistiftstrahl",
+"d": "Eine dünne, röhrenartige Laserwaffe.",
+"p": "Laserwaffe"
+},
+{
+"id": 2578,
+"n": "Kraft-Holster",
+"d": "Setzt die Seitenwaffe direkt in deine Hand.",
+"p": "Am Körper getragener Halfter"
+},
+{
+"id": 2579,
+"n": "Roboter-Spürgerät",
+"d": "Eine kleine Drohne, die von einem Computer mit künstlicher Intelligenz ferngesteuert wird."
+},
+{
+"id": 2580,
+"n": "Selbstladender Roboter",
+"d": "Ein Roboter, der selbstständig eine Steckdose findet und sich zum Aufladen einstöpselt.",
+"p": "Autonomes Laden"
+},
+{
+"id": 2581,
+"n": "Halbleitendes Graphitgel",
+"d": "Ein Computergehirn, das wie ein tierisches Gehirn aufgebaut ist.",
+"p": "Künstliches Gehirn"
+},
+{
+"id": 2582,
+"n": "Schiffsgarten",
+"d": "Ein erholsamer Naturort zum Wandern, auf der Außenhaut von Raumschiffen."
+},
+{
+"id": 2583,
+"n": "Einzelmolekül-Folie",
+"d": "Ein fälschungssicheres Verfahren, um einzigartige Dokumente auszugeben.",
+"p": "Fälschungsschutz"
+},
+{
+"id": 2584,
+"n": "Weltraummüll",
+"d": "Was passiert mit dem ganzen Abfall des Weltraumzeitalters?"
+}
+]

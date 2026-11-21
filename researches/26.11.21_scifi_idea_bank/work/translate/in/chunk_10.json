@@ -1,0 +1,1396 @@
+[
+{
+"id": 2215,
+"n": "Radiant Shield",
+"d": "A device that would effectively prevent an implanted radiant from being detected or read.",
+"p": "Tracking blocker"
+},
+{
+"id": 2216,
+"n": "Reading Plate",
+"d": "A flat screen that provided computer output for viewing.",
+"x": "Portable touchscreen devices"
+},
+{
+"id": 2217,
+"n": "Relay",
+"d": "A central information system used to coordinate all of human culture and technology.",
+"p": "Information network"
+},
+{
+"id": 2218,
+"n": "Retinal Vid-Screen",
+"d": "A tiny display surgically implanted directly in the retina of the eye."
+},
+{
+"id": 2219,
+"n": "Roboscribe",
+"d": "A robotic writer of hard-bitten detective yarns.",
+"p": "Writing bot"
+},
+{
+"id": 2220,
+"n": "Robot Cab Driver",
+"d": "You think you have problems? Robots have the worst problems of anyone.",
+"p": "Autonomous taxi"
+},
+{
+"id": 2221,
+"n": "Robot Farmer",
+"d": "A humanoid robot used for agriculture.",
+"p": "Farming robot"
+},
+{
+"id": 2222,
+"n": "Robot Guard",
+"d": "Very early reference to a guard robot.",
+"p": "Security robot"
+},
+{
+"id": 2223,
+"n": "Rom (Robot Operated Missiles)",
+"d": "Intercontinental robotic weapons.",
+"p": "Autonomous weapons"
+},
+{
+"id": 2224,
+"n": "Sales Robot (Robot Salesman)",
+"d": "Fully automated robots giving untiring, incessant sales pitches to customers."
+},
+{
+"id": 2225,
+"n": "Sceneshifter",
+"d": "An automated display device that produced random pictorial presentations.",
+"p": "Random image display"
+},
+{
+"id": 2226,
+"n": "Self-Selling Robot",
+"d": "A robot that sells itself."
+},
+{
+"id": 2227,
+"n": "Sentry Trees",
+"d": "A set of trees that will allow only those with the safe signal to pass.",
+"p": "Security system"
+},
+{
+"id": 2228,
+"n": "Shatter-Gun",
+"d": "A hand-held device that literally scrambles the brains of the victim.",
+"p": "Sonic weapon"
+},
+{
+"id": 2229,
+"n": "Snake Boring Truck",
+"d": "A long thin truck like a snake, with a boring tip."
+},
+{
+"id": 2230,
+"n": "Solar Window",
+"d": "A transparent material that also collects solar energy."
+},
+{
+"id": 2231,
+"n": "Solar-Powered Ball",
+"d": "An autonomous round toy that powers itself.",
+"p": "Solar-powered toy"
+},
+{
+"id": 2232,
+"n": "Space Capsule",
+"d": "A minimal space craft.",
+"x": "Minimal crewed spacecraft"
+},
+{
+"id": 2233,
+"n": "Spacelanes Traffic Jam",
+"d": "Fanciful description of commuters in space.",
+"p": "Space congestion"
+},
+{
+"id": 2234,
+"n": "Spaceward Lunar Hemisphere",
+"d": "Another name for the lunar far side.",
+"p": "Lunar far side",
+"x": "Astronomical feature"
+},
+{
+"id": 2235,
+"n": "Stationmaster",
+"d": "A human being is preserved for life in space, serving as the conscious mind running a space station."
+},
+{
+"id": 2236,
+"n": "Suit-Shield Fabric",
+"d": "A kind of mesh fabric that could absorb energy bolts.",
+"p": "Protective clothing"
+},
+{
+"id": 2237,
+"n": "Supercalculator",
+"d": "Connecting all the computing machines of the universe!"
+},
+{
+"id": 2238,
+"n": "Synapsis-Coils",
+"d": "Human-like storage for computers.",
+"p": "Computer storage"
+},
+{
+"id": 2239,
+"n": "Tanglefoot Field",
+"d": "A force field that would not harm but merely entangle and stop anyone (or anything) caught in it.",
+"p": "Restraining force field"
+},
+{
+"id": 2240,
+"n": "TBR (Talk Between Robots) Circuit",
+"d": "A special means of communications used by robots to speak with each other."
+},
+{
+"id": 2241,
+"n": "Temporal Paradox",
+"d": "The paradoxical idea that making changes in the past results in changes in the present.",
+"p": "Time travel paradox"
+},
+{
+"id": 2242,
+"n": "The Dip",
+"d": "A device that randomly dredges up things from the past... or the future.",
+"p": "Time scanner"
+},
+{
+"id": 2243,
+"n": "The Test",
+"d": "An examination to guide those who would cap their population."
+},
+{
+"id": 2244,
+"n": "Thought Pattern Divination",
+"d": "Attempting to construct the thoughts of a person by imitating their actions."
+},
+{
+"id": 2245,
+"n": "Time Quake",
+"d": "Too much energy applied to a time-fault may have started this.",
+"p": "Time disruption"
+},
+{
+"id": 2246,
+"n": "Trace Web",
+"d": "A small, handheld device that contacts (and even instantiates) the larger network.",
+"x": "Mobile access to the web"
+},
+{
+"id": 2247,
+"n": "Tri-Type Record",
+"d": "A printed card that stores information about a person, including a perfect three-dimensional representation.",
+"p": "Identification record"
+},
+{
+"id": 2248,
+"n": "Truth Meter",
+"d": "A lie detector.",
+"w": "Polygraph companies",
+"p": "Lie detectors",
+"x": "Deception detection"
+},
+{
+"id": 2249,
+"n": "Universal Dictionary",
+"d": "A machine that provided references to anything known.",
+"p": "Encyclopedic knowledge"
+},
+{
+"id": 2250,
+"n": "Visual Ad",
+"d": "An advertisement that forces its way directly into the brain of the viewer.",
+"p": "Neural advertising"
+},
+{
+"id": 2251,
+"n": "Voicewriter Screen (Computer Monitor)",
+"d": "A screen that displays characters.",
+"p": "Computer monitors",
+"x": "Visual display for computers"
+},
+{
+"id": 2252,
+"n": "Web (Data Network)",
+"d": "An information network.",
+"p": "World Wide Web",
+"x": "Global information network"
+},
+{
+"id": 2253,
+"n": "Agile Recording Robot",
+"d": "A recording machine that moves toward its subject."
+},
+{
+"id": 2254,
+"n": "Aircab",
+"d": "A flying autonomous taxi cab."
+},
+{
+"id": 2255,
+"n": "Anti-Burglar Installations",
+"d": "Every electronic house should have automated defenses.",
+"x": "Early smart home security"
+},
+{
+"id": 2256,
+"n": "Artibase",
+"d": "An artificial asteroid base between planets."
+},
+{
+"id": 2257,
+"n": "Artigraft",
+"d": "Artificial skin graft.",
+"x": "Early artificial skin"
+},
+{
+"id": 2258,
+"n": "Autofac (Nanorobots)",
+"d": "Very small robots working on self-replication",
+"x": "Early nanotech concept"
+},
+{
+"id": 2259,
+"n": "Automatic Factory",
+"d": "Manufacturing facility that functions entirely autonomously."
+},
+{
+"id": 2260,
+"n": "Automatic Ore Cart",
+"d": "An autonomous truck for raw ore processing.",
+"x": "Real autonomous mining trucks"
+},
+{
+"id": 2261,
+"n": "Automatized Factory",
+"d": "A factory consisting of machines with imposed human abilities."
+},
+{
+"id": 2262,
+"n": "Autonomous Lifeboat",
+"d": "A water-going craft whose AI is devoted to the safety of its passengers."
+},
+{
+"id": 2263,
+"n": "Autonomous Truck",
+"d": "A truck that drives itself and unloads itself.",
+"x": "Early autonomous trucks"
+},
+{
+"id": 2264,
+"n": "Badge Of Office Explosive",
+"d": "Politicians wear what amounts to a bomb, which is controlled by citizen vote."
+},
+{
+"id": 2265,
+"n": "Bore-Pellets",
+"d": "Anti-underground bomb shelter ordinance.",
+"x": "Real bunker-buster bombs"
+},
+{
+"id": 2266,
+"n": "Caterwheel",
+"d": "A uniquely styled ground vehicle with fat, splayed out tires."
+},
+{
+"id": 2267,
+"n": "Central City (Lunar Habitat)",
+"d": "An early example of a non-military lunar habitat.",
+"x": "Early lunar colony idea"
+},
+{
+"id": 2268,
+"n": "Chest-Lens",
+"d": "Part of an automatic photograph-and-send system."
+},
+{
+"id": 2269,
+"n": "Citizens Booth",
+"d": "A special location for citizens to register their displeasure with public officials."
+},
+{
+"id": 2270,
+"n": "Cold-Beam",
+"d": "Puts a cloud of extreme cold around the target."
+},
+{
+"id": 2271,
+"n": "Commute Disk",
+"d": "Flying autonomous commuter vehicle.",
+"x": "Early aerial mobility concepts"
+},
+{
+"id": 2272,
+"n": "Composite Person",
+"d": "A synthesis of basic personalities."
+},
+{
+"id": 2273,
+"n": "Dashboard TV",
+"d": "A television placed in the dashboard of your car or similar vehicle.",
+"x": "Real dashboard screens"
+},
+{
+"id": 2274,
+"n": "Diabological Armory",
+"d": "A set of verbal tools based on a higher form of reasoning.",
+"x": "Fictional logic system"
+},
+{
+"id": 2275,
+"n": "Electronic Analogue of Living Brain",
+"d": "Imposing the abilities of a human brain into a computer"
+},
+{
+"id": 2276,
+"n": "Finely Divided Dust Propellant",
+"d": "Reaction mass to drive spacecraft.",
+"x": "Fictional spacecraft propellant"
+},
+{
+"id": 2277,
+"n": "Generation Ship",
+"d": "A spacecraft that carries a complete social group over many years.",
+"x": "Concept of generational ship"
+},
+{
+"id": 2278,
+"n": "Grill-Screen Adaptor",
+"d": "Approved General Electronics Corporation solution for bomb shelters, in response to Soviet bore-pellets.",
+"x": "Fictional defense product"
+},
+{
+"id": 2279,
+"n": "Guard Robot",
+"d": "Early reference to a robot performing the functions of a security guard.",
+"x": "Real security robots"
+},
+{
+"id": 2280,
+"n": "Hand Wave Control",
+"d": "Control an electronic or other device with gestures.",
+"x": "Real gesture control"
+},
+{
+"id": 2281,
+"n": "Heat-Suit",
+"d": "Perfect for those incredibly hot planets with breathable atmospheres.",
+"x": "Early heat protective suit idea"
+},
+{
+"id": 2282,
+"n": "Human Habit Pattern Machines",
+"d": "Imposing human habits onto machines.",
+"x": "Early human-like AI"
+},
+{
+"id": 2283,
+"n": "Inflatable Lunar Resort",
+"d": "An inflatable structure on the moon, intended to provide rest and relaxation to lunar residents.",
+"x": "Early expandable habitat idea"
+},
+{
+"id": 2284,
+"n": "Interviewed by a Computer",
+"d": "An interview conducted by a computer with a person."
+},
+{
+"id": 2285,
+"n": "Juiciveal",
+"d": "Artificially grown veal."
+},
+{
+"id": 2286,
+"n": "Landing-Grid",
+"d": "A constructed landing area on a planetary surface for space craft.",
+"x": "Real spaceport infrastructure"
+},
+{
+"id": 2287,
+"n": "Light-Absorbing Paint",
+"d": "Space stealth!",
+"x": "Real low-observability tech"
+},
+{
+"id": 2288,
+"n": "Lunar Monorail",
+"d": "A monorail constructed above the surface of the Moon.",
+"x": "Early lunar infrastructure idea"
+},
+{
+"id": 2289,
+"n": "Machines Colonize Universe",
+"d": "A brief description of a how automated machines might spread."
+},
+{
+"id": 2290,
+"n": "Magnetic Grapple-Beams",
+"d": "Short range magnetic field to guide flying cars and park them properly.",
+"x": "Fictional vehicle control tech"
+},
+{
+"id": 2291,
+"n": "Mechanical Newsmachine",
+"d": "An automated device that delivers on-the-spot news."
+},
+{
+"id": 2292,
+"n": "Mechavalet",
+"d": "An entirely automated dressing assistant."
+},
+{
+"id": 2293,
+"n": "Microscreen",
+"d": "An immaterial protective helmet."
+},
+{
+"id": 2294,
+"n": "Mob Violence Against Robots",
+"d": "Humans band together to damage or destroy robots."
+},
+{
+"id": 2295,
+"n": "Monocab",
+"d": "A single compartment monorail car.",
+"x": "Early mass transit"
+},
+{
+"id": 2296,
+"n": "Multivac",
+"d": "A computer with millions of facts."
+},
+{
+"id": 2297,
+"n": "Nanny Robot",
+"d": "A child-care robot with a surprisingly competitive side.",
+"x": "Early childcare robot"
+},
+{
+"id": 2298,
+"n": "Neck-Phone",
+"d": "An implanted telecommunications device.",
+"x": "Early wearables idea"
+},
+{
+"id": 2299,
+"n": "Network Repair Team",
+"d": "Dispatched to collect remains of destroyed machines."
+},
+{
+"id": 2300,
+"n": "Pizzled (Semantic Garble)",
+"d": "Use of nonsensical statements to deliberately confuse an artificial intelligence.",
+"x": "Fictional linguistic attack"
+},
+{
+"id": 2301,
+"n": "Pocket Receiver",
+"d": "An early visualization of the smartphone.",
+"x": "Early mobile devices"
+},
+{
+"id": 2302,
+"n": "Probe Screen Hood",
+"d": "A device that blocks attempts to see into the contents of the brain mind.",
+"x": "Fictional telepathy blocker"
+},
+{
+"id": 2303,
+"n": "Product Prescription",
+"d": "A file that can be used to reproduce an object.",
+"x": "Early 3D printing idea"
+},
+{
+"id": 2304,
+"n": "Production Prescription",
+"d": "A file that can be used to reproduce an object."
+},
+{
+"id": 2305,
+"n": "Protine",
+"d": "A mutant algae that can be engineered to look and taste similar to normal food.",
+"x": "Early food substitutes"
+},
+{
+"id": 2306,
+"n": "Ramsbotham Gate",
+"d": "A means of getting from point A to point B without traversing the space in-between."
+},
+{
+"id": 2307,
+"n": "Raw Material-Tropic",
+"d": "Moves towards desirable raw materials."
+},
+{
+"id": 2308,
+"n": "Robot Disimprovement",
+"d": "Once robots have reached a state of development where they are better than humans, they must be modified - for the worse."
+},
+{
+"id": 2309,
+"n": "Robot Factory Representative",
+"d": "An ambulatory agent of an automatic factory."
+},
+{
+"id": 2310,
+"n": "Robot Gardener",
+"d": "An autonomous gardening robot, taking care of plants in parks or fields.",
+"x": "Real gardening robots"
+},
+{
+"id": 2311,
+"n": "Robot Surgeon-Hand",
+"d": "A skilled surgical robot that attaches at the end of the surgeon's arm."
+},
+{
+"id": 2312,
+"n": "Robot Taxi",
+"d": "A taxicab with a robotic driver."
+},
+{
+"id": 2313,
+"n": "Robus",
+"d": "A robotic bus."
+},
+{
+"id": 2314,
+"n": "Schrieber Analyzer",
+"d": "Superior automatic air testing - for the discriminating space traveler.",
+"x": "Fictional environment sensor"
+},
+{
+"id": 2315,
+"n": "Scorpion",
+"d": "A war machine with a deadly tail gun, perfect for downing drones in the skies."
+},
+{
+"id": 2316,
+"n": "Scout-Base",
+"d": "Artificial sphere functions as a frontier outpost."
+},
+{
+"id": 2317,
+"n": "Search-Bug",
+"d": "An exploratory robot."
+},
+{
+"id": 2318,
+"n": "Simulacrum Window",
+"d": "A 'window' that provides a realistic outdoor view in an interior room.",
+"x": "Early virtual windows"
+},
+{
+"id": 2319,
+"n": "Slide Rule w/Radio Attachment",
+"d": "Slide rule communicates results immediately with computer.",
+"x": "Early connected device idea"
+},
+{
+"id": 2320,
+"n": "Space Craft Rope Ladder",
+"d": "Equipment used for debarking from a space craft.",
+"x": "Real space access equipment"
+},
+{
+"id": 2321,
+"n": "Spider-Vehicle",
+"d": "A multi-legged vehicle shaped like a spider, that is piloted by a person."
+},
+{
+"id": 2322,
+"n": "Stiletto Beam",
+"d": "A beam of molten metal, projected electromagnetically.",
+"x": "Fictional directed energy weapon"
+},
+{
+"id": 2323,
+"n": "Swibble",
+"d": "An artificially evolved telepathic metazoan-based mind control device."
+},
+{
+"id": 2324,
+"n": "Synthetic Milk",
+"d": "Milk made without cows.",
+"x": "Real synthetic dairy"
+},
+{
+"id": 2325,
+"n": "Synthimeat (Crop Protein)",
+"d": "A more general name for synthetic meat"
+},
+{
+"id": 2326,
+"n": "Trion Library",
+"d": "An early visualization of the Internet.",
+"x": "Real Internet"
+},
+{
+"id": 2327,
+"n": "Unit Analyst Robot",
+"d": "A robotic psychoanalyst."
+},
+{
+"id": 2328,
+"n": "Visual Report Screen",
+"d": "A device that allows a robot nanny to let the owners view what the robot sees from a remote location."
+},
+{
+"id": 2329,
+"n": "Water Brain Fountain",
+"d": "A drinking fountain that locates your mouth, rather than you having to lean down to the spout."
+},
+{
+"id": 2330,
+"n": "Alcoholic Reliever",
+"d": "Mechanized relief from alcoholism.",
+"p": "Addiction treatment"
+},
+{
+"id": 2331,
+"n": "Analogue",
+"d": "A combination of a drug and a particular mental state allow a person to devolve to an animal level of their choice.",
+"p": "Altered consciousness"
+},
+{
+"id": 2332,
+"n": "Anti-Heptant",
+"d": "A compound that erases specific areas of the brain.",
+"p": "Memory erasure"
+},
+{
+"id": 2333,
+"n": "Bard",
+"d": "A machine that invents randomized stories and can read them out loud or animate them for viewing."
+},
+{
+"id": 2334,
+"n": "Bendix Anxiety Reducer",
+"d": "Machine-based psychotherapy.",
+"p": "Anxiety treatment machine"
+},
+{
+"id": 2335,
+"n": "Biltong Life Form",
+"d": "Remarkable organic manufacturing aliens, probably indigenous to the Centaurus system."
+},
+{
+"id": 2336,
+"n": "Blue Collar Robot (Self-Repairing)",
+"d": "An autonomous robot required to find its own work."
+},
+{
+"id": 2337,
+"n": "Bounce Tube",
+"d": "A people-sized pneumatic tube system used for short, quick trips in the vertical dimension.",
+"p": "Pneumatic transit"
+},
+{
+"id": 2338,
+"n": "Boxing Robot",
+"d": "Robots that fight in exhibitions, in the ring, for spectators."
+},
+{
+"id": 2339,
+"n": "Bug",
+"d": "A compact vehicle for planetary surfaces - like Mercury.",
+"p": "Surface rover"
+},
+{
+"id": 2340,
+"n": "Central Computer",
+"d": "A computer capable of running an entire city.",
+"p": "Citywide AI"
+},
+{
+"id": 2341,
+"n": "Chronoscopy",
+"d": "Using a device to view different points in time."
+},
+{
+"id": 2342,
+"n": "Cider Press",
+"d": "Device used to make acceleration above 1 gravity more tolerable for groundhogs.",
+"p": "Acceleration couch"
+},
+{
+"id": 2343,
+"n": "Dancing Robot",
+"d": "A humanoid robot able to perform dance moves."
+},
+{
+"id": 2344,
+"n": "Dental Switchboard",
+"d": "A control device tied in with teeth and nerve endings."
+},
+{
+"id": 2345,
+"n": "Diaspar Memory",
+"d": "The city's memory could store works of art, and reproduce them upon request.",
+"p": "Citywide memory"
+},
+{
+"id": 2346,
+"n": "Disposal-Safe",
+"d": "Device to store and, if necessary, destroy documents."
+},
+{
+"id": 2347,
+"n": "Drafting Dan",
+"d": "The first computer software drafting program (Computer Aided Design - CAD).",
+"p": "CAD software",
+"x": "Computer-aided drafting"
+},
+{
+"id": 2348,
+"n": "Eager Beaver",
+"d": "Your friendly robot helper."
+},
+{
+"id": 2349,
+"n": "Eagle With Camera",
+"d": "A live bald eagle equipped with a transmitting camera.",
+"p": "Animal cyborg"
+},
+{
+"id": 2350,
+"n": "Eetee (E.T - extraterrestrial)",
+"d": "A sentient being not of this Earth."
+},
+{
+"id": 2351,
+"n": "Electrotruck",
+"d": "An autonomous, electric truck.",
+"p": "Electric truck"
+},
+{
+"id": 2352,
+"n": "Empath",
+"d": "A being capable of telepathic empathy with others.",
+"p": "Telepathic empathy"
+},
+{
+"id": 2353,
+"n": "Flexible Frank",
+"d": "An all-purpose household robot."
+},
+{
+"id": 2354,
+"n": "Floating Lunar Dust",
+"d": "Electrostatically charged particles that float above the surface of the Moon.",
+"p": "Lunar phenomenon"
+},
+{
+"id": 2355,
+"n": "Fottengill Process",
+"d": "An early mention of the idea that energy can be derived from random noise.",
+"p": "Energy from noise"
+},
+{
+"id": 2356,
+"n": "Fusion Power",
+"d": "Creating energy from nuclear fusion reactions.",
+"p": "Nuclear fusion"
+},
+{
+"id": 2357,
+"n": "Hand Computer",
+"d": "A small pocket-sized computing device.",
+"x": "Portable touchscreen computer"
+},
+{
+"id": 2358,
+"n": "Hired Girl Robot",
+"d": "The amazing floor-cleaning robot!"
+},
+{
+"id": 2359,
+"n": "Home Therapy Appliances, Inc.",
+"d": "A store at which a variety of therapy devices are made available",
+"p": "Home medical devices"
+},
+{
+"id": 2360,
+"n": "Human Object Recognition",
+"d": "System uses human beings as an aid to robotic object recognition.",
+"x": "Image analysis"
+},
+{
+"id": 2361,
+"n": "Hush Corner",
+"d": "A space made private by canceling sound waves in that area.",
+"p": "Audio shielding"
+},
+{
+"id": 2362,
+"n": "Hypersee",
+"d": "Faster than light.",
+"p": "FTL"
+},
+{
+"id": 2363,
+"n": "Intelligent Trash Sorting",
+"d": "Robots sort the garbage - almost completely.",
+"p": "Waste sorting"
+},
+{
+"id": 2364,
+"n": "Internal Body Power Pack",
+"d": "A tiny battery used to power implants.",
+"p": "Implantable devices",
+"x": "Powered implants"
+},
+{
+"id": 2365,
+"n": "Invulnerable Wall",
+"d": "A material created by insects that grew stronger as it was compressed.",
+"p": "Impenetrable barrier"
+},
+{
+"id": 2366,
+"n": "Jaunte Stage",
+"d": "A cleared space that existed to serve the needs of people who would jaunte (teleport) into that space.",
+"p": "Teleportation hub"
+},
+{
+"id": 2367,
+"n": "Juvenile",
+"d": "A robot designed to sneak around and spy on people.",
+"p": "Surveillance robot"
+},
+{
+"id": 2368,
+"n": "Landing Pit (Drydock and Construction)",
+"d": "A cylindrical hole with anti-gravity screens for use in spacecraft landings and repair.",
+"p": "Spacecraft servicing"
+},
+{
+"id": 2369,
+"n": "Lethe-Mirror",
+"d": "Induces sleepy mindedness."
+},
+{
+"id": 2370,
+"n": "Life Wand",
+"d": "Shoots a powerful ray of energy."
+},
+{
+"id": 2371,
+"n": "Living Advertising Character",
+"d": "Modifying an ordinary person to create a living likeness of a company's brand symbol or character.",
+"p": "Human branding"
+},
+{
+"id": 2372,
+"n": "Matter Organizer",
+"d": "A device that could cause a computer-generated image to be constructed as a real object.",
+"w": "Teleportation research",
+"p": "Quantum teleportation",
+"x": "Transfer of quantum state"
+},
+{
+"id": 2373,
+"n": "Maximum-security Booth",
+"d": "A special phone booth for receiving high-security, scrambled telephone calls, calls which included 3D visuals.",
+"p": "Secure communications"
+},
+{
+"id": 2374,
+"n": "Mechanical Jokester",
+"d": "A vast computer system learns about humor."
+},
+{
+"id": 2375,
+"n": "Mechanotherapy",
+"d": "A mechanism or device-based therapy that cures (or palliates) alcoholism.",
+"p": "Machine therapy"
+},
+{
+"id": 2376,
+"n": "Mutated Kodiak Bears",
+"d": "Animals modified for increased intelligence for defense and companionship."
+},
+{
+"id": 2377,
+"n": "Planet Rules",
+"d": "Regulations governing the behavior of the away team on a new planet."
+},
+{
+"id": 2378,
+"n": "Planet-Busting Bomb",
+"d": "A munition with sufficient power to destroy an entire planet.",
+"p": "Doomsday device"
+},
+{
+"id": 2379,
+"n": "Post-Crime",
+"d": "Criminal activities after they have actually happened.",
+"p": "Precrime"
+},
+{
+"id": 2380,
+"n": "Precog",
+"d": "A person with precognitive ability (can predict the future)."
+},
+{
+"id": 2381,
+"n": "Precrime",
+"d": "A system by which criminal acts are known before they occur."
+},
+{
+"id": 2382,
+"n": "Precrime Analytical Wing",
+"d": "Contains the precognitives and the machinery need to hear and analyze their predictions of future crimes.",
+"p": "Prediction analysis"
+},
+{
+"id": 2383,
+"n": "Puddinged",
+"d": "A poorly formed 3D printed copy, with an interior that was a mass of malformed material.",
+"p": "3D printing defect"
+},
+{
+"id": 2384,
+"n": "PyrE",
+"d": "A thermonuclear explosive that is detonated by thought alone.",
+"p": "Psychokinetic explosive"
+},
+{
+"id": 2385,
+"n": "Radioactive Coding for Checks",
+"d": "Special coding system to easily recognize checks.",
+"p": "Check authentication"
+},
+{
+"id": 2386,
+"n": "Rainbow Dome",
+"d": "A planetary defense shield."
+},
+{
+"id": 2387,
+"n": "Refurbished Nervous System",
+"d": "Your nerves are rewired for 5-10 times the speed of a normal person.",
+"p": "Neural enhancement"
+},
+{
+"id": 2388,
+"n": "Regen-Buds",
+"d": "Small collection of cells that can regrow into human limbs.",
+"p": "Limb regeneration"
+},
+{
+"id": 2389,
+"n": "Retinal Light",
+"d": "An internal flashlight."
+},
+{
+"id": 2390,
+"n": "Rex Regenerator (Mechanotherapist)",
+"d": "Mechanotherapy device cures homicidal urges.",
+"p": "Psychotherapy machine"
+},
+{
+"id": 2391,
+"n": "Robot Bartender",
+"d": "An automated, mechanical bar tending robot."
+},
+{
+"id": 2392,
+"n": "Robot Fish (Metal Fish)",
+"d": "Fake flounders for sport fishermen on Martian canals.",
+"p": "Robotic fish"
+},
+{
+"id": 2393,
+"n": "Robot Interception Aerial Mines",
+"d": "Loitering explosives overhead."
+},
+{
+"id": 2394,
+"n": "Robot Row - Robots For Consumers",
+"d": "The adoption curve for personal robots will accelerate like the curve for automobiles."
+},
+{
+"id": 2395,
+"n": "Robot Trash Collectors",
+"d": "Robots that drive and operate garbage trucks.",
+"p": "Waste collecting robots"
+},
+{
+"id": 2396,
+"n": "Robot Watchdog",
+"d": "A mechanical and mostly autonomous pet."
+},
+{
+"id": 2397,
+"n": "Robotic Hand",
+"d": "A dexterous manipulator for robots.",
+"p": "Robotic hands",
+"x": "Dexterous robotic manipulators"
+},
+{
+"id": 2398,
+"n": "Robots Earn For Individuals",
+"d": "The point at which humanoid robots with AGI can be purchased and then rented out by ordinary people, for a profit."
+},
+{
+"id": 2399,
+"n": "Robots Learn With Cameras",
+"d": "Robots learn new actions by recording them with a camera, doing away with expensive programming."
+},
+{
+"id": 2400,
+"n": "Saga",
+"d": "You become a part of the great adventures of history.",
+"p": "Immersive history"
+},
+{
+"id": 2401,
+"n": "Sargasso Asteroid",
+"d": "A planetoid built from natural rock and the salvaged wreckage of space craft.",
+"p": "Artificial asteroid"
+},
+{
+"id": 2402,
+"n": "Slug",
+"d": "An underwater \"barge\", consisting of a giant tube for transporting oil.",
+"p": "Undersea transport"
+},
+{
+"id": 2403,
+"n": "Solido",
+"d": "Abbr. for solidograph; a device that produced a solid three dimensional image."
+},
+{
+"id": 2404,
+"n": "Space-Beacon",
+"d": "Device used to guide a space craft into finding an inhabited planet or colony on a planet."
+},
+{
+"id": 2405,
+"n": "Space-Boat (Rocket Boat)",
+"d": "Small craft designed for descent and then take-off from a planetary surface."
+},
+{
+"id": 2406,
+"n": "Stasis (Cold Sleep, Hibernation)",
+"d": "Hibernation for human beings, lasting for many years."
+},
+{
+"id": 2407,
+"n": "Sunpower Station",
+"d": "An orbiting solar collector, beaming energy down to Earth."
+},
+{
+"id": 2408,
+"n": "Sympathetic Block",
+"d": "A way to keep certain mental contents from being spoken or revealed.",
+"p": "Telepathic blocker"
+},
+{
+"id": 2409,
+"n": "Teakettle",
+"d": "A standard rocket (uses hydrogen as a booster to leave the atmosphere).",
+"x": "Solid/liquid propellant"
+},
+{
+"id": 2410,
+"n": "Thorsen Memory Tube",
+"d": "Computer component that allows a machine to learn through experience.",
+"p": "Computer memory"
+},
+{
+"id": 2411,
+"n": "Trolling Tether Cable",
+"d": "Simple fishing technique applied to moving cargo off-planet.",
+"p": "Space towing"
+},
+{
+"id": 2412,
+"n": "Tune-Maker",
+"d": "Automated music production."
+},
+{
+"id": 2413,
+"n": "Undercover Detective Robot",
+"d": "Specialized robot masquerades as different robot types to spy on criminals.",
+"p": "Undercover robot"
+},
+{
+"id": 2414,
+"n": "Underwater Robot",
+"d": "An autonomous mechanical for use underwater.",
+"p": "Underwater robotics"
+},
+{
+"id": 2415,
+"n": "Universal Checkbook",
+"d": "Fully electronic banking system, which allows easy withdrawal of funds from any bank.",
+"w": "Banks",
+"p": "Online banking",
+"x": "Manage finances digitally"
+},
+{
+"id": 2416,
+"n": "Vacutubes",
+"d": "A system of public transportation that used partially evacuated tubes and capsules big enough for passengers.",
+"p": "Vacuum tube transport"
+},
+{
+"id": 2417,
+"n": "Vehicle Sleep Sensor",
+"d": "Better stay awake, the machines know if you're sleeping.",
+"p": "Driver monitoring",
+"x": "Detects driver impairment"
+},
+{
+"id": 2418,
+"n": "Virtual Immortality",
+"d": "A method for storing the mind and memories of a person, and recalling and reconstituting them at will.",
+"p": "Mind uploading"
+},
+{
+"id": 2419,
+"n": "Whisper Line",
+"d": "A means of communication between prisoners held in wide separation.",
+"p": "Covert communication"
+},
+{
+"id": 2420,
+"n": "Window-Willie",
+"d": "A robot that cleaned windows by electrostatic repulsion of dust and grime.",
+"p": "Cleaning robot"
+},
+{
+"id": 2421,
+"n": "Accelerated Schooling",
+"d": "Knowledge force-fed directly into the brain."
+},
+{
+"id": 2422,
+"n": "Accelerated Schooling Helmet",
+"d": "A device that stimulates the brain and imparts knowledge directly.",
+"x": "Fictional education tech"
+},
+{
+"id": 2423,
+"n": "Anti-agathic drugs",
+"d": "Drugs that indefinitely postpone death from old age.",
+"x": "Fictional longevity drug"
+},
+{
+"id": 2424,
+"n": "Automated Factories",
+"d": "Manufacturing facilities that do not require human workers."
+},
+{
+"id": 2425,
+"n": "Bats' Cave",
+"d": "A natural cavern used by moon colonists for air storage - and entertainment.",
+"x": "Early lunar recreation idea"
+},
+{
+"id": 2426,
+"n": "Bats' Cave (Lava Tube)",
+"d": "A natural cavern used by moon colonists for air storage - and entertainment."
+},
+{
+"id": 2427,
+"n": "Battle Tank Display",
+"d": "Three-dimensional display showing tactical information for space battles.",
+"x": "Real tactical displays"
+},
+{
+"id": 2428,
+"n": "Bethé blasters",
+"d": "Powerful enough to destroy a flying city."
+},
+{
+"id": 2429,
+"n": "Brood Assembly",
+"d": "Artificially intelligent computers that can replicate themselves.",
+"x": "Early self-replicating AI idea"
+},
+{
+"id": 2430,
+"n": "City Fathers",
+"d": "A set of computer systems which run every mechanical system in a city.",
+"x": "Early smart city AI"
+},
+{
+"id": 2431,
+"n": "Crop Algae",
+"d": "Growing algae in tanks as a source of basic food stock.",
+"x": "Real algae farming"
+},
+{
+"id": 2432,
+"n": "Death-Rattle",
+"d": "A device that sends a signal upon brain death of the user.",
+"x": "Real life sign monitors"
+},
+{
+"id": 2433,
+"n": "Dirac Transmitter (also Tranceiver or Communicator)",
+"d": "A device that provides instantaneous communication anywhere in the galaxy.",
+"x": "Fictional instant comms"
+},
+{
+"id": 2434,
+"n": "Dropshaft",
+"d": "An elevator shaft with no elevator - the \"lift\" is from gravity or suppressed inertia.",
+"x": "Fictional elevator"
+},
+{
+"id": 2435,
+"n": "Eavesdropper",
+"d": "Device to detect the presence of recording devices.",
+"x": "Real surveillance detection"
+},
+{
+"id": 2436,
+"n": "Fenton Silencer",
+"d": "A device to cancel noise over a broad area."
+},
+{
+"id": 2437,
+"n": "Fight Machine (Boxing Robot)",
+"d": "An autonomous boxer."
+},
+{
+"id": 2438,
+"n": "Flying Cone",
+"d": "A vehicle for 1-3 persons that hovers and has mechanical arms."
+},
+{
+"id": 2439,
+"n": "Galactovue",
+"d": "Star display.",
+"x": "Early immersive display"
+},
+{
+"id": 2440,
+"n": "Glass Bees",
+"d": "Walnut-sized flying automata."
+},
+{
+"id": 2441,
+"n": "Gravity Well",
+"d": "If you visualize spacetime as a flat, elastic plane, a planet will deform it, and it sits at the bottom of its own hole.",
+"x": "Describing gravity"
+},
+{
+"id": 2442,
+"n": "Gravity-Polarized Explosive (TDX)",
+"d": "A chemical explosive that acts at an angle to the local gravitational field.",
+"x": "Fictional directed explosives"
+},
+{
+"id": 2443,
+"n": "Inter-Universal Messenger",
+"d": "A device intended to travel to another dimension.",
+"x": "Fictional dimensional travel"
+},
+{
+"id": 2444,
+"n": "Inverspace",
+"d": "For faster than light travel."
+},
+{
+"id": 2445,
+"n": "Jump-Along",
+"d": "Computer used for calculating jumps between stars.",
+"x": "Fictional navigation computer"
+},
+{
+"id": 2446,
+"n": "Jumpship",
+"d": "A spaceship capable of making interstellar jumps, that is, it could move over vast distances instantaneously."
+},
+{
+"id": 2447,
+"n": "Jurymech",
+"d": "A robotic entity serving the function of a trial jury.",
+"x": "Early judicial AI"
+},
+{
+"id": 2448,
+"n": "Launching Cradle",
+"d": "A place for a spherical space craft to sit in gravity.",
+"x": "Real spacecraft assembly"
+},
+{
+"id": 2449,
+"n": "Lifescoot",
+"d": "A spaceship's lifeboat."
+},
+{
+"id": 2450,
+"n": "Lunar Advertisement",
+"d": "An 'ad' on the lunar surface that can be seen by its audience on Earth.",
+"x": "Early space advertising idea"
+},
+{
+"id": 2451,
+"n": "Machine Psychologist",
+"d": "A computer that understands and uses its knowledge of human psychology to benefit human users.",
+"x": "Real therapeutic AI"
+},
+{
+"id": 2452,
+"n": "Machine Surveillance",
+"d": "The use of artificially intelligent computer systems to learn by monitoring all human interaction within a city.",
+"x": "Real mass surveillance"
+},
+{
+"id": 2453,
+"n": "Magnetic Control of Nebulae",
+"d": "Controlling the structure and shape of nebulae using magnetic fields.",
+"x": "Fictional nebula engineering"
+},
+{
+"id": 2454,
+"n": "Manshonyagger",
+"d": "An autonomous fighting robot.",
+"x": "Early military robot"
+},
+{
+"id": 2455,
+"n": "Mechanical Cleaning Device",
+"d": "A small, ground-based autonomous robot doing basic janitorial work."
+},
+{
+"id": 2456,
+"n": "Molecular Sieve",
+"d": "A device that can extract any element from seawater.",
+"x": "Real molecular sieves"
+},
+{
+"id": 2457,
+"n": "Needle-Gun",
+"d": "Small palm-sized weapon.",
+"x": "Early miniaturized weapons"
+},
+{
+"id": 2458,
+"n": "Neural Door Lock",
+"d": "A device that provides access based on neurological data.",
+"x": "Fictional biometric lock"
+},
+{
+"id": 2459,
+"n": "Oxygen Pill",
+"d": "Meets your need for oxygen without additional breathing.",
+"x": "Fictional oxygen substitute"
+},
+{
+"id": 2460,
+"n": "Peeper",
+"d": "A device that unlocked the dreams and fantasies inherent in the user's brain."
+}
+]

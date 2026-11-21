@@ -1,0 +1,343 @@
+[
+{
+"id": 2647,
+"n": "Fernschreiber",
+"d": "Ein Gerät, das eine Kopie der heutigen Zeitung ausdruckte.",
+"w": "Bürogeräte",
+"p": "Fernschreiber",
+"x": "Frühe Textkommunikation"
+},
+{
+"id": 2648,
+"n": "Sendekamera",
+"d": "Eine Kamera, die Bilder aufnimmt und sie direkt zu einer Nachrichtenredaktion überträgt.",
+"w": "Nachrichtenbeschaffung",
+"p": "Live-Streaming",
+"x": "Video übertragen"
+},
+{
+"id": 2649,
+"n": "Transo",
+"d": "Teleportation von Gegenständen und Personen, die als Grundlage für Läden namens „Trading Post“ auf der ganzen Welt dient.",
+"p": "Materietransmitter"
+},
+{
+"id": 2650,
+"n": "Wasserbett (hydraulisches Bett)",
+"d": "Ein Bett, das Wasser statt Federn und Füllung nutzt.",
+"w": "Möbelhersteller",
+"p": "Wasserbetten",
+"x": "Mit Flüssigkeit gefüllte Matratze"
+},
+{
+"id": 2651,
+"n": "Wetterzentrale",
+"d": "Eine weltweite Wetterzentrale."
+},
+{
+"id": 2652,
+"n": "Alkodote",
+"d": "Eine Substanz, die beim Trinken die Nüchternheit erhält.",
+"x": "Fiktives Nüchternheitsmittel"
+},
+{
+"id": 2653,
+"n": "Fleischzuchtbecken",
+"d": "Technik, um Fleisch ohne Tier zu züchten."
+},
+{
+"id": 2654,
+"n": "Kataklysmit",
+"d": "Ein starker Sprengstoff."
+},
+{
+"id": 2655,
+"n": "Himmlisches Planetarium",
+"d": "Ein kleines Planetarium aus Kristall, in dem die Sterne und Planeten um Aerlith zu sehen sind.",
+"x": "Frühe eintauchende Astronomie"
+},
+{
+"id": 2656,
+"n": "Lieferroboter",
+"d": "Ein kleines autonomes Gerät, das Waren direkt zu einer Person oder einem Ort bringt.",
+"x": "Echte Lieferroboter"
+},
+{
+"id": 2657,
+"n": "Diamagnetische Levitation",
+"d": "Schweben, das dadurch erreicht wird, dass ein Magnetfeld die Bewegung der Elektronen stört, die um die Atome oder Moleküle eines Materials kreisen.",
+"x": "Echte diamagnetische Levitation"
+},
+{
+"id": 2658,
+"n": "Dumbler",
+"d": "Halb empfindungsfähige Sporen der Pfeifdistel.",
+"x": "Fiktives außerirdisches Leben"
+},
+{
+"id": 2659,
+"n": "Gesichtserkennung",
+"d": "Ein Gerät, das eine Person scannt, mit einer Datenbank vergleicht und weitere gespeicherte Informationen hervorholt."
+},
+{
+"id": 2660,
+"n": "Bundesamt für Beendigung",
+"d": "Die Tür aus diesem Leben steht immer offen – für dich."
+},
+{
+"id": 2661,
+"n": "Tiefschlafkammer",
+"d": "Eine Kammer für den langen Schlaf zwischen den Sternen."
+},
+{
+"id": 2662,
+"n": "Computer aus laminiertem Mäusegehirn",
+"d": "Ein Rechengerät, das Neuronen einer Maus nutzt."
+},
+{
+"id": 2663,
+"n": "Lichtsegel-Schiff",
+"d": "Ein Raumschiff, das ein riesiges Segel nutzte, das vom Lichtdruck bewegt wurde.",
+"x": "Frühes Raumschiff mit Sonnensegel"
+},
+{
+"id": 2664,
+"n": "Leuchtfläschchen",
+"d": "Ein Glasröhrchen voller leuchtender Algen, das unter der Erde für etwas Licht sorgte.",
+"x": "Echte Biolumineszenz"
+},
+{
+"id": 2665,
+"n": "Mondnetz",
+"d": "Der Mond, umsponnen von Spinnweben.",
+"x": "Fiktives Mondphänomen"
+},
+{
+"id": 2666,
+"n": "Photonensegel",
+"d": "Ein Segel, das Lichtdruck zum Antrieb nutzt."
+},
+{
+"id": 2667,
+"n": "Plastex",
+"d": "Eine Mischung aus Gips und Latex, mit der Häuser ihre Form für einen ändern können."
+},
+{
+"id": 2668,
+"n": "Gesetzesbibliothek im Taschenformat",
+"d": "Ein vollständiger Nachschlagebereich in deiner Handfläche."
+},
+{
+"id": 2669,
+"n": "Psychotropes Haus",
+"d": "Gebäude, die den seelischen Zustand ihrer Bewohner erspüren und widerspiegeln.",
+"x": "Frühe Umgebungsintelligenz"
+},
+{
+"id": 2670,
+"n": "Rattenroboter",
+"d": "Ein kleiner ferngesteuerter Überwachungsroboter.",
+"x": "Früher teleoperierter Roboter"
+},
+{
+"id": 2671,
+"n": "Roboterregenwurm",
+"d": "Autonome Schwarmroboter von der Größe von Regenwürmern, mit ähnlichen Fähigkeiten zum Graben in der Erde.",
+"x": "Frühe Idee eines Roboterschwarms"
+},
+{
+"id": 2672,
+"n": "Roboter-Bibliothekar",
+"d": "Ein Gerät, das wie ein Bibliothekar arbeitet und Bücher automatisch in die Regale einsortiert.",
+"x": "Frühe Katalogisierungs-KI"
+},
+{
+"id": 2673,
+"n": "Robotische Meeresschildkröte",
+"d": "Ein Unterwasserroboter, der wie eine Schildkröte aussieht."
+},
+{
+"id": 2674,
+"n": "Rechte intelligenter Wesen",
+"d": "Die Entdeckung intelligenter Arten macht Planeten für die Erschließung unzugänglich."
+},
+{
+"id": 2675,
+"n": "Selbstheilendes Gebäude",
+"d": "Ein Gebäude, das auf Belastungen oder Risse in den Wänden reagiert, indem es den beschädigten Teil heilt."
+},
+{
+"id": 2676,
+"n": "Sensozellen",
+"d": "Sensoren, die persönliche Eigenschaften der Bewohner eines Hauses aufzeichneten, um ihre Bedürfnisse besser zu erfüllen.",
+"x": "Frühe Idee von Umgebungssensoren"
+},
+{
+"id": 2677,
+"n": "Servierroboter",
+"d": "Ein nicht menschenförmiger Roboter, der zum Servieren gedacht ist.",
+"x": "Echte Servierroboter"
+},
+{
+"id": 2678,
+"n": "Sonnensegel (Lichtsegel)",
+"d": "Eine Antriebsform für Raumschiffe: Eine Folie aus leichtem Material reflektiert Licht von der Sonne oder einer anderen Lichtquelle."
+},
+{
+"id": 2679,
+"n": "Statisches Haus",
+"d": "Ein Haus, das einst ganz psychotrop und formbar war, aber in einer einzigen Konfiguration erstarrt ist.",
+"x": "Frühe Idee des Smart Home"
+},
+{
+"id": 2680,
+"n": "Tand",
+"d": "Eine Metallskulptur, in Versenkung geschaffen, die für die Eingeweihten große Bedeutung hat.",
+"x": "Fiktive Kunst der Außerirdischen"
+},
+{
+"id": 2681,
+"n": "Veridikator",
+"d": "Ein Gerät, das körperliche Reaktionen als biometrische Daten maß und in eine Reihe von Farben übersetzte. Diese zeigten zuverlässig an, ob die gemessene Person die Wahrheit sagte.",
+"x": "Echte Lügendetektor-Technik"
+},
+{
+"id": 2682,
+"n": "Handgelenk-Sprecher",
+"d": "Ein Kommunikationsgerät, das am Handgelenk getragen wird."
+},
+{
+"id": 2683,
+"n": "Alkoholmesssystem",
+"d": "Ein Teilsystem im Fahrzeug, das Alkoholkonsum beim Fahrer erkennt und ihm dann die Kontrolle über das Auto entzieht.",
+"x": "Echte Fahrerüberwachung"
+},
+{
+"id": 2684,
+"n": "Schreibtischsekretär",
+"d": "Ein Schreibtisch mit einem eingebauten computergesteuerten Sekretär.",
+"x": "Frühe Sprachbedienung"
+},
+{
+"id": 2685,
+"n": "Faszinatoren",
+"d": "Grüne, reptilienartige Außerirdische mit vielen Augen, die die Erde in menschlicher Gestalt regieren."
+},
+{
+"id": 2686,
+"n": "Feldhüter",
+"d": "Ein Roboter für die Landwirtschaft.",
+"x": "Echte Landwirtschaftsroboter"
+},
+{
+"id": 2687,
+"n": "Faltkiste",
+"d": "Eine Truhe, die innen größer ist als außen.",
+"x": "Fiktiver extradimensionaler Stauraum"
+},
+{
+"id": 2688,
+"n": "Kostenloses Telefonat",
+"d": "Alle Telefonate sind kostenlos, im Gegenzug für kurze Werbespots.",
+"x": "Fiktives Telekom-Modell"
+},
+{
+"id": 2689,
+"n": "Homotropischer Zeitungsautomat",
+"d": "Ein autonomer Roboter, der Nachrichten verkauft und Menschen gezielt aufspüren konnte."
+},
+{
+"id": 2690,
+"n": "Eis-Neun",
+"d": "Eine kristalline Form von Wasser, die so stabil ist, dass sie praktisch nie schmelzen würde."
+},
+{
+"id": 2691,
+"n": "Eiserner Kragen",
+"d": "Personen, die als „Risiken“ eingestuft sind, müssen Sprengstoff tragen."
+},
+{
+"id": 2692,
+"n": "Sprungantrieb",
+"d": "Ein Antrieb für Raumschiffe, mit dem ein Schiff von einem Punkt zu einem weit entfernten Punkt reist, ohne den Raum dazwischen wirklich durchqueren zu müssen."
+},
+{
+"id": 2693,
+"n": "Lichtwesten (Laser Tag)",
+"d": "Eine Kombination aus Weste und Lichtgewehr, mit der man Treffer erzielt."
+},
+{
+"id": 2694,
+"n": "Mechanischer Marschall",
+"d": "Ein Automat, der wie ein schnellziehender Gesetzeshüter des Wilden Westens funktioniert."
+},
+{
+"id": 2695,
+"n": "Multiversum",
+"d": "Eine Menge oder Reihe von Universen, die zu unserem parallel verlaufen.",
+"x": "Konzept paralleler Universen"
+},
+{
+"id": 2696,
+"n": "Nachrichtenclown",
+"d": "Eine Person, die eigens ausgewählte leichte Nachrichten präsentiert.",
+"x": "Fiktiver Medienberuf"
+},
+{
+"id": 2697,
+"n": "Friedenstaube (Metallvogel)",
+"d": "Roboterhafte geflügelte Wächter."
+},
+{
+"id": 2698,
+"n": "Perky-Pat-Spielset",
+"d": "Ein ganz besonderes Spielset, in das Erwachsene ihr ganzes Wesen projizieren konnten.",
+"x": "Frühes eintauchendes Spiel"
+},
+{
+"id": 2699,
+"n": "Kaninchenpapier",
+"d": "Ein Schwangerschaftstest aus Papier, der sofort ein Ergebnis anzeigte.",
+"x": "Frühe Heimtests"
+},
+{
+"id": 2700,
+"n": "Schießstand (virtueller Schießstand)",
+"d": "Eine virtuelle Wurftauben-Schießbude mit Tontaubenschleudern, die von Außerirdischen geschaffen wurden.",
+"x": "Echte VR-Schießstände"
+},
+{
+"id": 2701,
+"n": "Schattenmenschen",
+"d": "Wissen der Außerirdischen führt zu außerirdischen Ergebnissen, für Menschen.",
+"x": "Fiktives Experiment"
+},
+{
+"id": 2702,
+"n": "Schlafinduktor",
+"d": "Ein Gerät, das einem Menschen elektronisch Schlaf aufzwingt.",
+"x": "Fiktive Schlafinduktion"
+},
+{
+"id": 2703,
+"n": "Sonnenyacht",
+"d": "Ein Raumfahrzeug, dessen Antriebskraft der Lichtdruck auf einem Sonnensegel ist."
+},
+{
+"id": 2704,
+"n": "Periskop der Sonnenyacht",
+"d": "Ein Gerät, das in der kleinen Kabine einer Sonnenyacht verwendet wird.",
+"x": "Echte Periskope"
+},
+{
+"id": 2705,
+"n": "Unterschwellige Werbetafeln",
+"d": "Riesige Plakate im Freien, die völlig leer sind – oder etwa nicht?",
+"x": "Fiktive unterschwellige Werbung"
+},
+{
+"id": 2706,
+"n": "Untergrundzug",
+"d": "Ein kugelförmiges Fahrgastfahrzeug fährt mit interplanetarer Geschwindigkeit durch eine luftleere Röhre unter der Erde."
+}
+]

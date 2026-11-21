@@ -1,0 +1,344 @@
+[
+{
+"id": 2893,
+"n": "Klopfer",
+"d": "Ein kurzer Pflock mit einem federgetriebenen Klöppel an einem Ende; dient dazu, Sandwürmer herbeizurufen.",
+"x": "Fiktiver Tierlockruf"
+},
+{
+"id": 2894,
+"n": "Traktorroboter",
+"d": "Ein Reparaturroboter auf Raupenketten."
+},
+{
+"id": 2895,
+"n": "Trüffelhaut",
+"d": "Gentechnisch einzigartige Häute sind die gängige Währung; ihre besondere genetische Zusammensetzung macht Fälschung unmöglich."
+},
+{
+"id": 2896,
+"n": "Stimme",
+"d": "Verbindet außergewöhnliche Menschenkenntnis mit Stimmmodulation, um Menschen zu beherrschen.",
+"x": "Fiktive Überredungskunst"
+},
+{
+"id": 2897,
+"n": "Weckinjektion",
+"d": "Eine Injektion, die einen Menschen aus dem Schlaf zu voller Wachheit bringt."
+},
+{
+"id": 2898,
+"n": "Wasserabweisende Oberfläche",
+"d": "Eine Oberfläche, über die Wasser fließt, ohne überhaupt zu haften.",
+"x": "Echte hydrophobe Beschichtungen"
+},
+{
+"id": 2899,
+"n": "Wasserschlauch",
+"d": "Führt Wasser zu den Auffangtaschen in einem Fremen-Destillanzug und wieder zurück.",
+"x": "Fiktive Feuchtigkeitsrückgewinnung"
+},
+{
+"id": 2900,
+"n": "Windfalle",
+"d": "Ein Gerät, das Wasser aus der Luft ausscheidet, damit Menschen es nutzen können.",
+"x": "Echte Feuchtigkeitssammler"
+},
+{
+"id": 2901,
+"n": "Adam Selene",
+"d": "Ein Computer erzeugt für sich selbst einen menschlichen Avatar.",
+"x": "Früher digitaler Avatar"
+},
+{
+"id": 2902,
+"n": "Alternative Computerpersönlichkeit",
+"d": "Ein Computersystem, das vollständige, alternative Persönlichkeiten annehmen kann.",
+"x": "Frühe kontextabhängige KI"
+},
+{
+"id": 2903,
+"n": "Ansible",
+"d": "Überlichtschnelle Kommunikation."
+},
+{
+"id": 2904,
+"n": "Antischwerkraft-Kugelarena",
+"d": "Eine kugelförmige Arena für Ringkämpfe."
+},
+{
+"id": 2905,
+"n": "Künstlicher Kiemenanzug",
+"d": "Ein Tauchanzug, der die Luft aus dem Wasser zieht.",
+"x": "Frühes Atemgerät"
+},
+{
+"id": 2906,
+"n": "Selbstlenkendes Auto (Spinner)",
+"d": "Ein Fahrzeug, das Koordinaten annimmt und selbstständig zum Ziel fährt.",
+"x": "Frühe selbstfahrende Fahrzeuge"
+},
+{
+"id": 2907,
+"n": "Autonavigation",
+"d": "Automatische Zielführung im Auto, dargestellt auf einer Videokonsole im Armaturenbrett.",
+"x": "Frühe GPS-Navigation"
+},
+{
+"id": 2908,
+"n": "Autoscan",
+"d": "Automatische Steuerung ferngesteuerter Überwachungsdrohnen."
+},
+{
+"id": 2909,
+"n": "Babel-17",
+"d": "Eine Waffe der Außerirdischen in Form einer Sprache.",
+"x": "Fiktive virale Sprache"
+},
+{
+"id": 2910,
+"n": "Belter",
+"d": "Ein Mensch, der im Asteroidengürtel um Sol geboren und aufgewachsen ist.",
+"x": "Fiktive Weltraumkultur"
+},
+{
+"id": 2911,
+"n": "Großbildschirm-Steuerung",
+"d": "Inhalte vom eigenen Gerät auf einem großen gemeinsamen Bildschirm anzeigen.",
+"x": "Echte drahtlose Anzeige"
+},
+{
+"id": 2912,
+"n": "Blasenwelt",
+"d": "Eine starre, zylinderförmige Raumstation, die sich dreht, um durch die Fliehkraft Schwerkraft zu erzeugen."
+},
+{
+"id": 2913,
+"n": "Anruferliste",
+"d": "Eine Liste der Anrufer, die im Telefon gespeichert wird.",
+"x": "Echte Kontaktlisten"
+},
+{
+"id": 2914,
+"n": "Raumschiff im Camping-Modell",
+"d": "Raumfahrzeuge mit ausfahrbaren Abschnitten."
+},
+{
+"id": 2915,
+"n": "Handy als Kreditkarte",
+"d": "Ein Handy, das als Kreditkarte dienen kann.",
+"x": "Echtes mobiles Bezahlen"
+},
+{
+"id": 2916,
+"n": "Beruhigungsspray im Handy",
+"d": "Ein mildes Sedativum, das dein Handy automatisch verabreicht.",
+"x": "Fiktive mobile Gesundheit"
+},
+{
+"id": 2917,
+"n": "Handy-Mailbox",
+"d": "Anrufer sprechen in ihr Gerät, und der Inhalt des Anrufs wird im Netz gespeichert, damit der Nutzer ihn nach Belieben abhören kann.",
+"x": "Echte Mailbox"
+},
+{
+"id": 2918,
+"n": "Chemoelektrische sensorische Nervenanaloga",
+"d": "Eine künstlich hergestellte Empfindungshaut.",
+"x": "Fiktive neuronale Schnittstelle"
+},
+{
+"id": 2919,
+"n": "Tarnvorrichtung",
+"d": "Ein Kraftfeld, das ein Objekt für menschliche Augen und auch für andere Sensoren unsichtbar macht.",
+"x": "Fiktive Unsichtbarkeitstechnik"
+},
+{
+"id": 2920,
+"n": "Computer-Humorist",
+"d": "Ein Computer erwirbt die Fähigkeit, eigene Witze zu erzählen.",
+"x": "Echter KI-Humor"
+},
+{
+"id": 2921,
+"n": "Schwerkraft-Asteroid",
+"d": "Ein Ort, an dem die Babys der Asteroidenbergarbeiter bleiben, um die nötige Schwerkraft zu erleben.",
+"x": "Frühe Idee der Weltraumkolonisierung"
+},
+{
+"id": 2922,
+"n": "Eiskörper",
+"d": "Eine kryogen eingefrorene Person, die später hoffentlich wiederbelebt werden kann."
+},
+{
+"id": 2923,
+"n": "Cyborg-Pilot",
+"d": "Eine Kombination aus einem Menschen, zumindest dem denkenden Teil, und einer Maschine.",
+"x": "Frühe Idee kybernetischer Organismen"
+},
+{
+"id": 2924,
+"n": "Wiederbelebungsausrüstung",
+"d": "Bringt dich zurück, nachdem du ein Duell verloren hast.",
+"x": "Fiktive Wiederbelebungstechnik"
+},
+{
+"id": 2925,
+"n": "Schmuckimplantat",
+"d": "Kleine Geräte, die unter die Haut eingesetzt und dann bewusst gesteuert werden können.",
+"x": "Frühe Idee der Körpermodifikation"
+},
+{
+"id": 2926,
+"n": "Dip-Tablett",
+"d": "Ein schwebendes Tablett mit Getränken für Partys.",
+"x": "Frühe Idee eines Roboter-Kellners"
+},
+{
+"id": 2927,
+"n": "Diskorporaphon",
+"d": "Zum Sprechen mit den elektronischen Toten.",
+"x": "Fiktive Jenseits-Technik"
+},
+{
+"id": 2928,
+"n": "Diskorporater Sektor",
+"d": "Ein elektronisches Jenseits.",
+"x": "Frühe Idee digitalen Bewusstseins"
+},
+{
+"id": 2929,
+"n": "Traumkonsole",
+"d": "Ein Gerät, mit dem ein Therapeut in die Träume von Patienten eintreten und sie dort erzeugen kann.",
+"x": "Fiktive Traumtechnik"
+},
+{
+"id": 2930,
+"n": "Trinkkolben",
+"d": "Ein kleiner Behälter für Getränke.",
+"x": "Echte Trinkbeutel"
+},
+{
+"id": 2931,
+"n": "Ebenholz-Zähne",
+"d": "Völlig schwarze künstliche Zähne.",
+"x": "Echter Zahnersatz"
+},
+{
+"id": 2932,
+"n": "Gelöschte Erinnerung",
+"d": "Ein Verfahren, das ausgewählte Erinnerungen aus dem menschlichen Geist löscht.",
+"x": "Fiktive Gedächtnisbearbeitung"
+},
+{
+"id": 2933,
+"n": "Erfundene Erinnerung",
+"d": "Eine „Erinnerung“, die künstlich in den Geist einer Person gesetzt wurde statt durch echtes Erleben.",
+"x": "Fiktives Gedächtnisimplantat"
+},
+{
+"id": 2934,
+"n": "Augen",
+"d": "Fliegende, ferngesteuerte Überwachungsdrohnen."
+},
+{
+"id": 2935,
+"n": "Ablagekristall",
+"d": "Teils Kiosk, teils Speichersystem.",
+"x": "Fiktives Speichergerät"
+},
+{
+"id": 2936,
+"n": "Flexibler Rüstungsanzug",
+"d": "Ein Druckanzug, der flexibel ist, aber bei einem Aufprall steif wie eine Rüstung wird.",
+"x": "Fiktive intelligente Rüstung"
+},
+{
+"id": 2937,
+"n": "Fliegender Draht",
+"d": "Stacheldraht, der danach strebt, sich auf seine gespeicherte Größe und Ausdehnung auszudehnen."
+},
+{
+"id": 2938,
+"n": "Fusions-Sonnenlichtröhre",
+"d": "Zentrale Lichtquelle für eine rotierende zylinderförmige Raumstation.",
+"x": "Frühe Idee einer künstlichen Sonne"
+},
+{
+"id": 2939,
+"n": "Müllgerät",
+"d": "Ein autonomes Gerät zur Müllabfuhr.",
+"x": "Echte Müllroboter"
+},
+{
+"id": 2940,
+"n": "Gaze",
+"d": "Ein federleichtes Zelt aus einem Stoff, der nur ein Molekül dick ist."
+},
+{
+"id": 2941,
+"n": "General-Products-Rumpf",
+"d": "Eine nahezu unzerstörbare Außenhaut für Raumschiffe; man wählt die Rumpfgröße und packt hinein, was man will."
+},
+{
+"id": 2942,
+"n": "Schwerkraftgleiter",
+"d": "Ein Gerät, das ein Schwerkraftfeld erzeugt."
+},
+{
+"id": 2943,
+"n": "Boden-Orbit-Fähre",
+"d": "Eine Art Raumfähre."
+},
+{
+"id": 2944,
+"n": "Stille-Kapuze",
+"d": "Ein Gerät, das Lärm aufhebt und dafür sorgt, dass andere nicht mithören können."
+},
+{
+"id": 2945,
+"n": "Interessenprofil",
+"d": "Ein intelligenter Agent; ein Softwareprogramm, das deinen persönlichen Geschmack gespeichert hat.",
+"x": "Echte Empfehlungsalgorithmen"
+},
+{
+"id": 2946,
+"n": "Joymaker",
+"d": "Ein vernetzter persönlicher digitaler Assistent, der wirklich ein Assistent ist.",
+"x": "Echte virtuelle Assistenten"
+},
+{
+"id": 2947,
+"n": "Kzinti-Lektion: Antrieb als Waffe",
+"d": "Die Kraft des Antriebs eines Fahrzeugs, umfunktioniert zu einer Angriffswaffe.",
+"x": "Echte Bewaffnung von Technik"
+},
+{
+"id": 2948,
+"n": "Sprachnetz",
+"d": "Verleiht dem Nutzer die Fähigkeit, jede Sprache zu verstehen."
+},
+{
+"id": 2949,
+"n": "Laserkannone",
+"d": "Eine Laserquelle, stark genug, um einem Lichtsegel erheblichen Lichtdruck zu geben.",
+"x": "Frühes Konzept gerichteter Energie"
+},
+{
+"id": 2950,
+"n": "Laser-Gewehr",
+"d": "Eine Laserwaffe in Form eines klassischen Gewehrs, die auch so abgefeuert wird.",
+"x": "Frühe Laserwaffen"
+},
+{
+"id": 2951,
+"n": "Laserifle",
+"d": "Eine Laserwaffe in Form eines klassischen Gewehrs, die auch so abgefeuert wird."
+},
+{
+"id": 2952,
+"n": "Lebensaufzeichner",
+"d": "Zeichnet die Einzelheiten deines Lebens auf.",
+"x": "Frühe Idee des Lifeloggings"
+}
+]

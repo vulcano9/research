@@ -1,0 +1,1383 @@
+[
+{
+"id": 1969,
+"n": "Hilsch Vortex Tube",
+"d": "A T-shaped device that admits air under pressure and outputs hot air from side and cold from the other.",
+"p": "Vortex tubes",
+"x": "Separates hot and cold air"
+},
+{
+"id": 1970,
+"n": "Hydropathic bed",
+"d": "A heated bed that used something more comfortable than water."
+},
+{
+"id": 1971,
+"n": "Hypnoteleset",
+"d": "A device that guarantees quick, surrogate sleep.",
+"p": "Hypnosis device"
+},
+{
+"id": 1972,
+"n": "Kite-Copter Car",
+"d": "An observation car suspended below a device that supplies lift."
+},
+{
+"id": 1973,
+"n": "Law of Contact",
+"d": "Non-interference in the development of other worlds."
+},
+{
+"id": 1974,
+"n": "Lead-Bodied Android",
+"d": "A robot designed for use in the nuclear industry.",
+"p": "Radiation-shielded robot"
+},
+{
+"id": 1975,
+"n": "Leak Disk",
+"d": "Simple device to temporarily close a leak in a spacecraft.",
+"p": "Spacecraft repair"
+},
+{
+"id": 1976,
+"n": "Levitating Path",
+"d": "Anti-gravity metal used to make a floating walkway.",
+"p": "Anti-gravity path"
+},
+{
+"id": 1977,
+"n": "Light Absorbing/Emitting Ink",
+"d": "Ink that can absorb light and then emit it in a burst for advertising purposes.",
+"p": "Glowing ink"
+},
+{
+"id": 1978,
+"n": "Lunocycle (Lunar Bicycle)",
+"d": "A bicycle specially adapted for lunar travel."
+},
+{
+"id": 1979,
+"n": "Magneslippers",
+"d": "Shoes that adhere to metal space ship floors, useful in null gravity situations."
+},
+{
+"id": 1980,
+"n": "Magnetic Coil Slippers",
+"d": "Maintain your footing in zero gravity."
+},
+{
+"id": 1981,
+"n": "Magnetized Cloth Pajamas",
+"d": "Sleeping in zero gee - just like on Earth!"
+},
+{
+"id": 1982,
+"n": "Master-Operator",
+"d": "Takes over the functions of many different household robots."
+},
+{
+"id": 1983,
+"n": "Mechanical Dentist",
+"d": "No human graduated from dental school here."
+},
+{
+"id": 1984,
+"n": "Medical Use for Weightlessness",
+"d": "Early reference to the idea of using a weightless environment for medical purposes.",
+"w": "NASA, space medicine",
+"p": "Microgravity research",
+"x": "Studying zero-g conditions"
+},
+{
+"id": 1985,
+"n": "Menslator",
+"d": "A translator that works by examining the mental image of what you are trying to say.",
+"p": "Telepathic translator"
+},
+{
+"id": 1986,
+"n": "Mnemiphot",
+"d": "A device used to search for information, which is then presented on a convenient screen.",
+"p": "Information retrieval"
+},
+{
+"id": 1987,
+"n": "Monoline",
+"d": "A wind-driven overland transport.",
+"p": "Fictional transportation"
+},
+{
+"id": 1988,
+"n": "Monowheel",
+"d": "A single-wheeled police car."
+},
+{
+"id": 1989,
+"n": "Moonwalk",
+"d": "To traverse the Earth's moon on foot, in a space suit."
+},
+{
+"id": 1990,
+"n": "Nuclear-Field Depressor",
+"d": "A device that causes nuclear-powered devices to stop working.",
+"p": "EMP device"
+},
+{
+"id": 1991,
+"n": "Off-Planet",
+"d": "Away from a planet, towards another or into space."
+},
+{
+"id": 1992,
+"n": "Panatrope",
+"d": "A device that modifies human dna to ensure survival in harsh alien environments."
+},
+{
+"id": 1993,
+"n": "Personal Solar Plant",
+"d": "A single-home solar-powered energy source.",
+"p": "Home solar"
+},
+{
+"id": 1994,
+"n": "Photo Crystal (Cube)",
+"d": "A small handheld display for a picture"
+},
+{
+"id": 1995,
+"n": "Plasticocoon",
+"d": "Holds a prisoner motionless.",
+"p": "Fictional restraint"
+},
+{
+"id": 1996,
+"n": "Plastissue",
+"d": "Artificial flesh.",
+"p": "Synthetic flesh"
+},
+{
+"id": 1997,
+"n": "Pocket Projector",
+"d": "A personal device for replaying media.",
+"p": "Pico projectors",
+"x": "Handheld projectors"
+},
+{
+"id": 1998,
+"n": "Pretentionists",
+"d": "People who took refuge in the past with their customs and lives."
+},
+{
+"id": 1999,
+"n": "Prism Window",
+"d": "A device for getting a better view of the ground from inside an airplane.",
+"p": "Aircraft window"
+},
+{
+"id": 2000,
+"n": "Psychic Probe",
+"d": "A device capable of discerning truthful information in a living human brain.",
+"p": "Mind reading device"
+},
+{
+"id": 2001,
+"n": "Recorded Books",
+"d": "Electronically recorded books.",
+"w": "Audiobook companies",
+"x": "Audio book recordings"
+},
+{
+"id": 2002,
+"n": "Retinal Projection",
+"d": "A method for projecting advertisements directly on the retina."
+},
+{
+"id": 2003,
+"n": "Ribbon World",
+"d": "A planet that presents the same face to its sun has a small habitable area - the ribbon between light and dark.",
+"p": "Tidally locked planet"
+},
+{
+"id": 2004,
+"n": "Robodore",
+"d": "A robot specialized for use as a stevedore, emptying the contents of ships in port."
+},
+{
+"id": 2005,
+"n": "Robot Clerk",
+"d": "An autonomous clerical unit - a robot that could wait on you in a store."
+},
+{
+"id": 2006,
+"n": "Robot Manumission",
+"d": "The freeing of a robotic being from a state of being owned property.",
+"p": "Robot rights"
+},
+{
+"id": 2007,
+"n": "Robot Ramp",
+"d": "A special means of ingress and egress solely for use by mechanical help.",
+"p": "Robot infrastructure"
+},
+{
+"id": 2008,
+"n": "Robot Strike",
+"d": "When robots refuse to work.",
+"p": "Robot rebellion"
+},
+{
+"id": 2009,
+"n": "Robot Tennis Player",
+"d": "A purely mechanical, autonomous foe on the court.",
+"p": "Robot athlete"
+},
+{
+"id": 2010,
+"n": "Robotic Law Tape Safety Valve",
+"d": "A specific impulse that warns robots contemplating breaking the laws set forth for their behavior.",
+"p": "Robot safeguards"
+},
+{
+"id": 2011,
+"n": "Self-Maintaining Circuit Monitoring and Repair",
+"d": "A computer that monitors itself for repair.",
+"p": "Robust computing"
+},
+{
+"id": 2012,
+"n": "Self-Repairing Robot",
+"d": "A mechanism that can detect faults in itself and repair them."
+},
+{
+"id": 2013,
+"n": "Silencer-Padding",
+"d": "Robots need to have special padding on the bottoms of their lower limbs, so they don't clank as they walk."
+},
+{
+"id": 2014,
+"n": "Singularity",
+"d": "In science, a condition in which spacetime breaks down; in society, a technological advance causes social conditions to break down.",
+"p": "Technological singularity"
+},
+{
+"id": 2015,
+"n": "Solar-powered Prefab House",
+"d": "A pre-built house that can live off the grid.",
+"w": "Home builders",
+"p": "Solar homes",
+"x": "Homes with solar power"
+},
+{
+"id": 2016,
+"n": "Soot-Extractor Nostril Plugs (Antisoot Plugs)",
+"d": "A small device worn to filter industrial pollutants out of breathing air."
+},
+{
+"id": 2017,
+"n": "Space Beacon",
+"d": "An ordinary sun is transformed into a beacon for use by spacecraft when in hyperspace."
+},
+{
+"id": 2018,
+"n": "Space-Weather Men",
+"d": "Predictors of the 'weather' in space."
+},
+{
+"id": 2019,
+"n": "Spray-On Clothing Web",
+"d": "A 'web' clothing foundation that can be sprayed on and then molded by a couturier."
+},
+{
+"id": 2020,
+"n": "Spray-On Gloves",
+"d": "Fashionable evening gloves that are sprayed onto the hand and arm."
+},
+{
+"id": 2021,
+"n": "Spy-Eyes",
+"d": "Tiny robotic surveillance devices fly using propellers.",
+"p": "Surveillance robots"
+},
+{
+"id": 2022,
+"n": "Stun Pistol",
+"d": "A hand-held device that causes unconsciousness.",
+"w": "Defense companies",
+"x": "Non-lethal weapons"
+},
+{
+"id": 2023,
+"n": "Supervisor Robot",
+"d": "A robot that watches over and gives orders to other robots.",
+"p": "Overseer robot"
+},
+{
+"id": 2024,
+"n": "Telagog",
+"d": "Remote control excellence - guaranteed!"
+},
+{
+"id": 2025,
+"n": "Thing-That-Spits-Lightning",
+"d": "A kind of ray device that uses a technology too advanced to describe."
+},
+{
+"id": 2026,
+"n": "Time Crystals",
+"d": "Permits indefinite movement forward in time."
+},
+{
+"id": 2027,
+"n": "Tiny Nuclear Generator",
+"d": "A complete nuclear-based generator of power no bigger than a walnut.",
+"p": "Miniaturized reactor"
+},
+{
+"id": 2028,
+"n": "Toaster",
+"d": "A handheld beam weapon."
+},
+{
+"id": 2029,
+"n": "Tomato Babies",
+"d": "Unusual fruit native to Iapetus, can hold electric soul."
+},
+{
+"id": 2030,
+"n": "Tourist Rocket",
+"d": "A cheap, unpleasant way to do space travel.",
+"p": "Suborbital rocket"
+},
+{
+"id": 2031,
+"n": "Tree-Grown Wood",
+"d": "The natural product, obtained by cutting down a living tree.",
+"w": "Forestry",
+"p": "Timber",
+"x": "Building material from trees"
+},
+{
+"id": 2032,
+"n": "Triple Airlock",
+"d": "Special device to protect against extremely corrosive atmospheres.",
+"p": "Airlock"
+},
+{
+"id": 2033,
+"n": "Ullran Enunciator",
+"d": "Special prosthesis needed to aid humans in speaking an alien language.",
+"p": "Translation device"
+},
+{
+"id": 2034,
+"n": "Vacuum Tractor",
+"d": "A small transport used on the surface of the moon, in vacuum."
+},
+{
+"id": 2035,
+"n": "Visi-Sonor",
+"d": "An entertainment device which appeared to create both sound and light by acting directly on brain cells. It also stimulated emotions directly."
+},
+{
+"id": 2036,
+"n": "Vision Strip",
+"d": "A circular vision strip for robots.",
+"p": "Robot vision"
+},
+{
+"id": 2037,
+"n": "Wall-Light",
+"d": "The walls of a room provide illumination.",
+"p": "Wall sconces",
+"x": "Lights attached to walls"
+},
+{
+"id": 2038,
+"n": "Warp-Speed",
+"d": "Faster than light spaceships."
+},
+{
+"id": 2039,
+"n": "Water Bulb",
+"d": "A zero-gee dispenser of liquids.",
+"p": "Zero-g liquid container"
+},
+{
+"id": 2040,
+"n": "Water Bulb",
+"d": "A zero-gee dispenser of liquids."
+},
+{
+"id": 2041,
+"n": "Zero 'g' (Zero Gee)",
+"d": "In a ship in orbit, in free fall."
+},
+{
+"id": 2042,
+"n": "Adaptable Overcoat",
+"d": "A disguise allowing an alien to walk amongst, well, other aliens without notice."
+},
+{
+"id": 2043,
+"n": "Air-Propelled Train",
+"d": "A silent means of mass transit."
+},
+{
+"id": 2044,
+"n": "Artificially Pulsating Star",
+"d": "A star that has been modified to pulsate with a message to the entire universe."
+},
+{
+"id": 2045,
+"n": "Automated Blood Test",
+"d": "Blood draw and test without human assistance."
+},
+{
+"id": 2046,
+"n": "Automatic Ticket Machine",
+"d": "Get your ticket to Trantor automatically.",
+"x": "Early vending machines"
+},
+{
+"id": 2047,
+"n": "Automatobile",
+"d": "An autonomous private car."
+},
+{
+"id": 2048,
+"n": "Automatobus",
+"d": "An autonomous or self-driving bus seating a number of people.",
+"x": "Early autonomous buses"
+},
+{
+"id": 2049,
+"n": "Autonomous Car Intercommunication",
+"d": "Automatic cars talk to each other about everything.",
+"x": "Real vehicle-to-vehicle communication"
+},
+{
+"id": 2050,
+"n": "Benevolent Ostracism",
+"d": "Choosing not to contact primitive races."
+},
+{
+"id": 2051,
+"n": "Big Flue",
+"d": "Enormous incinerators serviced directly by helicopter.",
+"x": "Fictional waste management"
+},
+{
+"id": 2052,
+"n": "Birth of Alien to Human",
+"d": "The birth of an alien individual to a human woman."
+},
+{
+"id": 2053,
+"n": "Brains",
+"d": "An electronic brain that is able to do problem solving. This idea seems to be the impetus behind current artificial intelligence that seeks to solve problems, rather than to simulate human intelligenc",
+"x": "Early problem-solving AI"
+},
+{
+"id": 2054,
+"n": "Brains (Computer)",
+"d": "An electronic brain that is able to do problem solving. This idea seems to be the impetus behind current artificial intelligence that seeks to solve problems, rather than to simulate human intelligenc"
+},
+{
+"id": 2055,
+"n": "Breesk",
+"d": "A unique dish best served with violet sauce."
+},
+{
+"id": 2056,
+"n": "Buttered Toast Robot",
+"d": "What it says on the tin.",
+"x": "Early domestic robot"
+},
+{
+"id": 2057,
+"n": "Buy-Me-Discs",
+"d": "Tiny disks attached to products in stores that received transmitted ads to share with consumers.",
+"x": "Fictional retail ad tech"
+},
+{
+"id": 2058,
+"n": "C/Fe",
+"d": "A culture that combines the best of humans and robots."
+},
+{
+"id": 2059,
+"n": "City Ship",
+"d": "A generation ship, a spacecraft that carries a people to another star."
+},
+{
+"id": 2060,
+"n": "Claws (Attack Robot)",
+"d": "Autonomous guard robots that attack living tissue.",
+"x": "Early military robot concept"
+},
+{
+"id": 2061,
+"n": "Control Screen",
+"d": "An alien display device.",
+"x": "Fictional display tech"
+},
+{
+"id": 2062,
+"n": "Dirtside",
+"d": "The surface of a planet."
+},
+{
+"id": 2063,
+"n": "Dog-Brain Robot",
+"d": "The body of a robot, commanded by a dog's brain that had been wiped and reprogrammed."
+},
+{
+"id": 2064,
+"n": "Dressing Machine",
+"d": "A robotic device to serve as a mechanical dresser."
+},
+{
+"id": 2065,
+"n": "Earplug Decision (Restraint of Advertising)",
+"d": "A Supreme Court judgement that declared that earplugs used to block advertising were unconstitutional.",
+"x": "Fictional legal ruling"
+},
+{
+"id": 2066,
+"n": "Electronic-Eyed Snake",
+"d": "A fully automated stomach pump.",
+"x": "Early medical robots"
+},
+{
+"id": 2067,
+"n": "Emdee Doctor Robot",
+"d": "An autonomous physician robot with many arms and built-in features."
+},
+{
+"id": 2068,
+"n": "Extee",
+"d": "An uncommon abbreviation for \"extraterrestrial\""
+},
+{
+"id": 2069,
+"n": "Farming Trantor",
+"d": "Taking apart a vast city, and returning to farming the land.",
+"x": "Fictional post-urbanism"
+},
+{
+"id": 2070,
+"n": "Galactic Damping Field",
+"d": "A vast field of force emanating from the center of the galaxy.",
+"x": "Fictional galactic phenomenon"
+},
+{
+"id": 2071,
+"n": "Galactography",
+"d": "Geography on a galactic scale.",
+"x": "Fictional galactic cartography"
+},
+{
+"id": 2072,
+"n": "Garbage Screen",
+"d": "Use of bits of metal to confuse radar targeting of space stations.",
+"x": "Real radar countermeasures"
+},
+{
+"id": 2073,
+"n": "Gravity-Simulator Harness",
+"d": "Device that simulates gravity's effect on muscles to keep in shape while in space.",
+"x": "Early space exercise concept"
+},
+{
+"id": 2074,
+"n": "Green Bullet",
+"d": "A very compact (for 1950) radio transceiver, worn in the ear like a hearing aid.",
+"x": "Early miniaturized radio"
+},
+{
+"id": 2075,
+"n": "Hammock Crutches",
+"d": "How would worm-like creatures walk about under heavy gravity?"
+},
+{
+"id": 2076,
+"n": "Hawk Anti-Drone",
+"d": "An autonomous unmanned air vehicle (UAV) designed to seek and destroy other UAVs."
+},
+{
+"id": 2077,
+"n": "Homeostatic Newspaper",
+"d": "An autonomous news-gathering and publishing entity; abbreviated as homeopape."
+},
+{
+"id": 2078,
+"n": "Hypertracer",
+"d": "A device that allows a pursuer to follow a spaceship through hyperspace.",
+"x": "Fictional FTL tracking"
+},
+{
+"id": 2079,
+"n": "Inflatable Air Lock",
+"d": "Air lock making use of inflatable side walls to achieve large size.",
+"x": "Early expandable space habitat idea"
+},
+{
+"id": 2080,
+"n": "Information Sharing (Watchbird Network)",
+"d": "Watchbird drones can see and learn and then share new information, methods and definitions."
+},
+{
+"id": 2081,
+"n": "Leady",
+"d": "A radiation-resistant robot.",
+"x": "Early radiation hardened robot"
+},
+{
+"id": 2082,
+"n": "Learning Circuit",
+"d": "The watchbirds can learn and teach each other."
+},
+{
+"id": 2083,
+"n": "Legislation Analyzer",
+"d": "Device analyzes potentially biased bills.",
+"x": "Real legislative analysis tools"
+},
+{
+"id": 2084,
+"n": "Lens Image",
+"d": "A presentation of the night sky, calculated for any planet or point in space.",
+"x": "Early immersive display idea"
+},
+{
+"id": 2085,
+"n": "Machine Evolution",
+"d": "An early look at the idea that machines can evolve all by themselves, physically and intellectually.",
+"x": "Early AI evolution concept"
+},
+{
+"id": 2086,
+"n": "Magnetic-Soled Shoes",
+"d": "A means of walking on a surface in zero gravity."
+},
+{
+"id": 2087,
+"n": "Master Ventriloquism Corporation (MV)",
+"d": "A central source of product advertising, commercials sent out to every product.",
+"x": "Fictional ad network"
+},
+{
+"id": 2088,
+"n": "Mechanical Hound",
+"d": "An eight-legged robotic \"hound\" with hypodermic poison fangs."
+},
+{
+"id": 2089,
+"n": "Mental Static Device",
+"d": "Cloak the minds of individuals with a kind of 'noise'.",
+"x": "Fictional telepathy shielding"
+},
+{
+"id": 2090,
+"n": "Merc-Pool",
+"d": "A device that stores information in vibration patterns on a mercury surface."
+},
+{
+"id": 2091,
+"n": "Message Tree",
+"d": "A tree growing out of a huge cliff of crystal provides communication for a world.",
+"x": "Fictional alien comms"
+},
+{
+"id": 2092,
+"n": "Morality Rating-Computer",
+"d": "A computer system able to determine moral deviancy."
+},
+{
+"id": 2093,
+"n": "News Receptor",
+"d": "Devices used by homeostatic newspapers to gather news autonomically."
+},
+{
+"id": 2094,
+"n": "Ovoid 3D Galactic Model",
+"d": "A handheld display of a galaxy.",
+"x": "Early 3D display idea"
+},
+{
+"id": 2095,
+"n": "Paint-to-Order Robot Artist",
+"d": "A robotic mechanism that could produce a unique picture, given subject and artistic style.",
+"x": "Early artistic AI"
+},
+{
+"id": 2096,
+"n": "Panoramic Viewer",
+"d": "Permits observation at a distance, as well as the projection of a holographic image.",
+"x": "Early surveillance and hologram concepts"
+},
+{
+"id": 2097,
+"n": "Parlor Wall (TV Parlor)",
+"d": "The original \"big screen TV\" takes up an entire wall of a room.",
+"x": "Early large screen TVs"
+},
+{
+"id": 2098,
+"n": "Permanent Skywriting",
+"d": "Non-wispy skywriting letters.",
+"x": "Fictional skywriting"
+},
+{
+"id": 2099,
+"n": "Pilot's Tank",
+"d": "For high gee boosting."
+},
+{
+"id": 2100,
+"n": "Pinlight",
+"d": "Thimble-sized photonuclear bomb.",
+"x": "Fictional micro-bomb"
+},
+{
+"id": 2101,
+"n": "Planet Buster",
+"d": "A bomb so powerful it could destroy a planet."
+},
+{
+"id": 2102,
+"n": "Planetary Globe",
+"d": "A craftsman's model of a planet."
+},
+{
+"id": 2103,
+"n": "Planoforming",
+"d": "A form of \"faster than light\" travel allows for interstellar travel.",
+"x": "Fictional FTL concept"
+},
+{
+"id": 2104,
+"n": "Plasta-Skin",
+"d": "Artificial Skin"
+},
+{
+"id": 2105,
+"n": "Pocket Phone (or pocketphone)",
+"d": "A telephone that is not hard wired to the network; a mobile or cell phone.",
+"x": "Early mobile phones"
+},
+{
+"id": 2106,
+"n": "Positronic Motor",
+"d": "A combination of motor and brain; an engine with a cerebellum and a carburetor.",
+"x": "Fictional AI engine"
+},
+{
+"id": 2107,
+"n": "Preserving Machine",
+"d": "A device that would create a unique animal from a piece of classical music.",
+"x": "Fictional bioengineering device"
+},
+{
+"id": 2108,
+"n": "Prime Radiant",
+"d": "A projector that puts all of a vast collection of writings on the wall of a special conference room. You could interact with it by writing on the wall; changes were stored.",
+"x": "Early interactive display concept"
+},
+{
+"id": 2109,
+"n": "Private Flyer",
+"d": "A privately-owned air vehicle that used no control surfaces for maneuvering."
+},
+{
+"id": 2110,
+"n": "Pushpot",
+"d": "An independent rocket motor that can attach itself to an object bound for space.",
+"x": "Early modular spacecraft concept"
+},
+{
+"id": 2111,
+"n": "R. Daneel Olivaw",
+"d": "A human-like robot, skilled in police work.",
+"x": "Early humanoid robot concept"
+},
+{
+"id": 2112,
+"n": "Ring Road",
+"d": "A magnetically levitated train."
+},
+{
+"id": 2113,
+"n": "Robant",
+"d": "A robotic servant.",
+"x": "Early domestic robot concept"
+},
+{
+"id": 2114,
+"n": "Robie Vending Robot",
+"d": "A robotic vending machine that seeks out customers."
+},
+{
+"id": 2115,
+"n": "Robot Door",
+"d": "Automated door has some decision-making capabilities, in addition to speech recognition capabilities.",
+"x": "Early smart door"
+},
+{
+"id": 2116,
+"n": "Robot Pianist",
+"d": "A robot learns the fine art of playing classical music on the piano.",
+"x": "Early music playing robot"
+},
+{
+"id": 2117,
+"n": "Robot Psyche Tester",
+"d": "An automated psychiatric evaluation device.",
+"x": "Real automated psych eval"
+},
+{
+"id": 2118,
+"n": "Robotaxi",
+"d": "A fully automated, driverless taxi."
+},
+{
+"id": 2119,
+"n": "Robotic Conductor",
+"d": "A robot charged with conductor's duties aboard a bus or other public transportation.",
+"x": "Real autonomous buses"
+},
+{
+"id": 2120,
+"n": "Robotic Infiltrator",
+"d": "A robot designed to appeal to a soldier's sense of mercy for children."
+},
+{
+"id": 2121,
+"n": "Rolov",
+"d": "A specialized robot for the bedroom."
+},
+{
+"id": 2122,
+"n": "Ruum Spherical Robot",
+"d": "An autonomous spherical robot, possibly liquid metal, self-energizing, of alien design; a collector."
+},
+{
+"id": 2123,
+"n": "Salamander",
+"d": "Name given to the fire trucks of the future, which carry kerosene rather than water, and are used to burn houses.",
+"x": "Fictional emergency vehicle"
+},
+{
+"id": 2124,
+"n": "Science Fiction Restaurant",
+"d": "Established by aliens, its waiters and food are out of this world!"
+},
+{
+"id": 2125,
+"n": "Seashell Radio (Thimble Radios)",
+"d": "Small radios that fit into the ears like hearing aids or ear buds.",
+"x": "Early earbuds"
+},
+{
+"id": 2126,
+"n": "Self-Cleaning Autonomous Car",
+"d": "An automatic vehicle that keeps itself clean.",
+"x": "Early autonomous vehicle ideas"
+},
+{
+"id": 2127,
+"n": "Self-Sufficient House",
+"d": "A single family residence that required no surrounding infrastructure.",
+"x": "Early self-sufficient homes"
+},
+{
+"id": 2128,
+"n": "Short-Wave Surgical Knife",
+"d": "A means of performing an internal cut without breaking the skin.",
+"x": "Fictional non-invasive surgery"
+},
+{
+"id": 2129,
+"n": "Sideglance Robe",
+"d": "A dress that is invisible or opaque, depending on how you look at it."
+},
+{
+"id": 2130,
+"n": "Sliver Gun",
+"d": "A firearm that shoots fine darts."
+},
+{
+"id": 2131,
+"n": "Sound Analysis",
+"d": "Improving language teaching by showing the waveform of a spoken word or phrase, and comparing it to standard speech.",
+"x": "Real speech analysis"
+},
+{
+"id": 2132,
+"n": "Space Academy",
+"d": "An Earth school to teach people how to serve in space!"
+},
+{
+"id": 2133,
+"n": "Space Flight Simulator",
+"d": "Very early description of a way to practice flying in space while still on Earth.",
+"x": "Early spaceflight simulators"
+},
+{
+"id": 2134,
+"n": "Space Phobia",
+"d": "When astronauts have had enough.",
+"x": "Fictional space psychology"
+},
+{
+"id": 2135,
+"n": "Space Wagon",
+"d": "A space vehicle without a cabin, used for short-range towing.",
+"x": "Early space vehicle ideas"
+},
+{
+"id": 2136,
+"n": "Space Weakness",
+"d": "Early description of what happens to the human body in zero gravity.",
+"x": "Describing real space phenomena"
+},
+{
+"id": 2137,
+"n": "Spacecraft Ejection Seat",
+"d": "An ejection seat for spacecraft, to be used in the event of problems during launch.",
+"x": "Early spacecraft safety ideas"
+},
+{
+"id": 2138,
+"n": "Sparkler",
+"d": "Packs quite a charge."
+},
+{
+"id": 2139,
+"n": "Speedtalk",
+"d": "A constructed language that uses a single sound to stand for a word, achieving great improvements in communication speed.",
+"x": "Fictional efficient language"
+},
+{
+"id": 2140,
+"n": "Spot-Wavex Scrambler",
+"d": "Provides a more personalized experience of television, by letting the announcers talk to you personally.",
+"x": "Early personalized media"
+},
+{
+"id": 2141,
+"n": "Stardrive",
+"d": "Propulsion method that quickly brings a ship's speed to nearly that of light."
+},
+{
+"id": 2142,
+"n": "Stinger",
+"d": "A biological assassin."
+},
+{
+"id": 2143,
+"n": "Sub-C",
+"d": "Of ships, older models that travel at speeds below that of light.",
+"x": "Fictional space travel classes"
+},
+{
+"id": 2144,
+"n": "Sunlight Blocker",
+"d": "A roughly circular field which denies sunlight to an area of a planet.",
+"x": "Fictional sunlight blocking"
+},
+{
+"id": 2145,
+"n": "Synthony",
+"d": "A musical performance by robots.",
+"x": "Early robot orchestra"
+},
+{
+"id": 2146,
+"n": "The Shed",
+"d": "Enormous building needed to assemble giant space craft or space stations."
+},
+{
+"id": 2147,
+"n": "Time Scoop",
+"d": "Retrieved objects from other points in time."
+},
+{
+"id": 2148,
+"n": "Torchship",
+"d": "A spaceship capable of high acceleration.",
+"x": "Fictional fast ship"
+},
+{
+"id": 2149,
+"n": "Transcriber",
+"d": "A automated transcriptionist - a machine which perfectly translates human speech into words on paper.",
+"x": "Early speech recognition"
+},
+{
+"id": 2150,
+"n": "Travel-Rug",
+"d": "A rug that conveyed you around your house.",
+"x": "Early mobility aid concept"
+},
+{
+"id": 2151,
+"n": "Vapor Cloud",
+"d": "Corrosive gas destroys ships."
+},
+{
+"id": 2152,
+"n": "Visicastor",
+"d": "A person who presents video broadcasts.",
+"w": "Media",
+"x": "Early TV presenters"
+},
+{
+"id": 2153,
+"n": "Vistascreen",
+"d": "Large screen entertainment."
+},
+{
+"id": 2154,
+"n": "Voice in the Ear",
+"d": "Project a voice or sound to one individual's ears only."
+},
+{
+"id": 2155,
+"n": "Voice-Activated Door",
+"d": "A door that opens upon verbal command."
+},
+{
+"id": 2156,
+"n": "Watchbird",
+"d": "Surveillance and punishment in one handy unmanned aerial vehicle (UAV)."
+},
+{
+"id": 2157,
+"n": "Worldcraft Bubble",
+"d": "An incredibly detailed mechanical simulation of a world.",
+"x": "Early VR concept"
+},
+{
+"id": 2158,
+"n": "Yeast-Culture Vats",
+"d": "Using cultured yeast as the basis for food production.",
+"x": "Real yeast farming"
+},
+{
+"id": 2159,
+"n": "Zero-G Cups",
+"d": "Cups that were specially designed to be usable under zero gravity conditions.",
+"x": "Early space food research"
+},
+{
+"id": 2160,
+"n": "Airmakers",
+"d": "Machine to create breathable air from the constituent materials on an alien planet.",
+"p": "Atmosphere generation"
+},
+{
+"id": 2161,
+"n": "Anti-Gerasone",
+"d": "Cheap immortality comes to your neighborhood convenience store."
+},
+{
+"id": 2162,
+"n": "Automatic Companion Robot",
+"d": "A robotic replacement for a pet or friend.",
+"p": "Companion bot"
+},
+{
+"id": 2163,
+"n": "Beer Robot",
+"d": "A robot prepared and filled with draft beer."
+},
+{
+"id": 2164,
+"n": "Boat-Tree",
+"d": "A tree, the pods of which can be grown as boats.",
+"p": "Organic product"
+},
+{
+"id": 2165,
+"n": "Bodyphone",
+"d": "A unique designation for a personal phone you can carry with you."
+},
+{
+"id": 2166,
+"n": "Car Caravan",
+"d": "A set of cars that will follow a lead car autonomously."
+},
+{
+"id": 2167,
+"n": "Central Guide-Beam",
+"d": "A kind of signal that demonstrates the best possible path to a destination in space and even provides motive power."
+},
+{
+"id": 2168,
+"n": "Cephaloscope",
+"d": "A device used to detect lying.",
+"p": "Lie detector"
+},
+{
+"id": 2169,
+"n": "Click-Band",
+"d": "Worn on the wrist, it helps you locate your transport."
+},
+{
+"id": 2170,
+"n": "Commute Ship",
+"d": "Spacecraft used for traversing daily grind between Earth and the planet you work on.",
+"p": "Interplanetary transit"
+},
+{
+"id": 2171,
+"n": "Compassion Circuit",
+"d": "A special robotic component that allows the robot to weigh harm and benefit in carrying out commands.",
+"p": "Safeguarding AI"
+},
+{
+"id": 2172,
+"n": "Consumption Robots",
+"d": "Humanoid robots placed in the position of consuming material goods to relieve human beings of the burden.",
+"p": "Consumer bots"
+},
+{
+"id": 2173,
+"n": "Control Helmet",
+"d": "Direct control of a robot from the brain.",
+"p": "Mind control device"
+},
+{
+"id": 2174,
+"n": "Copter Harness",
+"d": "A single person flying machine.",
+"p": "Personal VTOL aircraft"
+},
+{
+"id": 2175,
+"n": "Dermal-Mist Spray",
+"d": "Very refreshing for suburbanites."
+},
+{
+"id": 2176,
+"n": "Escape Pod",
+"d": "A small automated ship attached to a larger ship or station, used in the event of an emergency.",
+"p": "Escape capsules",
+"x": "Emergency spacecraft egress"
+},
+{
+"id": 2177,
+"n": "Feeler-Planes",
+"d": "Special sensors that make extremely detailed three-dimensional models.",
+"p": "Sensing drones"
+},
+{
+"id": 2178,
+"n": "Finger Jet Bath",
+"d": "The ultimate in luxury tubs.",
+"p": "Luxury bathing"
+},
+{
+"id": 2179,
+"n": "Freeze-Blasters",
+"d": "The ray it fires is cold - very cold."
+},
+{
+"id": 2180,
+"n": "Gravity neutralizing paint",
+"d": "Paint or coating that neutralized the effects of gravity on whatever it was painted on.",
+"p": "Anti-gravity coating"
+},
+{
+"id": 2181,
+"n": "Guide-Beam",
+"d": "A wireless means of controlling and directing the movement of a passenger vehicle."
+},
+{
+"id": 2182,
+"n": "Heavy-Metal Detector",
+"d": "Handy for a quick survey of a new planet."
+},
+{
+"id": 2183,
+"n": "Histo-Research",
+"d": "Historical research using a time machine."
+},
+{
+"id": 2184,
+"n": "Hopper",
+"d": "A vehicle with a single leg and rotors to enhance 'hang time.'"
+},
+{
+"id": 2185,
+"n": "House Trees",
+"d": "Living trees grown as houses; large hollow pods serve as living spaces.",
+"p": "Organic architecture"
+},
+{
+"id": 2186,
+"n": "Human Quarter",
+"d": "A ghetto for human beings; in this case, in a world of robots.",
+"p": "Segregated district"
+},
+{
+"id": 2187,
+"n": "Hypno-Motor Control",
+"d": "A means of controlling the body remotely, cutting off the need for local control (ie, by your mind).",
+"p": "Body control"
+},
+{
+"id": 2188,
+"n": "Inorganic Evolution",
+"d": "A process by which robots could alter their own structure, or the ways that they interact with other robots, to adapt to a changing world.",
+"p": "Robotic evolution"
+},
+{
+"id": 2189,
+"n": "Jiffi-scuttler",
+"d": "A device providing near instantaneous travel between two points."
+},
+{
+"id": 2190,
+"n": "Lash-Tube",
+"d": "Device emits an energy beam."
+},
+{
+"id": 2191,
+"n": "Law Clerk Robot",
+"d": "A robotic lawyer.",
+"p": "Legal assistance AI"
+},
+{
+"id": 2192,
+"n": "Lawyer Robot",
+"d": "An autonomous, robotic lawyer."
+},
+{
+"id": 2193,
+"n": "Maid-Robot",
+"d": "A mechanical automaton does the work of a lady's maid."
+},
+{
+"id": 2194,
+"n": "Mechanical Bride",
+"d": "A perfect robotic replica of a woman.",
+"p": "Fembot"
+},
+{
+"id": 2195,
+"n": "Mechanical Tune-Maker",
+"d": "An electromechanical device that created unique music."
+},
+{
+"id": 2196,
+"n": "Mecho-Clothing",
+"d": "Apparel created entirely by machines.",
+"p": "Robot-made clothing"
+},
+{
+"id": 2197,
+"n": "Memory Vault",
+"d": "Your personal computer memory, that you can't live without."
+},
+{
+"id": 2198,
+"n": "Metal Insects",
+"d": "Small autonomous flying winged robots.",
+"p": "Robotic insects"
+},
+{
+"id": 2199,
+"n": "Micro-Android (Micro-Robot)",
+"d": "An extremely tiny robot or nanobot.",
+"p": "Microrobot"
+},
+{
+"id": 2200,
+"n": "Mnemonic Service",
+"d": "Dedicated humans who collected bits of data in hopes of catching key correlations between fields of study.",
+"p": "Memory indexing"
+},
+{
+"id": 2201,
+"n": "Mother-Scanner",
+"d": "A device that can see your future through your next birth.",
+"p": "Reincarnation viewer"
+},
+{
+"id": 2202,
+"n": "Music Sphere",
+"d": "A beautiful white sphere full of your music."
+},
+{
+"id": 2203,
+"n": "Nanomachine Swarm (Black Cloud)",
+"d": "A cloud of tiny machines, able to work together autonomously.",
+"p": "Nanorobotics"
+},
+{
+"id": 2204,
+"n": "Oil Bath",
+"d": "An alien method for surviving the high accelerations of space flight."
+},
+{
+"id": 2205,
+"n": "One-Man Car",
+"d": "A small transport vehicle.",
+"p": "Personal vehicle"
+},
+{
+"id": 2206,
+"n": "One-Way Passage",
+"d": "A different way to assure permanent egress."
+},
+{
+"id": 2207,
+"n": "Plastirobe",
+"d": "A dress that varies in opacity by distance.",
+"p": "Smart clothing"
+},
+{
+"id": 2208,
+"n": "Pod-Chair",
+"d": "A living chair, grown by the Iszc to perform its function.",
+"p": "Organic furniture"
+},
+{
+"id": 2209,
+"n": "Polarized Window",
+"d": "Rather than curtains, use the window to control the light.",
+"w": "Glass industry",
+"x": "Electrically switchable glass"
+},
+{
+"id": 2210,
+"n": "Prethink",
+"d": "The ability to predict the future in a routine perceptual manner."
+},
+{
+"id": 2211,
+"n": "Programming Panel",
+"d": "Setting up a new product for manufacture in a post-robotic plant."
+},
+{
+"id": 2212,
+"n": "Protoplast",
+"d": "Artificial life, tougher than protoplasm.",
+"p": "Synthetic life"
+},
+{
+"id": 2213,
+"n": "Public Vehicle Tube",
+"d": "Underground transportation tubes.",
+"p": "Public transit tunnels"
+},
+{
+"id": 2214,
+"n": "Radiant",
+"d": "A chip that is injected into the shoulder, providing positioning and information about the subject.",
+"p": "Tracking implant"
+}
+]

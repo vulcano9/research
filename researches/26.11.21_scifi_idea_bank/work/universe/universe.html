@@ -1,0 +1,152 @@
+<section id="universum" class="uv" aria-labelledby="uv-title">
+  <div class="uv-wrap">
+    <header class="uv-head">
+      <p class="uv-kicker">02 · Ideen-Universum</p>
+      <h2 id="uv-title">Jede Idee ein Stern</h2>
+      <p class="uv-lede">Ähnliche Ideen liegen nah beieinander. Gold leuchtet, was schon gebaut wurde.</p>
+    </header>
+
+    <div class="uv-stage" id="uv-stage">
+      <canvas id="uv-canvas" class="uv-canvas" width="1200" height="700" tabindex="0" role="application"
+        aria-label="Sternenkarte mit 4417 Ideen. Ziehen verschiebt die Karte, Mausrad zoomt. Pfeiltasten verschieben, Plus und Minus zoomen, R zieht eine Zufallsidee."
+        aria-describedby="uv-canvas-hint">
+      <p id="uv-canvas-hint" class="uv-sr">Jede Idee ist ein Stern. Gold bedeutet gebaut, Blau nicht gebaut, Violettgrau unbekannt. Für eine vollständige Liste gibt es den Knopf „Liste“ unter der Karte.</p>
+      </canvas>
+
+      <div class="uv-coach" id="uv-coach" aria-hidden="true">Ziehen zum Verschieben · Mausrad zum Zoomen · Klick auf einen Stern</div>
+
+      <div class="uv-controls" id="uv-controls">
+        <div class="uv-search">
+          <span class="uv-search-icon" aria-hidden="true">⌕</span>
+          <label class="uv-sr" for="uv-q">Ideen durchsuchen</label>
+          <input id="uv-q" type="search" placeholder="Suche: Teleporter, Roboter, Mars …" autocomplete="off" spellcheck="false">
+          <ul class="uv-suggest" id="uv-suggest" hidden></ul>
+        </div>
+        <div class="uv-count-row">
+          <p class="uv-count" id="uv-count" aria-live="polite">4.417 Ideen</p>
+          <button type="button" class="uv-fold" id="uv-fold" aria-expanded="true" aria-controls="uv-controls-body">Filter <span aria-hidden="true">▾</span></button>
+        </div>
+        <div class="uv-controls-body" id="uv-controls-body">
+          <fieldset class="uv-group">
+            <legend>Status</legend>
+            <div class="uv-chips" id="uv-status">
+              <button type="button" class="uv-chip" data-st="Yes" aria-pressed="false"><i class="uv-dot uv-dot-yes" aria-hidden="true"></i>Gebaut <span class="uv-chip-n" data-cnt="Yes"></span></button>
+              <button type="button" class="uv-chip" data-st="No" aria-pressed="false"><i class="uv-dot uv-dot-no" aria-hidden="true"></i>Nicht gebaut <span class="uv-chip-n" data-cnt="No"></span></button>
+              <button type="button" class="uv-chip" data-st="Partial" aria-pressed="false"><i class="uv-dot uv-dot-partial" aria-hidden="true"></i>Teilweise <span class="uv-chip-n" data-cnt="Partial"></span></button>
+              <button type="button" class="uv-chip" data-st="" aria-pressed="false"><i class="uv-dot uv-dot-unknown" aria-hidden="true"></i>Unbekannt <span class="uv-chip-n" data-cnt="Unknown"></span></button>
+            </div>
+          </fieldset>
+          <fieldset class="uv-group">
+            <legend>Bits oder Atome</legend>
+            <div class="uv-chips" id="uv-ba">
+              <button type="button" class="uv-chip" data-ba="Bits" aria-pressed="false"><i class="uv-dot uv-dot-bits" aria-hidden="true"></i>Bits <span class="uv-chip-n" data-cnt="Bits"></span></button>
+              <button type="button" class="uv-chip" data-ba="Atoms" aria-pressed="false"><i class="uv-dot uv-dot-atoms" aria-hidden="true"></i>Atome <span class="uv-chip-n" data-cnt="Atoms"></span></button>
+              <button type="button" class="uv-chip" data-ba="Both" aria-pressed="false"><i class="uv-dot uv-dot-both" aria-hidden="true"></i>Beides <span class="uv-chip-n" data-cnt="Both"></span></button>
+            </div>
+          </fieldset>
+          <div class="uv-selects">
+            <label class="uv-field"><span>Kategorie</span>
+              <select id="uv-cat"><option value="">Alle Kategorien</option></select>
+            </label>
+            <label class="uv-field"><span>Autor:in</span>
+              <select id="uv-author"><option value="">Alle Autor:innen</option></select>
+            </label>
+          </div>
+          <button type="button" class="uv-btn uv-btn-sm uv-reset" id="uv-reset">Filter zurücksetzen</button>
+        </div>
+      </div>
+
+      <div class="uv-viewbar" id="uv-viewbar">
+        <div class="uv-seg" id="uv-view" role="group" aria-label="Ansicht">
+          <button type="button" data-view="galaxy" aria-pressed="true">Galaxie</button>
+          <button type="button" data-view="time" aria-pressed="false">Zeitstrom</button>
+          <button type="button" data-view="wait" aria-pressed="false">Wartezeit</button>
+        </div>
+        <div class="uv-seg uv-seg-small" id="uv-color" role="group" aria-label="Färbung">
+          <button type="button" data-color="status" aria-pressed="true">Status</button>
+          <button type="button" data-color="ba" aria-pressed="false">Bits/Atome</button>
+          <button type="button" data-color="cluster" aria-pressed="false">Sternbild</button>
+          <button type="button" data-color="age" aria-pressed="false">Alter</button>
+        </div>
+      </div>
+
+      <aside class="uv-drawer" id="uv-drawer" aria-label="Details zur Auswahl" hidden>
+        <button type="button" class="uv-close" id="uv-drawer-close" aria-label="Details schließen">×</button>
+        <div class="uv-drawer-scroll" id="uv-drawer-scroll"></div>
+      </aside>
+
+      <div class="uv-time" id="uv-time">
+        <button type="button" class="uv-play" id="uv-play" aria-label="Zeitreise abspielen" aria-pressed="false">▶</button>
+        <div class="uv-time-main">
+          <div class="uv-time-row">
+            <output class="uv-year" id="uv-year">2026</output>
+            <span class="uv-time-label" id="uv-time-label">heute</span>
+            <button type="button" class="uv-btn uv-btn-tiny" id="uv-today">Heute</button>
+          </div>
+          <input id="uv-slider" class="uv-slider" type="range" min="1634" max="2026" step="1" value="2026" aria-label="Jahr der Zeitmaschine">
+          <p class="uv-time-count" id="uv-tcount">geschrieben: 4.417 · gebaut: 966</p>
+        </div>
+      </div>
+
+      <div class="uv-tools" id="uv-tools" role="group" aria-label="Erkundungs-Werkzeuge">
+        <button type="button" class="uv-tool" data-act="surprise"><span aria-hidden="true">✦</span> Überrasch mich</button>
+        <button type="button" class="uv-tool" data-act="journey" aria-pressed="false"><span aria-hidden="true">◌</span> Gedankenreise</button>
+        <button type="button" class="uv-tool" data-act="bridge" aria-pressed="false"><span aria-hidden="true">⇄</span> Brücke bauen</button>
+        <button type="button" class="uv-tool" data-act="overview"><span aria-hidden="true">⤢</span> Übersicht</button>
+        <button type="button" class="uv-tool" data-act="list" aria-pressed="false"><span aria-hidden="true">☰</span> Liste</button>
+      </div>
+
+      <div class="uv-bridge" id="uv-bridge" hidden></div>
+
+      <div class="uv-mini" id="uv-mini">
+        <canvas id="uv-mini-canvas" width="148" height="104" aria-label="Übersichtskarte des sichtbaren Ausschnitts"></canvas>
+      </div>
+
+      <div class="uv-legend" id="uv-legend" aria-hidden="true">
+        <span><i class="uv-dot uv-dot-yes"></i>gebaut</span>
+        <span><i class="uv-dot uv-dot-no"></i>nicht gebaut</span>
+        <span><i class="uv-dot uv-dot-unknown"></i>unbekannt</span>
+      </div>
+
+      <div class="uv-tip" id="uv-tip" hidden></div>
+      <div class="uv-flashyear" id="uv-flashyear" aria-hidden="true" hidden>2026</div>
+      <div class="uv-note" id="uv-note" hidden></div>
+      <div class="uv-error" id="uv-error" hidden></div>
+      <p class="uv-sr" id="uv-live" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div class="uv-wrap uv-lower">
+    <div class="uv-sec-head">
+      <div>
+        <p class="uv-kicker">Sternbilder</p>
+        <h3>Vierundzwanzig Nachbarschaften</h3>
+      </div>
+      <p class="uv-sec-note">Jede Gruppe teilt ein Thema. Klick auf eine Karte und die Kamera fliegt dorthin.</p>
+    </div>
+    <div class="uv-gallery" id="uv-gallery"></div>
+
+    <section class="uv-listmode" id="uv-listmode" aria-labelledby="uv-list-title" hidden>
+      <div class="uv-listhead">
+        <div>
+          <p class="uv-kicker">Liste</p>
+          <h3 id="uv-list-title">Alle Ideen zum Nachlesen</h3>
+          <p class="uv-listcount" id="uv-listcount" aria-live="polite"></p>
+        </div>
+        <div class="uv-listtools">
+          <label class="uv-field"><span>Sortieren</span>
+            <select id="uv-sort">
+              <option value="year-desc">Jahr ↓</option>
+              <option value="year-asc">Jahr ↑</option>
+              <option value="name">Name (A–Z)</option>
+              <option value="wait">Längste Wartezeit</option>
+            </select>
+          </label>
+          <button type="button" class="uv-btn uv-btn-sm" id="uv-list-close">Liste schließen</button>
+        </div>
+      </div>
+      <div class="uv-cards" id="uv-list"></div>
+      <div class="uv-more"><button type="button" class="uv-btn" id="uv-more" hidden>Mehr laden</button></div>
+    </section>
+  </div>
+</section>

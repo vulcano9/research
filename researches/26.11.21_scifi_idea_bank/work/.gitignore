@@ -1,0 +1,6 @@
+__pycache__/
+universe/payload.json
+universe/images.json
+universe/preview.html
+universe/test/*.png
+img/*.png

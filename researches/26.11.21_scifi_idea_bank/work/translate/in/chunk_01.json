@@ -1,0 +1,1336 @@
+[
+{
+"id": 1,
+"n": "Astronaut Sleep",
+"d": "The idea that there is a benefit to putting astronauts to sleep during space travel."
+},
+{
+"id": 2,
+"n": "Landing on the Moon",
+"d": "Men from the earth land on the Moon."
+},
+{
+"id": 3,
+"n": "Launch Shock",
+"d": "Astronauts need protection from the shock of being launched into space."
+},
+{
+"id": 4,
+"n": "Weightlessness (Kepler)",
+"d": "The notion that there could be a location with zero effective gravity."
+},
+{
+"id": 5,
+"n": "Gansas",
+"d": "Migratory birds that fly all the way to the Moone."
+},
+{
+"id": 6,
+"n": "Weightlessness in Space",
+"d": "This appears to be the first description of the idea of weightlessness in space."
+},
+{
+"id": 7,
+"n": "Moon Machine",
+"d": "A device that could power a man from the surface of the Earth to that of the Moon."
+},
+{
+"id": 8,
+"n": "Rocket-Powered Space Flight",
+"d": "A device that could power a man from the surface of the Earth to that of the Moon."
+},
+{
+"id": 9,
+"n": "Ship That Swims Under Water (Submarine)",
+"d": "A Ship that could swim under Water."
+},
+{
+"id": 10,
+"n": "Cogitator (The Chair of Reflection)",
+"d": "A device which improves the rationality of the thinking processes."
+},
+{
+"id": 11,
+"n": "Consolidator",
+"d": "A craft for embarking on voyages through space."
+},
+{
+"id": 12,
+"n": "Bio-Energy",
+"d": "The first reference to extracting electricity from organic materials.",
+"p": "Biofuel production",
+"x": "First commercial production of biofuel"
+},
+{
+"id": 13,
+"n": "Geometric Modeling",
+"d": "The first recorded use of geometric figures to directly represent, or model, living beings.",
+"w": "Autodesk, Dassault",
+"p": "3D modeling software"
+},
+{
+"id": 14,
+"n": "Knowledge Engine",
+"d": "The first reference to a machine that could create sentences or write books."
+},
+{
+"id": 15,
+"n": "Laputa",
+"d": "A floating island or rock in the air."
+},
+{
+"id": 16,
+"n": "Laputa (Island in Air)",
+"d": "A floating island or rock in the air."
+},
+{
+"id": 17,
+"n": "Androide",
+"d": "A device having the form or likeness of a man.",
+"w": "Honda, Boston Dynamics",
+"p": "Humanoid robots",
+"x": "ASIMO, Atlas"
+},
+{
+"id": 18,
+"n": "Canvas Image",
+"d": "A permanent facsimile image is created without drawing; a photograph."
+},
+{
+"id": 19,
+"n": "Distance Viewing",
+"d": "Look at any scene anywhere on Earth."
+},
+{
+"id": 20,
+"n": "Automaton Birds",
+"d": "Mechanical fowl sing sweetly."
+},
+{
+"id": 21,
+"n": "Automaton Judge",
+"d": "An entirely artificial, mechanical judge for the courtroom."
+},
+{
+"id": 22,
+"n": "Automaton Steam Surgeon",
+"d": "Mechanized surgery."
+},
+{
+"id": 23,
+"n": "Barrels of Air",
+"d": "A very early mention of a means for breathing once above the Earth's atmosphere."
+},
+{
+"id": 24,
+"n": "Electrical Rain Machine",
+"d": "A device that can procure rain from passing clouds."
+},
+{
+"id": 25,
+"n": "Mail-Post Letter-Ball",
+"d": "A system of sending mail quickly from town to town via steam-cannon-powered hollow spheres."
+},
+{
+"id": 26,
+"n": "Stage Balloon",
+"d": "A regular means of conveyance, like a train or carriage."
+},
+{
+"id": 27,
+"n": "Steam-Propelled Moving Houses",
+"d": "Otherwise ordinary residences that move from place to place, powered by steam."
+},
+{
+"id": 28,
+"n": "Domed City",
+"d": "A vast city covered entirely by a vast covering of glass."
+},
+{
+"id": 29,
+"n": "Street Slides",
+"d": "A means of moving a spot on the road to different places, by means of machinery under the ground."
+},
+{
+"id": 30,
+"n": "Automaton Lawyer's Clerk",
+"d": "An autonomous clerk to lawyers."
+},
+{
+"id": 31,
+"n": "Automaton Chess Master",
+"d": "A man-shaped device that plays flawless chess."
+},
+{
+"id": 32,
+"n": "Mechanical Calculator",
+"d": "A device capable of extraordinary feats of computation"
+},
+{
+"id": 33,
+"n": "Express Dolphin",
+"d": "A most agreeable means of locomotion under the waves."
+},
+{
+"id": 34,
+"n": "Feeding Room",
+"d": "An automated child care."
+},
+{
+"id": 35,
+"n": "Forced Scholars",
+"d": "Hothouse intellectuals."
+},
+{
+"id": 36,
+"n": "Passenger-Carrying Mortar",
+"d": "A unique way of crossing a river, without a boat or a bridge."
+},
+{
+"id": 37,
+"n": "Steam Horse",
+"d": "A remarkable mechanical beast."
+},
+{
+"id": 38,
+"n": "Science Fiction",
+"d": "Literature that interweaves \"the revealed truths of Science\" with a \"pleasing story\" that is \"poetical and true.\""
+},
+{
+"id": 39,
+"n": "Whispering Gallery",
+"d": "A means of communication in specifically shaped spaces.",
+"p": "Architectural acoustics"
+},
+{
+"id": 40,
+"n": "Paper Steel",
+"d": "Specially treated paper that forms material as hard as steel."
+},
+{
+"id": 41,
+"n": "Air Renewal",
+"d": "Re-oxygenating the air within the projectile spacecraft.",
+"p": "Life support systems",
+"x": "On spacecraft like Soyuz"
+},
+{
+"id": 42,
+"n": "Columbiad",
+"d": "An enormous cannon, sufficient in size to send a projectile to the Moon."
+},
+{
+"id": 43,
+"n": "Communicate with Extraterrestrials",
+"d": "Early plan to communicate with life on planets removed from the earth.",
+"p": "Communication initiatives",
+"x": "Efforts like SETI and messaging space probes"
+},
+{
+"id": 44,
+"n": "Free Return Trajectory",
+"d": "The idea that it would be possible for a projectile to go around the Moon and then return to Earth.",
+"p": "Free return trajectories",
+"x": "Used on Apollo missions"
+},
+{
+"id": 45,
+"n": "Gourmet Space Cuisine",
+"d": "The finest in French cuisine, in outer space."
+},
+{
+"id": 46,
+"n": "Launching Facility",
+"d": "A specific spot with support for a space launch."
+},
+{
+"id": 47,
+"n": "Light Pressure Propulsion",
+"d": "First mention of the idea that light itself could be a form of propulsion for spacecraft.",
+"p": "Solar sails",
+"x": "IKAROS, LightSail"
+},
+{
+"id": 48,
+"n": "Projectile-Vehicle",
+"d": "A projectile, or shot, capable of enclosing passengers and being safely hurled to the moon by an enormous cannon."
+},
+{
+"id": 49,
+"n": "Retro-Rockets",
+"d": "Small boosters to provide a thrust counter to the current velocity of the spacecraft, slowing it down or stopping its progress altogether.",
+"p": "Retro-rockets",
+"x": "Used on spacecraft for maneuvering and landing"
+},
+{
+"id": 50,
+"n": "Splashdown",
+"d": "The use of water as a medium for landing one's space ship in.",
+"p": "Ocean landing",
+"x": "Used for early crewed spaceflights"
+},
+{
+"id": 51,
+"n": "Water-Springs",
+"d": "Using water to cushion the living space of a spacecraft from the effects of acceleration."
+},
+{
+"id": 52,
+"n": "Weightlessness",
+"d": "The state experienced in free fall; a space traveler's weight is apparently reduced to zero.",
+"p": "Experiencing weightlessness",
+"x": "First human spaceflight by Yuri Gagarin"
+},
+{
+"id": 53,
+"n": "Burn the Ship",
+"d": "Utilize parts of the ship as fuel for forward movement."
+},
+{
+"id": 54,
+"n": "Steam Man",
+"d": "A mechanical robot powered by steam."
+},
+{
+"id": 55,
+"n": "Brick Moon",
+"d": "An artificial satellite or space station with living quarters for passengers."
+},
+{
+"id": 56,
+"n": "Flywheel Launcher",
+"d": "Gigantic flywheels that build up enough power to launch a spacecraft - hurl it into the heavens!"
+},
+{
+"id": 57,
+"n": "Fossil Shell Coin",
+"d": "The use of rare natural shells of an extinct species, for money."
+},
+{
+"id": 58,
+"n": "Vril",
+"d": "A form of energy unique in its properties, and varied in its application."
+},
+{
+"id": 59,
+"n": "Machines Take Over (Machines Rule Man)",
+"d": "Machines will inevitably rule over human beings."
+},
+{
+"id": 60,
+"n": "Mechanical Consciousness",
+"d": "The notion that machines may develop a form of consciousness.",
+"x": "Fictional idea"
+},
+{
+"id": 61,
+"n": "Diving Apparatus",
+"d": "Equipment used to go for walks on the sea bed; the direct ancestor of modern scuba diving equipment.",
+"p": "Scuba gear",
+"x": "First scuba gear patented by Jacques Cousteau"
+},
+{
+"id": 62,
+"n": "Electrify the Rail",
+"d": "Use of substantial electrical charge applied to outer hull to repel potential boarders."
+},
+{
+"id": 63,
+"n": "Leyden Ball",
+"d": "Device for hunting underwater; transfers a powerful electrical charge to the prey."
+},
+{
+"id": 64,
+"n": "Nautilus",
+"d": "The wondrous submarine of Captain Nemo; the instrument of his escape from humanity and his revenge upon it."
+},
+{
+"id": 65,
+"n": "Undersea Mining",
+"d": "Conducting mining operations on the sea floor.",
+"p": "Undersea mining",
+"x": "Early efforts in the 1960s"
+},
+{
+"id": 66,
+"n": "Sheep's Lozenge",
+"d": "The nutritious portion of an entire sheep, in one pill."
+},
+{
+"id": 67,
+"n": "Telepomp (Matter Transmission)",
+"d": "A device that transmitted matter from one place to another."
+},
+{
+"id": 68,
+"n": "Compact Food Pastilles",
+"d": "One small tablet is a month's worth of food."
+},
+{
+"id": 69,
+"n": "Compact Food Pastilles (Food Pill)",
+"d": "One small tablet is a month's worth of food."
+},
+{
+"id": 70,
+"n": "Home News Printer",
+"d": "A device that prints out the newspaper of your choice right in your own home.",
+"w": "HP, Canon",
+"p": "Home printers"
+},
+{
+"id": 71,
+"n": "Replacement of Brain with Computer",
+"d": "Removal of the brain of an ordinary man, and installation of a calculating machine."
+},
+{
+"id": 72,
+"n": "Suspended Animation (Frigorific Process)",
+"d": "Very early reference to cryogenic storage."
+},
+{
+"id": 73,
+"n": "Apergy (Apergion)",
+"d": "An antigravity substance with sufficient power to propel a space ship from the Earth to Mars."
+},
+{
+"id": 74,
+"n": "Astronaut (Ship)",
+"d": "The first instance of this phrase, it denotes a space-going vessel.",
+"x": "New term for spacecraft"
+},
+{
+"id": 75,
+"n": "Martian City",
+"d": "The habitation of intelligent Martians."
+},
+{
+"id": 76,
+"n": "Trip to Mars",
+"d": "A voyage across space to the planet Mars."
+},
+{
+"id": 77,
+"n": "Chemical Production of Food",
+"d": "Creation of food in the laboratory rather than in the field.",
+"x": "Early efforts in 2000s"
+},
+{
+"id": 78,
+"n": "Dutch Clock (Time Machine)",
+"d": "A tall Dutch clock with hands that move... backward."
+},
+{
+"id": 79,
+"n": "Balloon Tree",
+"d": "Also called the \"Migratory Tree\", it uses a gas-filled bladder to ascend into the sky."
+},
+{
+"id": 80,
+"n": "Steam Cart Horse",
+"d": "A steam-powered autonomaton horse to pull a wagon or cart."
+},
+{
+"id": 81,
+"n": "Telephonoscope",
+"d": "A device that effectively transmits pictures and sound over long distances.",
+"x": "Early video calling efforts in 1930s"
+},
+{
+"id": 82,
+"n": "Clericomotor",
+"d": "An automaton clergyman; a robotic pastor."
+},
+{
+"id": 83,
+"n": "Andréide (Andraiad)",
+"d": "An entirely artificial human-imitation, a synthetic person."
+},
+{
+"id": 84,
+"n": "Artificial Hand",
+"d": "An entirely artificial human hand."
+},
+{
+"id": 85,
+"n": "Electric-Yacht",
+"d": "A surface vessel powered entirely by electricity."
+},
+{
+"id": 86,
+"n": "Food Pills",
+"d": "A substitute for ordinary nutrition."
+},
+{
+"id": 87,
+"n": "Ether Ship",
+"d": "A space-going ship.",
+"x": "Fictional term for spacecraft"
+},
+{
+"id": 88,
+"n": "Anacronopete (Time Machine)",
+"d": "A flying electric-powered time machine."
+},
+{
+"id": 89,
+"n": "Food Pellets",
+"d": "Sustenance in a concentrated form."
+},
+{
+"id": 90,
+"n": "Wall in the Air",
+"d": "An invisible barrier that protects an entire island or city."
+},
+{
+"id": 91,
+"n": "Credit Card",
+"d": "A simple card that is used in place of money",
+"w": "Visa, Mastercard",
+"p": "Credit cards"
+},
+{
+"id": 92,
+"n": "Mall (Great City Bazaar)",
+"d": "An aggregation of shops under one roof.",
+"w": "Westfield, Simon Property",
+"p": "Shopping malls"
+},
+{
+"id": 93,
+"n": "Telephonic Music Room",
+"d": "Places where a person could go, at any time, to share in musical performances happening at some distance away.",
+"w": "Spotify, Apple Music",
+"p": "Music streaming"
+},
+{
+"id": 94,
+"n": "Atmospheric Advertising",
+"d": "A means of mass advertising to cities and countries.",
+"p": "Skyvertising, Drones"
+},
+{
+"id": 95,
+"n": "Electrified Fence",
+"d": "A wire fence carrying an electrical charge sufficient to deter crossing the boundary.",
+"p": "Electric fences"
+},
+{
+"id": 96,
+"n": "Hand Telegraph (Texting)",
+"d": "A means of sending and receiving text messages from a small instrument."
+},
+{
+"id": 97,
+"n": "Live News",
+"d": "The modern concept of a news broadcast.",
+"w": "CNN, BBC",
+"p": "24-hour live news"
+},
+{
+"id": 98,
+"n": "Phonotelephote",
+"d": "A means of transmitting and receiving both voice and picture for a personal conversation."
+},
+{
+"id": 99,
+"n": "Plague Weapons",
+"d": "The use of biological warfare."
+},
+{
+"id": 100,
+"n": "Recorded News",
+"d": "This is the basic idea behind Tivo and VCRs.",
+"w": "TiVo, DVRs",
+"p": "Digital video recorders"
+},
+{
+"id": 101,
+"n": "Solar-Heat Condenser",
+"d": "A device that concentrates solar power across many devices."
+},
+{
+"id": 102,
+"n": "Straightening the Earth's Poles",
+"d": "By means of a suitable force, push the Earth until the planet's axis of rotation is perpendicular to the ecliptic."
+},
+{
+"id": 103,
+"n": "Mirror Menu",
+"d": "A menu appears on an upright display at the table in a restaurant."
+},
+{
+"id": 104,
+"n": "Mirror News DIsplay",
+"d": "The news of the day in a selected country is presented on a readable display before the reader."
+},
+{
+"id": 105,
+"n": "Aeroflechette",
+"d": "A small, easily maneuverable flying vehicle, perfect for children."
+},
+{
+"id": 106,
+"n": "Miasma Shells",
+"d": "Biological warfare canisters dispersed by cannon."
+},
+{
+"id": 107,
+"n": "Weather Control",
+"d": "Regulating weather and climate for human comfort."
+},
+{
+"id": 108,
+"n": "Air-Ship (VTOL Airship)",
+"d": "A flying machine capable of vertical take-off and landing.",
+"w": "Bell, Boeing"
+},
+{
+"id": 109,
+"n": "Air-to-Surface Missile",
+"d": "Very early description of a projectile fired from an airship into a surface target.",
+"p": "Guided missiles"
+},
+{
+"id": 110,
+"n": "Electric Dancer",
+"d": "A mechanical device that is built to lead women around the ballroom floor."
+},
+{
+"id": 111,
+"n": "Life Phial",
+"d": "Similar to a food pill, food in concentrated form."
+},
+{
+"id": 112,
+"n": "War-Balloon (Navigable Aerostat)",
+"d": "Enormous dirigible airships used for war."
+},
+{
+"id": 113,
+"n": "Aeriduct (Rain Maker)",
+"d": "A specific means of producing rain."
+},
+{
+"id": 114,
+"n": "Arctic Signal Light",
+"d": "A means of communicating with spacecraft from the surface of the Earth."
+},
+{
+"id": 115,
+"n": "Double-Door Vestibule",
+"d": "A special doorway leading from the interior of a spacecraft leading out into space which maintains the air pressure within the craft.",
+"x": "On spacecraft"
+},
+{
+"id": 116,
+"n": "Electric Car Recharging Station",
+"d": "A public place for recharging electric cars."
+},
+{
+"id": 117,
+"n": "Electric Phaetons (Electric Cars)",
+"d": "Vehicles whose motive power is entirely derived from electricity.",
+"w": "Tesla, Nissan",
+"p": "Electric cars",
+"x": "First viable electric cars in 1890s"
+},
+{
+"id": 118,
+"n": "Electric Protection-Wires (Electrified Fence)",
+"d": "An electric fence."
+},
+{
+"id": 119,
+"n": "Global Climate Control",
+"d": "Adjust the Earth's axis so the seasons are more temperate and uniform."
+},
+{
+"id": 120,
+"n": "Instantaneous Kodaks (Traffic Control)",
+"d": "Use of cameras to help police officers enforce speed limits.",
+"p": "Speed cameras"
+},
+{
+"id": 121,
+"n": "Magnetic Eyes",
+"d": "A device that permits remote monitoring of people or other objects.",
+"w": "Axis Communications",
+"p": "Security cameras"
+},
+{
+"id": 122,
+"n": "Magnetic Railroads",
+"d": "A scheme for powering railroads using enormous electromagnets.",
+"p": "Maglev trains"
+},
+{
+"id": 123,
+"n": "Marine Spider (Hydrofoil)",
+"d": "A very early mention of the hydrofoil concept.",
+"w": "Boeing",
+"p": "Hydrofoils"
+},
+{
+"id": 124,
+"n": "Rooftop Windmill",
+"d": "Renewable energy source for the home.",
+"w": "Various companies",
+"p": "Rooftop wind turbines"
+},
+{
+"id": 125,
+"n": "Solar Power Generation",
+"d": "A very early description of the use of solar powered 'farms' for generating electrical power on a large scale."
+},
+{
+"id": 126,
+"n": "Space-ship",
+"d": "A space-going vessel."
+},
+{
+"id": 127,
+"n": "Vehicle Energy Reclamation",
+"d": "Reclaiming the energy gained by climbing a hill on the way back down.",
+"w": "Various automakers",
+"p": "Regenerative braking"
+},
+{
+"id": 128,
+"n": "Windmill Mast",
+"d": "Enclosed machinery in large masts powers ships."
+},
+{
+"id": 129,
+"n": "Atomic Energy",
+"d": "Splitting the atom to create a destructive force.",
+"p": "Nuclear fission"
+},
+{
+"id": 130,
+"n": "Atomic Microscopy",
+"d": "A device that can actually visualize a individual molecule and its parts.",
+"p": "Scanning tunneling microscope"
+},
+{
+"id": 131,
+"n": "Government Lethal Chamber",
+"d": "A legal suicide booth."
+},
+{
+"id": 132,
+"n": "Manufactured Wife",
+"d": "A wife made to order, programmed to meet her husband's requirements.",
+"p": "Sexbots, AI Chat GF/Wife"
+},
+{
+"id": 133,
+"n": "Standard Island",
+"d": "Enormous floating city."
+},
+{
+"id": 134,
+"n": "Submarine Tube",
+"d": "A means of transport between Europe and North America via underwater tubes."
+},
+{
+"id": 135,
+"n": "Time Machine",
+"d": "A device allowing the rider to move freely in the temporal dimension, just as we ordinarily do in the two physical dimensions normal to gravity."
+},
+{
+"id": 136,
+"n": "Undersea City",
+"d": "A great city under the sea, covered by a crystal dome."
+},
+{
+"id": 137,
+"n": "Dimension",
+"d": "Describes a reality separate from our own."
+},
+{
+"id": 138,
+"n": "Fulgurator",
+"d": "An 'autopropulsive projectile'."
+},
+{
+"id": 139,
+"n": "Monsters Manufactured",
+"d": "Dr. Moreau demonstrates the plasticity of the organic form."
+},
+{
+"id": 140,
+"n": "Reshape Animals",
+"d": "Improve animal species, forcing them to evolve upward."
+},
+{
+"id": 141,
+"n": "Artificial Silk",
+"d": "A fabric like silk produced entirely without silkworms.",
+"w": "DuPont",
+"p": "Nylon"
+},
+{
+"id": 142,
+"n": "Automatic Shell",
+"d": "A projectile that bores through obstacles - even the Earth!"
+},
+{
+"id": 143,
+"n": "Electric Bicycle",
+"d": "A two-wheeled device utilizing stored electricity as motive power.",
+"p": "Electric bicycles"
+},
+{
+"id": 144,
+"n": "Electric Gun (Mass Driver)",
+"d": "A device that used electromagnetic energy to accelerated capsules into orbit."
+},
+{
+"id": 145,
+"n": "Glow-Worm Living",
+"d": "Alternated work, play and slumber without long periods of sleep."
+},
+{
+"id": 146,
+"n": "Gravitational Wave Viewer",
+"d": "A device used to see at astronomical distances."
+},
+{
+"id": 147,
+"n": "Helium Metal",
+"d": "An ore with the spectroscopic line of Helium."
+},
+{
+"id": 148,
+"n": "Home Planet",
+"d": "Usually the birthplace of your species or simply your planet of origin."
+},
+{
+"id": 149,
+"n": "Interstellar Express Car",
+"d": "Uses anti-gravitation metal to achieve terrific speeds in space."
+},
+{
+"id": 150,
+"n": "Invisibility",
+"d": "The idea that it is possible to make a person invisible using some sort of optical technology to alter the body."
+},
+{
+"id": 151,
+"n": "Life-Brew",
+"d": "A non-alcoholic beverage, but similar to wine."
+},
+{
+"id": 152,
+"n": "Magnetic Shell",
+"d": "A munition that is powerfully attracted to ferrous ships."
+},
+{
+"id": 153,
+"n": "Noninterference With Other Worlds",
+"d": "Earliest expression of the 'Prime Directive' idea."
+},
+{
+"id": 154,
+"n": "Photic Borer (Artesian Ray)",
+"d": "A ray of energy that illuminates a cross-section of Earth as it goes through solid earth and rock."
+},
+{
+"id": 155,
+"n": "Planetary Telegraphing",
+"d": "A method for communicating with dwellers on other planets in the solar system."
+},
+{
+"id": 156,
+"n": "Sun-Telephone",
+"d": "Receives transmissions from the sun itself."
+},
+{
+"id": 157,
+"n": "Vivification",
+"d": "A process by which the body can be preserved for centuries at body temperature and then revived."
+},
+{
+"id": 158,
+"n": "Walking Balloon",
+"d": "A means of efficiently traversing rough country."
+},
+{
+"id": 159,
+"n": "Aerial Telegraph",
+"d": "Communication between individuals in spacesuits."
+},
+{
+"id": 160,
+"n": "Air-Tight Suit",
+"d": "An special outfit that would allow a person to survive in vacuum."
+},
+{
+"id": 161,
+"n": "Asteroid Mining",
+"d": "The mining of asteroid ore, accomplished by traveling to these tiny bodies."
+},
+{
+"id": 162,
+"n": "Autonomous Digging Machine",
+"d": "A mechanical device able to excavate on its own.",
+"w": "Caterpillar, Komatsu",
+"p": "Autonomous construction vehicles"
+},
+{
+"id": 163,
+"n": "Biological Warfare",
+"d": "The use of microorganisms to defeat an enemy; this is the first reference in science fiction that I can find to this concept.",
+"p": "Biological weapons"
+},
+{
+"id": 164,
+"n": "Black Smoke",
+"d": "A smoke or vapor dispensed in canisters."
+},
+{
+"id": 165,
+"n": "Disintegrator",
+"d": "A device that causes objects to burst into molecular pieces."
+},
+{
+"id": 166,
+"n": "Electrical 'Tether'",
+"d": "A device to make sure an astronaut could return from a free space walk."
+},
+{
+"id": 167,
+"n": "Electrical War Ship",
+"d": "A fleet of space craft designed for war."
+},
+{
+"id": 168,
+"n": "Heat Ray",
+"d": "First use of what appears to be a laser weapon.",
+"p": "Laser weapons"
+},
+{
+"id": 169,
+"n": "Metallic Spider (Handling Machine)",
+"d": "Multipurpose device used almost as an extension of the Martian's own bodies."
+},
+{
+"id": 170,
+"n": "Meteor Hulls Ship",
+"d": "A small meteor tears all the way through a ship"
+},
+{
+"id": 171,
+"n": "Quasi-Muscles (Sham Musculature)",
+"d": "A means of giving motive power to robots or machines that is similar to animal musculature."
+},
+{
+"id": 172,
+"n": "Red Weed (Terraforming Plant)",
+"d": "A plant brought by the Martians that grew on Earth."
+},
+{
+"id": 173,
+"n": "Robot Biomimicry",
+"d": "Endowing robots with an organic-appearing fluidity, rather than mechanical motion."
+},
+{
+"id": 174,
+"n": "Robot Spider (Handling Machine)",
+"d": "Multipurpose device used almost as an extension of the Martian's own bodies."
+},
+{
+"id": 175,
+"n": "Space Walk",
+"d": "Going outside your space craft for a short time.",
+"p": "Extravehicular activity"
+},
+{
+"id": 176,
+"n": "Spacewalk (Step Off A Spacecraft)",
+"d": "Going outside your space craft for a short time."
+},
+{
+"id": 177,
+"n": "Steel Tentacle",
+"d": "Flexible robotic steel limbs that can both support a vehicle and grasp objects."
+},
+{
+"id": 178,
+"n": "Tripod",
+"d": "An enormous metallic robot."
+},
+{
+"id": 179,
+"n": "Aerial Dynamite Ships",
+"d": "Using airplanes to drop explosives during war.",
+"p": "Bombers"
+},
+{
+"id": 180,
+"n": "Aerocycle (Ærocycle)",
+"d": "An aerial bicycle, human powered."
+},
+{
+"id": 181,
+"n": "Aerodrome (Ærodromes)",
+"d": "Flying machines.",
+"w": "Boeing, Airbus",
+"p": "Airplanes"
+},
+{
+"id": 182,
+"n": "Aeropile",
+"d": "A fluttering wing airplane for a few passengers."
+},
+{
+"id": 183,
+"n": "Automated Surface Measurement",
+"d": "A mechanical method of accurately measuring a surface.",
+"w": "FARO Technologies",
+"p": "3D scanning"
+},
+{
+"id": 184,
+"n": "Automatic Door",
+"d": "A wall strip that rolls up automatically to let you through.",
+"w": "Stanley Access Technologies",
+"p": "Automatic doors"
+},
+{
+"id": 185,
+"n": "Automatic Valet",
+"d": "A robotic manservant."
+},
+{
+"id": 186,
+"n": "Babble Machine",
+"d": "Not just television - this describes what we call 'the idiot box' (technology and media)."
+},
+{
+"id": 187,
+"n": "DVD/VCR (Entertainment Player)",
+"d": "A device that accepts stored moving picture entertainment and makes it available for viewing.",
+"p": "DVD/Blu-ray players"
+},
+{
+"id": 188,
+"n": "Eadhamite",
+"d": "Synthetic material that creates extremely smooth roads."
+},
+{
+"id": 189,
+"n": "Electric-Automatic Household Robot Cook",
+"d": "A robot chef - an Electric-Automatic Household Benefi­cent Genius!"
+},
+{
+"id": 190,
+"n": "Electric-Automatic Housemaid Robot (Automaton)",
+"d": "A very early description of a robot to help around the house.",
+"p": "Home cleaning robots"
+},
+{
+"id": 191,
+"n": "Electrical Farming Implements",
+"d": "Labor-saving automatic farm equipment.",
+"w": "John Deere, CNH Industrial",
+"p": "Agricultural machinery"
+},
+{
+"id": 192,
+"n": "General Intelligence Machine",
+"d": "News and information from one device."
+},
+{
+"id": 193,
+"n": "Huge Engine-Driven Aeroplane",
+"d": "Wings a thousand feet across."
+},
+{
+"id": 194,
+"n": "Individualized Clothing Manufacture",
+"d": "A device that will produce suits of clothing based on measurement data gathered."
+},
+{
+"id": 195,
+"n": "Kinematograph",
+"d": "A vast public screen or theater."
+},
+{
+"id": 196,
+"n": "Kinetiscope Appliance",
+"d": "A small object that could show a variety of artificially created or extrapolated images.",
+"w": "Sony, Microsoft"
+},
+{
+"id": 197,
+"n": "Moving Picture Player",
+"d": "A machine that plays recorded pictures back for a single person - a combination DVD player and screen.",
+"p": "DVD players"
+},
+{
+"id": 198,
+"n": "Moving Roadway",
+"d": "A roadway that is in motion, with seats and kiosks, that goes around curves.",
+"w": "Various airports"
+},
+{
+"id": 199,
+"n": "Networked World",
+"d": "Very early description of our dependence on technology and communication.",
+"w": "Internet pioneers",
+"p": "The Internet"
+},
+{
+"id": 200,
+"n": "Nickalum",
+"d": "An alloy of aluminum crystalized within a magnetic field for exceptional strength."
+},
+{
+"id": 201,
+"n": "Nutritious Pellets",
+"d": "Food in pill form."
+},
+{
+"id": 202,
+"n": "Town In One Building",
+"d": "This is the basic idea behind an arcology, or other single structure that is intended to provide living space and mall."
+},
+{
+"id": 203,
+"n": "Wind Wheels",
+"d": "Gathering energy from the wind at a massive scale."
+},
+{
+"id": 204,
+"n": "Aerocar",
+"d": "A personal flying vehicle."
+},
+{
+"id": 205,
+"n": "Hired Man",
+"d": "An automaton helper."
+},
+{
+"id": 206,
+"n": "Breathing Dresses",
+"d": "A special suit and apparatus for survival on the surface of the Moon."
+},
+{
+"id": 207,
+"n": "Cavorite",
+"d": "An antigravity metal; when it cools, whatever it covers will be impervious to gravitational forces."
+},
+{
+"id": 208,
+"n": "Homeworld (Home-World)",
+"d": "One's planet of origin."
+},
+{
+"id": 209,
+"n": "Translatophone",
+"d": "A device that performs mechanical translation of one language into another."
+},
+{
+"id": 210,
+"n": "Aerial Navies",
+"d": "Use of vast numbers of air-ships (planes) to overwhelm land defenses.",
+"w": "Various air forces",
+"p": "Air forces"
+},
+{
+"id": 211,
+"n": "Death-Ray",
+"d": "A thin ray of electric light that melts flesh away from the bone."
+},
+{
+"id": 212,
+"n": "Joystick Controls w/Remote Display",
+"d": "A fire-by-wire remote-controlled weapon system.",
+"p": "Remote weapon systems"
+},
+{
+"id": 213,
+"n": "Lunar Colony",
+"d": "A permanent base on the moon."
+},
+{
+"id": 214,
+"n": "Vandelite Gun",
+"d": "An artillery device that freezes the explosive material for firing so it doesn't explode in the gun when it fires."
+},
+{
+"id": 215,
+"n": "Herakleophorbia",
+"d": "Synthetic growth achieved in food animals."
+},
+{
+"id": 216,
+"n": "The Terror",
+"d": "An amazing vehicle capable of attaining tremendous speeds - in many different ways."
+},
+{
+"id": 217,
+"n": "Glass Dome",
+"d": "Protective cover for cities."
+},
+{
+"id": 218,
+"n": "Gravitation Screen",
+"d": "Shields a spacecraft from the gravity of a planetary body."
+},
+{
+"id": 219,
+"n": "Interplanetary Radiograph Station",
+"d": "Network of communication in the solar system."
+},
+{
+"id": 220,
+"n": "Neutral (Point)",
+"d": "The point at which the gravitational pull of the sun and that of a planet cancel each other out."
+},
+{
+"id": 221,
+"n": "Tik-Tok",
+"d": "A mechanical man."
+},
+{
+"id": 222,
+"n": "Etheroneph",
+"d": "Spacefraft fueled by radioactive materials."
+},
+{
+"id": 223,
+"n": "Minus-Matter",
+"d": "Material that negates weight."
+},
+{
+"id": 224,
+"n": "Breed Humans For Machines",
+"d": "Carefully cull the strong, resilient humans in favor of weakness, that the human race might be more adapted to life in the Machine."
+},
+{
+"id": 225,
+"n": "Cinematophote (Blue Optic Plate)",
+"d": "The first reference to a tablet-sized, handheld screen."
+},
+{
+"id": 226,
+"n": "Machine Apartment",
+"d": "Each person lives isolated in their own room, supported by a vast planetary machine."
+},
+{
+"id": 227,
+"n": "Machine Music",
+"d": "Entertainment from the Great Machine."
+},
+{
+"id": 228,
+"n": "Public Call",
+"d": "A form of communication in which a group of people would remain isolated, but through technology could see and hear each other."
+},
+{
+"id": 229,
+"n": "Telemedicine Apparatus",
+"d": "First reference to a device that allows physicians to examine or aid patients at a distance.",
+"w": "Various telehealth companies",
+"p": "Telemedicine"
+},
+{
+"id": 230,
+"n": "The Book of the Machine",
+"d": "The only book needed for life in the vast Machine."
+},
+{
+"id": 231,
+"n": "The Machine",
+"d": "A single vast contrivance that supplied all the needs of the world's millions of solitary inhabitants."
+},
+{
+"id": 232,
+"n": "Video Communicator",
+"d": "A device that carried both voice and image, letting the two parties see each other.",
+"w": "Zoom, FaceTime",
+"p": "Video calling apps"
+},
+{
+"id": 233,
+"n": "Wonder-Box",
+"d": "A device that transmuted color directly into musical experience in the brain."
+},
+{
+"id": 234,
+"n": "Automaton Chessplayer",
+"d": "The first chess-playing computer.",
+"p": "Deep Blue"
+},
+{
+"id": 235,
+"n": "Flying Police Car",
+"d": "A dirigible paddy wagon for spotting and capturing criminals."
+},
+{
+"id": 236,
+"n": "Police Hooks",
+"d": "Police in dirigibles use hooks to capture criminals."
+},
+{
+"id": 237,
+"n": "Actinoscope",
+"d": "A device that used a pulsating polarized ether wave to judge the distance to an object (a RADAR)",
+"w": "Raytheon",
+"p": "Radar"
+},
+{
+"id": 238,
+"n": "Aerocab (Aeroflyer)",
+"d": "A electric flying taxi, or car."
+},
+{
+"id": 239,
+"n": "Alohydrolium",
+"d": "The lightest metal."
+},
+{
+"id": 240,
+"n": "Appetizer",
+"d": "An amazing adjunct to science-based restaurants; a room that increases appetite with gas!"
+},
+{
+"id": 241,
+"n": "Artificial Cloth",
+"d": "The creation of fabrics without organic natural fibers.",
+"p": "Synthetic fabrics"
+},
+{
+"id": 242,
+"n": "Automatic-Electric Packing Machine",
+"d": "A device able to pack randomly shaped objects combined into a single package automatically.",
+"w": "Sealed Air",
+"p": "Packaging machines"
+},
+{
+"id": 243,
+"n": "Demagnitizing Ray",
+"d": "A beam of radiation that makes even the strongest steel as brittle as chalk."
+},
+{
+"id": 244,
+"n": "Detectophone",
+"d": "First use of the idea of a voice-activated machine.",
+"p": "Voice assistants"
+},
+{
+"id": 245,
+"n": "Electric Rifle",
+"d": "A device that shoots an electrical charge.",
+"w": "Taser International",
+"p": "Taser"
+},
+{
+"id": 246,
+"n": "Gas-Accumulators",
+"d": "Storage for electricity enough to power a city."
+}
+]

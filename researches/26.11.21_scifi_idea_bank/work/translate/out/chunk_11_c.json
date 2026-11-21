@@ -1,0 +1,359 @@
+[
+{
+"id": 2585,
+"n": "Federgewehr",
+"d": "Eine Projektilwaffe, die gegen Gegenmaßnahmen widerstandsfähig sein sollte."
+},
+{
+"id": 2586,
+"n": "Sternlichtsegel (Lichtsegel)",
+"d": "Ein Lichtsegel, das zwischen Sonnensystemen segeln kann."
+},
+{
+"id": 2587,
+"n": "Transdermale Wirkstoffkapsel",
+"d": "Eine Kapsel, die Medikamente abgibt, indem man sie auf die Haut legt.",
+"w": "Pharmaindustrie",
+"p": "Transdermale Pflaster",
+"x": "Medizin über die Haut"
+},
+{
+"id": 2588,
+"n": "Vulcan 3",
+"d": "Ein Supercomputer mit künstlicher Intelligenz, der sich selbst verändern kann."
+},
+{
+"id": 2589,
+"n": "Lufterneuerungs-Kapsel",
+"d": "Ein Gerät, das die Luft in Raumanzügen wieder mit Sauerstoff anreichert.",
+"p": "Fiktiver Luftreiniger"
+},
+{
+"id": 2590,
+"n": "Astroposit",
+"d": "Ein System im Retro-Stil, das die eigene Position überall in der Galaxis anzeigt.",
+"p": "Navigation für Raumschiffe"
+},
+{
+"id": 2591,
+"n": "Betrisation",
+"d": "Ein Verfahren im Mutterleib, das die menschliche Aggressivität verringert.",
+"p": "Vorgeburtliche Eingriffe"
+},
+{
+"id": 2592,
+"n": "Steakpflanze",
+"d": "Eine Pflanze, die Steaks aus Eiweiß wachsen lässt.",
+"p": "Fleischwachsende Pflanze"
+},
+{
+"id": 2593,
+"n": "Calster",
+"d": "Ein Handgerät, das an Ort und Stelle gesetzliches Geld druckte.",
+"p": "Mobiler Gelddrucker"
+},
+{
+"id": 2594,
+"n": "Fleischzucht-Anlagen",
+"d": "Industrieanlagen, in denen Eiweiß für Fleisch wächst."
+},
+{
+"id": 2595,
+"n": "Chlorophan",
+"d": "Ähnlich wie Chlorophyll, aber synthetisch und viel leistungsfähiger.",
+"p": "Fiktives photosynthetisches Material"
+},
+{
+"id": 2596,
+"n": "Kristallmais",
+"d": "Winzige Datenspeicherkristalle.",
+"p": "Fiktives Speichermedium"
+},
+{
+"id": 2597,
+"n": "Dimensino",
+"d": "Ein Unterhaltungszentrum für Außerirdische, das das ultimative Eintauchen bietet."
+},
+{
+"id": 2598,
+"n": "Dromozoa",
+"d": "Lebensformen, die den menschlichen Körper dazu bringen, neue Teile für die Ernte auszutreiben.",
+"p": "Fiktiver Parasit"
+},
+{
+"id": 2599,
+"n": "Staubkreuzer",
+"d": "Ein spezieller Mondtransporter, der staubgefüllte Krater auf dem Mond durchqueren kann."
+},
+{
+"id": 2600,
+"n": "Staubski",
+"d": "Ein spezielles Fahrzeug für schnelle Fahrten über staubigen Mondboden."
+},
+{
+"id": 2601,
+"n": "Elektronischer Buchladen",
+"d": "Ein Ort, an dem man seine elektronischen Bücher abholt.",
+"p": "E-Books",
+"x": "Herunterladbare digitale Bücher"
+},
+{
+"id": 2602,
+"n": "Elektronischer Bildverstärker",
+"d": "Viel empfindlicher als das menschliche Auge."
+},
+{
+"id": 2603,
+"n": "Elektrosekretär",
+"d": "Ein automatisches Gerät zum Mitschreiben."
+},
+{
+"id": 2604,
+"n": "Gefühlsanzeiger (ER)",
+"d": "Eine kleine Scheibe, die auf der Stirn getragen wird und den Gemütszustand des Trägers verrät.",
+"p": "Stimmungsring"
+},
+{
+"id": 2605,
+"n": "Flitterboot",
+"d": "Ein Frachtraumfahrzeug für eine Person."
+},
+{
+"id": 2606,
+"n": "Gobathian",
+"d": "Eine medizinische Technologie Außerirdischer, die bei schweren Verletzungen eine vollständige Heilung des Körpers ermöglicht.",
+"p": "Heiltechnologie"
+},
+{
+"id": 2607,
+"n": "Grüner Guk",
+"d": "Algen, die als Nebenprodukt lebenswichtigen Sauerstoff erzeugen.",
+"p": "Sauerstoffproduzierende Algen"
+},
+{
+"id": 2608,
+"n": "Grok",
+"d": "Vollständig verstehen; eins werden mit etwas (vom marsianischen Verb „trinken“).",
+"x": "Geprägter Begriff"
+},
+{
+"id": 2609,
+"n": "Jagdrobe",
+"d": "Ein sehr dünner, pelziger Jäger, der seine Beute durch Umschnüren fängt."
+},
+{
+"id": 2610,
+"n": "Hydrokultur im Weltraum",
+"d": "Pflanzen als Nahrung ohne Erde auf einem Raumschiff anbauen.",
+"p": "Landwirtschaft im Weltraum",
+"x": "Pflanzen ohne Erde ziehen"
+},
+{
+"id": 2611,
+"n": "Aufblasbares Iglu für den Mond",
+"d": "Ein aufblasbarer, tragbarer Unterschlupf für den Mond, der sich leicht bewegen und aufbauen lässt.",
+"p": "Aufblasbarer Mondunterschlupf"
+},
+{
+"id": 2612,
+"n": "Aufblasbare Wohnkugel",
+"d": "Eine aufblasbare Blase im Weltraum, die Menschen bewohnen können.",
+"p": "Aufblasbarer Lebensraum"
+},
+{
+"id": 2613,
+"n": "Interaktive Karte",
+"d": "Ein kleines Buch mit einer interaktiven Papierkarte, die wie ein Touchscreen funktioniert.",
+"p": "Touchscreen"
+},
+{
+"id": 2614,
+"n": "IntruGrab",
+"d": "Ein System, das Eindringlinge fangen soll.",
+"p": "Falle"
+},
+{
+"id": 2615,
+"n": "Sprunggeschirr",
+"d": "Ein Gerät, klein genug für einen Rucksack, das zusätzlichen Schub zum Springen gab.",
+"p": "Beinexoskelett"
+},
+{
+"id": 2616,
+"n": "Lecton",
+"d": "Ein Gerät, das ein elektronisches Lehrbuch laut vorliest.",
+"p": "Hörbuch-Player"
+},
+{
+"id": 2617,
+"n": "Lebendiger Grasteppich",
+"d": "Ein Innenbereich, der wie ein Teppich mit Gras bedeckt ist."
+},
+{
+"id": 2618,
+"n": "Lyle-Antrieb",
+"d": "Ein Antriebssystem für den Einsatz innerhalb des Sonnensystems.",
+"p": "Fiktiver Raumschiffantrieb"
+},
+{
+"id": 2619,
+"n": "Magnetsolen",
+"d": "Magnetisierte Schuhe, mit denen man auf Metallflächen bei geringer Schwerkraft leicht laufen kann.",
+"p": "Magnetstiefel"
+},
+{
+"id": 2620,
+"n": "Mentale Funkstörung",
+"d": "Ein Gerät, das die Konzentration zerstört.",
+"p": "Störsender fürs Denken"
+},
+{
+"id": 2621,
+"n": "Geistzerstörer",
+"d": "Ein Verfahren, den Geist eines Menschen völlig zu löschen und nur so viel übrig zu lassen, dass die Körperfunktionen weiterlaufen.",
+"p": "Gedächtnislöschung"
+},
+{
+"id": 2622,
+"n": "Mondplanierer",
+"d": "Ein Bulldozer für die Bedingungen auf dem Mond."
+},
+{
+"id": 2623,
+"n": "Opton",
+"d": "Eine sehr frühe Beschreibung eines elektronischen Buchs mit Speichermedium."
+},
+{
+"id": 2624,
+"n": "Parastatik",
+"d": "Ein Mittel, Verletzungen in Fahrzeugen bei Unfällen völlig zu vermeiden.",
+"p": "Trägheitsdämpfung"
+},
+{
+"id": 2625,
+"n": "Rosa",
+"d": "Ein außerirdisches Lebewesen."
+},
+{
+"id": 2626,
+"n": "Lustkappe",
+"d": "Ein Gerät, das Stromstöße der Lust direkt ins Gehirn leitet.",
+"p": "Neuronale Lustmaschine"
+},
+{
+"id": 2627,
+"n": "Plexishaut",
+"d": "Ein Mittel zur Verkleidung."
+},
+{
+"id": 2628,
+"n": "Präzipitrons",
+"d": "Ein Filtersystem, das Staub und andere Partikel aus der Luft von Raumstationen entfernt.",
+"p": "Luftfilter",
+"x": "Partikel entfernen"
+},
+{
+"id": 2629,
+"n": "Pseudopersönlichkeiten",
+"d": "Fragmente von Not und Qual, die im Gehirn eines autonomen Roboters immer wieder abgespielt werden."
+},
+{
+"id": 2630,
+"n": "Lesemaschine",
+"d": "Ein Projektor, der Text zum leichteren Lesen auf eine Leinwand oder an die Decke warf.",
+"p": "Textleser"
+},
+{
+"id": 2631,
+"n": "Aufnahmeradio",
+"d": "Ein Handgerät, das Ton aufnahm und gleichzeitig live an einen entfernten Sendepunkt übertrug.",
+"p": "Mobiles Senden"
+},
+{
+"id": 2632,
+"n": "Bildschirmschoner (Erfinder)",
+"d": "Bildschirmschoner verhindern das Einbrennen des Leuchtstoffs in CRTs und bieten entspannende Unterhaltung auf dem Bildschirm.",
+"p": "Bildschirmschoner",
+"x": "Displayschäden vermeiden"
+},
+{
+"id": 2633,
+"n": "Dichtungsseide",
+"d": "Ein transparentes, flexibles Material, das sogar hartem Vakuum im Weltraum standhält."
+},
+{
+"id": 2634,
+"n": "Selbstgelenkte Raketengeschosse",
+"d": "Ein Gewehr für luftleere Umgebungen verschießt Raketengeschosse.",
+"p": "Fiktive Munition"
+},
+{
+"id": 2635,
+"n": "Atmosphären-Hüpfmanöver",
+"d": "Ein Verfahren, mit dem die Atmosphäre ein Raumschiff beim Wiedereintritt sanft abbremst.",
+"p": "Raumschiffmanöver"
+},
+{
+"id": 2636,
+"n": "Himmelsdecke",
+"d": "Decken aus großen Bildschirmen, auf denen Bilder des Himmels zu sehen sind.",
+"p": "Eintauchende Anzeige"
+},
+{
+"id": 2637,
+"n": "Raumblase (Bubb)",
+"d": "Ein aufblasbares Raumfahrzeug.",
+"p": "Aufblasbares Raumfahrzeug"
+},
+{
+"id": 2638,
+"n": "Sprühkleidung",
+"d": "Körperbekleidung aus der Sprühdose."
+},
+{
+"id": 2639,
+"n": "Sternmaschine",
+"d": "Ein Gerät, das die psychokinetischen Kräfte des Geistes verstärkt, sodass Paranormale ihr Bewusstsein zu fernen Planeten schicken können.",
+"p": "Psi-Verstärker"
+},
+{
+"id": 2640,
+"n": "Stellene",
+"d": "Ein zähes, transparentes Material für Kuppeln oder sogar Raumschiffe.",
+"p": "Fiktives transparentes Material"
+},
+{
+"id": 2641,
+"n": "Stereotank",
+"d": "Ein Empfänger für dreidimensionale Fernsehbilder."
+},
+{
+"id": 2642,
+"n": "Stereovision-Tank",
+"d": "Dreidimensionales Massenmedium, der Enkel des Fernsehens."
+},
+{
+"id": 2643,
+"n": "Sonnenboot",
+"d": "Ein Gerät, das die von der Sonne abgegebene Energie lenkt, um das Wetter auf der Erde zu steuern."
+},
+{
+"id": 2644,
+"n": "Sonnenbetriebener Ionenantrieb",
+"d": "Ein Raketenantrieb, der Sonnenenergie nutzt, um einen Ionenantrieb zu betreiben.",
+"p": "Ionenantrieb",
+"x": "Antriebskonzept"
+},
+{
+"id": 2645,
+"n": "Sonnendecke",
+"d": "Ein bunter Stoff mit versilberter Rückseite, der das Innere einer Wohnkugel vor zu viel Sonnenlicht schützt.",
+"p": "Strahlenschutzgewebe"
+},
+{
+"id": 2646,
+"n": "Taper",
+"d": "Ein Gerät, das Einzelheiten eines Besuchs auf einem fernen Planeten aufzeichnet.",
+"p": "Aufnahmegerät der Außerirdischen"
+}
+]

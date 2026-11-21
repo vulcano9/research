@@ -1,0 +1,1350 @@
+[
+{
+"id": 3199,
+"n": "Great Ear",
+"d": "An electronic telepathic listening device that monitors thousands of people simultaneously."
+},
+{
+"id": 3200,
+"n": "Holo",
+"d": "Abbreviation of \"hologram\".",
+"w": "MIT",
+"x": "3D images projected with lasers"
+},
+{
+"id": 3201,
+"n": "Inert-Wear",
+"d": "Clothing made of dead fibers; clothing that is unmoving, static."
+},
+{
+"id": 3202,
+"n": "Jack In",
+"d": "To open one's nervous system to a computer's virtual world.",
+"x": "Fictional brain-computer interface"
+},
+{
+"id": 3203,
+"n": "Kemplerer (Klemperer) Rosette",
+"d": "Planets without a sun; they orbit a central point.",
+"x": "Fictional planetary configuration"
+},
+{
+"id": 3204,
+"n": "Killalc Pills",
+"d": "Counteracts the effects of alcohol consumption."
+},
+{
+"id": 3205,
+"n": "Light-Sword",
+"d": "A laser tuned for use as a cutting tool."
+},
+{
+"id": 3206,
+"n": "Luggage Robot",
+"d": "Perfect helper at robotic hotels."
+},
+{
+"id": 3207,
+"n": "Nearleather",
+"d": "Fake leather.",
+"w": "Many companies",
+"p": "Faux leather",
+"x": "Synthetic leather substitutes"
+},
+{
+"id": 3208,
+"n": "Neck Radio",
+"d": "Commercial radio from an implanted device."
+},
+{
+"id": 3209,
+"n": "Nerve Machine",
+"d": "A device that delivers pure pain via neural currents."
+},
+{
+"id": 3210,
+"n": "Osmosis Generator (Cziltang Brone)",
+"d": "A device that can render a solid permeable to matter."
+},
+{
+"id": 3211,
+"n": "Powdered Alcohol",
+"d": "Alcohol in non-liquid form.",
+"w": "Labs",
+"p": "Powdered alcohol",
+"x": "Never commercialized due to regulations"
+},
+{
+"id": 3212,
+"n": "Refrigeration Tape",
+"d": "A strip of material that can be used to keep large tracts of tundra nicely frozen."
+},
+{
+"id": 3213,
+"n": "Riding Robot",
+"d": "A single person means of bipedal transportation."
+},
+{
+"id": 3214,
+"n": "Ringworld",
+"d": "A 50 foot thick ribbon of matter around a star, a million miles across and as long as Earth's orbital circumference."
+},
+{
+"id": 3215,
+"n": "Robotnik Automated Hotel",
+"d": "A fully-automated hotel; no human interaction required."
+},
+{
+"id": 3216,
+"n": "Robutler",
+"d": "A robotic butler."
+},
+{
+"id": 3217,
+"n": "Screamer",
+"d": "An acoustic weapon.",
+"w": "US Military",
+"p": "Long Range Acoustic Device (LRAD)",
+"x": "For crowd dispersal and long-range hailing"
+},
+{
+"id": 3218,
+"n": "Scrith",
+"d": "The material used to build Ringworld; has remarkable tensile strength"
+},
+{
+"id": 3219,
+"n": "Shadow Square",
+"d": "An enormous blind that orbits a star."
+},
+{
+"id": 3220,
+"n": "Shadow Square Wire",
+"d": "Very fine, very light, very strong wire."
+},
+{
+"id": 3221,
+"n": "Sigfrid von Shrink",
+"d": "An automated therapist.",
+"x": "Fictional AI therapist"
+},
+{
+"id": 3222,
+"n": "Slaver Disintegrator",
+"d": "Sometimes used as a digging tool.",
+"x": "Fictional tool in Ringworld"
+},
+{
+"id": 3223,
+"n": "Slaver Stasis Field",
+"d": "A force field that protects everything inside it by creating a space in which time is suspended."
+},
+{
+"id": 3224,
+"n": "Sleep Set (Sleep Headset)",
+"d": "An electronic device for inducing deep sleep.",
+"w": "Philips",
+"p": "Sleep headphones",
+"x": "Used soft sounds and light pulses to induce sleep"
+},
+{
+"id": 3225,
+"n": "Sonic Fold",
+"d": "Force field that guides air around an air vehicle.",
+"x": "A fictional technology in Ringworld"
+},
+{
+"id": 3226,
+"n": "Sound Deadener",
+"d": "Device that acts to damp excessive noise produced by different species."
+},
+{
+"id": 3227,
+"n": "Squib",
+"d": "A simple form of ground transportation.",
+"x": "A fictional device in the novel"
+},
+{
+"id": 3228,
+"n": "Stepping Discs",
+"d": "Open air teleportation pads.",
+"x": "Fictional transportation system in Ringworld"
+},
+{
+"id": 3229,
+"n": "Tasp",
+"d": "A device that induces a current in the pleasure center of the brain, at a distance."
+},
+{
+"id": 3230,
+"n": "Tower of Glass",
+"d": "An enormous glass tower built to communicate outside the solar system.",
+"x": "A fictional megastructure in the novel"
+},
+{
+"id": 3231,
+"n": "Translator Discs",
+"d": "Wearable devices that wirelessly connected to a speech translation computer."
+},
+{
+"id": 3232,
+"n": "Transmat",
+"d": "A teleportation device.",
+"x": "Fictional transportation technology"
+},
+{
+"id": 3233,
+"n": "Transparent Overalls",
+"d": "Perfect for prisoners, because nothing can be concealed.",
+"p": "Inmate jumpsuits",
+"x": "Used in some prisons"
+},
+{
+"id": 3234,
+"n": "Trumps",
+"d": "Magical Tarot cards that permitted both communication and transportation.",
+"x": "Fictional magical objects in the series"
+},
+{
+"id": 3235,
+"n": "Unichapel (Robotic Confession Booth)",
+"d": "Automated religious confessional with monotone, programmed responses.",
+"x": "Fictional technology in THX 1138"
+},
+{
+"id": 3236,
+"n": "Variable Sword",
+"d": "A sword that could vary in length, and cut through anything."
+},
+{
+"id": 3237,
+"n": "Batacitor",
+"d": "A storage device for electricity that could be charged in a very short time.",
+"w": "General Electric",
+"p": "Supercapacitor"
+},
+{
+"id": 3238,
+"n": "Impact Suit",
+"d": "A body suit that is flexible, but upon a hard impact becomes rigid and impenetrable."
+},
+{
+"id": 3239,
+"n": "Index Rating",
+"d": "Understanding what you should do (or not do) is part of the test."
+},
+{
+"id": 3240,
+"n": "Launching Laser",
+"d": "A set of very high-powered lasers used to power spacecraft."
+},
+{
+"id": 3241,
+"n": "Nowhen",
+"d": "At no time."
+},
+{
+"id": 3242,
+"n": "Pocket Display Projector",
+"d": "A pocketsized projector capable of displaying high resolution images so they can be viewed by a group of people.",
+"w": "Microvision",
+"p": "PicoP pocket projector"
+},
+{
+"id": 3243,
+"n": "Robot Pope",
+"d": "An artificially intelligent robotic cardinal ascends to the Throne of St. Peter."
+},
+{
+"id": 3244,
+"n": "Selektrogel",
+"d": "An over-the-counter gel to choose the sex of a child at conception.",
+"p": "Gender selection gel"
+},
+{
+"id": 3245,
+"n": "Skin Suit",
+"d": "A very tight-fighting spacesuit, or disguise.",
+"p": "Space activity suit"
+},
+{
+"id": 3246,
+"n": "Stalker's Fever",
+"d": "A spaceman's malady, in which madness results in a crew member hunting down and murdering a colleague."
+},
+{
+"id": 3247,
+"n": "Verse Transcriber",
+"d": "A device that would produce perfect poetry, given the necessary parameters."
+},
+{
+"id": 3248,
+"n": "Artificial Muscles",
+"d": "Replacement for organic muscle tissue.",
+"p": "Artificial muscles"
+},
+{
+"id": 3249,
+"n": "Atlotl/Gibiril Regimen",
+"d": "A method of altering the flow of energy in the body to aid in regrowth of damaged or missing tissue."
+},
+{
+"id": 3250,
+"n": "Autobutle",
+"d": "An automated servant."
+},
+{
+"id": 3251,
+"n": "Bionic Arm",
+"d": "An artificial arm that responds in a manner similar to the 'original equipment' item.",
+"p": "Prosthetic arms"
+},
+{
+"id": 3252,
+"n": "Bionic Legs",
+"d": "Human legs rebuilt and improved.",
+"p": "Prosthetic legs"
+},
+{
+"id": 3253,
+"n": "Biot",
+"d": "A biological robot."
+},
+{
+"id": 3254,
+"n": "Chemical Orders",
+"d": "Use of chemical triggers for behavior and behavior modification."
+},
+{
+"id": 3255,
+"n": "City of Glass",
+"d": "An entire city made of unique structural glass and ceramic."
+},
+{
+"id": 3256,
+"n": "Copseyes",
+"d": "A small floating \"eye-in-the-sky\" surveillance drone used by police in an extensive park."
+},
+{
+"id": 3257,
+"n": "Crechepod",
+"d": "A small, enclosed medical device providing full life support as well as advanced regrowth technologies."
+},
+{
+"id": 3258,
+"n": "Cryosleep",
+"d": "Use of extreme cold to cause suspended animation.",
+"p": "Cryonics"
+},
+{
+"id": 3259,
+"n": "Cyborg",
+"d": "A cybernetic organism - man in union with machine",
+"p": "Cyborgs"
+},
+{
+"id": 3260,
+"n": "Displacement Booth",
+"d": "A teleportation portal."
+},
+{
+"id": 3261,
+"n": "Dragonfly Sky-Bike",
+"d": "An ultralight human-powered flyer.",
+"p": "Human-powered aircraft"
+},
+{
+"id": 3262,
+"n": "Electrofriend (Artificial Friend)",
+"d": "A tiny electric friend, which nestles in your ear, and provides advice and information."
+},
+{
+"id": 3263,
+"n": "Filter-Mask",
+"d": "Perfect for dystopian future air pollution.",
+"p": "Respirator mask"
+},
+{
+"id": 3264,
+"n": "Flash Crowd (Flash Mob)",
+"d": "What you call a group of people who suddenly appear at an interesting location."
+},
+{
+"id": 3265,
+"n": "Go-Buggy",
+"d": "A ground-only vehicle.",
+"p": "Dune buggy"
+},
+{
+"id": 3266,
+"n": "Hive-Sign",
+"d": "Specialized sign language developed by an offshoot of humanity."
+},
+{
+"id": 3267,
+"n": "Hubrizine",
+"d": "A drug that brings about greater alertness and cheerfulness."
+},
+{
+"id": 3268,
+"n": "Ilse",
+"d": "The first intelligent ship brain."
+},
+{
+"id": 3269,
+"n": "Implant-Watch",
+"d": "Subcutaneous timepiece; uses patterns of colored lights to show the time."
+},
+{
+"id": 3270,
+"n": "Implanted Tranceiver",
+"d": "Device enables two-way communication with needing to carry a device."
+},
+{
+"id": 3271,
+"n": "Ironing Robot",
+"d": "A robot that smooths the wrinkles out of clothing.",
+"w": "various",
+"p": "Ironing robot"
+},
+{
+"id": 3272,
+"n": "Key Club",
+"d": "A social club made exclusive by teleportation booth; may be in a chain with other physically identical locations."
+},
+{
+"id": 3273,
+"n": "King's Free Park",
+"d": "A park in which anarchy reigned; a very long, narrow park."
+},
+{
+"id": 3274,
+"n": "Mini-Sneaker",
+"d": "A small, airborne surveillance device.",
+"p": "Micro drones"
+},
+{
+"id": 3275,
+"n": "Newstaper Gear",
+"d": "The devices used by a person who serves as a reporter, cameraman and story finder.",
+"p": "Video camera, audio recorder"
+},
+{
+"id": 3276,
+"n": "Nightmask",
+"d": "Night vision mask (similar to a diving mask) with an infrared light source.",
+"w": "Litton Industries",
+"p": "Night vision goggles"
+},
+{
+"id": 3277,
+"n": "P-Terminal Implant",
+"d": "A device consisting of implanted power pack, control and electrodes placed near pleasure centers of the brain."
+},
+{
+"id": 3278,
+"n": "Polawindow",
+"d": "A window-sized polarizer filter that allows changes in light intensity and color."
+},
+{
+"id": 3279,
+"n": "Procreative Stump",
+"d": "A woman's torso, kept alive for the purpose of using the womb as an incubator."
+},
+{
+"id": 3280,
+"n": "Rotating House",
+"d": "A single family home built upon a central pivot; it can be turned at will."
+},
+{
+"id": 3281,
+"n": "Selectacol",
+"d": "A device that automates the interior design process, providing a choice of color schemes for a roomful of furniture."
+},
+{
+"id": 3282,
+"n": "Spider Tripod Robot",
+"d": "Three-legged alien robot."
+},
+{
+"id": 3283,
+"n": "Stunwand",
+"d": ""
+},
+{
+"id": 3284,
+"n": "Superluminal",
+"d": "Faster than the speed of light."
+},
+{
+"id": 3285,
+"n": "The Krang",
+"d": "An enormous musical instrument (or weapon)."
+},
+{
+"id": 3286,
+"n": "Tickler",
+"d": "Clears smog and saves the residue for later use."
+},
+{
+"id": 3287,
+"n": "Transmit-Paper",
+"d": "Paper form with a built-in capability to transmit the information written with a stylus to a remote computer network."
+},
+{
+"id": 3288,
+"n": "Ultraminiature Spy-Circuit",
+"d": "Tiny bits of 'smart dust' used as surveillance devices.",
+"w": "Hitachi",
+"p": "Microchips"
+},
+{
+"id": 3289,
+"n": "WatchdØg (Watchdog)",
+"d": ""
+},
+{
+"id": 3290,
+"n": "Window-Cleaner Robots",
+"d": "Robots that perform the task of cleaning and polishing transparent surfaces.",
+"p": "Window cleaning robots"
+},
+{
+"id": 3291,
+"n": "Artificial Gravity-Assisted Childbirth",
+"d": "Using an artificial gravity field to assist (and accelerate) the process of childbirth."
+},
+{
+"id": 3292,
+"n": "Decibel Alarms",
+"d": "Alarms that would go off if the noise in public gathering places was rising to riotous levels.",
+"p": "Sound level meters"
+},
+{
+"id": 3293,
+"n": "Frictionless Cups",
+"d": "Cups with a special surface to which liquid does not adhere."
+},
+{
+"id": 3294,
+"n": "Gravity Lens",
+"d": "An optical lens created using the lightbending properties of gravity."
+},
+{
+"id": 3295,
+"n": "Hypno-Encyclopedic Techniques",
+"d": "If you plan to live for centuries, you need to organize your memories."
+},
+{
+"id": 3296,
+"n": "Implanted Interface With Retinal Nerves",
+"d": "Circuitry that provides a 'look' at what the eye sees."
+},
+{
+"id": 3297,
+"n": "Light-Sculpture",
+"d": "A creative work that was both sculpture and light.",
+"p": "Light art"
+},
+{
+"id": 3298,
+"n": "Monopole Mining",
+"d": "Looking for natural sources of monopoles."
+},
+{
+"id": 3299,
+"n": "Moon Hopper",
+"d": "A jet-powered single-person vehicle for the Moon."
+},
+{
+"id": 3300,
+"n": "Ram Field",
+"d": "A specialized version of the hydrogen-gathering field for a Bussard Ramjet."
+},
+{
+"id": 3301,
+"n": "Slowboat",
+"d": "Slower than lightspeed spacecraft used for interstellar colonization."
+},
+{
+"id": 3302,
+"n": "Twing",
+"d": "Used in the hold of spaceships to keep articles all together, and to prevent them from floating around in free fall, or falling during periods of acceleration."
+},
+{
+"id": 3303,
+"n": "Ultramicrominiature Waldo",
+"d": "A device for transforming ordinary human hand movements into extremely small-scale surgical motions."
+},
+{
+"id": 3304,
+"n": "Welton Cube",
+"d": "High-density storage device."
+},
+{
+"id": 3305,
+"n": "Acceleration Chair",
+"d": "A specially-designed chair used to help crew stay mobile during periods of high acceleration."
+},
+{
+"id": 3306,
+"n": "Acceleration Couch",
+"d": "A chair designed for use in during periods of high acceleration (multiple gravities)."
+},
+{
+"id": 3307,
+"n": "Acceleration Shell",
+"d": "A special suit designed to help people survive accelerations of up to twenty-five gravities."
+},
+{
+"id": 3308,
+"n": "Alderson Point",
+"d": "One end of a tramline, a path between stars that can be traversed using a hyperdrive engine."
+},
+{
+"id": 3309,
+"n": "Armor Cloth",
+"d": "Extremely tough synthetic fabric.",
+"p": "Bulletproof fabrics"
+},
+{
+"id": 3310,
+"n": "Assault Ship",
+"d": "A one-way, one-use spacecraft for depositing troops at the scene of a space battle."
+},
+{
+"id": 3311,
+"n": "Atmosphere Control",
+"d": "Recently terraformed planets require constant maintenance."
+},
+{
+"id": 3312,
+"n": "C-Plus Cannon",
+"d": "Weapon fire that can skip past the speed of light and back."
+},
+{
+"id": 3313,
+"n": "Collapsar Jump",
+"d": "Travel between collapsed stars in no time at all."
+},
+{
+"id": 3314,
+"n": "Cryocapsule",
+"d": "A spaceship capsule that contains astronauts in special coffins, in suspended animation."
+},
+{
+"id": 3315,
+"n": "Cryonaut",
+"d": "An astronaut placed in cryonic sleep."
+},
+{
+"id": 3316,
+"n": "Cushion Fence",
+"d": "Gentle force field"
+},
+{
+"id": 3317,
+"n": "Dead-Show",
+"d": "Forced reliving of memory and experience after death."
+},
+{
+"id": 3318,
+"n": "Eccentric Projection",
+"d": "Remote manipulation of a body not your own."
+},
+{
+"id": 3319,
+"n": "EEG-Gram Projection",
+"d": "Detection of unique characteristics at a distance."
+},
+{
+"id": 3320,
+"n": "Flesh Gun",
+"d": "A weapon that burns the skin and meat off the victim.",
+"p": "Lasers",
+"x": "Military weapon"
+},
+{
+"id": 3321,
+"n": "Floating Building",
+"d": "An apartment building that floats a few feet off the ground."
+},
+{
+"id": 3322,
+"n": "Frictionless Toilet",
+"d": "A toilet bowl that does not require water, because its surface is frictionless."
+},
+{
+"id": 3323,
+"n": "Fyunch(click)",
+"d": "An alien assigned to become an expert in just one person."
+},
+{
+"id": 3324,
+"n": "Gee Bath",
+"d": "Essentially a waterbed designed to help older or untrained people cope with high acceleration aboard spacecraft."
+},
+{
+"id": 3325,
+"n": "Handbag Computer",
+"d": "Device capable of carrying on your conversation for you.",
+"x": "AI chatbot"
+},
+{
+"id": 3326,
+"n": "Harvesting Saturn's Rings",
+"d": "Mining the rings for industrial purposes."
+},
+{
+"id": 3327,
+"n": "Home Ad Blocker",
+"d": "Device insulates house against intrusion by 3D advertisements."
+},
+{
+"id": 3328,
+"n": "KR-3",
+"d": "A drug that breaks down the ability of the brain to perceive space and physical objects properly, or in sequence; a new universe opens."
+},
+{
+"id": 3329,
+"n": "Langston Field",
+"d": "A protective energy shield."
+},
+{
+"id": 3330,
+"n": "Laser Finger",
+"d": "Special powered suit add-on makes you even quicker on the draw."
+},
+{
+"id": 3331,
+"n": "Metal Paste",
+"d": "A conductive metal that could be easily squirted from a tube."
+},
+{
+"id": 3332,
+"n": "Microtransmitter Dot",
+"d": "A tiny transmitter placed on ID cards, used to track ID holders.",
+"p": "RFID tags",
+"x": "Wireless identification"
+},
+{
+"id": 3333,
+"n": "Molemen",
+"d": ""
+},
+{
+"id": 3334,
+"n": "Numbitol",
+"d": "You guessed it, a topical anesthetic."
+},
+{
+"id": 3335,
+"n": "Phone-Grid Transex Network",
+"d": "Addictive network-enhanced sexuality."
+},
+{
+"id": 3336,
+"n": "Picphone",
+"d": "A small telephone that has a screen to show pictures.",
+"p": "Video phones",
+"x": "Skype, FaceTime"
+},
+{
+"id": 3337,
+"n": "Placental Decanters",
+"d": "Perfect human bodies with control implants for remote use."
+},
+{
+"id": 3338,
+"n": "Powered Suit with Trauma Maintenance",
+"d": "A powered suit (or powered armor) that is set up to save as much of your body as possible in worse case scenarios."
+},
+{
+"id": 3339,
+"n": "Pressor Field",
+"d": "A force field that pressed against anything that encountered it."
+},
+{
+"id": 3340,
+"n": "Pressure Curtain",
+"d": "A force field that creates a barrier that people can pass through but air cannot - an airlock in a spacecraft."
+},
+{
+"id": 3341,
+"n": "Projection",
+"d": "A means of projecting your image to a distant place."
+},
+{
+"id": 3342,
+"n": "Projection Commercials",
+"d": "A three-dimensional advertisement that is placed in your path in a public place like a bar."
+},
+{
+"id": 3343,
+"n": "Robot Gas Station",
+"d": "An entirely automated station for dispensing fuel to consumer vehicles.",
+"p": "Self-service gas stations",
+"x": "No human attendant"
+},
+{
+"id": 3344,
+"n": "Robotrix",
+"d": "A robot, female in appearance."
+},
+{
+"id": 3345,
+"n": "Seed Bomb",
+"d": "A tiny explosive that can be embedded under the skin."
+},
+{
+"id": 3346,
+"n": "Skull Bug",
+"d": "A small electronic device implanted in the cranium at birth; used for monitoring and control."
+},
+{
+"id": 3347,
+"n": "Stimtab",
+"d": "A drug designed to keep the user awake and alert for long periods."
+},
+{
+"id": 3348,
+"n": "Superconductor of Heat",
+"d": "A light metal that accepts heat applied to its surface, and then dissipates the energy throughout the material, leaving the temperature of the material unchanged."
+},
+{
+"id": 3349,
+"n": "Talking Pamphlet",
+"d": "An instructional pamphlet that instructs you through ordinary speech.",
+"w": "Audible",
+"x": "Recordings"
+},
+{
+"id": 3350,
+"n": "Testing For Human",
+"d": "How can you distinguish the artificial from the real?"
+},
+{
+"id": 3351,
+"n": "Time Dingbat",
+"d": "Nickname for a time machine; used for a kind of WPA-like program for the past."
+},
+{
+"id": 3352,
+"n": "Tramline",
+"d": "The line along which hyperspace (instantaneous travel) travel is possible."
+},
+{
+"id": 3353,
+"n": "Autoporter",
+"d": "A device that carries your bag for you at airports."
+},
+{
+"id": 3354,
+"n": "Coley Group",
+"d": "A musical form that involves dancing in a field of weak microwaves."
+},
+{
+"id": 3355,
+"n": "Computer Play Time",
+"d": "Allowing a computer to take time off from serious problems improves its performance."
+},
+{
+"id": 3356,
+"n": "Computer Worm (Tapeworm)",
+"d": "The first description of a set of computer codes that moves from one computer to another on a network as a coherent entity.",
+"p": "Computer worm"
+},
+{
+"id": 3357,
+"n": "Data-Net",
+"d": "An early mention of the idea of a nationwide data network.",
+"w": "DARPA",
+"x": "ARPANET"
+},
+{
+"id": 3358,
+"n": "Data-Retrieval Mode",
+"d": "A system for getting the thoughts and images out of a person's mind; recovering the data from a brain storage device."
+},
+{
+"id": 3359,
+"n": "Delphi Pool",
+"d": "A large group of people used as a statistical sampling resource; even if the correct answer is not known, responses tend to cluster around the correct answer.",
+"w": "RAND",
+"p": "Delphi method",
+"x": "Group decision-making"
+},
+{
+"id": 3360,
+"n": "Electronic Government",
+"d": "Using computer terminals to register votes from citizens on specific propositions."
+},
+{
+"id": 3361,
+"n": "Electronic Voting",
+"d": "Using computer terminals to register votes from citizens.",
+"p": "Electronic voting",
+"x": "Controversial"
+},
+{
+"id": 3362,
+"n": "Government Data Transparency",
+"d": "The idea that all of the information available to the government should be posted online and be easily accessible to everyone.",
+"p": "FOIA",
+"x": "Freedom of Information Act"
+},
+{
+"id": 3363,
+"n": "Hearing Aid",
+"d": "A service that allows people to anonymously talk with another person who only listens.",
+"p": "Crisis hotlines",
+"x": "Confidential support"
+},
+{
+"id": 3364,
+"n": "Inflatable Church",
+"d": "A church using an inflatable projection screen as an altar."
+},
+{
+"id": 3365,
+"n": "Modded Dog",
+"d": "A canine whose ancestors were genetically modified for higher intelligence; the trait breeds true in offspring."
+},
+{
+"id": 3366,
+"n": "National Network Surveillance",
+"d": "A system for providing the government with a way to monitor computer network use.",
+"w": "NSA",
+"p": "PRISM",
+"x": "Mass surveillance"
+},
+{
+"id": 3367,
+"n": "Net Shutdown Worm",
+"d": "A tapeworm designed to shut down a nationwide network in the event of national emergency."
+},
+{
+"id": 3368,
+"n": "Paid Avoidance Zone",
+"d": "An area where the inhabitants agree, for a government-paid fee, to live without sophisticated services."
+},
+{
+"id": 3369,
+"n": "Personal Smelter",
+"d": "A device used to reduce metallic objects (like coins, pots, cables) to an ingot with known value."
+},
+{
+"id": 3370,
+"n": "Retaliatory Tapeworm (Counter-Worm)",
+"d": "Using computers to deliberately damage another person's reputation and well-being."
+},
+{
+"id": 3371,
+"n": "Satellite Search and Destroy",
+"d": "Destroying satellites in orbit.",
+"w": "US military",
+"p": "Anti-satellite weapon",
+"x": "ASAT missile"
+},
+{
+"id": 3372,
+"n": "Tapeworm (Computer Worm)",
+"d": "The first description of a set of computer codes that moves from one computer to another on a network as a coherent entity."
+},
+{
+"id": 3373,
+"n": "Tiered Internet",
+"d": "The idea that some forms of Internet network traffic should be given priority over others.",
+"p": "Net neutrality",
+"x": "Network management"
+},
+{
+"id": 3374,
+"n": "2-1B Medical Droid",
+"d": "This robot can do both surgery and rehab."
+},
+{
+"id": 3375,
+"n": "3D 'Chess' Game Board",
+"d": "A flatbed 3D display which is used to play chess-style board games in three dimensions.",
+"x": "Fictional gaming technology"
+},
+{
+"id": 3376,
+"n": "Anabolic Protoplaser",
+"d": "Uses laser light to repair wounds."
+},
+{
+"id": 3377,
+"n": "Asymptotic Drive",
+"d": "A propulsion drive that used a tiny black hole to generate energy."
+},
+{
+"id": 3378,
+"n": "Automatic Control Car",
+"d": "An autonomous vehicle.",
+"x": "Early autonomous vehicle prototypes"
+},
+{
+"id": 3379,
+"n": "Biological Package Probe",
+"d": ""
+},
+{
+"id": 3380,
+"n": "Bubble Car",
+"d": "Self-steering, hovering, this is the car of the future."
+},
+{
+"id": 3381,
+"n": "Bubble City",
+"d": "Underwater domes provide living space for large communities.",
+"x": "Fictional habitation"
+},
+{
+"id": 3382,
+"n": "Bussard Ramjet",
+"d": "Propulsion method that scoops hydrogen atoms from space via electromagnetic fields."
+},
+{
+"id": 3383,
+"n": "Comlink",
+"d": "Short for communications link; a small portable communicator.",
+"x": "Fictional communication technology in Star Wars"
+},
+{
+"id": 3384,
+"n": "Comsole (Home Communications Console)",
+"d": "A home computer, connected to data services.",
+"p": "Apple II",
+"x": "One of the first mass-market home computers"
+},
+{
+"id": 3385,
+"n": "Death Star",
+"d": "The logical endpoint of a galactic empire.",
+"x": "Fictional superweapon in Star Wars"
+},
+{
+"id": 3386,
+"n": "Deflector Shield",
+"d": "A energy field used to shunt the energy of offensive weapons aside."
+},
+{
+"id": 3387,
+"n": "Dog Suit",
+"d": "A disguise worn by an alien detective, allowing him to look just like a domestic canine."
+},
+{
+"id": 3388,
+"n": "Dray-Fish",
+"d": "Large fish trained to be harnessed to large houseboats."
+},
+{
+"id": 3389,
+"n": "Droid (Star Wars)",
+"d": "A contraction of \"android\", it actually describes one of a variety of robots.",
+"x": "Fictional robot technology in Star Wars"
+},
+{
+"id": 3390,
+"n": "Empty Man",
+"d": "A fully-functioning body, the personality of which had been wiped clean."
+},
+{
+"id": 3391,
+"n": "Environmental Happening",
+"d": "Weather created as a work of art."
+},
+{
+"id": 3392,
+"n": "Escape Pod (Life Pod, Boat Pod)",
+"d": "A small ship used solely as a \"life boat.\""
+},
+{
+"id": 3393,
+"n": "Gravity-assisted Subway",
+"d": "The fastest way between continents (that does not entail leaving the ground).",
+"x": "Hypothetical transportation system"
+},
+{
+"id": 3394,
+"n": "Habitable Exoplanet Moon",
+"d": "An Earthlike moon that orbits a gas giant.",
+"x": "Fictional celestial body"
+},
+{
+"id": 3395,
+"n": "Hangman",
+"d": "A telefactoring device that also was able to function independently."
+},
+{
+"id": 3396,
+"n": "Ion Cannon",
+"d": "Fires blasts of charged particles."
+},
+{
+"id": 3397,
+"n": "Ixian Sight Mask",
+"d": "Device to allow the blind to see."
+},
+{
+"id": 3398,
+"n": "Keyboard With Changing Keys",
+"d": "A computer keyboard with keys faced with little displays, so the label could change based on the application or language.",
+"x": "Fictional computer interface"
+},
+{
+"id": 3399,
+"n": "Landspeeder",
+"d": "A small repulsion-based hovercraft capable of high speeds over flat terrain."
+},
+{
+"id": 3400,
+"n": "Lightsaber",
+"d": "A sword the blade of which is formed by a beam of visible light which cuts like a laser."
+},
+{
+"id": 3401,
+"n": "Lunar Disneyland",
+"d": "A vast cavern excavated on the Moon - used for entertainment. Very large scale entertainment."
+},
+{
+"id": 3402,
+"n": "Magnetic Projector",
+"d": "Projects a vortex of magnetic force."
+},
+{
+"id": 3403,
+"n": "Minisec",
+"d": "A device like a personal digital assistant (PDA) today.",
+"w": "Psion",
+"p": "Psion Organiser",
+"x": "Early PDA"
+},
+{
+"id": 3404,
+"n": "Moon Moth",
+"d": "A rather plain and timid mask.",
+"x": "Fictional item in the novel"
+},
+{
+"id": 3405,
+"n": "Nemourlon",
+"d": "Material for special body armor."
+},
+{
+"id": 3406,
+"n": "Neuristor Brain",
+"d": "A computer device made up of neuristors.",
+"x": "Fictional computer technology"
+},
+{
+"id": 3407,
+"n": "Orbital Factory",
+"d": "Putting manufacturing in space, orbiting the planet.",
+"x": "Fictional space industry"
+},
+{
+"id": 3408,
+"n": "Poster TV",
+"d": "This display gives new meaning to the term \"flat screen.\"",
+"p": "Flat panel TV",
+"x": "Early LCD screen prototype"
+},
+{
+"id": 3409,
+"n": "R2-D2 (Artoo-Detoo)",
+"d": "Now the generic term for a small, maneuverable robot.",
+"x": "Fictional droid in Star Wars"
+},
+{
+"id": 3410,
+"n": "Remote (or Seeker Remote)",
+"d": "A training aid for use by Jedi knights."
+},
+{
+"id": 3411,
+"n": "Restraining Bolt",
+"d": "A device that makes sure a robot does what you want (rather than what it wants)."
+},
+{
+"id": 3412,
+"n": "Rhennius Machine",
+"d": "Device of alien manufacture, which will reverse, or turn inside out, any object passed through its mobilator."
+},
+{
+"id": 3413,
+"n": "RNA Shots",
+"d": "An injection prepared from the tissues of a person with knowledge or experience that you need."
+},
+{
+"id": 3414,
+"n": "Robot Surgeon",
+"d": "An autonomous robotic surgeon.",
+"w": "Intuitive Surgical",
+"p": "da Vinci Surgical System",
+"x": "Robotic surgery system"
+},
+{
+"id": 3415,
+"n": "RUMOKO",
+"d": "A project to create additional land surface by deliberate stimulation of undersea volcanoes.",
+"x": "Fictional geoengineering project"
+},
+{
+"id": 3416,
+"n": "Sandcrawler",
+"d": "A very large mobile home, used by jawas on the deserts of Tatooine."
+},
+{
+"id": 3417,
+"n": "Sandtrout Glove",
+"d": "A living glove, formed of live creatures."
+},
+{
+"id": 3418,
+"n": "Sensor Arm",
+"d": "An extendable multipurpose sensor cluster.",
+"x": "Fictional droid component in Star Wars"
+},
+{
+"id": 3419,
+"n": "Skyhook",
+"d": "Part dirigible, part plane."
+},
+{
+"id": 3420,
+"n": "Smother-Charge",
+"d": "Molecularly-gimmicked explosive."
+},
+{
+"id": 3421,
+"n": "Sonic Curtain (Sound Lock)",
+"d": "An undersea sound curtain that keeps larger animals out."
+},
+{
+"id": 3422,
+"n": "Star Stone (Speicus)",
+"d": "An artificial intelligence shaped like a rock, which can communicate with living organisms telepathically."
+},
+{
+"id": 3423,
+"n": "Stimic",
+"d": "A musical instrument consisting of three flutelike tubes equipped with plungers; thumb and forefinger squeeze a bag to force air across the mouthpieces.",
+"x": "Fictional musical instrument in the novel"
+},
+{
+"id": 3424,
+"n": "Strakh",
+"d": "The prestige or social prominence which serves as a medium of exchange on the planet Sirene."
+},
+{
+"id": 3425,
+"n": "Supralight Drive",
+"d": "A propulsion system that allows a spacecraft to travel faster than light.",
+"x": "Fictional propulsion technology in Star Wars"
+},
+{
+"id": 3426,
+"n": "T.I.E. Fighter (Tie Fighter)",
+"d": "A highly maneuverable fighter spacecraft using an ion drive propulsion system."
+},
+{
+"id": 3427,
+"n": "Tagalong",
+"d": "A backpack with legs; a robot that will carry things for you and match your movements."
+},
+{
+"id": 3428,
+"n": "Trans-Space Transmission",
+"d": "A curious method of communication between worlds.",
+"x": "Fictional communication technology"
+},
+{
+"id": 3429,
+"n": "Vaporator",
+"d": "A device which extracted moisture from the air for use in farming."
+},
+{
+"id": 3430,
+"n": "Womb Room",
+"d": "The ultimate ship's bridge.",
+"x": "Fictional spacecraft component"
+},
+{
+"id": 3431,
+"n": "Young-Forever",
+"d": "A very particular formula for human immortality, which solves the most serious attendant problem (population explosion)."
+},
+{
+"id": 3432,
+"n": "Zero-Time Jail",
+"d": "A building in which an energy field prevents time from passing."
+},
+{
+"id": 3433,
+"n": "Alien Zoo",
+"d": "A zoo that brings together plants and animals from many planets."
+},
+{
+"id": 3434,
+"n": "Antiholo Generator",
+"d": "Dispels intrusive hologram advertisements."
+},
+{
+"id": 3435,
+"n": "Armored Clothing",
+"d": "Ordinary apparel that contained both armor and muscle amplification devices."
+},
+{
+"id": 3436,
+"n": "Bedog",
+"d": "A sentient creature designed to be a bed."
+},
+{
+"id": 3437,
+"n": "Briefcase Computer",
+"d": "A portable computer workstation.",
+"p": "Portable computer",
+"x": "Early laptop prototype"
+},
+{
+"id": 3438,
+"n": "Caleban Contact",
+"d": "A form of telepathy based on the use of unimaginably enormous amounts of energy."
+},
+{
+"id": 3439,
+"n": "Centrifuge Room",
+"d": "A small room on a planetoid that is spun to create artificial gravity."
+},
+{
+"id": 3440,
+"n": "Cephalochromoscope (Cephscope)",
+"d": "A brain-scan device with a screen to display neural patterns.",
+"x": "Fictional medical technology in the novel"
+},
+{
+"id": 3441,
+"n": "Chameleon Cloth",
+"d": "Clothing that changes color and pattern to match its surroundings."
+},
+{
+"id": 3442,
+"n": "Daily Schedule (DS)",
+"d": "The DS was an artificially intelligent day planner, a schedule keeper with voice recognition features; it also talked back when necessary.",
+"x": "Fictional AI technology in the novel"
+},
+{
+"id": 3443,
+"n": "Darkdawn City",
+"d": "An entire city that is tuned to be played by the winds.",
+"x": "Fictional city in the novel"
+},
+{
+"id": 3444,
+"n": "Flexible Sprung Boots",
+"d": "Boots designed to be flexible when walking, but upon a hard step, will have a spring characteristic."
+}
+]

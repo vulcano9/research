@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sci-Fi-Ideen-Bank: 4.417 Ideen aus der Science-Fiction entdecken</title>
-<meta name="description" content="Eine durchsuchbare Datenbank mit 4.417 Sci-Fi-Ideen: gebaut, halb gebaut oder noch frei. Mit Filtern, Grafiken und einem Gründer-Modus.">
+<meta name="description" content="Eine durchsuchbare Datenbank mit 4.417 Sci-Fi-Ideen: gebaut, halb gebaut oder noch frei. Mit interaktivem Ideen-Universum, Grafiken und Quellen.">
 <script>
 /* Theme early, damit beim Laden kein heller Blitz entsteht. */
 (function(){try{var t=localStorage.getItem("sfib_theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
@@ -92,7 +92,6 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 img{max-width:100%}
-body:has(dialog[open]){overflow:hidden}
 a{color:var(--accent);text-underline-offset:2px}
 a:hover{text-decoration-thickness:2px}
 :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
@@ -182,9 +181,6 @@ ul,ol{margin:0 0 1em}
 .hero .btn-primary{color:#fff;background:#4756d8;border-color:#4756d8}
 .btn-small{padding:7px 12px;font-size:.8rem}
 .linkbtn{border:0;background:none;color:var(--accent);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:2px;padding:4px}
-.iconbtn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:1.35rem;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex:none}
-.iconbtn:hover{background:var(--surface-2)}
-
 /* ---------- Sections ---------- */
 .section{padding:58px 0;scroll-margin-top:70px}
 .section + .section{border-top:1px solid var(--border)}
@@ -202,107 +198,14 @@ ul,ol{margin:0 0 1em}
 .cite{font-size:.72em;font-weight:700;text-decoration:none;vertical-align:super;line-height:0;padding:0 1px}
 .cite:hover{text-decoration:underline}
 
-/* ---------- Explorer ---------- */
-.explorer{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
-.search-wrap{position:relative}
-.search-wrap input{
-  width:100%;height:54px;border:1px solid var(--border-strong);border-radius:12px;background:var(--bg);
-  color:var(--text);font:inherit;font-size:1rem;padding:0 16px 0 46px;
-}
-.search-wrap input:focus{border-color:var(--accent);outline:3px solid var(--accent-soft);outline-offset:0}
-.search-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:1.25rem;color:var(--muted);pointer-events:none}
-.filters{display:grid;gap:14px;margin-top:16px}
-.filter-group{border:0;padding:0;margin:0;min-width:0}
-.filter-label,.filter-group legend{display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;padding:0}
-.chips{display:flex;flex-wrap:wrap;gap:7px}
-.chip{
-  display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border-strong);background:var(--bg);color:var(--text);
-  padding:6px 10px;border-radius:999px;font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;line-height:1.2;
-}
-.chip:hover{background:var(--surface-2)}
-.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-text)}
-.chip-count{font-family:var(--font-mono);font-size:.68rem;font-weight:500;opacity:.68}
-.chip[aria-pressed="true"] .chip-count{opacity:.85}
-.dot{width:8px;height:8px;border-radius:50%;flex:none;display:inline-block}
-.dot-yes{background:var(--built)}
-.dot-no{background:var(--nobuilt)}
-.dot-partial{background:var(--partial)}
-.dot-unknown{background:var(--unknown)}
-.dot-bits{background:var(--bits)}
-.dot-atoms{background:var(--atoms)}
-.dot-both{background:var(--both)}
-.filter-row{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:flex-end}
-.field{display:grid;gap:6px}
-.field > span,.field > label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.year-row{display:flex;align-items:center;gap:7px}
-.year-row input{width:88px;height:40px;border:1px solid var(--border-strong);border-radius:10px;background:var(--bg);color:var(--text);font:inherit;font-size:.88rem;padding:0 9px}
-.year-row span{font-size:.8rem;color:var(--muted)}
-.select{height:40px;border:1px solid var(--border-strong);border-radius:10px;background:var(--bg);color:var(--text);font:inherit;font-size:.86rem;padding:0 9px;max-width:100%}
-.check{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;cursor:pointer;min-height:40px}
-.check input{width:17px;height:17px;accent-color:var(--accent);margin:0}
-details.cats{border:1px solid var(--border);border-radius:10px;background:var(--bg);padding:10px 12px}
-details.cats summary{cursor:pointer;font-size:.78rem;font-weight:700;color:var(--text);list-style:none;display:flex;align-items:center;gap:8px}
-details.cats summary::-webkit-details-marker{display:none}
-details.cats summary::before{content:"▸";color:var(--muted);font-size:.8rem;transition:transform .15s}
-details.cats[open] summary::before{transform:rotate(90deg)}
-details.cats summary .muted{font-weight:500;color:var(--muted);font-size:.72rem}
-details.cats .chips{margin-top:10px;max-height:156px;overflow:auto;padding:2px}
-.result-bar{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 16px;margin:20px 0 12px;border-top:1px solid var(--border);padding-top:14px}
-.result-count{font-size:.92rem;font-weight:700;margin:0}
-.result-count span{font-weight:500;color:var(--muted)}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,252px),1fr));gap:13px}
-.idea-card{
-  display:flex;flex-direction:column;gap:7px;padding:15px;background:var(--bg);border:1px solid var(--border);
-  border-radius:12px;cursor:pointer;transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease;min-width:0;
-}
-.idea-card:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:var(--shadow)}
-.idea-card h3{font-size:1rem;line-height:1.25;overflow-wrap:anywhere}
-.card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:22px}
-.year{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.05em;color:var(--muted)}
+/* ---------- Badges ---------- */
 .badge{display:inline-flex;align-items:center;gap:5px;font-size:.66rem;font-weight:750;letter-spacing:.02em;padding:3px 8px;border-radius:999px;border:1px solid transparent;white-space:nowrap;line-height:1.35}
 .st-yes{background:var(--built-soft);color:var(--built);border-color:color-mix(in srgb,var(--built) 28%,transparent)}
 .st-no{background:var(--nobuilt-soft);color:var(--nobuilt);border-color:color-mix(in srgb,var(--nobuilt) 24%,transparent)}
 .st-partial{background:var(--partial-soft);color:var(--partial);border-color:color-mix(in srgb,var(--partial) 30%,transparent)}
 .st-unknown{background:var(--unknown-soft);color:var(--unknown);border-color:color-mix(in srgb,var(--unknown) 26%,transparent)}
-.ba-bits{background:var(--bits-soft);color:var(--bits);border-color:color-mix(in srgb,var(--bits) 24%,transparent)}
-.ba-atoms{background:var(--atoms-soft);color:var(--atoms);border-color:color-mix(in srgb,var(--atoms) 24%,transparent)}
-.ba-both{background:var(--both-soft);color:var(--both);border-color:color-mix(in srgb,var(--both) 24%,transparent)}
-.meta{font-size:.76rem;color:var(--muted);line-height:1.35;margin:0;overflow-wrap:anywhere}
-.desc{font-size:.845rem;color:var(--text);line-height:1.46;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
-.card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:4px;min-height:20px}
-.cats{font-size:.67rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
-.more-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:center;margin-top:22px}
 .muted{color:var(--muted)}
-.empty{margin:24px 0;padding:22px;text-align:center;border:1px dashed var(--border-strong);border-radius:12px;color:var(--muted);font-size:.9rem}
 .hint{font-size:.76rem;color:var(--muted);margin:10px 0 0}
-
-/* ---------- Dialog ---------- */
-dialog{width:min(800px,94vw);max-height:88vh;padding:0;border:1px solid var(--border-strong);border-radius:16px;background:var(--surface);color:var(--text);box-shadow:0 30px 90px rgba(0,0,0,.45);overflow:auto}
-dialog::backdrop{background:rgba(6,8,18,.62);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
-.dlg-head{position:sticky;top:0;z-index:2;background:var(--surface);padding:18px 20px 13px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
-.dlg-head h2{font-size:clamp(1.3rem,3vw,1.75rem);margin:3px 0 7px;overflow-wrap:anywhere}
-.dlg-year{font-family:var(--font-mono);font-size:.74rem;color:var(--muted);margin:0;letter-spacing:.06em}
-.badges{display:flex;flex-wrap:wrap;gap:6px}
-.dlg-body{padding:16px 20px 24px}
-.fields{display:grid;grid-template-columns:minmax(130px,190px) minmax(0,1fr);margin:0;border-top:1px solid var(--border)}
-.fields dt{padding:10px 12px 10px 0;font-size:.74rem;font-weight:700;color:var(--muted);border-bottom:1px solid var(--border)}
-.fields dd{padding:10px 0;margin:0;font-size:.9rem;border-bottom:1px solid var(--border);overflow-wrap:anywhere}
-.fields dd .chips{margin-top:2px}
-.quote{background:var(--surface-2);border-left:3px solid var(--accent);padding:10px 13px;border-radius:0 8px 8px 0;font-size:.9rem;line-height:1.5}
-.dlg-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.tag{display:inline-block;font-size:.7rem;background:var(--surface-2);border:1px solid var(--border);padding:2px 7px;border-radius:999px;margin:0 4px 4px 0}
-
-/* ---------- Founder / random ---------- */
-.founder{display:grid;gap:16px}
-.founder-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
-.founder-head h3{font-size:1.15rem}
-.random-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:18px;display:grid;gap:9px;min-height:150px}
-.random-card h4{font-size:clamp(1.2rem,2.8vw,1.5rem)}
-.random-card .prompt{margin:8px 0 0;padding:12px 14px;background:var(--accent-soft);border-radius:10px;font-weight:650;font-size:.94rem;color:var(--text)}
-.questions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px;counter-reset:q}
-.q{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px 12px 40px;position:relative;font-size:.86rem}
-.q::before{counter-increment:q;content:counter(q);position:absolute;left:13px;top:12px;width:19px;height:19px;border-radius:50%;background:var(--accent);color:var(--accent-text);font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center}
-.founder-actions{display:flex;flex-wrap:wrap;gap:10px}
 
 /* ---------- Charts ---------- */
 .chart-panel{display:grid;gap:8px;min-width:0}
@@ -401,7 +304,6 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
   .hero::after{opacity:.28;right:-170px}
   .split{grid-template-columns:1fr}
   .chart-grid{grid-template-columns:1fr}
-  .questions{grid-template-columns:1fr}
 }
 @media (max-width:760px){
   .nav-inner{gap:10px;padding:6px 14px}
@@ -414,37 +316,41 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
   .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
   .section{padding:42px 0}
   .method-grid{grid-template-columns:1fr}
-  .fields{grid-template-columns:1fr}
-  .fields dt{padding:9px 0 0;border-bottom:0}
-  .fields dd{padding:3px 0 10px}
-  .dlg-head{padding:15px 15px 11px}
-  .dlg-body{padding:12px 15px 20px}
-  .explorer{padding:13px}
-  .idea-card{padding:13px}
 }
 @media (max-width:430px){
   .hero h1{max-width:none}
   .tile{padding:11px 12px}
   .brand{font-size:.92rem}
   .nav-links{gap:0}
-  .card-top{align-items:flex-start;flex-direction:column;gap:4px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
 }
+/* ---------- Hero-Bild (KI-Illustration) ---------- */
+.hero-art{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center 42%;background-repeat:no-repeat;opacity:.5;pointer-events:none}
+.hero-art::after{content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,rgba(6,9,24,.95) 0%,rgba(6,9,24,.86) 34%,rgba(6,9,24,.42) 66%,rgba(6,9,24,.6) 100%),
+    linear-gradient(180deg,rgba(6,9,24,.35) 0%,rgba(6,9,24,0) 40%,rgba(6,9,24,.85) 100%);
+}
+.hero .stars{z-index:0}
+#universum{scroll-margin-top:70px}
+@media (max-width:760px){
+  .hero-art{opacity:.38;background-position:center 30%}
+}
+__UNIVERSE_CSS__
 </style>
 </head>
 <body>
-<a class="skip" href="#entdecken">Zur Ideenliste springen</a>
+<a class="skip" href="#universum">Zum Ideen-Universum springen</a>
 
 <header class="nav">
   <div class="nav-inner">
     <a class="brand" href="#top" aria-label="Sci-Fi-Ideen-Bank – zum Seitenanfang"><span class="brand-mark" aria-hidden="true">◈</span><span>Sci-Fi-Ideen-Bank</span></a>
     <nav class="nav-links" aria-label="Abschnitte">
       <a href="#worum">Worum geht es?</a>
-      <a href="#entdecken">Entdecken</a>
-      <a href="#zufall">Gründer-Modus</a>
+      <a href="#universum">Universum</a>
       <a href="#daten">Daten</a>
       <a href="#startups">Startups</a>
       <a href="#weiterlesen">Weiterlesen</a>
@@ -460,14 +366,15 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
 <main id="top">
   <!-- ============ HERO ============ -->
   <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-art" id="hero-art" aria-hidden="true" hidden></div>
     <div class="stars" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <p class="eyebrow">Eine durchsuchbare Ideenbank · Stand 21.11.2026</p>
       <h1 id="hero-title">Sci-Fi-Ideen-Bank: <span class="accent">__TOTAL_DOT__ Ideen</span> aus der Science-Fiction entdecken</h1>
-      <p class="lede">Seit 1634 schreiben Menschen über Technik, die es noch nicht gibt. Hier sind __TOTAL_DOT__ solcher Ideen gesammelt: gebaut, halb gebaut oder noch frei. Suche, filtere und finde heraus, was heute möglich wäre.</p>
+      <p class="lede">Seit 1634 schreiben Menschen über Technik, die es noch nicht gibt. Hier sind __TOTAL_DOT__ solcher Ideen gesammelt: gebaut, halb gebaut oder noch frei. Jede Idee ist ein Stern auf einer Karte – such, spring und finde heraus, was heute möglich wäre.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#entdecken">Ideen entdecken</a>
-        <a class="btn btn-ghost" href="#zufall">Zufallsidee ziehen</a>
+        <a class="btn btn-primary" href="#universum">Ins Universum</a>
+        <button class="btn btn-ghost" type="button" data-hero="surprise">Überrasch mich</button>
       </div>
       <ul class="tiles">
         <li class="tile"><b>__TOTAL_DOT__</b><span>Ideen gesamt · aus __AUTHORS_DOT__ Autor:innen</span></li>
@@ -515,135 +422,22 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
             <li>Viele Ideen warten auf billigere Energie, bessere Materialien oder schnellere Chips.</li>
             <li>Diese Seite macht die Tabelle durchsuchbar und zeigt ihre Lücken.</li>
           </ul>
-          <p class="hint">Direkt ausprobieren: <a href="#entdecken">Entdecken</a> · <a href="#zufall">Gründer-Modus</a> · <a href="#daten">Grafiken</a></p>
+          <p class="hint">Direkt ausprobieren: <a href="#universum">Ideen-Universum</a> · <a href="#daten">Grafiken</a></p>
         </aside>
       </div>
     </div>
   </section>
 
-  <!-- ============ ENTDECKEN ============ -->
-  <section id="entdecken" class="section section-alt">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="kicker">02 · Entdecken</p>
-        <h2>Finde die Idee, die heute dran ist</h2>
-        <p>Suche in Namen, Beschreibungen, Werken, Autor:innen, Produkten und Firmen. Alle Filter lassen sich kombinieren. Ein Klick auf eine Karte zeigt alle Angaben.</p>
-      </div>
-
-      <div class="explorer" id="explorer">
-        <div class="search-wrap">
-          <span class="search-icon" aria-hidden="true">⌕</span>
-          <label class="sr-only" for="q">Ideen durchsuchen</label>
-          <input id="q" type="search" placeholder="Name, Werk, Autor:in, Firma …" autocomplete="off" spellcheck="false">
-        </div>
-
-        <div class="filters">
-          <fieldset class="filter-group">
-            <legend>Status</legend>
-            <div class="chips" id="status-chips">
-              <button class="chip" type="button" data-status="Yes" aria-pressed="false"><span class="dot dot-yes" aria-hidden="true"></span>Gebaut <span class="chip-count">__C_BUILT__</span></button>
-              <button class="chip" type="button" data-status="No" aria-pressed="false"><span class="dot dot-no" aria-hidden="true"></span>Nicht gebaut <span class="chip-count">__C_NO__</span></button>
-              <button class="chip" type="button" data-status="Partial" aria-pressed="false"><span class="dot dot-partial" aria-hidden="true"></span>Teilweise <span class="chip-count">__C_PARTIAL__</span></button>
-              <button class="chip" type="button" data-status="" aria-pressed="false"><span class="dot dot-unknown" aria-hidden="true"></span>Unbekannt <span class="chip-count">__C_UNKNOWN__</span></button>
-            </div>
-          </fieldset>
-
-          <fieldset class="filter-group">
-            <legend>Bits oder Atome</legend>
-            <div class="chips" id="ba-chips">
-              <button class="chip" type="button" data-ba="Bits" aria-pressed="false"><span class="dot dot-bits" aria-hidden="true"></span>Bits <span class="chip-count">__C_BITS__</span></button>
-              <button class="chip" type="button" data-ba="Atoms" aria-pressed="false"><span class="dot dot-atoms" aria-hidden="true"></span>Atome <span class="chip-count">__C_ATOMS__</span></button>
-              <button class="chip" type="button" data-ba="Both" aria-pressed="false"><span class="dot dot-both" aria-hidden="true"></span>Beides <span class="chip-count">__C_BOTH__</span></button>
-            </div>
-          </fieldset>
-
-          <details class="cats" id="cat-details">
-            <summary>Kategorien <span class="muted">(__N_CATS__ · Mehrfachauswahl)</span></summary>
-            <div class="chips" id="cat-chips"></div>
-          </details>
-
-          <div class="filter-row">
-            <div class="field">
-              <span>Jahr in der Geschichte</span>
-              <div class="year-row">
-                <input id="y1" type="number" inputmode="numeric" min="1634" max="2026" placeholder="von" aria-label="Jahr von">
-                <input id="y2" type="number" inputmode="numeric" min="1634" max="2026" placeholder="bis" aria-label="Jahr bis">
-              </div>
-            </div>
-            <div class="field">
-              <label for="author">Autor:in</label>
-              <select id="author" class="select"><option value="">Alle Autor:innen</option></select>
-            </div>
-            <label class="check"><input id="co-only" type="checkbox"> nur mit Startups</label>
-            <div class="field">
-              <label for="sort">Sortieren</label>
-              <select id="sort" class="select">
-                <option value="year-desc">Jahr absteigend</option>
-                <option value="year-asc">Jahr aufsteigend</option>
-                <option value="name">Name (A–Z)</option>
-                <option value="wait">Längste Wartezeit</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="result-bar">
-          <p class="result-count" id="result-count" aria-live="polite">__TOTAL_DOT__ Ideen gefunden</p>
-          <button id="reset-filters" class="linkbtn" type="button" hidden>Filter zurücksetzen</button>
-          <span class="hint" id="hash-note" hidden>Ansicht aus dem Link geladen.</span>
-        </div>
-
-        <div id="results" class="cards" aria-label="Suchergebnisse"></div>
-        <div class="more-wrap">
-          <button id="more" class="btn" type="button" hidden>Mehr laden</button>
-          <span id="more-note" class="muted" style="font-size:.78rem"></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ ZUFALL ============ -->
-  <section id="zufall" class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="kicker">03 · Gründer-Modus</p>
-        <h2>Eine Idee, die noch niemand gebaut hat</h2>
-        <p>Zufall ist ein guter Anfang. Der Generator zieht eine Idee, die in der Tabelle nicht als gebaut markiert ist – auf Wunsch nur aus deiner aktuellen Suche.</p>
-      </div>
-      <div class="split">
-        <div class="founder panel">
-          <div class="founder-head">
-            <h3>Deine Zufallsidee</h3>
-            <label class="check"><input id="respect-filters" type="checkbox" checked> aktuelle Filter beachten</label>
-          </div>
-          <div id="random-card" class="random-card" aria-live="polite">
-            <p class="muted">Noch keine Idee gezogen. Klick auf „Zufallsidee“.</p>
-          </div>
-          <div class="founder-actions">
-            <button id="random-btn" class="btn btn-primary" type="button">Zufallsidee ziehen</button>
-            <button id="random-next" class="btn" type="button">Nächste Idee</button>
-          </div>
-        </div>
-        <aside class="aside-box">
-          <h3>Die drei Fragen</h3>
-          <div class="questions" style="grid-template-columns:1fr">
-            <div class="q">Welche Technik fehlt noch?</div>
-            <div class="q">Wer würde dafür zahlen?</div>
-            <div class="q">Was wäre ein erster kleiner Schritt?</div>
-          </div>
-          <p class="hint">Tipp: Die Detailansicht zeigt, wann eine ähnliche Idee erstmals gebaut wurde. Das verrät, welche Bausteine schon existieren.</p>
-        </aside>
-      </div>
-    </div>
-  </section>
+  <!-- ============ UNIVERSUM ============ -->
+  __UNIVERSE_HTML__
 
   <!-- ============ DATEN ============ -->
   <section id="daten" class="section section-alt">
     <div class="wrap">
       <div class="section-head">
-        <p class="kicker">04 · Daten</p>
+        <p class="kicker">03 · Daten</p>
         <h2>Was __TOTAL_DOT__ Ideen über Fortschritt verraten</h2>
-        <p>Alle Grafiken rechnen nur mit den Daten in dieser Datei. Ein Klick auf Balken oder Punkte setzt einen Filter in der Ideenliste. Fahr mit der Maus darüber für genaue Zahlen. Auf kleinen Bildschirmen lassen sich die Grafiken seitlich scrollen.</p>
+        <p>Alle Grafiken rechnen nur mit den Daten in dieser Datei. Ein Klick auf einen Balken öffnet das Ideen-Universum mit passendem Filter, ein Klick auf einen Punkt öffnet die Idee. Fahr mit der Maus darüber für genaue Zahlen. Auf kleinen Bildschirmen lassen sich die Grafiken seitlich scrollen.</p>
       </div>
 
       <div class="chart-grid">
@@ -675,7 +469,7 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
           <h3>Top 15 Autor:innen</h3>
           <p class="chart-sub">Wer hatte in allen __TOTAL_DOT__ Einträgen die meisten Ideen? Der dunkle Teil des Balkens ist gebaut.</p>
           <div class="chart-box narrow" id="chart-authors"></div>
-          <p class="hint">Philip K. Dick führt mit __PKD_TOTAL__ Ideen (davon __PKD_COUNT__ aus der Tabelle), 60 gebaut. Klick auf einen Namen filtert die Ideenliste.</p>
+          <p class="hint">Philip K. Dick führt mit __PKD_TOTAL__ Ideen (davon __PKD_COUNT__ aus der Tabelle), 60 gebaut. Klick auf einen Namen filtert das Universum.</p>
         </div>
 
         <div class="panel chart-panel full">
@@ -715,7 +509,7 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
               <h4 style="font-size:.95rem;margin-bottom:6px">Was fällt auf?</h4>
               <p style="font-size:.85rem">Der Median liegt für Bits und Atome fast gleich bei etwa 30 Jahren. Der Mittelwert ist bei Atomen aber deutlich höher: Einzelne Ideen warten über 100 Jahre, und die ziehen den Durchschnitt nach oben.</p>
               <p style="font-size:.85rem">Die ältesten Punkte stammen aus dem 17. Jahrhundert. Bei ihnen ist „erstmals gebaut“ oft großzügig geschätzt – etwa bei Keplers Idee der Schwerelosigkeit. Die Liste ist ein Hinweis, keine exakte Messung.</p>
-              <p class="hint">Klick auf einen Punkt öffnet die Detailansicht. Fahr mit der Maus darüber für Name und Wartezeit.</p>
+              <p class="hint">Klick auf einen Punkt oder einen Eintrag der Warteliste öffnet die Idee im Universum. Fahr mit der Maus darüber für Name und Wartezeit.</p>
             </div>
           </div>
         </div>
@@ -727,7 +521,7 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
   <section id="startups" class="section">
     <div class="wrap">
       <div class="section-head">
-        <p class="kicker">05 · Startups</p>
+        <p class="kicker">04 · Startups</p>
         <h2>Firmen, die Sci-Fi wahr machen</h2>
         <p>Diese vier Beispiele stehen in der Datenbank – und es gibt sie wirklich. Die Statusangaben stammen aus den verlinkten Quellen (Stand November 2026), nicht aus der Tabelle von 2023.</p>
       </div>
@@ -736,7 +530,7 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
       </div>
       <div class="community panel">
         <h3>Aus der Hivemind-Tabelle: weitere Namen</h3>
-        <p>Leser:innen haben in der bearbeitbaren Gemeinschaftstabelle diese Firmen zu Ideen notiert. Wir zeigen den Hinweis, prüfen aber keinen Firmenstatus. Ein Klick sucht die passende Idee in der Ideenliste.</p>
+        <p>Leser:innen haben in der bearbeitbaren Gemeinschaftstabelle diese Firmen zu Ideen notiert. Wir zeigen den Hinweis, prüfen aber keinen Firmenstatus. Ein Klick sucht die passende Idee im Universum.</p>
         <ul class="community-list">
           __COMMUNITY_ITEMS__
         </ul>
@@ -748,7 +542,7 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
   <section id="weiterlesen" class="section section-alt">
     <div class="wrap">
       <div class="section-head">
-        <p class="kicker">06 · Weiterlesen</p>
+        <p class="kicker">05 · Weiterlesen</p>
         <h2>Verwandte Quellen</h2>
         <p>Wer tiefer einsteigen will: Diese Texte prüfen Sci-Fi-Ideen gegen die Wirklichkeit, erklären die Methode oder sammeln Gegenbeispiele. Jede Karte hat das Original und eine lokale Kopie.</p>
       </div>
@@ -760,7 +554,7 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
   <section id="methode" class="section">
     <div class="wrap">
       <div class="section-head">
-        <p class="kicker">07 · Methode &amp; Grenzen</p>
+        <p class="kicker">06 · Methode &amp; Grenzen</p>
         <h2>Wie die Daten entstanden sind – und wo sie irren</h2>
         <p>Diese Seite ist aus zwei Quellen gebaut: der Google-Tabelle von 2023 und der aktuellen Technovelgy-Zeitleiste. Beides wurde zusammengeführt und geprüft. Perfekt ist es nicht.</p>
       </div>
@@ -782,7 +576,9 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
             <li><strong>Der Status ist eine KI-Schätzung von 2023.</strong> Claude hat die Spalte „gebaut?“ gefüllt. Es fehlen Treffer, und manche Angaben sind zu großzügig <a class="cite" href="#q1">[1]</a><a class="cite" href="#q3">[3]</a>.</li>
             <li><strong>Vage Urheber.</strong> 204-mal steht „Engineers“, 139-mal „Various“, 43-mal „NASA“. Das ist keine Firma und kein Produkt.</li>
             <li><strong>Unmögliche Jahre.</strong> __N_NEG__ gebaute Zeilen haben ein Baujahr vor dem Jahr der Geschichte. Sie werden in der Wartezeit-Grafik ausgeschlossen. Auch sonst sind Baujahre oft gerundet.</li>
-            <li><strong>Beschreibungen sind englisch.</strong> Die Originaltexte von Technovelgy wurden nicht übersetzt, damit nichts verloren geht. Die Oberfläche ist deutsch.</li>
+            <li><strong>Namen und Texte sind maschinell übersetzt.</strong> KI-Agenten (DeepSeek V4.1 Flash) haben Namen, Beschreibungen, Produkte und Hinweise ins Deutsche übertragen; ein Skript prüft, ob alle Felder gefüllt sind. Übersetzungsfehler sind möglich. Das englische Original steht in jeder Detailansicht.</li>
+            <li><strong>Die Karte.</strong> Die Ähnlichkeit kommt aus der Textbedeutung: Das Embedding-Modell bge-small-en-v1.5 liest Name und Beschreibung, UMAP ordnet die Ideen in zwei Dimensionen an, k-Means teilt sie in 24 Gruppen. Die Sternbild-Namen sind redaktionell vergeben. Nah beieinander heißt ähnlich formuliert – nicht zwingend technisch verwandt.</li>
+            <li><strong>Bilder.</strong> Hero- und Sternbild-Bilder sind KI-generierte Illustrationen, keine Abbildungen echter Technik <a class="cite" href="#q25">[25]</a>.</li>
             <li><strong>Die Hivemind-Tabelle war teils durcheinander.</strong> Übernommen wurden nur __N_STARTUP_IDEAS__ plausible Einträge mit einer Firma (z. B. Varda, AstroForge, Hadrian) – ohne Garantie auf Vollständigkeit.</li>
             <li><strong>Eine Kategorie fehlt.</strong> Die Technovelgy-Liste „Output Devices“ ließ sich nicht laden. 261 Ideen haben gar keine Kategorie.</li>
             <li><strong>Kein Anspruch auf Wahrheit.</strong> Die Tabelle ist ein Ideenwerkzeug. Wer eine Idee bauen will, muss selbst prüfen, was heute technisch und wirtschaftlich geht.</li>
@@ -791,10 +587,12 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
         <div class="panel">
           <h3>Was diese Seite hinzufügt</h3>
           <ul>
-            <li>Die Tabelle und die Technovelgy-Zeitleiste sind zusammengeführt und über eine ID durchsuchbar.</li>
-            <li>Jede Idee hat eine Detailansicht mit allen Feldern, Technovelgy-Verweis und einer Websuche „Wer baut das heute?“.</li>
-            <li>Filter, Sortierung und Suchbegriffe stehen im URL-Hash – ein gefilterter Blick lässt sich teilen.</li>
-            <li>Grafiken werden aus den Rohdaten gerechnet, nicht abgeschrieben. Die Wartezeit-Grafik nutzt nur gültige Paare aus Jahr der Geschichte und Baujahr.</li>
+            <li>Die Tabelle und die Technovelgy-Zeitleiste sind zusammengeführt und über eine ID verbunden.</li>
+            <li>Jede Idee ist ein Stern auf einer Karte. Ähnliche Ideen liegen nah beieinander, 24 Sternbilder fassen Themen zusammen.</li>
+            <li>Der Zeitstrom zeigt Ideen nach Jahr, die Wartezeit zeigt, wie lange eine Idee auf die Wirklichkeit wartet. Die Zeitmaschine spielt 1634 bis 2026 ab.</li>
+            <li>Die Brücke findet den kürzesten Weg zwischen zwei Ideen, die Gedankenreise springt von Nachbar zu Nachbar.</li>
+            <li>Jede Idee hat eine Detailansicht mit allen Feldern, englischem Original, Technovelgy-Verweis und einer Websuche „Wer baut das heute?“.</li>
+            <li>Filter und geöffnete Ideen stehen im URL-Hash (<code>#idee=…</code>) – ein Blick lässt sich teilen.</li>
             <li>Die Seite ist eine einzige HTML-Datei ohne externe Bibliotheken und funktioniert ohne Internet.</li>
           </ul>
         </div>
@@ -816,9 +614,9 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
   <section id="quellen" class="section section-alt">
     <div class="wrap">
       <div class="section-head">
-        <p class="kicker">08 · Quellen</p>
+        <p class="kicker">07 · Quellen</p>
         <h2>Quellen und lokale Kopien</h2>
-        <p>Alle Originalseiten wurden am 21.11.2026 abgerufen. Die lokalen Kopien liegen neben dieser Datei im Ordner <code>sources/</code> und funktionieren ohne Internet.</p>
+        <p>Alle Originalseiten wurden am 21.11.2026 abgerufen. Die lokalen Kopien liegen neben dieser Datei in <code>sources/</code> und <code>work/</code> und funktionieren ohne Internet.</p>
       </div>
       <ol class="sources">
         __SOURCE_ITEMS__
@@ -835,26 +633,16 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
 </footer>
 
 <noscript>
-  <div class="wrap" style="padding:20px"><p><strong>JavaScript ist aus.</strong> Die Texte und Quellen sind lesbar, aber Suche, Filter und Grafiken brauchen JavaScript.</p></div>
+  <div class="wrap" style="padding:20px"><p><strong>JavaScript ist aus.</strong> Die Texte und Quellen sind lesbar, aber die Sternenkarte und die Grafiken brauchen JavaScript.</p></div>
 </noscript>
 
 <div class="chart-tip" id="chart-tip" hidden></div>
 
-<dialog id="idea-dialog" aria-labelledby="dlg-title">
-  <div class="dlg-head">
-    <div>
-      <p class="dlg-year" id="dlg-year"></p>
-      <h2 id="dlg-title">Idee</h2>
-      <div class="badges" id="dlg-badges"></div>
-    </div>
-    <button class="iconbtn" id="dlg-close" type="button" aria-label="Dialog schließen">×</button>
-  </div>
-  <div class="dlg-body" id="dlg-body"></div>
-</dialog>
-
 <script type="application/json" id="sfib-ideas">__IDEAS_JSON__</script>
 <script type="application/json" id="sfib-stats">__STATS_JSON__</script>
 <script type="application/json" id="sfib-related">__RELATED_JSON__</script>
+<script type="application/json" id="sfib-universe">__UNIVERSE_JSON__</script>
+<script type="application/json" id="sfib-images">__IMAGES_JSON__</script>
 <script>
 (function () {
   "use strict";
@@ -890,7 +678,12 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
     box.textContent = "Es gab ein Problem beim Aufbau der Seite: " + msg;
     document.documentElement.setAttribute("data-error", "1");
   }
-  window.addEventListener("error", (ev) => fatal(ev.message || "Unbekannter Fehler"));
+  window.addEventListener("error", (ev) => {
+    const msg = ev.message || "";
+    /* Der ResizeObserver des Universums meldet sich manchmal selbst – das ist harmlos. */
+    if (/ResizeObserver loop/i.test(msg)) return;
+    fatal(msg || "Unbekannter Fehler");
+  });
   window.addEventListener("unhandledrejection", (ev) => fatal(String(ev.reason || "Unbekannter Fehler")));
 
   function readJSON(id) {
@@ -899,7 +692,7 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
     return JSON.parse(el.textContent);
   }
 
-  let IDEAS, STATS;
+  let IDEAS, STATS, UNI = null, IMAGES = null;
   try {
     IDEAS = readJSON("sfib-ideas").ideas;
     STATS = readJSON("sfib-stats");
@@ -908,496 +701,62 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
     return;
   }
   if (!Array.isArray(IDEAS) || IDEAS.length === 0) {
-    fatal("Die Ideenliste ist leer.");
+    fatal("Die Ideendaten sind leer.");
     return;
   }
+  try { UNI = readJSON("sfib-universe"); } catch (err) { UNI = null; }
+  try { IMAGES = readJSON("sfib-images"); } catch (err) { IMAGES = null; }
 
-  /* ------------------------------------------------------------------ */
-  /* Precompute                                                          */
-  /* ------------------------------------------------------------------ */
-  const byId = new Map();
-  for (const x of IDEAS) {
-    x._hay = [x.n, x.d, x.nv, x.a, x.p, x.w, x.co, (x.c || []).join(" ")]
-      .join(" ")
-      .toLowerCase();
-    x._gap = x.fyn && x.y && x.fyn >= x.y ? x.fyn - x.y : -1;
-    byId.set(x.id, x);
-  }
-
-  const STATUS = {
-    Yes: { label: "Gebaut", cls: "st-yes" },
-    No: { label: "Nicht gebaut", cls: "st-no" },
-    Partial: { label: "Teilweise", cls: "st-partial" },
-    "": { label: "Unbekannt", cls: "st-unknown" },
-  };
-  const BA = { Bits: "Bits", Atoms: "Atome", Both: "Beides", "": "Unbekannt" };
-  const SOURCE = {
-    sheet: "Nur Tabelle",
-    technovelgy: "Nur Technovelgy",
-    both: "Tabelle + Technovelgy",
-  };
-  const statusMeta = (b) => STATUS[b || ""] || STATUS[""];
-  const baClass = (ba) => (ba === "Bits" ? "ba-bits" : ba === "Atoms" ? "ba-atoms" : ba === "Both" ? "ba-both" : "");
-  const baBadge = (ba) => (ba ? '<span class="badge ' + baClass(ba) + '">' + BA[ba] + "</span>" : "");
-  const statusBadge = (b) => {
-    const m = statusMeta(b);
-    return '<span class="badge ' + m.cls + '">' + m.label + "</span>";
-  };
-
-  const allCats = new Set();
-  const catCounts = new Map();
-  const authorCounts = new Map();
-  for (const x of IDEAS) {
-    for (const c of x.c || []) {
-      allCats.add(c);
-      catCounts.set(c, (catCounts.get(c) || 0) + 1);
+  /* Deutsche Namen und Kategorien aus dem Universum-Payload */
+  const uniById = new Map();
+  const uniByEn = new Map();
+  const catDe = new Map();
+  if (UNI) {
+    for (const u of UNI.ideas || []) {
+      uniById.set(u.id, u);
+      if (u.ne) uniByEn.set(((u.ne || "").trim() + "|" + (u.a || "").trim()).toLowerCase(), u);
     }
-    if (x.a) authorCounts.set(x.a, (authorCounts.get(x.a) || 0) + 1);
-  }
-
-  /* ------------------------------------------------------------------ */
-  /* State, sorting, filtering                                           */
-  /* ------------------------------------------------------------------ */
-  const state = {
-    q: "",
-    st: new Set(),
-    ba: new Set(),
-    cat: new Set(),
-    from: null,
-    to: null,
-    author: "",
-    co: false,
-    sort: "year-desc",
-  };
-  let queryTerms = [];
-  let filtered = IDEAS.slice();
-  let shown = 0;
-  const PAGE = 48;
-
-  function setQuery(q) {
-    state.q = q;
-    queryTerms = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
-  }
-
-  function resetState() {
-    state.q = "";
-    state.st.clear();
-    state.ba.clear();
-    state.cat.clear();
-    state.from = null;
-    state.to = null;
-    state.author = "";
-    state.co = false;
-    state.sort = "year-desc";
-    queryTerms = [];
-  }
-
-  function hasFilters() {
-    return (
-      !!state.q ||
-      state.st.size > 0 ||
-      state.ba.size > 0 ||
-      state.cat.size > 0 ||
-      state.from !== null ||
-      state.to !== null ||
-      !!state.author ||
-      state.co
-    );
-  }
-
-  function matches(x) {
-    if (state.st.size && !state.st.has(x.b || "")) return false;
-    if (state.ba.size && !state.ba.has(x.ba || "")) return false;
-    if (state.cat.size) {
-      let hit = false;
-      for (const c of x.c || []) {
-        if (state.cat.has(c)) { hit = true; break; }
-      }
-      if (!hit) return false;
-    }
-    if (state.from !== null && x.y < state.from) return false;
-    if (state.to !== null && x.y > state.to) return false;
-    if (state.author && x.a !== state.author) return false;
-    if (state.co && !x.co) return false;
-    if (queryTerms.length) {
-      for (const t of queryTerms) {
-        if (!x._hay.includes(t)) return false;
-      }
-    }
-    return true;
-  }
-
-  function sortIdeas(a, b) {
-    switch (state.sort) {
-      case "year-asc":
-        return a.y - b.y || coll.compare(a.n, b.n);
-      case "name":
-        return coll.compare(a.n, b.n) || a.y - b.y;
-      case "wait":
-        return b._gap - a._gap || b.y - a.y || coll.compare(a.n, b.n);
-      case "year-desc":
-      default:
-        return b.y - a.y || coll.compare(a.n, b.n);
-    }
-  }
-
-  /* ------------------------------------------------------------------ */
-  /* Cards and results                                                   */
-  /* ------------------------------------------------------------------ */
-  const results = $("#results");
-  const resultCount = $("#result-count");
-  const moreBtn = $("#more");
-  const moreNote = $("#more-note");
-  const resetBtn = $("#reset-filters");
-
-  function cardHTML(x) {
-    const cats = x.c || [];
-    const catText = cats.length
-      ? esc(cats.slice(0, 2).join(" · ")) + (cats.length > 2 ? " +" + (cats.length - 2) : "")
-      : "";
-    const meta = [x.nv, x.a].filter(Boolean).join(" · ");
-    return (
-      '<article class="idea-card" role="button" tabindex="0" data-id="' + x.id +
-      '" aria-label="' + esc((x.n || "Idee") + ", " + x.y + ". Details öffnen.") + '">' +
-        '<div class="card-top"><span class="year">' + x.y + "</span>" + statusBadge(x.b) + "</div>" +
-        "<h3>" + esc(x.n || "Ohne Namen") + "</h3>" +
-        '<p class="meta">' + esc(meta || "Werk unbekannt") + "</p>" +
-        '<p class="desc">' + (x.d ? esc(x.d) : '<span class="muted">Keine Beschreibung.</span>') + "</p>" +
-        '<div class="card-foot">' + baBadge(x.ba) + '<span class="cats" title="' + esc(cats.join(", ")) + '">' + catText + "</span></div>" +
-      "</article>"
-    );
-  }
-
-  function renderResults(reset) {
-    if (reset) {
-      results.innerHTML = "";
-      shown = 0;
-    }
-    const slice = filtered.slice(shown, shown + PAGE);
-    if (slice.length) {
-      results.insertAdjacentHTML("beforeend", slice.map(cardHTML).join(""));
-      shown += slice.length;
-    }
-    if (!filtered.length) {
-      results.innerHTML =
-        '<div class="empty">Keine Idee passt zu diesen Filtern.<br>Versuche es mit weniger Bedingungen oder setze die Filter zurück.</div>';
-    }
-    resultCount.innerHTML =
-      "<strong>" + nf(filtered.length) + "</strong> " +
-      (filtered.length === 1 ? "Idee gefunden" : "Ideen gefunden") +
-      ' <span>von ' + nf(IDEAS.length) + "</span>";
-    moreBtn.hidden = shown >= filtered.length;
-    moreNote.textContent = filtered.length
-      ? nf(shown) + " von " + nf(filtered.length) + " angezeigt"
-      : "";
-    resetBtn.hidden = !hasFilters();
-  }
-
-  function applyFilters(opts) {
-    const options = opts || {};
-    filtered = IDEAS.filter(matches);
-    filtered.sort(sortIdeas);
-    renderResults(true);
-    syncChips();
-    if (options.hash !== false) writeHash();
-  }
-
-  function toggleSet(set, value) {
-    if (set.has(value)) set.delete(value);
-    else set.add(value);
-  }
-
-  function syncChips() {
-    $$("#status-chips .chip").forEach((b) => {
-      b.setAttribute("aria-pressed", String(state.st.has(b.dataset.status || "")));
-    });
-    $$("#ba-chips .chip").forEach((b) => {
-      b.setAttribute("aria-pressed", String(state.ba.has(b.dataset.ba || "")));
-    });
-    $$("#cat-chips .chip").forEach((b) => {
-      b.setAttribute("aria-pressed", String(state.cat.has(b.dataset.cat || "")));
+    (UNI.catsEn || []).forEach((en, i) => {
+      const de = (UNI.cats || [])[i];
+      if (de) catDe.set(en, de);
     });
   }
+  const deName = (x) => {
+    const u = uniById.get(x.id);
+    return (u && u.n) || x.n || "Ohne Namen";
+  };
+  const catLabel = (en) => catDe.get(en) || en;
+  const enKey = (name, author) => ((name || "").trim() + "|" + (author || "").trim()).toLowerCase();
 
-  /* ------------------------------------------------------------------ */
-  /* Detail dialog                                                       */
-  /* ------------------------------------------------------------------ */
-  const dlg = $("#idea-dialog");
-  const dlgBody = $("#dlg-body");
-
-  function field(label, value, raw) {
-    return "<dt>" + esc(label) + "</dt><dd>" + (raw ? value : esc(value == null || value === "" ? "—" : value)) + "</dd>";
+  /* Das Universum-Skript läuft nach diesem Skript – die API wird erst
+     beim Klick gebraucht, nicht beim Laden. */
+  function universe() { return window.SFIB_UNIVERSE || null; }
+  function uniApply(filter) {
+    let tries = 0;
+    (function run() {
+      const U = universe();
+      if (U) { U.applyFilter(filter); return; }
+      if (tries++ < 40) setTimeout(run, 150);
+    })();
+  }
+  function uniOpen(id) {
+    let tries = 0;
+    (function run() {
+      const U = universe();
+      if (U) { U.openIdea(id); return; }
+      if (tries++ < 40) setTimeout(run, 150);
+    })();
   }
 
-  function openIdea(id) {
-    const x = byId.get(id);
-    if (!x) return;
-    const gap = x.fyn && x.y && x.fyn >= x.y ? x.fyn - x.y : null;
-    const gapValue = gap !== null
-      ? "<strong>" + nf(gap) + " Jahre</strong>"
-      : '<span class="muted">nicht berechenbar</span>';
-    const gapNote = x.fyn && x.y && x.fyn < x.y
-      ? ' <span class="mini-note" style="display:inline-block;margin-left:6px">Das Baujahr liegt vor dem Jahr der Geschichte – vermutlich ein Datenfehler.</span>'
-      : "";
-    const cats = (x.c || []).map((c) => '<span class="tag">' + esc(c) + "</span>").join("");
-    let links = "";
-    if (x.tv) {
-      links +=
-        '<a class="btn btn-small" href="http://www.technovelgy.com/ct/content.asp?Bnum=' + Number(x.tv) +
-        '" target="_blank" rel="noopener">Bei Technovelgy lesen ↗</a>';
-    }
-    links +=
-      '<a class="btn btn-small" href="https://duckduckgo.com/?q=' + encodeURIComponent((x.n || "") + " Startup") +
-      '" target="_blank" rel="noopener">Wer baut das heute? ↗</a>';
-
-    $("#dlg-year").textContent = "Jahr in der Geschichte: " + x.y;
-    $("#dlg-title").textContent = x.n || "Idee ohne Namen";
-    $("#dlg-badges").innerHTML =
-      statusBadge(x.b) + baBadge(x.ba) +
-      (x.co ? '<span class="badge st-partial">Startup: ' + esc(x.co) + "</span>" : "");
-    dlgBody.innerHTML =
-      '<dl class="fields">' +
-        field("Jahr in der Geschichte", x.y) +
-        field("Werk", x.nv) +
-        field("Autor:in", x.a) +
-        field("Beschreibung (Original, Englisch)", x.d ? '<div class="quote">' + esc(x.d) + "</div>" : "", true) +
-        field("Gebaut?", statusMeta(x.b).label) +
-        field("Von wem", x.w) +
-        field("Echtes Produkt", x.p) +
-        field("Erstmals gebaut", x.fy || (x.fyn ? String(x.fyn) : "")) +
-        field("Wartezeit in Jahren", gapValue + gapNote, true) +
-        field("Hinweise", x.x) +
-        field("Bits oder Atome", BA[x.ba || ""]) +
-        field("Startups dran", x.co) +
-        field("Kategorien", cats || "—", !!cats) +
-        field("Quelle", SOURCE[x.s] || x.s || "") +
-      "</dl>" +
-      '<div class="dlg-actions">' + links + "</div>";
-
-    if (dlg.open) return;
-    if (typeof dlg.showModal === "function") dlg.showModal();
-    else dlg.setAttribute("open", "");
-  }
-
-  $("#dlg-close").addEventListener("click", () => dlg.close());
-  dlg.addEventListener("click", (ev) => {
-    if (ev.target === dlg) dlg.close();
-  });
-
   /* ------------------------------------------------------------------ */
-  /* Build author select and category chips                              */
+  /* Hero-Hintergrundbild (KI-Illustration aus dem Universum-Payload)    */
   /* ------------------------------------------------------------------ */
-  const authorSelect = $("#author");
-  const catChips = $("#cat-chips");
-
-  (function buildControls() {
-    const authors = Array.from(authorCounts.entries()).sort(
-      (a, b) => b[1] - a[1] || coll.compare(a[0], b[0])
-    );
-    authorSelect.insertAdjacentHTML(
-      "beforeend",
-      authors
-        .map(([a, n]) => '<option value="' + esc(a) + '">' + esc(a) + " (" + nf(n) + ")</option>")
-        .join("")
-    );
-    const cats = Array.from(catCounts.entries()).sort(
-      (a, b) => b[1] - a[1] || coll.compare(a[0], b[0])
-    );
-    catChips.innerHTML = cats
-      .map(
-        ([c, n]) =>
-          '<button class="chip" type="button" data-cat="' + esc(c) +
-          '" aria-pressed="false">' + esc(c) + ' <span class="chip-count">' + nf(n) + "</span></button>"
-      )
-      .join("");
+  (function heroBackground() {
+    const layer = $(".hero-art");
+    if (!layer || !IMAGES || !IMAGES.hero) return;
+    layer.style.backgroundImage = 'url("' + IMAGES.hero + '")';
+    layer.hidden = false;
   })();
-
-  /* ------------------------------------------------------------------ */
-  /* URL hash                                                            */
-  /* ------------------------------------------------------------------ */
-  const HASH_KEYS = ["q", "st", "ba", "cat", "y1", "y2", "a", "co", "sort"];
-  const SORT_VALUES = ["year-desc", "year-asc", "name", "wait"];
-
-  function writeHash() {
-    const p = new URLSearchParams();
-    if (state.q) p.set("q", state.q);
-    if (state.st.size) {
-      p.set("st", Array.from(state.st).map((v) => (v === "" ? "unknown" : v)).join(","));
-    }
-    if (state.ba.size) p.set("ba", Array.from(state.ba).join(","));
-    if (state.cat.size) p.set("cat", Array.from(state.cat).join(","));
-    if (state.from !== null) p.set("y1", String(state.from));
-    if (state.to !== null) p.set("y2", String(state.to));
-    if (state.author) p.set("a", state.author);
-    if (state.co) p.set("co", "1");
-    if (state.sort !== "year-desc") p.set("sort", state.sort);
-    const hash = p.toString();
-    const base = location.href.split("#")[0];
-    try {
-      history.replaceState(null, "", hash ? base + "#" + hash : base);
-    } catch (e) {
-      /* file:// in manchen Browsern – Filter funktionieren trotzdem. */
-    }
-  }
-
-  function loadHash(withScroll) {
-    const raw = location.hash.replace(/^#/, "");
-    if (!raw) return false;
-    const p = new URLSearchParams(raw);
-    if (!HASH_KEYS.some((k) => p.has(k))) return false;
-
-    resetState();
-    setQuery(p.get("q") || "");
-    const stRaw = p.get("st");
-    if (stRaw) {
-      stRaw.split(",").forEach((v) => {
-        const val = v === "unknown" ? "" : v;
-        if (val in STATUS) state.st.add(val);
-      });
-    }
-    const baRaw = p.get("ba");
-    if (baRaw) {
-      baRaw.split(",").forEach((v) => {
-        if (v && v in BA) state.ba.add(v);
-      });
-    }
-    const catRaw = p.get("cat");
-    if (catRaw) {
-      catRaw.split(",").forEach((v) => {
-        if (allCats.has(v)) state.cat.add(v);
-      });
-    }
-    const y1 = parseInt(p.get("y1"), 10);
-    const y2 = parseInt(p.get("y2"), 10);
-    state.from = Number.isFinite(y1) ? y1 : null;
-    state.to = Number.isFinite(y2) ? y2 : null;
-    const a = p.get("a") || "";
-    state.author = authorCounts.has(a) ? a : "";
-    state.co = p.get("co") === "1";
-    const s = p.get("sort") || "";
-    state.sort = SORT_VALUES.includes(s) ? s : "year-desc";
-
-    syncControls();
-    applyFilters({ hash: false });
-    $("#hash-note").hidden = false;
-    if (withScroll) setTimeout(scrollExplorer, 120);
-    return true;
-  }
-
-  function syncControls() {
-    $("#q").value = state.q;
-    $("#y1").value = state.from === null ? "" : String(state.from);
-    $("#y2").value = state.to === null ? "" : String(state.to);
-    authorSelect.value = state.author;
-    $("#co-only").checked = state.co;
-    $("#sort").value = state.sort;
-    if (state.cat.size) $("#cat-details").open = true;
-    syncChips();
-  }
-
-  function scrollExplorer() {
-    const el = document.getElementById("entdecken");
-    if (!el) return;
-    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-  }
-
-  /* ------------------------------------------------------------------ */
-  /* Control events                                                      */
-  /* ------------------------------------------------------------------ */
-  const qInput = $("#q");
-  let debounce = null;
-  qInput.addEventListener("input", () => {
-    const value = qInput.value;
-    clearTimeout(debounce);
-    debounce = setTimeout(() => {
-      setQuery(value);
-      applyFilters();
-    }, 180);
-  });
-  qInput.addEventListener("search", () => {
-    clearTimeout(debounce);
-    setQuery(qInput.value);
-    applyFilters();
-  });
-
-  $$("#status-chips .chip").forEach((b) => {
-    b.addEventListener("click", () => {
-      toggleSet(state.st, b.dataset.status || "");
-      applyFilters();
-    });
-  });
-  $$("#ba-chips .chip").forEach((b) => {
-    b.addEventListener("click", () => {
-      toggleSet(state.ba, b.dataset.ba || "");
-      applyFilters();
-    });
-  });
-  catChips.addEventListener("click", (ev) => {
-    const b = ev.target.closest(".chip[data-cat]");
-    if (!b) return;
-    toggleSet(state.cat, b.dataset.cat);
-    applyFilters();
-  });
-
-  $("#y1").addEventListener("change", (ev) => {
-    const v = parseInt(ev.target.value, 10);
-    state.from = Number.isFinite(v) ? v : null;
-    applyFilters();
-  });
-  $("#y2").addEventListener("change", (ev) => {
-    const v = parseInt(ev.target.value, 10);
-    state.to = Number.isFinite(v) ? v : null;
-    applyFilters();
-  });
-  authorSelect.addEventListener("change", (ev) => {
-    state.author = ev.target.value;
-    applyFilters();
-  });
-  $("#co-only").addEventListener("change", (ev) => {
-    state.co = ev.target.checked;
-    applyFilters();
-  });
-  $("#sort").addEventListener("change", (ev) => {
-    state.sort = ev.target.value;
-    applyFilters();
-  });
-  resetBtn.addEventListener("click", () => {
-    clearTimeout(debounce);
-    resetState();
-    syncControls();
-    applyFilters();
-    $("#hash-note").hidden = true;
-  });
-  moreBtn.addEventListener("click", () => renderResults(false));
-
-  results.addEventListener("click", (ev) => {
-    const card = ev.target.closest(".idea-card");
-    if (card) openIdea(Number(card.dataset.id));
-  });
-  results.addEventListener("keydown", (ev) => {
-    if (ev.key !== "Enter" && ev.key !== " ") return;
-    const card = ev.target.closest(".idea-card");
-    if (!card) return;
-    ev.preventDefault();
-    openIdea(Number(card.dataset.id));
-  });
-
-  document.addEventListener("click", (ev) => {
-    const b = ev.target.closest(".js-search-idea");
-    if (!b) return;
-    clearTimeout(debounce);
-    resetState();
-    setQuery(b.dataset.q || "");
-    syncControls();
-    applyFilters();
-    scrollExplorer();
-  });
-
-  window.addEventListener("hashchange", () => {
-    if (!location.hash || location.hash === "#") return;
-    if (loadHash(false)) $("#hash-note").hidden = false;
-  });
 
   /* ------------------------------------------------------------------ */
   /* Theme                                                               */
@@ -1454,7 +813,7 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
     const step = max > 600 ? 100 : max > 300 ? 50 : 20;
     const top = Math.ceil(max / step) * step;
     const bw = plotW / data.length;
-    let s = svgOpen(W, H, "Balkendiagramm: Ideen pro Jahrzehnt, gestapelt nach gebaut, nicht gebaut und unbekannt. Klick auf einen Balken filtert die Ideenliste.");
+    let s = svgOpen(W, H, "Balkendiagramm: Ideen pro Jahrzehnt, gestapelt nach gebaut, nicht gebaut und unbekannt. Klick auf einen Balken filtert das Universum.");
     for (let v = 0; v <= top; v += step) {
       const yy = T + plotH - (v / top) * plotH;
       s += '<line class="grid" x1="' + L + '" y1="' + yy.toFixed(1) + '" x2="' + (W - R) + '" y2="' + yy.toFixed(1) + '"/>';
@@ -1476,7 +835,7 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
       }
       const tip = d.d + "er · " + nf(d.total) + " Ideen · " + nf(d.yes) + " gebaut · " + nf(d.no) + " nicht gebaut · " + nf(d.unk) + " unbekannt";
       s += '<g class="clickable" data-y1="' + d.d + '" data-y2="' + Math.min(d.d + 9, 2026) +
-        '" data-tip="' + tipText(tip) + '" tabindex="0" role="button" aria-label="' + tipText(tip + ". Klick filtert die Ideenliste.") + '">';
+        '" data-tip="' + tipText(tip) + '" tabindex="0" role="button" aria-label="' + tipText(tip + ". Klick filtert das Universum.") + '">';
       s += '<rect x="' + (L + i * bw).toFixed(1) + '" y="' + T + '" width="' + bw.toFixed(1) + '" height="' + plotH + '" fill="transparent"/>';
       s += seg;
       s += '<text class="ax" transform="translate(' + (x0 + w / 2).toFixed(1) + "," + (T + plotH + 13) + ') rotate(-45)" text-anchor="end">' + d.d + "er</text>";
@@ -1511,7 +870,7 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
       const rate = r.count ? r.built / r.count : 0;
       const w = Math.max(1.5, plotW * rate);
       const tip = r.key + ": " + nf(r.count) + " Ideen, " + nf(r.built) + " gebaut (" + pct(r.built, r.count) + ")";
-      s += '<g class="clickable" data-ba="' + r.key + '" data-tip="' + tipText(tip) + '" tabindex="0" role="button" aria-label="' + tipText(tip + ". Klick filtert die Ideenliste.") + '">';
+      s += '<g class="clickable" data-ba="' + r.key + '" data-tip="' + tipText(tip) + '" tabindex="0" role="button" aria-label="' + tipText(tip + ". Klick filtert das Universum.") + '">';
       s += '<rect x="' + L + '" y="' + (T + i * rowH) + '" width="' + plotW + '" height="' + rowH + '" fill="transparent"/>';
       s += '<text class="ax-strong" x="' + (L - 9) + '" y="' + (cy + 4) + '" text-anchor="end">' + (r.key === "Atoms" ? "Atome" : r.key === "Both" ? "Beides" : "Bits") + "</text>";
       s += '<rect x="' + L + '" y="' + (cy - 12) + '" width="' + plotW + '" height="24" rx="5" fill="' + COL.nobuilt + '" opacity=".16"/>';
@@ -1547,7 +906,7 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
       const wb = plotW * (r.built / max);
       const label = r.author.length > 21 ? r.author.slice(0, 20) + "…" : r.author;
       const tip = r.author + ": " + nf(r.count) + " Ideen, " + nf(r.built) + " gebaut (" + pct(r.built, r.count) + ")";
-      s += '<g class="clickable" data-author="' + esc(r.author) + '" data-tip="' + tipText(tip) + '" tabindex="0" role="button" aria-label="' + tipText(tip + ". Klick filtert die Ideenliste.") + '">';
+      s += '<g class="clickable" data-author="' + esc(r.author) + '" data-tip="' + tipText(tip) + '" tabindex="0" role="button" aria-label="' + tipText(tip + ". Klick filtert das Universum.") + '">';
       s += '<rect x="0" y="' + (T + i * rowH).toFixed(1) + '" width="' + W + '" height="' + rowH.toFixed(1) + '" fill="transparent"/>';
       s += '<text class="ax" x="' + (L - 9) + '" y="' + (cy + 3.5).toFixed(1) + '" text-anchor="end">' + esc(label) + "</text>";
       s += '<rect x="' + L + '" y="' + (cy - 7).toFixed(1) + '" width="' + w.toFixed(1) + '" height="14" rx="3" fill="' + COL.nobuilt + '" opacity=".3"/>';
@@ -1560,6 +919,10 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
   }
 
   function renderCats() {
+    const catCounts = new Map();
+    for (const x of IDEAS) {
+      for (const c of x.c || []) catCounts.set(c, (catCounts.get(c) || 0) + 1);
+    }
     const cats = Array.from(catCounts.entries()).sort(
       (a, b) => b[1] - a[1] || coll.compare(a[0], b[0])
     );
@@ -1572,16 +935,17 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
     const W = 980, L = 154, R = 142, T = 8, B = 10, rowH = 21;
     const H = T + cats.length * rowH + B;
     const plotW = W - L - R;
-    let s = svgOpen(W, H, "Balkenliste: Alle Kategorien mit Anzahl der Ideen und Anteil gebaut. Klick filtert die Ideenliste.");
+    let s = svgOpen(W, H, "Balkenliste: Alle Kategorien mit Anzahl der Ideen und Anteil gebaut. Klick filtert das Universum.");
     cats.forEach(([name, count], i) => {
       const built = builtByCat.get(name) || 0;
       const cy = T + i * rowH + rowH / 2;
       const w = plotW * (count / max);
       const wb = plotW * (built / max);
-      const tip = name + ": " + nf(count) + " Ideen, " + nf(built) + " gebaut (" + pct(built, count) + ")";
-      s += '<g class="clickable" data-cat="' + esc(name) + '" data-tip="' + tipText(tip) + '" tabindex="0" role="button" aria-label="' + tipText(tip + ". Klick filtert die Ideenliste.") + '">';
+      const label = catLabel(name);
+      const tip = label + ": " + nf(count) + " Ideen, " + nf(built) + " gebaut (" + pct(built, count) + ")";
+      s += '<g class="clickable" data-cat="' + esc(name) + '" data-tip="' + tipText(tip) + '" tabindex="0" role="button" aria-label="' + tipText(tip + ". Klick filtert das Universum.") + '">';
       s += '<rect x="0" y="' + (T + i * rowH).toFixed(1) + '" width="' + W + '" height="' + rowH + '" fill="transparent"/>';
-      s += '<text class="ax" x="' + (L - 9) + '" y="' + (cy + 3.5).toFixed(1) + '" text-anchor="end">' + esc(name) + "</text>";
+      s += '<text class="ax" x="' + (L - 9) + '" y="' + (cy + 3.5).toFixed(1) + '" text-anchor="end">' + esc(label) + "</text>";
       s += '<rect x="' + L + '" y="' + (cy - 6) + '" width="' + w.toFixed(1) + '" height="12" rx="3" fill="' + COL.nobuilt + '" opacity=".25"/>';
       s += '<rect x="' + L + '" y="' + (cy - 6) + '" width="' + wb.toFixed(1) + '" height="12" rx="3" fill="' + COL.built + '"/>';
       s += '<text class="ax" x="' + (W - 4) + '" y="' + (cy + 3.5).toFixed(1) + '" text-anchor="end">' + nf(count) + " · " + pct(built, count) + "</text>";
@@ -1615,7 +979,7 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
       const cx = X(x.y), cy = Y(x.fyn);
       const col = x.ba === "Bits" ? COL.bits : x.ba === "Atoms" ? COL.atoms : x.ba === "Both" ? COL.both : COL.unknown;
       const gap = x.fyn - x.y;
-      const tip = x.n + " · " + x.a + " · " + x.y + " → " + x.fyn + " (" + gap + " Jahre)";
+      const tip = deName(x) + " · " + x.a + " · " + x.y + " → " + x.fyn + " (" + gap + " Jahre)";
       s += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="7" fill="transparent" data-idea="' + x.id +
         '" data-tip="' + tipText(tip) + '" style="cursor:pointer"/>';
       s += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="3" fill="' + col + '" fill-opacity=".62" pointer-events="none"/>';
@@ -1629,10 +993,19 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
   function renderWaitlist() {
     const list = (STATS.largest_gaps_built || []).slice(0, 10);
     $("#waitlist").innerHTML = list
-      .map((g, i) =>
-        '<li><span class="wname" title="' + esc(g.name + " · " + g.author) + '">' + (i + 1) + ". " + esc(g.name) +
-        ' <span class="muted">· ' + esc(g.author) + '</span></span><span>' + g.y + " → " + g.fyn + " · " + nf(g.gap) + " J.</span></li>"
-      )
+      .map((g, i) => {
+        const u = uniByEn.get(enKey(g.name, g.author));
+        const name = (u && u.n) || g.name;
+        const id = u ? u.id : null;
+        const inner = (i + 1) + ". " + esc(name) +
+          ' <span class="muted">· ' + esc(g.author) + "</span>";
+        const rest = "<span>" + g.y + " → " + g.fyn + " · " + nf(g.gap) + " J.</span>";
+        if (id == null) {
+          return '<li><span class="wname" title="' + esc(name + " · " + g.author) + '">' + inner + "</span>" + rest + "</li>";
+        }
+        return '<li class="witem" role="button" tabindex="0" data-wid="' + id + '" title="' + esc(name + " · " + g.author + " – im Universum öffnen") + '">' +
+          '<span class="wname">' + inner + "</span>" + rest + "</li>";
+      })
       .join("");
   }
 
@@ -1652,37 +1025,43 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
   /* ------------------------------------------------------------------ */
   /* Chart interaction and tooltip                                       */
   /* ------------------------------------------------------------------ */
+  function activateChart(el) {
+    const dot = el.closest("[data-idea]");
+    if (dot && dot.dataset.idea) {
+      uniOpen(Number(dot.dataset.idea));
+      return true;
+    }
+    const item = el.closest("[data-wid]");
+    if (item && item.dataset.wid) {
+      uniOpen(Number(item.dataset.wid));
+      return true;
+    }
+    const bar = el.closest("[data-y1],[data-author],[data-cat],[data-ba]");
+    if (!bar) return false;
+    if (bar.dataset.y1) {
+      uniApply({ from: Number(bar.dataset.y1), to: Number(bar.dataset.y2) });
+    } else if (bar.dataset.author) {
+      uniApply({ author: bar.dataset.author });
+    } else if (bar.dataset.cat) {
+      uniApply({ cat: bar.dataset.cat });
+    } else if (bar.dataset.ba) {
+      uniApply({ ba: [bar.dataset.ba] });
+    }
+    return true;
+  }
+
   const daten = $("#daten");
   daten.addEventListener("click", (ev) => {
     hideTip();
-    const dot = ev.target.closest("[data-idea]");
-    if (dot && dot.dataset.idea) {
-      openIdea(Number(dot.dataset.idea));
-      return;
-    }
-    const bar = ev.target.closest("[data-y1],[data-author],[data-cat],[data-ba]");
-    if (!bar) return;
-    resetState();
-    if (bar.dataset.y1) {
-      state.from = Number(bar.dataset.y1);
-      state.to = Number(bar.dataset.y2);
-    } else if (bar.dataset.author) {
-      state.author = bar.dataset.author;
-    } else if (bar.dataset.cat) {
-      state.cat.add(bar.dataset.cat);
-    } else if (bar.dataset.ba) {
-      state.ba.add(bar.dataset.ba);
-    }
-    syncControls();
-    applyFilters();
-    scrollExplorer();
+    activateChart(ev.target);
   });
   daten.addEventListener("keydown", (ev) => {
     if (ev.key !== "Enter" && ev.key !== " ") return;
-    const bar = ev.target.closest('[role="button"][data-y1],[role="button"][data-author],[role="button"][data-cat],[role="button"][data-ba]');
-    if (!bar) return;
+    const el = ev.target.closest('[role="button"]');
+    if (!el) return;
     ev.preventDefault();
-    bar.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    hideTip();
+    activateChart(el);
   });
 
   const chartTip = $("#chart-tip");
@@ -1714,74 +1093,33 @@ html[data-theme="dark"] .chart-tip{background:#f2f4ff;color:#0b0f1e;border-color
   window.addEventListener("scroll", hideTip, { passive: true });
 
   /* ------------------------------------------------------------------ */
-  /* Random idea / founder mode                                         */
+  /* Verweise in die Galaxie                                             */
   /* ------------------------------------------------------------------ */
-  const randomCard = $("#random-card");
-  const respect = $("#respect-filters");
-  let lastRandom = null;
-
-  function renderRandom(x) {
-    let tech = "";
-    if (x.tv) {
-      tech = '<a class="btn btn-small" href="http://www.technovelgy.com/ct/content.asp?Bnum=' + Number(x.tv) +
-        '" target="_blank" rel="noopener">Bei Technovelgy lesen ↗</a>';
-    }
-    randomCard.innerHTML =
-      '<div class="card-top"><span class="year">' + x.y + "</span>" + statusBadge(x.b) + "</div>" +
-      "<h4>" + esc(x.n) + "</h4>" +
-      '<p class="meta">' + esc([x.nv, x.a].filter(Boolean).join(" · ") || "Werk unbekannt") + "</p>" +
-      '<p class="desc" style="display:block;-webkit-line-clamp:unset;overflow:visible">' + (x.d ? esc(x.d) : '<span class="muted">Keine Beschreibung.</span>') + "</p>" +
-      '<p class="prompt">Was müsste wahr sein, damit man das heute bauen kann?</p>' +
-      '<p class="hint" style="margin:2px 0 0">Die drei Fragen: <strong>Welche Technik fehlt?</strong> · <strong>Wer würde dafür zahlen?</strong> · <strong>Was wäre ein erster kleiner Schritt?</strong></p>' +
-      '<div class="founder-actions" style="margin-top:4px">' +
-        '<button class="btn btn-small" type="button" data-open="' + x.id + '">Alle Angaben ansehen</button>' +
-        tech +
-      "</div>";
+  const heroSurprise = $('[data-hero="surprise"]');
+  if (heroSurprise) {
+    heroSurprise.addEventListener("click", () => {
+      const btn = $('#universum [data-act="surprise"]');
+      if (btn) btn.click();
+      const U = universe();
+      if (U) setTimeout(() => U.scrollIntoView(), 60);
+    });
   }
 
-  function pickRandom() {
-    const base = respect.checked ? filtered : IDEAS;
-    const pool = base.filter((x) => { const b = x.b || ""; return b !== "Yes" && b !== "Partial"; });
-    if (!pool.length) {
-      randomCard.innerHTML =
-        '<p class="muted">In dieser Auswahl ist keine ungebaute Idee. Nimm den Filter weg oder setze ihn zurück.</p>' +
-        '<div class="founder-actions"><button class="btn btn-small" type="button" data-reset-random>Filter zurücksetzen</button></div>';
-      return;
-    }
-    let x = pool[Math.floor(Math.random() * pool.length)];
-    if (pool.length > 1 && lastRandom && x.id === lastRandom) {
-      x = pool[(pool.indexOf(x) + 1) % pool.length];
-    }
-    lastRandom = x.id;
-    renderRandom(x);
-  }
-
-  $("#random-btn").addEventListener("click", pickRandom);
-  $("#random-next").addEventListener("click", pickRandom);
-  respect.addEventListener("change", () => {
-    if (lastRandom !== null) pickRandom();
-  });
-  randomCard.addEventListener("click", (ev) => {
-    const open = ev.target.closest("[data-open]");
-    if (open) { openIdea(Number(open.dataset.open)); return; }
-    if (ev.target.closest("[data-reset-random]")) {
-      resetState();
-      syncControls();
-      applyFilters();
-      pickRandom();
-    }
+  document.addEventListener("click", (ev) => {
+    const b = ev.target.closest(".js-search-idea");
+    if (!b) return;
+    uniApply({ q: b.dataset.q || "" });
   });
 
   /* ------------------------------------------------------------------ */
   /* Init                                                                */
   /* ------------------------------------------------------------------ */
   renderCharts();
-  if (!loadHash(true)) {
-    applyFilters({ hash: false });
-  }
-  pickRandom();
   document.documentElement.setAttribute("data-ready", "1");
 })();
+</script>
+<script>
+__UNIVERSE_JS__
 </script>
 </body>
 </html>

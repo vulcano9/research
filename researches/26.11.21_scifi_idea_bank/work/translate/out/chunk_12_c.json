@@ -1,0 +1,349 @@
+[
+{
+"id": 2831,
+"n": "Kaiserlicher Kunsthandwerksglobus",
+"d": "Ein perfekt gefertigter Globus für Planetenverwalter.",
+"w": "Handwerker",
+"x": "Echte Globusherstellung"
+},
+{
+"id": 2832,
+"n": "Implantierte Stahlzähne",
+"d": "Ersatzzähne, die in den Kiefer eingesetzt werden."
+},
+{
+"id": 2833,
+"n": "Fahrzeug-zu-Fahrzeug-Kommunikation",
+"d": "Die Fähigkeit, direkt von Auto zu Auto zu sprechen.",
+"x": "Echte Fahrzeugkommunikation"
+},
+{
+"id": 2834,
+"n": "Austauschbare Hände",
+"d": "Spezialisierte Hände als austauschbare Endstücke."
+},
+{
+"id": 2835,
+"n": "Jubba-Umhang",
+"d": "Ein vielseitiges Kleidungsstück, das auf Arrakis allgemein üblich ist.",
+"x": "Fiktives Wüstengewand"
+},
+{
+"id": 2836,
+"n": "Königreich in einer Kiste",
+"d": "Eine ganze Zivilisation im Kleinen, in einer interaktiven Kiste.",
+"x": "Frühes Simulationskonzept"
+},
+{
+"id": 2837,
+"n": "Krimskell-Faser",
+"d": "Eine „Krallen“-Faser, die so an sich selbst reibt, dass der Knoten umso fester wird, je stärker man am Seil zieht."
+},
+{
+"id": 2838,
+"n": "Lasergewehr",
+"d": "Ein Laserprojektor mit Dauerstrich; als Waffe oder Schneidwerkzeug nutzbar.",
+"x": "Echte Lasertechnik"
+},
+{
+"id": 2839,
+"n": "Leybyrdit",
+"d": "Ein extrem zähes kristallines Metall."
+},
+{
+"id": 2840,
+"n": "Luxvid-Augen (Jensen-Weitwinkel)",
+"d": "Künstliche, unbewegliche implantierte Augen."
+},
+{
+"id": 2841,
+"n": "Maula-Pistole",
+"d": "Ein federbetriebenes Projektilgerät.",
+"x": "Frühe Handkanonen"
+},
+{
+"id": 2842,
+"n": "Medizin-Mech",
+"d": "Ein medizinischer Roboter, der in Notfällen den Tod verhindern soll.",
+"x": "Früher Medizinroboter"
+},
+{
+"id": 2843,
+"n": "Mentat",
+"d": "Ein Mensch, der für Höchstleistungen besonders geschult und konditioniert ist."
+},
+{
+"id": 2844,
+"n": "Nachrichtenzylinder",
+"d": "Ein kleiner Metallgegenstand mit einem Nachrichtenmedium und einem Mechanismus, der das Medium abspielt oder herausdrückt; ein gesichertes Kommunikationsgerät.",
+"x": "Echte Nachrichtenzylinder"
+},
+{
+"id": 2845,
+"n": "Minimic-Film",
+"d": "Ein sehr feines Medium für Nachrichten.",
+"x": "Fiktiver Mikrofilm"
+},
+{
+"id": 2846,
+"n": "Mnemischer Impuls",
+"d": "Eine Funktion von Filmbuch-Aufnahmen, die hilft, Wissen in den Geist des Nutzers einzuprägen."
+},
+{
+"id": 2847,
+"n": "Das Universum modellieren",
+"d": "Ein Computer, groß genug, um eine Darstellung des gesamten Universums zu enthalten."
+},
+{
+"id": 2848,
+"n": "N-e-Waffe (Nadelverfeinerung)",
+"d": "Eine Klasse von Waffen mit der denkbar genauesten Wirkung.",
+"x": "Fiktive chirurgische Waffe"
+},
+{
+"id": 2849,
+"n": "Öllinse",
+"d": "Öl, das in einem umschließenden Kraftfeld in Spannung gehalten und als optisches Bauteil genutzt wird."
+},
+{
+"id": 2850,
+"n": "Optischer Effektanzug",
+"d": "Ein Kleidungsstück, das unsichtbar macht.",
+"x": "Fiktiver Tarnanzug"
+},
+{
+"id": 2851,
+"n": "Ornithopter",
+"d": "Auch „Thopter“ genannt, hatte verstellbare Flügel und Düsenantrieb. Der Begriff beschreibt jedes Flugzeug, das wie ein Vogel mit Flügelschlägen fliegen kann."
+},
+{
+"id": 2852,
+"n": "Orville",
+"d": "Stell ihm Fragen mit Worten, und dieses pflugförmige Leitsystem berechnet eine Antwort und gibt sie telepathisch weiter."
+},
+{
+"id": 2853,
+"n": "Schmerzkiste",
+"d": "Eine kleine Kiste, die Schmerz in die Nerven der Hand leitet."
+},
+{
+"id": 2854,
+"n": "Handflächenschloss",
+"d": "Ein Schloss oder eine Versiegelung, die sich nur durch Kontakt mit der Handfläche des Menschen öffnet, auf den sie eingestellt ist.",
+"x": "Echte biometrische Schlösser"
+},
+{
+"id": 2855,
+"n": "Parakompass",
+"d": "Ein sehr spezieller Kompass, der lokale magnetische Anomalien nutzt.",
+"x": "Echte Magnetkompasse"
+},
+{
+"id": 2856,
+"n": "Personalisierte Modenanzeige",
+"d": "Eine Reihe von Anzeigen, die dich in verschiedenen Uniformen zeigen.",
+"x": "Frühe virtuelle Umkleidekabine"
+},
+{
+"id": 2857,
+"n": "Plastahl",
+"d": "Eine extrem zähe Form von Stahl, stabilisiert mit Stravidium-Fasern, die in sein Kristallgitter hineinwachsen."
+},
+{
+"id": 2858,
+"n": "Giftschnüffler",
+"d": "Ein Gerät, das Speisen und Getränke auf Gift prüft.",
+"x": "Echte Lebensmittelsensoren"
+},
+{
+"id": 2859,
+"n": "Giftpfeil in der Zunge",
+"d": "Eine Waffe, die operativ in die Zunge eingesetzt wird.",
+"x": "Fiktive verborgene Waffe"
+},
+{
+"id": 2860,
+"n": "Polizeiliche Übersteuerung",
+"d": "Ein Gerät, mit dem Polizisten die Kontrolle über ein ansonsten normales Fahrzeug übernehmen können.",
+"x": "Fiktive Fahrzeugübersteuerung"
+},
+{
+"id": 2861,
+"n": "Rachag",
+"d": "Ein Aufputschmittel im Stil von Koffein."
+},
+{
+"id": 2862,
+"n": "Rammsammler",
+"d": "Ein enormes Magnetfeld läuft einem Raumschiff im Weltraum voraus und lenkt interstellaren Wasserstoff nach innen, wo er als Treibstoff dient.",
+"x": "Frühe Idee interstellarer Antriebe"
+},
+{
+"id": 2863,
+"n": "Fern-Giftschnüffler",
+"d": "Ein kleiner, leicht zu verbergender Giftschnüffler.",
+"x": "Fiktives Sensorengerät"
+},
+{
+"id": 2864,
+"n": "Residualgift",
+"d": "Ein Gift, das nach der Verabreichung im Körper bleibt; nur die regelmäßige Einnahme des Gegengifts hält die Person am Leben.",
+"x": "Fiktives Gift"
+},
+{
+"id": 2865,
+"n": "Robomaultier",
+"d": "Das Robotergegenstück zu einem Maultier.",
+"x": "Frühes Konzept eines Robotertertiers"
+},
+{
+"id": 2866,
+"n": "Roboterbar",
+"d": "Eine Kombination aus Barkeeper und Bar; ein Roboter, der Getränke ausschenkt.",
+"x": "Echte Roboterbarkeeper"
+},
+{
+"id": 2867,
+"n": "Robox",
+"d": "Roboter für Diagnose und Reparatur."
+},
+{
+"id": 2868,
+"n": "Sandschnorchel",
+"d": "Ein Gerät wie ein Schnorchel, das ein von einem Sandsturm verschüttetes Zelt mit Luft versorgt.",
+"x": "Frühe Ausrüstung zum Überleben im Weltraum"
+},
+{
+"id": 2869,
+"n": "Sapho-Saft",
+"d": "Eine einzigartige Substanz, die die geistige Leistung von Mentats steigerte.",
+"x": "Fiktiver Denkleistungsverstärker"
+},
+{
+"id": 2870,
+"n": "Semuta",
+"d": "Eine Kombination aus einer bestimmten Droge und Musik, die bis in die tiefsten Ebenen des Bewusstseins vordrang.",
+"x": "Fiktive Bewusstseinsänderung"
+},
+{
+"id": 2871,
+"n": "Servok",
+"d": "Ein „automatischer“ oder uhrwerkartig eingestellter Mechanismus für einfache Aufgaben.",
+"x": "Frühe Automaten"
+},
+{
+"id": 2872,
+"n": "Schafbad-Isolator",
+"d": "Eine nicht tödliche Waffe mit üblem Geruch."
+},
+{
+"id": 2873,
+"n": "Shigawire",
+"d": "Ein sehr feiner Draht, der unter anderem als Aufnahmemedium dient.",
+"x": "Echte Drahtaufzeichnung"
+},
+{
+"id": 2874,
+"n": "Sietch",
+"d": "Ein Höhlenlabyrinth, das eine Stammesgemeinschaft mit Tausenden Menschen schützt, mit eigener Wasserversorgung in einer endlosen Wüste.",
+"x": "Früher unterirdischer Lebensraum"
+},
+{
+"id": 2875,
+"n": "Sklaven-Sonnenblumen",
+"d": "Pflanzen, die sich so entwickelt haben, dass sie Licht reflektieren, um natürliche Feinde zu verbrennen.",
+"x": "Fiktive Pflanzen als Waffen"
+},
+{
+"id": 2876,
+"n": "Schlafmaschine",
+"d": "Ein Gerät, das einen guten Nachtschlaf garantiert."
+},
+{
+"id": 2877,
+"n": "Langsamkugel-Betäuber",
+"d": "Ein Projektilgerät, das Pfeile so verschießt, dass sie an einem Kraftschild vorbeikommen."
+},
+{
+"id": 2878,
+"n": "Smarter Staub",
+"d": "Sehr winzige Computer.",
+"x": "Echter Smart Dust"
+},
+{
+"id": 2879,
+"n": "Solido-Projektor",
+"d": "Projiziert dreidimensionale Bilder.",
+"x": "Frühe 3D-Anzeigen"
+},
+{
+"id": 2880,
+"n": "Weltraumtasche",
+"d": "Eine schnell und schmutzig gebaute Art von Raumfahrzeug."
+},
+{
+"id": 2881,
+"n": "Weltraum-Postkarte",
+"d": "Post von zu Hause, die hungrige Soldaten auch essen können.",
+"x": "Fiktive essbare Nachricht"
+},
+{
+"id": 2882,
+"n": "Gewürz (Melange)",
+"d": "Das Gewürz muss fließen."
+},
+{
+"id": 2883,
+"n": "Stufenbäume",
+"d": "Gentechnisch veränderte Bäume mit Feststoff-Raketenkernen."
+},
+{
+"id": 2884,
+"n": "Stahlzähne",
+"d": "Künstliche Zähne, die am Knochen befestigt werden."
+},
+{
+"id": 2885,
+"n": "Destillanzug",
+"d": "Er bedeckt fast den ganzen Körper, kühlt und sorgt dafür, dass fast keine Feuchtigkeit verloren geht.",
+"x": "Frühe Ideen für Raumanzüge"
+},
+{
+"id": 2886,
+"n": "Destillzelt",
+"d": "Ein kleines, verschließbares Zelt, das Feuchtigkeit aus dem Atem der Insassen zurückgewinnt.",
+"x": "Frühe Ideen für Weltraumlebensräume"
+},
+{
+"id": 2887,
+"n": "Suspensor",
+"d": "Ein Energiefeld, das die Schwerkraft für kleine Objekte aufheben kann."
+},
+{
+"id": 2888,
+"n": "Suspensorstuhl",
+"d": "Ein Stuhl, der sich selbst über dem Boden schweben lässt.",
+"x": "Fiktive Antischwerkraftmöbel"
+},
+{
+"id": 2889,
+"n": "Suspensorlampe",
+"d": "Eine Lampe, die in der Luft schwebt und dort bleibt, wo man sie hinstellt."
+},
+{
+"id": 2890,
+"n": "Teddybär-Roboter",
+"d": "Ein besonderer Spielbär, den jedes Kind der Welt bekommt.",
+"x": "Frühes Konzept sozialer Roboter"
+},
+{
+"id": 2891,
+"n": "Thopter",
+"d": "Beschreibt jedes Flugzeug, das wie ein Vogel mit Flügelschlägen fliegen kann."
+},
+{
+"id": 2892,
+"n": "Daumenabdruck als Telefonausweis",
+"d": "Die Identität in einem Telefonat per Daumenabdruck prüfen."
+}
+]

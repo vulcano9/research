@@ -1,0 +1,170 @@
+[
+ {
+  "id": 0,
+  "hue": 214,
+  "name": "Die Flotte",
+  "tagline": "Raumschiffe, Antriebe, Liner zu den Sternen",
+  "text": "Das größte Sternbild. Von Ätherschiffen der Pulp-Zeit bis zum Starship: Hier sammeln sich Fahrzeuge für den Weltraum. Gebaut ist nur ein kleiner Teil – Raketen ja, Passagierliner zu anderen Planeten nein."
+ },
+ {
+  "id": 1,
+  "hue": 168,
+  "name": "Die Stimmen",
+  "tagline": "Telefone, Kommunikatoren, Übersetzer",
+  "text": "Fernsprechen in jeder Form: Bildtelefon, Handgelenk-Sprecher, Übersetzerscheibe. Fast die Hälfte dieser Ideen gibt es heute – das Smartphone hat viele auf einmal eingelöst."
+ },
+ {
+  "id": 2,
+  "hue": 30,
+  "name": "Die Diener",
+  "tagline": "Roboter als Koch, Kindermädchen, Anwalt",
+  "text": "Roboter mit Beruf und Persönlichkeit. Viele Romane fragen weniger, ob man sie bauen kann, als wie man mit ihnen lebt. Gebaut ist bisher wenig – Haushaltsroboter bleiben ein offenes Versprechen."
+ },
+ {
+  "id": 3,
+  "hue": 190,
+  "name": "Das Archiv",
+  "tagline": "Computer, Daten, elektronische Bücher",
+  "text": "E-Paper, Taschencomputer, Datenräume: Ideen rund um Speichern und Lesen. Ein Sternbild der Bits, in dem fast jede zweite Idee Wirklichkeit wurde."
+ },
+ {
+  "id": 4,
+  "hue": 340,
+  "name": "Die zweite Haut",
+  "tagline": "Künstliches Gewebe, Kunstfleisch, Nahrungspillen",
+  "text": "Was man am oder im Körper trägt: Plastikhaut, synthetisches Fleisch, Destillanzug, Nahrungspellets. Zwischen Medizin und Küche – und noch überwiegend Fiktion."
+ },
+ {
+  "id": 5,
+  "hue": 280,
+  "name": "Der Traumraum",
+  "tagline": "Schlaf, Gehirnsteuerung, Bewusstseinsdrogen",
+  "text": "Geräte, die Schlaf auslösen, Gedanken lesen oder Gefühle steuern. Nur jede zehnte Idee ist gebaut. Hier liegen viele ungelöste Fragen über das Gehirn."
+ },
+ {
+  "id": 6,
+  "hue": 230,
+  "name": "Die Fernen Wege",
+  "tagline": "Reisen, Funk und Handel zwischen den Welten",
+  "text": "Weltraum als Verkehrsraum: interplanetare Post, Warp-Antrieb, kosmische Stürme, Goldrausch im All. Die Infrastruktur einer Zivilisation, die es noch nicht gibt."
+ },
+ {
+  "id": 7,
+  "hue": 255,
+  "name": "Die Neuen Welten",
+  "tagline": "Monde, Planeten und Kolonien",
+  "text": "Mondkolonien, künstliche Planeten, Asteroidengärten. Nur 6 Prozent sind Wirklichkeit – Atome sind schwer, Planeten noch schwerer."
+ },
+ {
+  "id": 8,
+  "hue": 45,
+  "name": "Die Städte",
+  "tagline": "Gebäude, Kuppeln, Laufbänder",
+  "text": "Wie wir wohnen könnten: Dosenstädte, schwebende Gebäude, Glaskuppeln, Fahrbänder. Architektur der Zukunft, meist noch auf dem Papier."
+ },
+ {
+  "id": 9,
+  "hue": 300,
+  "name": "Die Illusion",
+  "tagline": "Hologramme, VR, dreidimensionale Bilder",
+  "text": "Von Stanisław Lems Phantomatik bis zur Holo-Bühne: Bilder, die man betreten kann. VR-Brillen haben gut ein Drittel davon eingelöst."
+ },
+ {
+  "id": 10,
+  "hue": 0,
+  "name": "Das Arsenal",
+  "tagline": "Strahlenpistolen und Energiewaffen",
+  "text": "Powergun, Blaster, intelligente Kugel. Sci-Fi liebt Waffen – gebaut ist wenig, weil Energie in die Hand zu packen sehr schwer ist."
+ },
+ {
+  "id": 11,
+  "hue": 320,
+  "name": "Das Ich",
+  "tagline": "Persönlichkeit, Erinnerung, Gedankenparasiten",
+  "text": "Künstliche Personen, gelöschte Erinnerungen, zusammengesetzte Identitäten. Das am wenigsten gebaute Sternbild: nur 2 Prozent. Diese Ideen sind eher Fragen als Baupläne."
+ },
+ {
+  "id": 12,
+  "hue": 200,
+  "name": "Die Bildschirme",
+  "tagline": "Displays, Televisoren, Helmanzeigen",
+  "text": "Das erfolgreichste Sternbild: Mehr als die Hälfte der Ideen gibt es heute. Flachbildschirme, Head-up-Displays und Videowände waren einst kühne Visionen."
+ },
+ {
+  "id": 13,
+  "hue": 265,
+  "name": "Die Denkenden",
+  "tagline": "Künstliche Intelligenz und Elektronengehirne",
+  "text": "HAL 9000, Wintermute, Neural Lace: Maschinen, die denken, und Gehirne, die rechnen. Mit großen Sprachmodellen rückt dieses Sternbild gerade näher."
+ },
+ {
+  "id": 14,
+  "hue": 90,
+  "name": "Die Schwärme",
+  "tagline": "Robotertiere, Spinnen, Mechs",
+  "text": "Roboterfische, Metallinsekten, Grenzroboter. Maschinen nach dem Vorbild von Tieren – Laufroboter und Drohnen bringen einige davon langsam in die Welt."
+ },
+ {
+  "id": 15,
+  "hue": 120,
+  "name": "Das Labor des Lebens",
+  "tagline": "Künstliches Leben und Nahrung aus der Retorte",
+  "text": "Synthetisches Leben, Lebensmittelfabriken, Bioform-Häuser. Biologie als Baustoff – mit Gentechnik und Zellkulturfleisch rücken diese Ideen heran."
+ },
+ {
+  "id": 16,
+  "hue": 15,
+  "name": "Die Strahlen",
+  "tagline": "Traktorstrahlen, Todesstrahlen, Kältestrahlen",
+  "text": "Licht und Energie als Werkzeug: anziehen, abstoßen, zerlegen, einfrieren. Laser haben ein paar davon eingelöst, der Traktorstrahl wartet noch."
+ },
+ {
+  "id": 17,
+  "hue": 35,
+  "name": "Die Werkstoffe",
+  "tagline": "Wundermetalle und durchsichtiger Stahl",
+  "text": "Neutronium, Inertron, Metallglas: erfundene Stoffe mit unmöglichen Eigenschaften. Nur etwa jede siebte Idee ist gebaut – neue Materialien brauchen Jahrzehnte."
+ },
+ {
+  "id": 18,
+  "hue": 150,
+  "name": "Die Flieger",
+  "tagline": "Drohnen, Flugautos, fliegende Augen",
+  "text": "Kleine fliegende Maschinen: Überwachungsdrohnen gibt es längst, das Flugauto steht seit hundert Jahren auf der Warteliste."
+ },
+ {
+  "id": 19,
+  "hue": 180,
+  "name": "Die Anzüge",
+  "tagline": "Raumanzüge, Rüstungen, Druckanzüge",
+  "text": "Was Menschen im Vakuum oder im Kampf trägt. Raumanzüge wurden gebaut, Exoskelette und Hautanzüge kommen gerade."
+ },
+ {
+  "id": 20,
+  "hue": 245,
+  "name": "Die Schwerelosen",
+  "tagline": "Antischwerkraft und künstliche Schwerkraft",
+  "text": "Ein Klassiker der Science-Fiction: die Schwerkraft ein- und ausschalten. Physikalisch eines der härtesten Sternbilder – gebaut ist fast nur, was Schwerkraft simuliert, etwa durch Drehung."
+ },
+ {
+  "id": 21,
+  "hue": 50,
+  "name": "Die Sonnenkraft",
+  "tagline": "Solarenergie, Kraftwerke, neue Antriebe",
+  "text": "Sonnenmaschinen und Energieplaneten. Solarzellen und Ionenantriebe sind Wirklichkeit – Energie war schon in alten Romanen der Schlüssel zu allem."
+ },
+ {
+  "id": 22,
+  "hue": 140,
+  "name": "Die Selbstfahrer",
+  "tagline": "Autonome Autos, Robotertaxis, Lastwagen",
+  "text": "Selbstfahrende Autos und Robotertaxis: eines der Sternbilder, in denen die Gegenwart die Geschichte gerade einholt."
+ },
+ {
+  "id": 23,
+  "hue": 60,
+  "name": "Die Fabrik",
+  "tagline": "Automatische Fabriken und Labore",
+  "text": "Fabriken ohne Menschen, Labore, die selbst forschen, Maschinen, die Romane schreiben. Automatisierung als Versprechen und als Warnung."
+ }
+]

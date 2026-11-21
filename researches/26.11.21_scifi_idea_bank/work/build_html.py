@@ -18,6 +18,7 @@ embeds the JSON payloads. Run from anywhere:
 """
 
 import html
+import importlib.util
 import json
 import os
 import re
@@ -31,6 +32,7 @@ IDEAS_PATH = os.path.join(BASE, "sources", "_ideas.json")
 STATS_PATH = os.path.join(BASE, "sources", "_stats.json")
 RELATED_PATH = os.path.join(BASE, "sources", "related", "_related_sources.json")
 IMAGES_DIR = os.path.join(BASE, "sources", "notboring_images")
+UNIVERSE_DIR = os.path.join(HERE, "universe")
 
 TODAY = "21.11.2026"
 
@@ -100,6 +102,22 @@ def de_text(value):
 def load_json(path):
     with open(path, encoding="utf-8") as fh:
         return json.load(fh)
+
+
+def read_text(path):
+    with open(path, encoding="utf-8") as fh:
+        return fh.read()
+
+
+def load_build_payload():
+    """Importiert work/universe/build_payload.py (Pfad enthält Leerzeichen)."""
+    path = os.path.join(UNIVERSE_DIR, "build_payload.py")
+    spec = importlib.util.spec_from_file_location("sfib_build_payload", path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError("build_payload.py nicht gefunden: " + path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.build_payload
 
 
 def percent(part, whole):
@@ -185,6 +203,48 @@ def main():
     print(f"  Info   Tabellen-Quote: {built}/{sheet_rows} = {percent(built, sheet_rows)}")
     if failed:
         print("\nAbbruch: Die Daten passen nicht zu den erwarteten Werten.", file=sys.stderr)
+        return 1
+
+    # ------------------------------------------------------------------
+    # Ideen-Universum: Payload, Bilder, Fragment
+    # ------------------------------------------------------------------
+    try:
+        build_payload = load_build_payload()
+        universe_json, images_json, universe_report = build_payload(BASE)
+    except Exception as exc:
+        print("Abbruch: Ideen-Universum konnte nicht gebaut werden: %s" % exc, file=sys.stderr)
+        return 1
+    if universe_report["ideas"] != total:
+        print(
+            "Abbruch: Universum hat %d statt %d Ideen." % (universe_report["ideas"], total),
+            file=sys.stderr,
+        )
+        return 1
+    if not universe_report["nn_valid"]:
+        print("Abbruch: Nachbarschaftsliste im Universum ist ungültig.", file=sys.stderr)
+        return 1
+    print("\nIdeen-Universum")
+    print("  Ideen: %d, Sternbilder: %d, gebaut: %d" % (
+        universe_report["ideas"], universe_report["clusters"], universe_report["built"]))
+    print("  Karte: %s, übersetzte Namen: %d, Beschreibungen: %d" % (
+        universe_report["map_source"],
+        universe_report["translated_names"],
+        universe_report["translated_descriptions"]))
+    print("  Bilder: Hero %s, Sternbilder %d/24" % (
+        "ja" if universe_report["images"]["hero"] else "nein",
+        universe_report["images"]["clusters"]))
+    for warning in universe_report["warnings"]:
+        print("  Warnung: " + warning)
+
+    try:
+        universe_html = read_text(os.path.join(UNIVERSE_DIR, "universe.html"))
+        universe_css = read_text(os.path.join(UNIVERSE_DIR, "universe.css"))
+        universe_js = read_text(os.path.join(UNIVERSE_DIR, "universe.js"))
+    except OSError as exc:
+        print("Abbruch: Moduldateien des Universums fehlen: %s" % exc, file=sys.stderr)
+        return 1
+    if "</script" in universe_js.lower() or "</script" in universe_html.lower():
+        print("Abbruch: </script im Universum-HTML/JS – muss escaped werden.", file=sys.stderr)
         return 1
 
     values = {
@@ -399,7 +459,11 @@ def main():
             None,
             '<a href="sources/_build_data.py">sources/_build_data.py</a> · '
             '<a href="sources/_ideas.json">sources/_ideas.json</a> · '
-            '<a href="sources/_stats.json">sources/_stats.json</a>',
+            '<a href="sources/_stats.json">sources/_stats.json</a> · '
+            '<a href="work/translate/de.json">work/translate/de.json</a> (deutsche Fassung) · '
+            '<a href="work/data/map.json">work/data/map.json</a> (Karte und Nachbarn) · '
+            '<a href="work/data/clusters_de.json">work/data/clusters_de.json</a> (Sternbild-Namen) · '
+            '<a href="work/data/build_map.py">work/data/build_map.py</a> (Embeddings, UMAP, k-Means)',
         ),
         src(
             7,
@@ -419,6 +483,17 @@ def main():
             )
         )
 
+    # Neuer Eintrag hinten anhängen – die Nummern 8–24 dürfen sich nicht verschieben.
+    img_src_num = max(rel_num.values()) + 1
+    source_items.append(
+        src(
+            img_src_num,
+            "KI-generierte Illustrationen: Hero-Bild und 24 Sternbild-Bilder (keine Abbildungen echter Technik).",
+            None,
+            '<a href="work/img/">work/img/</a> (hero.png, cluster_00.png … cluster_23.png)',
+        )
+    )
+
     # ------------------------------------------------------------------
     # Template
     # ------------------------------------------------------------------
@@ -436,6 +511,11 @@ def main():
         "__IDEAS_JSON__": payload(IDEAS_PATH),
         "__STATS_JSON__": payload(STATS_PATH),
         "__RELATED_JSON__": payload(RELATED_PATH),
+        "__UNIVERSE_JSON__": universe_json,
+        "__IMAGES_JSON__": images_json,
+        "__UNIVERSE_HTML__": universe_html,
+        "__UNIVERSE_CSS__": universe_css,
+        "__UNIVERSE_JS__": universe_js,
         "__STARTUP_CARDS__": "\n".join(startup_cards),
         "__COMMUNITY_ITEMS__": "\n".join(community_items),
         "__RELATED_CARDS__": "\n".join(related_html),
@@ -477,6 +557,50 @@ def main():
                 problems.append("Ideen-JSON hat %d statt %d Einträge" % (len(embedded.get("ideas", [])), total))
         except Exception as exc:
             problems.append("Ideen-JSON nicht lesbar: %s" % exc)
+
+    m = re.search(r'<script type="application/json" id="sfib-universe">(.*?)</script>', written, re.S)
+    if not m:
+        problems.append("Universum-JSON fehlt")
+    else:
+        try:
+            uni = json.loads(m.group(1))
+            if len(uni.get("ideas", [])) != total:
+                problems.append("Universum-JSON hat %d statt %d Ideen" % (len(uni.get("ideas", [])), total))
+            if len(uni.get("clusters", [])) != 24:
+                problems.append("Universum-JSON hat %d statt 24 Sternbilder" % len(uni.get("clusters", [])))
+            if len(uni.get("pos", [])) != 2 * total:
+                problems.append("Universum-JSON: pos passt nicht zu den Ideen")
+        except Exception as exc:
+            problems.append("Universum-JSON nicht lesbar: %s" % exc)
+
+    m = re.search(r'<script type="application/json" id="sfib-images">(.*?)</script>', written, re.S)
+    if not m:
+        problems.append("Bilder-JSON fehlt")
+    else:
+        try:
+            imgs = json.loads(m.group(1))
+            if "hero" not in imgs:
+                problems.append("Bilder-JSON ohne hero")
+            missing = [k for k in range(24) if ("cluster_%02d" % k) not in imgs]
+            if missing:
+                problems.append("Bilder-JSON: %d Sternbild-Bilder fehlen" % len(missing))
+        except Exception as exc:
+            problems.append("Bilder-JSON nicht lesbar: %s" % exc)
+
+    for forbidden in (
+        "Was müsste wahr sein",
+        "Die drei Fragen",
+        "Welche Technik fehlt",
+        "Wer würde dafür zahlen",
+        "erster kleiner Schritt",
+        "Gründer-Modus",
+        "Zufallsidee ziehen",
+    ):
+        if forbidden in written:
+            problems.append("verbotener Text: " + forbidden)
+
+    if re.search(r"</script", universe_js, re.I):
+        problems.append("</script im Universum-JS")
     if "__IDEAS_JSON__" in written or re.search(r"__[A-Z][A-Z0-9_]*__", written):
         problems.append("unersetzte Platzhalter")
     if problems:
@@ -486,11 +610,11 @@ def main():
     size = os.path.getsize(OUT)
     print("\nGeschrieben: " + OUT)
     print("  Größe: %.2f MB (%d Bytes)" % (size / (1024 * 1024), size))
-    print("  Selbstprüfung: keine externen Skripte/Stylesheets, JSON mit %d Ideen lesbar" % total)
+    print("  Selbstprüfung: keine externen Skripte/Stylesheets, Ideen- und Universum-JSON lesbar")
     print("  Ideen im JSON: %d" % total)
     print("  Startups: %d, Community-Namen: %d, verwandte Quellen: %d"
           % (len(startup_cards), len(community_items), len(related)))
-    print("  Quellen im Literaturverzeichnis: %d" % len(source_items))
+    print("  Quellen im Literaturverzeichnis: %d (KI-Bilder als [%d])" % (len(source_items), img_src_num))
     return 0
 
 
