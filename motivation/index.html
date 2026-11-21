@@ -10,6 +10,10 @@
     padding: 0;
     background: #111;
   }
+  body {
+    color: #e8e8e8;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -26,6 +30,193 @@
     display: block;
     border-radius: 8px;
   }
+
+  .bruce {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 12px 12px 24px;
+  }
+  .bruce-head {
+    margin-bottom: 16px;
+  }
+  .bruce-video {
+    margin-top: 24px;
+  }
+  .bruce video {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 10px;
+    background: #000;
+  }
+  .bruce-video .note {
+    text-align: center;
+    margin-top: 8px;
+  }
+  .bruce-head h1 {
+    margin: 20px 0 4px;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+  .bruce-head p {
+    margin: 0 0 12px;
+    font-size: 0.85rem;
+    color: #8a8a8a;
+    line-height: 1.4;
+  }
+  .lang {
+    display: inline-flex;
+    background: #1c1c1c;
+    border-radius: 999px;
+    padding: 3px;
+  }
+  .lang button {
+    border: 0;
+    background: transparent;
+    color: #9a9a9a;
+    font: inherit;
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] {
+    background: #e0a030;
+    color: #111;
+    font-weight: 600;
+  }
+
+  .qa {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .card {
+    position: relative;
+    background: #181818;
+    border-radius: 14px;
+    padding: 18px 20px 18px;
+    transition: background 0.25s, box-shadow 0.25s;
+  }
+  .card.active {
+    background: #1f1b12;
+    box-shadow: 0 0 0 1px #e0a03055;
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #7c9cc4;
+  }
+  .label.solo {
+    color: #e0a030;
+  }
+  .time {
+    border: 0;
+    background: #242424;
+    color: #e0a030;
+    font: inherit;
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+    padding: 4px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .time:hover {
+    background: #2e2e2e;
+  }
+  .question {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .question .mark {
+    flex: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #22303f;
+    color: #9fc0e8;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .question .en {
+    margin: 2px 0 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .question .de {
+    margin: 3px 0 0;
+    font-size: 0.9rem;
+    color: #8f8f8f;
+    line-height: 1.35;
+  }
+  .answer {
+    border-left: 3px solid #e0a030;
+    padding: 2px 0 2px 16px;
+  }
+  .answer .who {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #e0a030;
+    margin-bottom: 6px;
+  }
+  .answer .en {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #f2f2f2;
+  }
+  .answer .de {
+    margin: 8px 0 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #a8a8a8;
+  }
+  .reaction {
+    margin: 12px 0 0;
+    font-size: 0.85rem;
+    color: #7a7a7a;
+    font-style: italic;
+  }
+  body.only-en .de,
+  body.only-de .en {
+    display: none;
+  }
+  body.only-de .answer .de {
+    margin-top: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.2rem;
+    color: #f2f2f2;
+  }
+  body.only-de .question .de {
+    margin-top: 2px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #e8e8e8;
+  }
+  .note {
+    margin: 4px 0 0;
+    font-size: 0.75rem;
+    color: #666;
+  }
 </style>
 </head>
 <body>
@@ -40,5 +231,149 @@
   <a href="https://mynoise.net/NoiseMachines/intergalacticSoundscapeGenerator.php?l=00007556005656000000&amp;a=1&amp;am=s&amp;title=Black%20Hole" target="_blank" rel="noopener"><img src="mynoise-blackhole.png" alt="myNoise: Black Hole" loading="lazy"></a>
   <a href="https://mynoise.net/NoiseMachines/auralScannerNoiseGenerator.php?l=56005600560056005600&amp;a=1&amp;am=s&amp;title=Aural%20Scan" target="_blank" rel="noopener"><img src="mynoise-aural-scan.png" alt="myNoise: Aural Scan" loading="lazy"></a>
 </div>
+<section class="bruce">
+  <div class="bruce-head">
+    <h1>Fragen an Bruce Lee</h1>
+    <p>Die Fragen aus dem Video und seine Antworten. Das Video steht am Ende der Seite; ein Klick auf die Zeit spielt die Stelle ab.</p>
+    <div class="lang" role="group" aria-label="Sprache">
+      <button type="button" data-lang="both" aria-pressed="true">Beide</button>
+      <button type="button" data-lang="en" aria-pressed="false">English</button>
+      <button type="button" data-lang="de" aria-pressed="false">Deutsch</button>
+    </div>
+  </div>
+  <div class="qa" id="bruce-qa"></div>
+  <div class="bruce-video">
+    <video id="bruce-video" src="bruce-lee.mp4" controls playsinline preload="metadata"></video>
+    <p class="note">Transkript: faster-whisper und uniscribe.co</p>
+  </div>
+</section>
+<script>
+const QA = [
+  {t: 0,
+   a: "Don't speak negatively about yourself, even as a joke. Your body doesn't know the difference. Words are energy and they cast spells. That's why it's called spelling. Change the way you speak about yourself and you can change your life.",
+   ade: "Sprich nicht schlecht über dich, auch nicht im Spaß. Dein Körper kennt den Unterschied nicht. Worte sind Energie, sie wirken wie Zauber. Ändere, wie du über dich sprichst, und du kannst dein Leben ändern.",
+   r: "„That's something, Bruce. Beautifully put.“"},
+  {t: 15.6, q: "Why do many great journeys feel lonely?", qde: "Warum fühlen sich viele große Wege einsam an?",
+   a: "Because true growth is personal. Not everyone can follow the path meant only for you.",
+   ade: "Weil echtes Wachstum persönlich ist. Nicht jeder kann den Weg gehen, der nur für dich bestimmt ist."},
+  {t: 26.3, q: "Why do people overthink instead of act?", qde: "Warum denken Menschen zu viel nach, statt zu handeln?",
+   a: "Overthinking delays responsibility. Action exposes truth faster than thought.",
+   ade: "Zu viel Nachdenken schiebt die Verantwortung auf. Handeln zeigt die Wahrheit schneller als Denken."},
+  {t: 36.8,
+   a: "Not every battle is meant to be fought. Some are meant to be outgrown. Maturity isn't force, it's restraint. Knowing when to step back is power.",
+   ade: "Nicht jeder Kampf muss gekämpft werden. Aus manchen wächst man heraus. Reife ist nicht Kraft, sondern Zurückhaltung. Zu wissen, wann man zurücktritt, ist Stärke."},
+  {t: 50.8, q: "Why do people struggle to move forward?", qde: "Warum fällt es Menschen schwer, weiterzugehen?",
+   a: "Because they hold on to who they were. To grow, you must release the old version of yourself. You can't cling to yesterday and expect today to unfold.",
+   ade: "Weil sie an dem festhalten, der sie früher waren. Um zu wachsen, musst du dein altes Ich loslassen. Wer am Gestern klebt, kann das Heute nicht erleben."},
+  {t: 66.2, q: "Why does success often feel empty?", qde: "Warum fühlt sich Erfolg oft leer an?",
+   a: "Success without alignment creates emptiness. Achievement satisfies goals, not meaning.",
+   ade: "Erfolg, der nicht zu dir passt, fühlt sich leer an. Leistung erfüllt Ziele, aber keinen Sinn."},
+  {t: 75.9, q: "Fear distracts people. How do you turn fear into focus?", qde: "Angst lenkt Menschen ab. Wie machst du aus Angst Fokus?",
+   a: "Face fear directly. The moment you stop running, fear becomes energy you can control.",
+   ade: "Schau der Angst direkt ins Gesicht. Sobald du aufhörst wegzulaufen, wird Angst zu Energie, die du lenken kannst."},
+  {t: 88.4, q: "What's the hardest opponent?", qde: "Wer ist der schwerste Gegner?",
+   a: "Your own ego. It speaks loud. It reacts fast. It wants to win every moment. But growth begins when you can check yourself.",
+   ade: "Dein eigenes Ego. Es ist laut, reagiert schnell und will jeden Moment gewinnen. Wachstum beginnt, wenn du dich selbst bremsen kannst."},
+  {t: 99.1, q: "Why do humans resist change even when it benefits them?", qde: "Warum wehren sich Menschen gegen Veränderung, selbst wenn sie ihnen nützt?",
+   a: "Change threatens identity. People protect familiarity even when it causes pain.",
+   ade: "Veränderung bedroht, wer wir zu sein glauben. Menschen halten am Gewohnten fest, auch wenn es wehtut."},
+  {t: 114.1,
+   a: "Peace isn't found. It's allowed. When you stop holding on to what disturbs you, it shows up. Quiet. Natural. Already there.",
+   ade: "Frieden findet man nicht, man lässt ihn zu. Wenn du loslässt, was dich stört, ist er da. Still. Natürlich. Schon immer da."},
+  {t: 127.8, q: "How much power do thoughts really have over a person?", qde: "Wie viel Macht haben Gedanken wirklich über einen Menschen?",
+   a: "Your thoughts shape your reality. If you don't control them, the world will control you instead.",
+   ade: "Deine Gedanken formen deine Wirklichkeit. Wenn du sie nicht lenkst, lenkt dich die Welt."},
+  {t: 141.6,
+   a: "You won't always feel confident. Some nights you feel uncertain. That doesn't mean you're off track. It means you're stretching. Growth feels unstable before it feels strong.",
+   ade: "Du wirst dich nicht immer sicher fühlen. Manche Nächte bist du unsicher. Das heißt nicht, dass du falsch liegst. Es heißt, dass du über dich hinauswächst. Wachstum fühlt sich erst wackelig an, dann stark."},
+  {t: 155.1, q: "How do you stay centered when life feels overwhelming?", qde: "Wie bleibst du in deiner Mitte, wenn dich das Leben überfordert?",
+   a: "You don't fight the noise. You return to what's solid. Your breath, your balance, your position in the moment. When you are grounded, decisions become simple.",
+   ade: "Du kämpfst nicht gegen den Lärm. Du kehrst zu dem zurück, was fest ist: dein Atem, dein Gleichgewicht, dein Platz im Moment. Wenn du geerdet bist, werden Entscheidungen einfach."},
+  {t: 172.7, q: "Why are people so afraid of being judged?", qde: "Warum haben Menschen solche Angst, beurteilt zu werden?",
+   a: "Judgment threatens self-image. When identity is built on approval, fear becomes constant.",
+   ade: "Urteile bedrohen das eigene Bild von sich. Wer sich über die Zustimmung anderer definiert, hat ständig Angst."},
+  {t: 182.5, q: "What keeps you steady when everything is moving fast?", qde: "Was hält dich stabil, wenn sich alles schnell bewegt?",
+   a: "I return to the body, the breath, the balance. Balance first, then timing. When I'm grounded, nothing rushes me. From that place, action becomes clean.",
+   ade: "Ich kehre zurück zu Körper, Atem und Gleichgewicht. Erst das Gleichgewicht, dann das Timing. Wenn ich geerdet bin, hetzt mich nichts. Von dort aus wird Handeln klar."},
+  {t: 198.3, q: "Why do people struggle to stay disciplined?", qde: "Warum fällt es Menschen schwer, diszipliniert zu bleiben?",
+   a: "Because they look for motivation instead of structure. Discipline is built quietly through repetition. When discipline is present, confidence follows naturally.",
+   ade: "Weil sie Motivation suchen statt Struktur. Disziplin entsteht leise durch Wiederholung. Wenn die Disziplin da ist, kommt das Selbstvertrauen von allein."},
+  {t: 213.1,
+   a: "When pressure shows up, most people hurry. I don't. I give things a moment to settle. When I do, the right action becomes clear, without force. Let it settle.",
+   ade: "Unter Druck hetzen die meisten Menschen. Ich nicht. Ich lasse den Dingen einen Moment, sich zu setzen. Dann zeigt sich das Richtige von allein, ohne Zwang. Lass es sich setzen."}
+];
+
+const video = document.getElementById("bruce-video");
+const box = document.getElementById("bruce-qa");
+const fmt = s => Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0");
+const el = (tag, cls, text) => {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text) e.textContent = text;
+  return e;
+};
+
+let qNum = 0;
+const cards = QA.map(item => {
+  const card = el("article", "card");
+  const top = el("div", "card-top");
+  top.appendChild(el("span", item.q ? "label" : "label solo", item.q ? "Frage " + (++qNum) : "Gedanke"));
+  const time = el("button", "time", "▶ " + fmt(item.t));
+  time.type = "button";
+  time.addEventListener("click", () => {
+    const go = () => {
+      video.currentTime = item.t;
+      video.play();
+    };
+    if (video.readyState >= 1) go();
+    else {
+      video.addEventListener("loadedmetadata", go, {once: true});
+      video.load();
+    }
+    video.scrollIntoView({block: "center", behavior: "smooth"});
+  });
+  top.appendChild(time);
+  card.appendChild(top);
+
+  if (item.q) {
+    const q = el("div", "question");
+    q.appendChild(el("span", "mark", "?"));
+    const qt = el("div");
+    qt.appendChild(el("p", "en", item.q));
+    qt.appendChild(el("p", "de", item.qde));
+    q.appendChild(qt);
+    card.appendChild(q);
+  }
+
+  const a = el("div", "answer");
+  a.appendChild(el("div", "who", "Bruce Lee"));
+  a.appendChild(el("p", "en", item.a));
+  a.appendChild(el("p", "de", item.ade));
+  card.appendChild(a);
+  if (item.r) card.appendChild(el("p", "reaction", item.r));
+  box.appendChild(card);
+  return card;
+});
+
+document.querySelectorAll(".lang button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+    document.body.classList.toggle("only-en", btn.dataset.lang === "en");
+    document.body.classList.toggle("only-de", btn.dataset.lang === "de");
+  });
+});
+
+let current = -1;
+video.addEventListener("timeupdate", () => {
+  let idx = -1;
+  for (let i = 0; i < QA.length; i++) {
+    if (video.currentTime >= QA[i].t) idx = i;
+  }
+  if (idx === current) return;
+  if (current >= 0) cards[current].classList.remove("active");
+  current = idx;
+  if (current >= 0) cards[current].classList.add("active");
+});
+</script>
 </body>
 </html>
