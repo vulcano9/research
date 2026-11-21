@@ -8,6 +8,7 @@ Sammlung meiner Forschungsberichte. Jeder Bericht ist eine einzelne HTML-Datei. 
 
 | Datum | Thema | Bericht |
 | --- | --- | --- |
+| 21.11.2026 | Unauffälliger GPS-Tracker für ein 7-jähriges Kind: PAJ GPS, Produkte und Gebühren (Produktsuche) | [bericht.html](researches/26.11.21_gps_tracker_kind_unauffaellig/bericht.html) |
 | 21.11.2026 | „The Music of the Primes": Masullos Beweisanspruch zur Riemannschen Vermutung (GRH) | [bericht.html](researches/26.11.21_music_of_the_primes/bericht.html) |
 | 19.11.2026 | Viele Kalorien in wenig Flüssigkeit: Cluster Dextrin (Produktsuche) | [bericht.html](researches/26.11.19_cluster_dextrin_kalorien/bericht.html) |
 | 19.11.2026 | Ist das Universum eine Entpackungsmaschine? (Quantenrauschen, ewiger Zyklus, weiße Löcher) | [bericht.html](researches/26.11.19_universum_entpackungsmaschine/bericht.html) |
