@@ -13,17 +13,14 @@
   html { scroll-behavior:smooth; }
   body { margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif; background:var(--bg); color:var(--fg); }
   main { max-width:960px; margin:0 auto; padding:2.5rem 1.2rem 4rem; }
-  h1 { margin:0 0 .3rem; font-size:1.9rem; }
-  .sub { color:var(--muted); margin:0 0 1.5rem; }
+  h1 { margin:0 0 1.5rem; font-size:1.9rem; }
   input { width:100%; padding:.7rem .9rem; font-size:1rem; border:1px solid var(--line); border-radius:10px; background:var(--card); color:var(--fg); margin-bottom:1rem; }
   nav { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:2rem; }
   nav a { display:inline-flex; align-items:center; gap:.4rem; padding:.35rem .8rem; border:1px solid var(--line); border-radius:999px; background:var(--card); color:var(--fg); text-decoration:none; font-size:.9rem; }
   nav a:hover, nav a:focus-visible { border-color:var(--accent); outline:none; }
   nav .n { color:var(--muted); font-size:.8rem; }
   section { margin-bottom:2.2rem; scroll-margin-top:1rem; }
-  section h2 { display:flex; align-items:center; gap:.6rem; margin:0 0 .2rem; font-size:1.3rem; }
-  section h2 .ico { font-size:1.4rem; }
-  section .desc { margin:0 0 .8rem; color:var(--muted); font-size:.92rem; }
+  section h2 { margin:0 0 .8rem; font-size:1.3rem; }
   ul { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:.8rem; }
   a.card { display:block; height:100%; padding:1rem 1.2rem; background:var(--card); border:1px solid var(--line); border-radius:12px; text-decoration:none; color:inherit; transition:border-color .15s, transform .15s; }
   a.card:hover, a.card:focus-visible { border-color:var(--accent); transform:translateY(-2px); outline:none; }
@@ -36,23 +33,21 @@
 <body>
 <main>
   <h1>Deep Research</h1>
-  <p class="sub">Meine Forschungsberichte und Seiten, nach Themen sortiert. Jeder Bericht ist eine eigene Seite.</p>
   <input id="q" type="search" placeholder="Alles durchsuchen …" aria-label="Alles durchsuchen">
 
   <nav aria-label="Kategorien">
-    <a href="#business">💡 Business-Ideen <span class="n">4</span></a>
-    <a href="#gesundheit">🧬 Gesundheit / Langlebigkeit <span class="n">0</span></a>
-    <a href="#attraktivitaet">✨ Attraktivität <span class="n">0</span></a>
-    <a href="#produktsuche">🛒 Produktsuche <span class="n">6</span></a>
-    <a href="#motivation">🔥 Motivation <span class="n">1</span></a>
-    <a href="#habits">🔁 Habits <span class="n">0</span></a>
-    <a href="#planung">🗓️ Planung <span class="n">1</span></a>
-    <a href="#wissenschaft">🌌 Wissenschaft / Kosmos <span class="n">1</span></a>
+    <a href="#business">Business-Ideen <span class="n">4</span></a>
+    <a href="#gesundheit">Gesundheit / Langlebigkeit <span class="n">0</span></a>
+    <a href="#attraktivitaet">Attraktivität <span class="n">0</span></a>
+    <a href="#produktsuche">Produktsuche <span class="n">6</span></a>
+    <a href="#motivation">Motivation <span class="n">1</span></a>
+    <a href="#habits">Habits <span class="n">0</span></a>
+    <a href="#planung">Planung <span class="n">1</span></a>
+    <a href="#wissenschaft">Wissenschaft / Kosmos <span class="n">2</span></a>
   </nav>
 
   <section id="business">
-    <h2><span class="ico">💡</span>Business-Ideen</h2>
-    <p class="desc">Geschäftsideen, Reichtum und wie andere ihr Geld verdienen.</p>
+    <h2>Business-Ideen</h2>
     <ul>
       <li data-s="sci-fi idea bank science fiction ideen bank packy mccormick not boring technovelgy erfindungen startups gebaut bits atome varda prophetic pipedream astroforge philip k. dick zukunft technik datenbank">
         <a class="card" href="researches/26.11.21_scifi_idea_bank/bericht.html">
@@ -82,20 +77,17 @@
   </section>
 
   <section id="gesundheit">
-    <h2><span class="ico">🧬</span>Gesundheit / Langlebigkeit</h2>
-    <p class="desc">Gesund bleiben, länger leben, Körper und Geist pflegen.</p>
+    <h2>Gesundheit / Langlebigkeit</h2>
     <div class="placeholder" data-s="gesundheit langlebigkeit">Noch keine Berichte.</div>
   </section>
 
   <section id="attraktivitaet">
-    <h2><span class="ico">✨</span>Attraktivität</h2>
-    <p class="desc">Aussehen, Ausstrahlung und Auftreten.</p>
+    <h2>Attraktivität</h2>
     <div class="placeholder" data-s="attraktivität attraktivitaet">Noch keine Berichte.</div>
   </section>
 
   <section id="produktsuche">
-    <h2><span class="ico">🛒</span>Produktsuche</h2>
-    <p class="desc">Produkte vergleichen und das Passende finden.</p>
+    <h2>Produktsuche</h2>
     <ul>
       <li data-s="stiftplotter pen plotter handschrift briefe serienbrief uuna tek idraw h se a3 iauto axidraw inkscape plotter füller kugelschreiber">
         <a class="card" href="researches/26.11.22_stiftplotter_handschrift_briefe/bericht.html">
@@ -137,8 +129,7 @@
   </section>
 
   <section id="motivation">
-    <h2><span class="ico">🔥</span>Motivation</h2>
-    <p class="desc">Bilder und Sprüche, die mich antreiben.</p>
+    <h2>Motivation</h2>
     <ul>
       <li data-s="motivation bilder sprüche inspiration">
         <a class="card" href="motivation/index.html">
@@ -150,14 +141,12 @@
   </section>
 
   <section id="habits">
-    <h2><span class="ico">🔁</span>Habits</h2>
-    <p class="desc">Gewohnheiten aufbauen und beibehalten.</p>
+    <h2>Habits</h2>
     <div class="placeholder" data-s="habits gewohnheiten">Noch keine Berichte.</div>
   </section>
 
   <section id="planung">
-    <h2><span class="ico">🗓️</span>Planung</h2>
-    <p class="desc">Reisen, Termine und Vorhaben planen.</p>
+    <h2>Planung</h2>
     <ul>
       <li data-s="anreise klinik maximilian scheidegg reha kur bahn zug dresden röthenbach allgäu februar 2027 reise planung">
         <a class="card" href="planung/anreise_klinik_scheidegg.html">
@@ -169,13 +158,12 @@
   </section>
 
   <section id="wissenschaft">
-    <h2><span class="ico">🌌</span>Wissenschaft / Kosmos</h2>
-    <p class="desc">Große Fragen zu Universum, Physik, Mathematik und Information, mit seriösen Quellen geprüft.</p>
+    <h2>Wissenschaft / Kosmos</h2>
     <ul>
       <li data-s="music of the primes masullo riemann riemannsche vermutung grh hecke l-funktion zeta nullstellen primzahlen beweis spurformel conrad vakil tao alpöge alpoege claude lean ki mathematik">
         <a class="card" href="researches/26.11.21_music_of_the_primes/bericht.html">
           <div class="date">21.11.2026</div>
-          <div class="title">„The Music of the Primes": Masullos Beweisanspruch zur Riemannschen Vermutung</div>
+          <div class="title">„The Music of the Primes“: Masullos Beweisanspruch zur Riemannschen Vermutung</div>
         </a>
       </li>
       <li data-s="universum entpackungsmaschine dekompression quantenfluktuationen rauschen decoder superintelligenz zyklus ewige wiederkehr weißes loch weisses loch schwarzes loch hawking strahlung kosmologie physik information linde tegmark penrose rovelli">
