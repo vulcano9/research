@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Habits – Flywheel, Mobility, Nacken-Drill</title>
+<style>
+  :root { --bg:#f6f7f9; --fg:#1c1f24; --card:#fff; --muted:#5b6470; --accent:#2457d6; --line:#e1e4e8; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#14171c; --fg:#e8eaed; --card:#1d2128; --muted:#9aa3af; --accent:#7aa2ff; --line:#2c323b; }
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif; background:var(--bg); color:var(--fg); }
+  main { max-width:960px; margin:0 auto; padding:2.5rem 1.2rem 4rem; }
+  a { color:var(--accent); }
+  .back { display:inline-block; margin-bottom:1rem; font-size:.9rem; text-decoration:none; }
+  .back:hover, .back:focus-visible { text-decoration:underline; outline:none; }
+  h1 { margin:0 0 1rem; font-size:1.9rem; }
+  nav { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:2rem; }
+  nav a { display:inline-flex; align-items:center; padding:.35rem .8rem; border:1px solid var(--line); border-radius:999px; background:var(--card); color:var(--fg); text-decoration:none; font-size:.9rem; }
+  nav a:hover, nav a:focus-visible { border-color:var(--accent); outline:none; }
+  section { margin-bottom:2.8rem; scroll-margin-top:1rem; }
+  section h2 { margin:0 0 .8rem; font-size:1.3rem; }
+  h3 { margin:0; font-size:1.05rem; line-height:1.35; }
+  h4 { margin:1rem 0 .25rem; font-size:.78rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); font-weight:600; }
+  p { margin:.5rem 0; }
+  .lead { margin:.2rem 0 1rem; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:1.1rem 1.2rem; }
+  .habits { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:.9rem; margin-top:1rem; }
+  .habit { display:flex; flex-direction:column; }
+  .habit.done { border-color:var(--accent); }
+  .cardhead { display:flex; flex-direction:column; align-items:flex-start; gap:.45rem; }
+  .badge { display:inline-block; font-size:.75rem; padding:.1rem .55rem; border:1px solid var(--line); border-radius:999px; color:var(--muted); background:var(--bg); }
+  .durnote { margin:.15rem 0 0; font-size:.85rem; color:var(--muted); }
+  .habit ol, .habit ul { margin:.35rem 0 .6rem; padding-left:1.2rem; }
+  .habit li { margin:.3rem 0; }
+  .habit em { color:var(--fg); }
+  .check { display:flex; align-items:center; gap:.55rem; margin-top:auto; padding-top:.8rem; border-top:1px solid var(--line); font-size:.95rem; cursor:pointer; }
+  .check input { width:1.1rem; height:1.1rem; accent-color:var(--accent); margin:0; flex:none; }
+  .counter { font-size:.9rem; color:var(--muted); }
+  .counter strong { color:var(--fg); font-variant-numeric:tabular-nums; }
+  .logic { margin:.5rem 0 1.2rem; }
+  .chain { display:flex; flex-direction:column; }
+  .node { background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:.55rem .8rem; text-align:center; font-weight:600; font-size:.95rem; }
+  .node.combo { display:flex; flex-wrap:wrap; justify-content:center; gap:.3rem; }
+  .node .plus { color:var(--muted); font-weight:400; }
+  .arrow { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:.45rem; padding:.5rem .3rem; color:var(--muted); font-size:.84rem; text-align:center; }
+  .arrow .sym { font-size:1.05rem; color:var(--accent); }
+  .tip { margin-top:1rem; }
+  .video { margin:0 0 .55rem; }
+  .video video { display:block; width:100%; height:auto; max-width:100%; border-radius:8px; background:#000; }
+  .portrait { max-width:360px; margin:0 auto .55rem; }
+  .portrait video { max-width:100%; }
+  .srcline { margin:.2rem 0 0; font-size:.85rem; color:var(--muted); }
+  .subhead { margin-top:2rem; }
+  .exlist { margin:.6rem 0 .9rem; padding-left:1.4rem; }
+  .exlist li { margin:.3rem 0; padding:.15rem .4rem; border-radius:8px; }
+  .exlist li.current { background:var(--bg); outline:1px solid var(--accent); }
+  .exlist .de { color:var(--muted); }
+  .timer { margin:1rem 0; }
+  .timerhead { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+  .timername { font-weight:600; }
+  .timerhint { font-size:.85rem; color:var(--muted); }
+  .timerclock { font-size:1.5rem; font-variant-numeric:tabular-nums; color:var(--accent); font-weight:600; }
+  .timerbar { height:4px; border-radius:999px; background:var(--line); overflow:hidden; margin:.7rem 0 .9rem; }
+  .timerbar div { height:100%; width:0; background:var(--accent); transition:width .9s linear; }
+  .timerbtns { display:flex; flex-wrap:wrap; gap:.6rem; }
+  .btn { font:inherit; font-size:.9rem; padding:.5rem .9rem; border-radius:10px; border:1px solid var(--accent); background:var(--accent); color:#fff; cursor:pointer; }
+  .btn.secondary { background:transparent; color:var(--fg); border-color:var(--line); }
+  .btn:disabled { opacity:.45; cursor:default; }
+  .btn:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  @media (prefers-color-scheme: dark) { .btn { color:#0d1015; } }
+  details { margin:1rem 0; padding:.8rem 1rem; border:1px solid var(--line); border-radius:12px; background:var(--card); }
+  summary { cursor:pointer; font-weight:600; }
+  .tweet { margin-top:.7rem; font-size:.92rem; color:var(--muted); }
+  .tweet p { margin:.5rem 0; }
+  .foot { margin-top:3rem; padding-top:1rem; border-top:1px solid var(--line); font-size:.82rem; color:var(--muted); }
+  .foot p { margin:.25rem 0; }
+  @media (max-width:520px) {
+    main { padding:1.6rem 1rem 3rem; }
+    h1 { font-size:1.6rem; }
+    .card { padding:1rem; }
+    .timerclock { font-size:1.3rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="../index.html">← Zur Übersicht</a>
+  <h1>Habits</h1>
+
+  <nav aria-label="Abschnitte">
+    <a href="#flywheel">Flywheel-Gewohnheiten</a>
+    <a href="#master">Master-Flywheel</a>
+    <a href="#hip">Hip Mobility</a>
+    <a href="#nacken">Nacken-Drill</a>
+  </nav>
+
+  <section id="flywheel">
+    <h2>Flywheel-Gewohnheiten (5–10 Minuten)</h2>
+    <p class="lead">Ein <strong>Flywheel (Schwungrad)</strong> zeichnet sich dadurch aus, dass der Anfangsaufwand Energie kostet, sich die Dynamik mit der Zeit aber selbst antreibt und exponentielle Ergebnisse („Compounding“) liefert. Wenn diese Gewohnheiten geschickt gewählt sind, befeuern sie sich sogar gegenseitig.</p>
+    <p class="lead">Hier sind <strong>6 präzise 5- bis 10-Minuten-Flywheels</strong> für deine Bereiche:</p>
+    <p class="counter"><strong id="doneCount">0 von 6</strong> heute erledigt. Am nächsten Tag ist die Liste wieder leer.</p>
+
+    <div class="habits" id="habits">
+      <article class="habit card" data-id="mitochondrien">
+        <div class="cardhead">
+          <h3>1. Mitochondrien-Gesundheit: Der „Mitochondrial Shock &amp; Sun“-Snack</h3>
+          <span class="badge">5–7 Minuten</span>
+        </div>
+        <h4>Die Gewohnheit</h4>
+        <ol>
+          <li><strong>Tageslicht-Anker (3–5 Min):</strong> Gehe morgens direkt nach dem Aufstehen ohne Sonnenbrille ans Tageslicht (aktiviert den zirkadianen Rhythmus und stimuliert über Nahinfrarot-Licht die Cytochrom-c-Oxidase in den Mitochondrien).</li>
+          <li><strong>Kälte-Kick (60–90 Sek):</strong> Die letzten 60–90 Sekunden der Morgendusche auf eiskalt drehen.</li>
+          <li><em>Alternative an trainingsfreien Tagen:</em> Ein 4-Minuten-Tabata-Snack (z. B. Burpees oder Kettlebell-Swings: 20 Sek Vollgas, 10 Sek Pause).</li>
+        </ol>
+        <h4>Der Compounding-Flywheel-Effekt</h4>
+        <p>Der kurze thermische oder anaerobe Reiz löst <strong>Mitophagie</strong> aus (beschädigte Mitochondrien werden abgebaut) und kurbelt die <strong>Mitochondrien-Biogenese</strong> (Neubildung) an.</p>
+        <p><em>Mehr Mitochondrien → mehr ATP (Energie) → mehr mentale Präsenz für Business und Charisma.</em></p>
+        <label class="check"><input type="checkbox" data-id="mitochondrien"> Heute erledigt</label>
+      </article>
+
+      <article class="habit card" data-id="beziehungen">
+        <div class="cardhead">
+          <h3>2. Beziehungen pflegen: Die „5-Minuten-Ping-Regel“ (Unaufgeforderte Wertschätzung)</h3>
+          <span class="badge">5 Minuten</span>
+        </div>
+        <p class="durnote">Am besten zur festen Zeit, z. B. auf dem Weg zur Arbeit.</p>
+        <h4>Die Gewohnheit</h4>
+        <p>Schicke täglich <strong>einer Person</strong> (Freund, Mentor, Geschäftspartner, Familienmitglied) eine kurze, ungezwungene Sprachnachricht oder Textnachricht mit echtem Bezug:</p>
+        <ul>
+          <li><em>„Musste gerade an unser Gespräch über X denken – wie lief das eigentlich?“</em></li>
+          <li><em>„Wollte nur kurz sagen: Danke für deinen Rat letztens.“</em></li>
+        </ul>
+        <p>(Wichtig: Keine Frage erzwingen, keinen Gefallen verlangen).</p>
+        <h4>Der Compounding-Flywheel-Effekt</h4>
+        <p>Du reaktivierst und pflegst pro Jahr <strong>über 300 Kontakte</strong>, ohne stundenlang telefonieren zu müssen. Du bleibst als wertschätzender, verlässlicher Mensch im Kopf.</p>
+        <p><em>Starkes Beziehungsnetz → hoher emotionaler Rückhalt → soziale Sicherheit, die magnetisch wirkt.</em></p>
+        <label class="check"><input type="checkbox" data-id="beziehungen"> Heute erledigt</label>
+      </article>
+
+      <article class="habit card" data-id="haltung">
+        <div class="cardhead">
+          <h3>3. Jünger aussehen: Die „Haltung &amp; Schutz“-Routine</h3>
+          <span class="badge">5 Minuten</span>
+        </div>
+        <h4>Die Gewohnheit</h4>
+        <ol>
+          <li><strong>Konsequenter UV-Schutz (2 Min):</strong> Täglich morgens ein Breitband-Sonnenschutzmittel (LSF 50, ultraleicht) auf Gesicht, Hals und Handrücken auftragen – egal ob Sommer oder Winter (ca. 80 % der sichtbaren Hautalterung sind UV-bedingt).</li>
+          <li><strong>Haltungs- &amp; Lymphentstauung (3 Min):</strong> 2 Minuten Dehnung des Brustmuskels und "Chin Tucks" (Kinn einziehen gegen den Smartphone-Nacken) plus 1 Minute sanftes Ausstreichen der Wangen/Kieferlinie nach unten zu den Lymphknoten.</li>
+        </ol>
+        <h4>Der Compounding-Flywheel-Effekt</h4>
+        <p>Ein straffer Nacken, freie Kieferlinie und offene Schultern lassen einen Menschen sofort 5 Jahre jünger und dynamischer wirken. Der tägliche Sonnenschutz verhindert den Kollagenabbau schleichend über Jahrzehnte.</p>
+        <label class="check"><input type="checkbox" data-id="haltung"> Heute erledigt</label>
+      </article>
+
+      <article class="habit card" data-id="feynman">
+        <div class="cardhead">
+          <h3>4. Intelligenter werden: Der „One-Concept Feynman“-Zettel</h3>
+          <span class="badge">10 Minuten</span>
+        </div>
+        <h4>Die Gewohnheit</h4>
+        <p>Lies nicht wahllos News, sondern lies täglich <strong>einen</strong> hochwertigen Artikel (z. B. Farnam Street, Fachaufsatz, Long-Form-Essay) oder 5 Seiten eines Grundlagenbuchs.</p>
+        <p>Schreibe danach in 2–3 Minuten <strong>einen einzigen Satz</strong> in deine Notiz-App, der das Kernprinzip so erklärt, als würdest du es einem 12-Jährigen beibringen (Feynman-Technik).</p>
+        <h4>Der Compounding-Flywheel-Effekt</h4>
+        <p>Reines Konsumieren verpufft. Durch das aktive Rekonstruieren entstehen solide <strong>mentale Modelle</strong>.</p>
+        <p><em>Nach 1 Jahr besitzt du ~350 universelle Denkmuster → schnellere Auffassungsgabe → du führst faszinierendere Gespräche.</em></p>
+        <label class="check"><input type="checkbox" data-id="feynman"> Heute erledigt</label>
+      </article>
+
+      <article class="habit card" data-id="friction">
+        <div class="cardhead">
+          <h3>5. Business-Ideen finden: Die „Friction-Scanning“-Methode</h3>
+          <span class="badge">10 Minuten</span>
+        </div>
+        <p class="durnote">Z. B. beim Kaffee mit dem Wall Street Journal / Financial Times.</p>
+        <h4>Die Gewohnheit</h4>
+        <p>Lies das WSJ <strong>nicht</strong> für Allgemeinbildung, sondern scanne gezielt nach drei Auslösern:</p>
+        <ol>
+          <li><em>Regulierungsänderungen</em> (Wo entsteht neuer bürokratischer Zwang?).</li>
+          <li><em>Infragestellung alter Gewohnheiten</em> (Wo verliert eine Branche gerade Marge?).</li>
+          <li><em>Beschwerden von Führungskräften</em> (Welches Problem kostet Unternehmen aktuell Geld?).</li>
+        </ol>
+        <p>Notiere täglich <strong>ein Problem</strong> in einer Liste („Friction Log“): <em>„X ist teuer/ineffizient für Zielgruppe Y.“</em></p>
+        <h4>Der Compounding-Flywheel-Effekt</h4>
+        <p>Business-Ideen kommen selten aus dem Nichts; sie sind Lösungen für bestehende Reibung. Dein Gehirn trainiert den „Opportunity Muscle“. Nach 90 Tagen siehst du überall Marktchancen, wo andere nur Frust sehen.</p>
+        <label class="check"><input type="checkbox" data-id="friction"> Heute erledigt</label>
+      </article>
+
+      <article class="habit card" data-id="charisma">
+        <div class="cardhead">
+          <h3>6. Charisma &amp; Anziehung auf Frauen: „Grounded Presence &amp; Eye-Hold“</h3>
+          <span class="badge">5–10 Minuten</span>
+        </div>
+        <p class="durnote">Über den Tag verteilt (in Mikromomenten).</p>
+        <h4>Die Gewohnheit</h4>
+        <p>Trainiere bei alltäglichen Interaktionen (Barista, Kassiererin, Passantin, Kollegin) zwei Dinge:</p>
+        <ol>
+          <li><strong>Physiologische Entspannung (Groundedness):</strong> Bevor du sprichst, atme tief in den Bauch aus, senke die Schultern und sprich mit 10 % langsamerem Tempo und tieferer Tonalität (Down-Inflection am Satzende, kein fragender Tonfall).</li>
+          <li><strong>Der 1-Sekunden-Eye-Hold mit warmem Lächeln:</strong> Halte den Blickkontakt genau eine Sekunde länger, als es die gesellschaftliche Norm verlangt, verbunden mit einer inneren Haltung des Wohlwollens („Mir gefällt, was ich sehe / Ich bin vollkommen entspannt“).</li>
+        </ol>
+        <h4>Der Compounding-Flywheel-Effekt</h4>
+        <p>Frauen fühlen unbewusst sofort, ob ein Mann innerlich unruhig („needy“) ist oder ruht („grounded“). Dieses Mikrotraining beseitigt schrittweise soziale Ängste.</p>
+        <p><em>Ruhe → unerschütterliches Selbstbewusstsein → passive Dominanz gepaart mit Wärme (die stärkste Form von Anziehungskraft).</em></p>
+        <label class="check"><input type="checkbox" data-id="charisma"> Heute erledigt</label>
+      </article>
+    </div>
+  </section>
+
+  <section id="master">
+    <h2>Das Master-Flywheel</h2>
+    <p class="lead">Wie alles ineinandergreift:</p>
+    <div class="card logic">
+      <div class="chain">
+        <div class="node">Mitochondrien / Kälte &amp; Licht</div>
+        <div class="arrow"><span class="sym">↓</span> <span>(Erzeugt hohe physische Energie &amp; Frische)</span></div>
+        <div class="node combo"><span>Jüngeres Aussehen &amp; Haltung</span> <span class="plus">+</span> <span>Charisma &amp; Grounded Presence</span></div>
+        <div class="arrow"><span class="sym">↓</span> <span>(Erzeugt magnetische Ausstrahlung auf Frauen &amp; Respekt im Netzwerk)</span></div>
+        <div class="node combo"><span>Gepflegte Beziehungen</span> <span class="plus">+</span> <span>Scharfe Denkmuster &amp; Business-Friction-Log</span></div>
+        <div class="arrow"><span class="sym">↓</span> <span>(Erzeugt Kapital, Chancen &amp; Status)</span></div>
+        <div class="node">Mehr Autonomie &amp; Gelassenheit</div>
+        <div class="arrow"><span class="sym">→</span> <span>befeuert das gesamte System von Neuem.</span></div>
+      </div>
+    </div>
+    <div class="card tip">
+      <p><strong>Tipp zur Umsetzung:</strong> Starte nicht alle sechs am selben Tag. Kopple die ersten zwei an feste Trigger (z. B. <em>Licht/Dusche</em> morgens direkt nach dem Aufstehen, <em>WSJ-Scan</em> beim ersten Kaffee). Sobald diese automatisch laufen, nimmst du die nächsten beiden dazu.</p>
+    </div>
+  </section>
+
+  <section id="mobility">
+    <h2>Mobility</h2>
+
+    <h3>Hip Mobility (Hüftmobilität)</h3>
+    <p class="lead">Kurze Übung für die Hüfte. Das Video läuft in einer Schleife.</p>
+    <div class="portrait">
+      <div class="card">
+        <div class="video">
+          <video src="hip-mobility.mp4" controls playsinline preload="metadata" loop></video>
+        </div>
+        <p class="srcline">Quelle: <a href="https://video.twimg.com/amplify_video/2090644969589719040/vid/avc1/320x568/EiTZWKyxyqpep2P7.mp4?tag=14" target="_blank" rel="noopener">Original-Video (X/Twitter)</a></p>
+      </div>
+    </div>
+
+    <h3 id="nacken" class="subhead">Der 3-Minuten-Nacken-Drill (Dan Go)</h3>
+    <p class="lead">Sechs Übungen, je 15 Sekunden. Am besten morgens, unter der Dusche oder zwischen Sitzphasen am Schreibtisch.</p>
+    <div class="card">
+      <div class="video">
+        <video src="nacken-drill.mp4" poster="nacken-drill.jpg" controls playsinline preload="metadata"></video>
+      </div>
+      <p class="srcline">Quelle: <a href="https://x.com/CoachDanGo/status/2124180641398833255" target="_blank" rel="noopener">Dan Go (@CoachDanGo) auf X, 21.11.2026</a></p>
+    </div>
+
+    <h4>Die 6 Übungen</h4>
+    <ol class="exlist" id="uebungen">
+      <li data-name="Neck CARS">Neck CARS <span class="de">(kontrollierte Nackenkreise)</span></li>
+      <li data-name="Rotations">Rotations <span class="de">(Nackendrehungen)</span></li>
+      <li data-name="Looking up + down">Looking up + down <span class="de">(Blick nach oben und unten)</span></li>
+      <li data-name="Lateral stretches">Lateral stretches <span class="de">(seitliche Nackendehnung)</span></li>
+      <li data-name="Cell Phone stretch">Cell Phone stretch <span class="de">(Handy-Dehnung)</span></li>
+      <li data-name="Janet Jacksons">Janet Jacksons</li>
+    </ol>
+
+    <div class="card timer">
+      <div class="timerhead">
+        <div>
+          <div class="timername" id="timerName" aria-live="polite">Bereit</div>
+          <div class="timerhint" id="timerHint">6 Übungen, je 15 Sekunden.</div>
+        </div>
+        <div class="timerclock" id="timerClock">0:15</div>
+      </div>
+      <div class="timerbar" aria-hidden="true"><div id="timerFill"></div></div>
+      <div class="timerbtns">
+        <button type="button" class="btn" id="timerStart">15-Sekunden-Timer starten</button>
+        <button type="button" class="btn secondary" id="timerStop" disabled>Stopp</button>
+      </div>
+    </div>
+
+    <details>
+      <summary>Originaltext (Englisch)</summary>
+      <div class="tweet">
+        <p>I'm 47. This 3 minute neck drill changed my life.</p>
+        <p>The neck is one of the most important parts of your body but it gets stiff after long periods of sitting.</p>
+        <p>The 3 minute life changing neck drill</p>
+        <p>1) Neck CARS<br>2) Rotations<br>3) Looking up + down<br>4) Lateral stretches<br>5) Cell Phone stretch<br>6) Janet Jacksons</p>
+        <p>I usually do these in the morning, in my shower, or between desk sessions. Doesn't take long to feel the benefits.</p>
+        <p>Do each of these exercises for 15 seconds, and watch how much better your neck feels afterward.</p>
+      </div>
+    </details>
+  </section>
+
+  <div class="foot">
+    <p>Hinweis: Keine medizinische Beratung. Bei Schmerzen oder Vorerkrankungen vorher ärztlich abklären.</p>
+    <p>Stand: 22.11.2026</p>
+  </div>
+</main>
+
+<script>
+(function () {
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.habit input[type="checkbox"]'));
+  var countEl = document.getElementById('doneCount');
+  var d = new Date();
+  var key = 'habits-' + d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  var done = [];
+
+  function read() {
+    try {
+      var raw = localStorage.getItem(key);
+      var val = raw ? JSON.parse(raw) : [];
+      return Array.isArray(val) ? val : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function save(list) {
+    try {
+      localStorage.setItem(key, JSON.stringify(list));
+    } catch (e) {}
+  }
+
+  function paint() {
+    boxes.forEach(function (box) {
+      box.checked = done.indexOf(box.dataset.id) !== -1;
+      box.closest('.habit').classList.toggle('done', box.checked);
+    });
+    countEl.textContent = done.length + ' von ' + boxes.length;
+  }
+
+  done = read().filter(function (id) {
+    return boxes.some(function (box) { return box.dataset.id === id; });
+  });
+  paint();
+
+  boxes.forEach(function (box) {
+    box.addEventListener('change', function () {
+      done = boxes.filter(function (b) { return b.checked; }).map(function (b) { return b.dataset.id; });
+      save(done);
+      countEl.textContent = done.length + ' von ' + boxes.length;
+      box.closest('.habit').classList.toggle('done', box.checked);
+    });
+  });
+})();
+
+(function () {
+  var DUR = 15;
+  var items = Array.prototype.slice.call(document.querySelectorAll('#uebungen li'));
+  var nameEl = document.getElementById('timerName');
+  var hintEl = document.getElementById('timerHint');
+  var clockEl = document.getElementById('timerClock');
+  var fillEl = document.getElementById('timerFill');
+  var startBtn = document.getElementById('timerStart');
+  var stopBtn = document.getElementById('timerStop');
+  var timer = null;
+  var idx = 0;
+  var left = DUR;
+
+  function fmt(s) {
+    return '0:' + (s < 10 ? '0' : '') + s;
+  }
+
+  function highlight(i) {
+    items.forEach(function (li, j) {
+      li.classList.toggle('current', j === i);
+    });
+  }
+
+  function show(i) {
+    idx = i;
+    left = DUR;
+    highlight(i);
+    nameEl.textContent = (i + 1) + ' von 6 · ' + items[i].dataset.name;
+    clockEl.textContent = fmt(DUR);
+    fillEl.style.width = '0%';
+  }
+
+  function reset() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+  }
+
+  function finish() {
+    reset();
+    highlight(-1);
+    nameEl.textContent = 'Fertig';
+    hintEl.textContent = 'Alle 6 Übungen geschafft.';
+    clockEl.textContent = '0:00';
+    fillEl.style.width = '100%';
+  }
+
+  function stop() {
+    reset();
+    highlight(-1);
+    nameEl.textContent = 'Gestoppt';
+    hintEl.textContent = 'Du kannst jederzeit neu starten.';
+    clockEl.textContent = fmt(DUR);
+    fillEl.style.width = '0%';
+  }
+
+  function tick() {
+    left--;
+    clockEl.textContent = fmt(left);
+    fillEl.style.width = ((DUR - left) / DUR * 100) + '%';
+    if (left <= 0) {
+      if (idx + 1 >= items.length) {
+        finish();
+      } else {
+        show(idx + 1);
+      }
+    }
+  }
+
+  startBtn.addEventListener('click', function () {
+    reset();
+    hintEl.textContent = 'Läuft. Nach 15 Sekunden kommt die nächste Übung.';
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+    show(0);
+    timer = setInterval(tick, 1000);
+  });
+
+  stopBtn.addEventListener('click', stop);
+})();
+</script>
+</body>
+</html>

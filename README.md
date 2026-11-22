@@ -27,6 +27,7 @@ Sammlung meiner Forschungsberichte. Jeder Bericht ist eine einzelne HTML-Datei. 
 .
 ├── index.html                      Übersichtsseite mit Suchfeld, nach Kategorien gegliedert
 ├── motivation/index.html           Motivationsseite: Bilder aus motivation/ als Grid, darunter Fragen an Bruce Lee (EN/DE) und am Ende das Video
+├── habits/index.html               Habits: Flywheel-Gewohnheiten mit Tages-Checkliste, Videos zu Hüftmobilität und Nacken-Drill
 ├── planung/                        Planungsseiten (z. B. Reiseanreise)
 ├── .nojekyll                       GitHub Pages ohne Jekyll
 ├── .gitignore
