@@ -8,6 +8,7 @@ Sammlung meiner Forschungsberichte. Jeder Bericht ist eine einzelne HTML-Datei. 
 
 | Datum | Thema | Bericht |
 | --- | --- | --- |
+| 22.11.2026 | Nasenstrips für empfindliche Haut mit starker Reinigung: ilso Sebum Softener vs. Acnemy Zitproof Nose (Produktsuche) | [bericht.html](researches/26.11.22_nasenstrips_empfindliche_haut/bericht.html) |
 | 22.11.2026 | Stiftplotter für Briefe in eigener Handschrift: UUNA TEK iDraw H SE vs. iAuto (Produktsuche) | [bericht.html](researches/26.11.22_stiftplotter_handschrift_briefe/bericht.html) |
 | 21.11.2026 | Sci-Fi-Ideen-Bank: 4.417 Ideen aus der Science-Fiction entdecken (Not Boring + Technovelgy) | [bericht.html](researches/26.11.21_scifi_idea_bank/bericht.html) |
 | 21.11.2026 | Unauffälliger GPS-Tracker für ein 7-jähriges Kind: PAJ GPS, Produkte und Gebühren (Produktsuche) | [bericht.html](researches/26.11.21_gps_tracker_kind_unauffaellig/bericht.html) |
