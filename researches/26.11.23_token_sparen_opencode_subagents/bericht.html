@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tokens sparen in opencode: wo sie entstehen und was wirklich hilft</title>
+<meta name="description" content="Deutsche, interaktive Auswertung: wie Agenten Tokens verbrauchen, was DeepSeek-Subagents in opencode kosten, welcher Endpunkt am günstigsten ist und welche Sparmaßnahmen messbar wirken.">
+<style>
+:root{
+  --paper:#fcfbf8;
+  --ink:#211f1b;
+  --muted:#66625a;
+  --rule:#e2ddd3;
+  --soft:#f4f1ea;
+  --card:#ffffff;
+  --link:#35586f;
+  --good:#4f7a5b;
+  --bad:#a9554b;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Noto Sans",sans-serif;
+  font-size:17px;
+  line-height:1.65;
+}
+.wrap{max-width:820px;margin:0 auto;padding:26px 20px 72px}
+a{color:var(--link);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+a:hover{color:#1f3d50}
+.back{display:inline-block;font-size:.88rem;color:var(--muted);text-decoration:none;margin-bottom:18px}
+.back:hover{color:var(--ink);text-decoration:underline}
+h1{font-size:clamp(1.75rem,4.4vw,2.35rem);line-height:1.18;letter-spacing:-.015em;font-weight:600;margin:0 0 .55rem}
+.sub{font-size:1rem;color:var(--muted);margin:0 0 1.7rem;max-width:44em}
+h2{font-size:1.45rem;line-height:1.25;font-weight:600;letter-spacing:-.01em;margin:2.9rem 0 .8rem}
+h3{font-size:1.08rem;line-height:1.35;font-weight:600;margin:2rem 0 .5rem}
+p{margin:.7rem 0}
+ul,ol{padding-left:1.25rem;margin:.7rem 0}
+li{margin:.35rem 0}
+strong{font-weight:600}
+.small{font-size:.88rem;color:var(--muted)}
+.dim{color:var(--muted)}
+.summary{
+  background:var(--soft);
+  border:1px solid var(--rule);
+  border-radius:8px;
+  padding:16px 20px 14px;
+  margin:0 0 1.8rem;
+}
+.sumtitle{font-weight:600;margin:0 0 .35rem}
+.summary ul{margin:0;padding-left:1.15rem}
+.summary li{margin:.4rem 0}
+.note{
+  background:#f7f4ed;border:1px solid var(--rule);border-radius:6px;
+  padding:11px 15px;font-size:.9rem;line-height:1.55;color:#48443c;margin:1.2rem 0;
+}
+.note p{margin:.4rem 0}
+.note p:first-child{margin-top:0}
+.note p:last-child{margin-bottom:0}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:8px;background:var(--card);margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.89rem}
+caption{caption-side:top;text-align:left;font-weight:600;font-size:.9rem;padding:.65rem .75rem;border-bottom:1px solid var(--rule)}
+th,td{padding:.52rem .75rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}
+thead th{font-weight:600;color:var(--muted);font-size:.8rem;line-height:1.3}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.base td{background:#f7f4ed;font-weight:600}
+td.win{background:#eef3ec}
+pre{
+  background:var(--soft);border:1px solid var(--rule);border-radius:6px;
+  padding:12px 14px;overflow-x:auto;margin:.8rem 0;
+}
+pre code{background:none;padding:0;border:0;font-size:.82rem;line-height:1.55;white-space:pre}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  font-size:.88em;background:var(--soft);padding:1px 4px;border-radius:3px;
+}
+.btn{
+  font:inherit;font-size:.88rem;line-height:1.2;
+  min-height:38px;padding:.45rem .8rem;
+  border:1px solid #cdc6b8;border-radius:6px;
+  background:#fff;color:var(--ink);cursor:pointer;
+}
+.btn:hover{background:#f6f2ea}
+.btn[aria-pressed="true"]{background:#2a2824;border-color:#2a2824;color:#fff}
+.btn:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,.imgbtn:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.tool{
+  background:var(--card);border:1px solid var(--rule);border-radius:8px;
+  padding:16px;margin:1.5rem 0;
+}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.ctrl{display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+.ctrl:first-child{margin-top:0}
+.ctrl[hidden]{display:none}
+.ctrl label{font-size:.88rem;color:var(--muted)}
+.ctrl input[type="range"]{flex:1;min-width:140px;accent-color:#2a2824;height:26px}
+.ctrl output{font-variant-numeric:tabular-nums;font-size:.88rem;min-width:2.2em;text-align:right}
+.chartwrap{position:relative}
+.chartbox{margin-top:14px}
+.chartbox svg{display:block;width:100%;height:auto}
+.tip{
+  position:absolute;pointer-events:none;background:#fffdf9;border:1px solid var(--rule);
+  border-radius:4px;padding:4px 8px;font-size:.78rem;line-height:1.35;color:var(--ink);
+  white-space:nowrap;transform:translate(-50%,-118%);opacity:0;
+  box-shadow:0 1px 2px rgb(0 0 0 / .05);
+}
+.tip.on{opacity:1}
+.sumbar{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-top:12px}
+.sumbar .big{font-size:1.3rem;font-weight:600;font-variant-numeric:tabular-nums}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin:1.2rem 0;border-top:1px solid var(--rule)}
+.kpi{display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--rule)}
+.kpi span{font-size:.86rem;color:var(--muted);line-height:1.4}
+.kpi b{font-size:1rem;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.formula{
+  background:var(--soft);border:1px solid var(--rule);border-radius:6px;
+  padding:10px 14px;margin:1rem 0;font-size:.9rem;line-height:1.6;
+  font-variant-numeric:tabular-nums;
+}
+.check{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:start;padding:9px 0;border-bottom:1px solid #efece4}
+.check:last-of-type{border-bottom:0}
+.check input{width:18px;height:18px;accent-color:#2a2824;margin:3px 0 0}
+.check label{font-size:.9rem;line-height:1.4;font-weight:600}
+.check .hint{grid-column:2;font-size:.79rem;color:var(--muted);line-height:1.45;margin-bottom:2px}
+.check .hint a{color:var(--muted)}
+select{
+  font:inherit;font-size:.88rem;padding:.4rem .6rem;border:1px solid #cdc6b8;
+  border-radius:6px;background:#fff;color:var(--ink);max-width:100%;
+}
+.fieldrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
+.fieldrow label{font-size:.88rem;color:var(--muted)}
+.calcgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,304px);gap:24px;align-items:start}
+.respanel{background:#fffdf9;border:1px solid var(--rule);border-radius:8px;padding:14px 16px}
+.resbig{font-size:1.55rem;font-weight:600;line-height:1.15;font-variant-numeric:tabular-nums;margin:0}
+.rescap{font-size:.82rem;color:var(--muted);margin:2px 0 0;line-height:1.4}
+.resrow{display:flex;justify-content:space-between;gap:12px;font-size:.86rem;padding:3px 0;color:var(--muted)}
+.resrow b{color:var(--ink);font-variant-numeric:tabular-nums;font-weight:600}
+.resdiv{border-top:1px solid var(--rule);margin:10px 0}
+.rescost{font-size:1.3rem;font-weight:600;font-variant-numeric:tabular-nums;margin:0}
+.cmp{margin-top:14px}
+.cmpitem{margin:8px 0}
+.cmpline{display:flex;justify-content:space-between;gap:12px;font-size:.83rem;color:var(--muted);margin-bottom:4px}
+.cmpline b{color:var(--ink);font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.cmptrack{height:12px;border-radius:3px;background:#f0ece4;overflow:hidden}
+.cmpbar{height:100%;border-radius:3px;background:var(--link);min-width:2px}
+.cmpbar.base{background:#b9b0a0}
+.cmpsave{font-size:.85rem;color:var(--ink);margin:10px 0 0}
+.ebarcell{display:flex;flex-direction:column;align-items:flex-end;gap:3px;min-width:84px}
+.ebartrack{width:84px;height:6px;border-radius:3px;background:#eae4d8;overflow:hidden}
+.ebar{height:100%;border-radius:3px;background:#b9b0a0;min-width:2px}
+#epTable td{padding:.42rem .6rem;font-size:.86rem}
+#epTable th{padding:.42rem .6rem}
+.tag{color:var(--muted);font-size:.78rem}
+.epmini{display:none;color:var(--muted);font-size:.76rem;line-height:1.45;margin-top:2px}
+.qfb:empty{min-height:0}
+.quiznav:empty{display:none}
+.meashead{font-weight:600;margin:2rem 0 .3rem;font-size:1.02rem}
+.measure{margin:0 0 1.1rem}
+.measure p{margin:.35rem 0}
+.measure .fact{font-size:.88rem;color:var(--muted)}
+.quizmeta{font-size:.8rem;color:var(--muted);margin:0 0 6px;font-variant-numeric:tabular-nums}
+.quizclaim{font-size:1.02rem;font-weight:600;line-height:1.45;margin:0 0 12px}
+.qopts{display:grid;gap:6px}
+.qopt{
+  font:inherit;font-size:.88rem;line-height:1.4;text-align:left;
+  padding:.5rem .7rem;border:1px solid #cdc6b8;border-radius:6px;
+  background:#fff;color:var(--ink);cursor:pointer;
+}
+.qopt:hover:not(:disabled){background:#f6f2ea}
+.qopt:disabled{cursor:default}
+.qopt.is-right{background:#eaf2ea;border-color:#9ab79f}
+.qopt.is-wrong{background:#f7e9e6;border-color:#c79a92}
+.qfb{font-size:.88rem;color:#48443c;margin:.7rem 0 0;line-height:1.55;min-height:1.2em}
+.qfb b{font-weight:600;color:var(--ink)}
+.quiznav{margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.quizscore{font-size:.92rem;margin:4px 0 0}
+details{margin:.7rem 0}
+summary{cursor:pointer;font-weight:600;font-size:.95rem;padding:.35rem 0}
+details[open] summary{margin-bottom:.3rem}
+.codebox{position:relative;margin:.8rem 0}
+.codebox pre{margin:0;padding-right:92px}
+.copybtn{
+  position:absolute;top:8px;right:8px;font:inherit;font-size:.76rem;
+  padding:.28rem .55rem;min-height:30px;border:1px solid #cdc6b8;border-radius:5px;
+  background:#fff;color:var(--ink);cursor:pointer;
+}
+.copybtn:hover{background:#f6f2ea}
+.copybtn.ok{background:#2a2824;color:#fff;border-color:#2a2824}
+.cite{font-size:.76rem;text-decoration:none;color:var(--muted)}
+.cite:hover{color:var(--link);text-decoration:underline}
+.sources{list-style:none;padding-left:0}
+.sources li{margin:.5rem 0;line-height:1.5;font-size:.92rem}
+.sources .loc{color:var(--muted);font-size:.85rem;display:block;margin-top:1px;word-break:break-word}
+.sources h3{margin-top:1.6rem}
+.foot{font-size:.84rem;color:var(--muted);border-top:1px solid var(--rule);margin-top:2.6rem;padding-top:14px;line-height:1.55}
+.foot a{color:var(--muted)}
+@media (max-width:720px){
+  .calcgrid{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .ctrl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px}
+  .ctrl label{grid-column:1 / -1;margin-bottom:2px}
+  .ctrl input[type="range"]{grid-column:1;min-width:0;width:100%}
+  .ctrl output{grid-column:2;min-width:2.6em}
+  .ctrl .btn{grid-column:1 / -1;justify-self:start;margin-top:4px}
+  .fieldrow{display:grid;grid-template-columns:1fr;gap:4px}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:20px 16px 60px}
+  h2{font-size:1.3rem;margin-top:2.4rem}
+  .kpis{grid-template-columns:1fr;gap:0}
+  table{font-size:.84rem}
+  table.smalltable{min-width:0}
+  table.smalltable th,table.smalltable td{padding:.45rem .5rem;font-size:.8rem}
+  .resbig{font-size:1.4rem}
+  #epTable{min-width:0}
+  #epTable th:nth-child(2),#epTable td:nth-child(2),
+  #epTable th:nth-child(3),#epTable td:nth-child(3),
+  #epTable th:nth-child(4),#epTable td:nth-child(4){display:none}
+  .epmini{display:block}
+  pre code{font-size:.76rem}
+  .copybtn{font-size:.72rem;padding:.24rem .45rem}
+  .codebox pre{padding-right:80px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="back" href="../../index.html">← Zur Übersicht</a>
+
+<header>
+  <h1>Tokens sparen in opencode: wo sie entstehen und was wirklich hilft</h1>
+  <p class="sub">Deep Research · 23.11.2026 · opencode v2.3.0, Claude Opus 5.5, DeepSeek V4.1 Flash 1017</p>
+
+  <div class="summary">
+    <p class="sumtitle">Kurz gesagt</p>
+    <ul>
+      <li>Die Tokens entstehen fast nur durch <strong>Wiederlesen</strong>. Jeder Schritt schickt den ganzen bisherigen Verlauf noch einmal. Im Projekt: 533,9 Mio. verarbeitete Input-Tokens, aber nur 21,0 Mio. neue Tokens, also 25,4× Wiederlese-Faktor. 97,1 % sind Cache-Reads.</li>
+      <li><strong>84 % davon passieren in den DeepSeek-Subagents</strong>, nicht bei Opus. Dort liegt der Geld-Hebel: 6,65 $ von 6,70 $ verbuchten Kosten.</li>
+      <li>Der größte Regler ist die <strong>Länge einer Subagent-Schleife</strong>. Die Kosten wachsen ungefähr mit dem Quadrat der Schritte. Ein Subagent mit 248 Schritten hat 12 % des ganzen Projekts verbraucht. Lieber mehrere kurze Subagents mit klarem Auftrag und <code>steps</code>-Grenze.</li>
+      <li><strong>Reasoning <code>low</code> für Recherche-Subagents</strong>, <code>high</code> nur fürs Programmieren. Über alle Projekte liefen 6.504 DeepSeek-Subagent-Schritte auf der Standardstufe (= high) und nur 245 auf <code>low</code>. In diesem Projekt alle auf Standard.</li>
+      <li><strong>Den Endpunkt wählen.</strong> Dieselben Tokens hätten bei günstigen OpenRouter-Anbietern ca. 2,7 bis 3,4 $ statt 6,65 $ gekostet, bei teuren bis 23,80 $.</li>
+      <li>Für Opus (Abo-Limits) zählt vor allem: wenig selbst lesen, früh komprimieren oder neue Session, Grundlast (AGENTS.md) klein halten. Tools wie RTK, Caveman oder Serena sparen in Tests wenig oder kosten sogar mehr.</li>
+    </ul>
+  </div>
+</header>
+
+<h2 id="verbrauch">Wie ein Agent Tokens verbraucht</h2>
+
+<p>Ein Token ist ein kleines Textstück, im Deutschen etwa drei bis vier Zeichen. Ein Agent ist eine Schleife. In jedem Schritt bekommt das Modell den ganzen bisherigen Verlauf: System-Prompt, Tool-Beschreibungen, AGENTS.md, alle Nachrichten und alle Tool-Ergebnisse. Dann schreibt es ein kleines Stück dazu. Was schon einmal da war, kommt aus dem Cache des Anbieters. Ein <strong>Cache-Read</strong> ist ein Treffer in diesem Zwischenspeicher. Er ist billiger als neuer Text, aber nicht gratis.</p>
+
+<p>Die <strong>Grundlast</strong> ist der Kontext des ersten Schritts einer Session. Bei einem DeepSeek-Subagent sind das im Median 27.434 Tokens, fast unabhängig davon, wie klein die Aufgabe ist. Danach kommen pro Schritt im Median 3.670 Tokens dazu, aus Antwort, Tool-Aufruf und Tool-Ergebnis.</p>
+
+<p class="formula">verarbeitete Tokens ≈ n × Grundlast + Zuwachs × n × (n − 1) / 2</p>
+
+<p>Der zweite Teil ist der Grund für die quadratische Kurve: Jeder Schritt liest alles, was vor ihm dazukam, noch einmal. Bei 19 Schritten sind das 1,15 Mio. Tokens. Bei 40 Schritten sind es schon rund 4 Mio. Die Fläche unter der Kontextkurve ist die Rechnung.</p>
+
+<div class="tool">
+  <div class="ctrl">
+    <label for="stepRange">Schritte</label>
+    <input type="range" id="stepRange" min="1" max="30" step="1" value="19">
+    <output id="stepOut" for="stepRange">19</output>
+    <button class="btn" type="button" id="stepNext">Nächster Schritt</button>
+  </div>
+  <div class="chartwrap chartbox"><div id="stepChart"></div></div>
+  <div class="sumbar">
+    <span class="big" id="stepSum">1.148.816</span>
+    <span class="small">Tokens bisher verarbeitet</span>
+    <span class="small" id="stepExtra"></span>
+  </div>
+  <div class="chartwrap chartbox"><div id="sumChart"></div></div>
+</div>
+
+<p class="small">Werte: Median-Erstschritt (27.434) und Median-Zuwachs (3.670) der 103 DeepSeek-Subagents, Rechnung aus dem ersten und letzten Kontext jeder Session. Die untere Linie summiert dieselben Schritte bis 30.</p>
+
+<h2 id="projekt">Wo die Tokens in diesem Projekt hingehen</h2>
+
+<p>Zeitraum 17. bis 23.11.2026. 18 Hauptsessions, 125 Subagent-Sessions, 5.034 Schritte. Gelesen wurden nur Zähler, keine Inhalte. Quelle: eigene Auswertung der opencode-Datenbank <a class="cite" href="#q-t5_analyse">Quelle</a> <a class="cite" href="#q-_notizen_t5">Notizen</a> <a class="cite" href="#q-t5_analyse_py">Skript</a>. Gegenprobe mit <code>opencode stats --json --full</code>: 5.008 Schritte und 6,698 $ drei Minuten früher, die Differenz sind neue Subagents im Zeitfenster. <a class="cite" href="#q-stats_proj">Quelle</a></p>
+
+<div class="kpis">
+  <div class="kpi"><span>Verarbeiteter Input</span><b>533,94 Mio.</b></div>
+  <div class="kpi"><span>davon Cache-Read</span><b>518,56 Mio. (97,1 %)</b></div>
+  <div class="kpi"><span>in Subagents</span><b>450,07 Mio. (84,3 %)</b></div>
+  <div class="kpi"><span>in Opus-Hauptsessions</span><b>83,87 Mio. (15,7 %)</b></div>
+  <div class="kpi"><span>Schritte</span><b>5.034 in 143 Sessions</b></div>
+  <div class="kpi"><span>Grundlast je Session</span><b>27.434 (Opus 26.291)</b></div>
+  <div class="kpi"><span>Schritte je Subagent</span><b>Median 18, max 248</b></div>
+  <div class="kpi"><span>Rückgabe an Opus</span><b>Median ~234 Tokens</b></div>
+</div>
+
+<p>Die Grundlast wird in jedem Schritt erneut gelesen: 27.434 × 4.078 Subagent-Schritte = 111,9 Mio. Tokens, 21 % des gesamten Inputs. Bei Opus sind es 24,4 Mio. Output und Reasoning zusammen sind nur 5,63 Mio. Tokens (3,36 + 2,27). Die Schritte je Subagent liegen im Median bei 18, im Mittel bei 32,6 und im p90 bei 86,6.</p>
+
+<p>Die Rückgabe eines Subagents ist winzig: Median 819 Zeichen (rund 234 Tokens), zusammen rund 46.000 Tokens für 450 Mio. Subagent-Tokens. Delegation verdichtet also stark. Das ist gut, solange Subagents einen kurzen Bericht liefern und nicht ihre Dateiinhalte zurückgeben.</p>
+
+<p>Tool-Ergebnisse machen 6,9 Mio. Tokens aus (Schätzung Zeichen/3,5), davon 69 % <code>read</code> und 25 % <code>shell</code>. 6 Compactions senkten den Kontext im Median von 168.718 auf 40.634 Tokens (−75,8 %) und kosteten zusammen rund 1,08 Mio. Tokens.</p>
+
+<p>Opus machte 929 Schritte, 71,3 % davon nur Tool-Aufrufe. Er rief selbst <code>shell</code> 499×, <code>read</code> 129× und <code>execute</code> 96× auf. Diese Arbeit ist delegierbar. <code>subagent</code> rief er 139× auf.</p>
+
+<p>22 von 125 Subagents (17,6 %) starteten mit einem leeren Schritt, 11 lieferten gar nichts. Alle liefen auf <code>opencode/deepseek-v4.1-flash-free</code>, das Free-Limit war erreicht. Vier Sessions verursachen 70,2 % des Verkehrs: Chris Koerner Business-Ideen, Interaktive Sci-Fi-Ideenbank, KI-Englischtutor, Universum als Entpackungsmaschine.</p>
+
+<div class="tool">
+  <div class="seg" role="group" aria-label="Kontextkurve wählen">
+    <button class="btn" type="button" data-curve="0" aria-pressed="true">Chris Koerner (Opus)</button>
+    <button class="btn" type="button" data-curve="1" aria-pressed="false">Ideen-Universum (Subagent)</button>
+    <button class="btn" type="button" data-curve="2" aria-pressed="false">Extract ideas B08</button>
+  </div>
+  <div class="chartwrap chartbox">
+    <div id="curveChart"></div>
+    <div class="tip" id="curveTip"></div>
+  </div>
+  <p class="small" id="curveNote"></p>
+</div>
+
+<p>Die erste Kurve zeigt einen typischen Opus-Verlauf: Der Kontext wächst bis Schritt 108 auf 168.718 Tokens, dann greift die Compaction und drückt ihn auf 40.634. Die zweite Kurve ist ein einzelner Subagent mit 248 Schritten und bis zu 412.326 Tokens. Für die Anzeige ist sie auf 200 Punkte ausgedünnt, die Summe von 65,9 Mio. Tokens bleibt die echte.</p>
+
+<div class="tool">
+  <div class="chartwrap"><div id="scatterChart"></div><div class="tip" id="scatterTip"></div></div>
+  <p class="small">Waagerecht die Schritte einer Session, senkrecht die verarbeiteten Tokens (logarithmisch, jede Stufe ist zehnmal so viel). Die größten Punkte sind direkt beschriftet. 11 leere Spawns mit 0 Tokens fehlen, sie haben keinen Punkt.</p>
+</div>
+
+<p>Die wenigen langen Sessions dominieren. Die 8 größten von 143 Sessions machen 222,5 Mio. Tokens, also 42 % des ganzen Verkehrs. Der größte Subagent allein kommt auf 65,9 Mio. Tokens und 12 %.</p>
+
+<h2 id="kosten">Was kostet wirklich Geld?</h2>
+
+<p>Verbuchte Kosten: 6,70 $. Davon 6,65 $ für DeepSeek über OpenRouter und 0 $ für Opus, das über den lokalen Proxy mit Abo läuft. Die 0 $ sind keine echten Kosten, sondern eine Buchung.</p>
+
+<p>Ein eigener Fit (kleinste Quadrate über 6.749 OpenRouter-DeepSeek-Schritte aller Projekte, R² = 0,92) ergibt die tatsächlich bezahlten Preise pro 1 Mio. Tokens: Input ≈ 0,041 $, Cache-Read ≈ 0,0094 $, Output+Reasoning ≈ 0,47 $. Damit sind die Cache-Reads rund 60 % der DeepSeek-Kosten. <a class="cite" href="#q-t5_analyse">Quelle</a> Gegenprobe über alle Projekte: 1.354,32 Mio. Cache-Read und 11,892 $ verbucht, die Werte passen bis auf das Zeitfenster. <a class="cite" href="#q-stats_all">Quelle</a></p>
+
+<div class="tablewrap">
+<table class="smalltable">
+  <caption>DeepSeek-Kosten dieses Projekts, aufgeteilt nach Tokenart (Rechnung)</caption>
+  <thead>
+    <tr><th>Posten</th><th class="num">Tokens</th><th class="num">Preis / Mio.</th><th class="num">Kosten</th><th class="num">Anteil</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Cache-Read</td><td class="num">421,9 Mio.</td><td class="num">0,0094 $</td><td class="num">~4,00 $</td><td class="num">60 %</td></tr>
+    <tr><td>Output + Reasoning</td><td class="num">4,57 Mio.</td><td class="num">0,47 $</td><td class="num">~2,15 $</td><td class="num">32 %</td></tr>
+    <tr><td>Neuer Input</td><td class="num">11,54 Mio.</td><td class="num">0,041 $</td><td class="num">~0,47 $</td><td class="num">7 %</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Wiederlesen kostet hier also echtes Geld. Weniger Schritte und ein kleinerer Kontext senken direkt die Dollar. Eine frühere Hypothese (die Kostenanzeige sei der Peak-Listenpreis ohne Cache) passt nicht zu den Schritt-Daten. Der Fit ist belastbarer.</p>
+
+<p><strong>Wenn Opus nach API-Preis bezahlt würde.</strong> Opus 5.5 kostet laut Preisliste 4 $ Input, 20 $ Output, 5 $ Cache-Write (5 Minuten) oder 8 $ (1 Stunde) und 0,20 $ Cache-Read pro 1 Mio. Tokens <a class="cite" href="#q-t2_pricing">Quelle</a>. Für dieses Projekt: Cache-Read 79,7 Mio. × 0,20 $ = 15,9 $, Cache-Write 3,26 Mio. × 5 $ = 16,3 $ (bei 1 h: 26,1 $), Output+Reasoning rund 0,85 Mio. × 20 $ = 17,0 $. Das sind <strong>rund 49 $ (5 min) oder 59 $ (1 h)</strong> (Rechnung). Im Abo sind das keine Dollar, aber genau diese Requests verbrauchen das 5-Stunden- und Wochenlimit. Anthropic schreibt: „the same requests are what draw down your limits“ <a class="cite" href="#q-t2_blog_maximizing_sessions">Quelle</a>. Ein offizielles Gewicht für Cache-Reads im Abo gibt es nicht, das wurde nicht gefunden.</p>
+
+<p>Für Opus ist ein Punkt besonders wichtig: Jedes Token, das neu in den Kontext kommt, kostet einmal als Cache-Write 25× so viel wie ein Cache-Read (5 $ gegen 0,20 $) und wird danach in jedem weiteren Schritt neu gelesen. Opus sollte deshalb keine großen Dateien selbst lesen und keine langen Shell-Ausgaben holen.</p>
+
+<h3 id="endpunkte">Welcher Endpunkt?</h3>
+
+<p>52 aktive OpenRouter-Endpunkte für <code>deepseek/deepseek-v4.1-flash-1017</code>, Preise vom 23.11.2026. Die Spalte Projektkosten rechnet die DeepSeek-Tokens dieses Projekts mit dem Listenpreis des Endpunkts. Günstigste: Ambient 2,72 $, Particle AI flex 2,77 $, DeepInfra flex 2,97 $, Alibaba 3,44 $, DeepSeek direkt 5,74 $, Google Vertex und Together 11,48 $, BaseTen und Morph fast 23,80 $. <a class="cite" href="#q-t3_openrouter_endpoints_deepseek">Quelle</a> <a class="cite" href="#q-endpunkt_rechnung">Rechnung</a></p>
+
+<div class="tablewrap">
+<table id="epTable">
+  <caption>Kosten der Projekt-Tokens je Endpunkt (Rechnung, sortierbar)</caption>
+  <thead>
+    <tr>
+      <th><button class="btn" type="button" data-sort="provider" style="min-height:0;padding:2px 0;border:0;background:none;font-weight:600;color:var(--muted);font-size:.8rem">Anbieter</button></th>
+      <th class="num"><button class="btn" type="button" data-sort="input" style="min-height:0;padding:2px 0;border:0;background:none;font-weight:600;color:var(--muted);font-size:.8rem">Input</button></th>
+      <th class="num"><button class="btn" type="button" data-sort="cache_read" style="min-height:0;padding:2px 0;border:0;background:none;font-weight:600;color:var(--muted);font-size:.8rem">Cache-Read</button></th>
+      <th class="num"><button class="btn" type="button" data-sort="output" style="min-height:0;padding:2px 0;border:0;background:none;font-weight:600;color:var(--muted);font-size:.8rem">Output</button></th>
+      <th class="num"><button class="btn" type="button" data-sort="projekt_usd" style="min-height:0;padding:2px 0;border:0;background:none;font-weight:600;color:var(--muted);font-size:.8rem">Projektkosten</button></th>
+    </tr>
+  </thead>
+  <tbody id="epBody"></tbody>
+</table>
+</div>
+
+<div class="note">
+  <p><b>Billig heißt nicht gleich gut.</b> Viele günstige Endpunkte laufen mit fp4- oder fp8-Quantisierung. Manche Builds haben Probleme mit Tool-Aufrufen, und die Zuverlässigkeit ist unterschiedlich. <a class="cite" href="#q-t3_cmp_wiki_toolcalls">Quelle</a></p>
+  <p><b>Cache und Anbieterwechsel.</b> OpenRouter merkt sich nach einem Cache-Treffer den Anbieter (Sticky Routing). Ein Wechsel verliert den Cache. <code>provider.order</code> schaltet Sticky Routing ab. Ob <code>provider.only</code> das auch tut, ist nicht dokumentiert, also erst messen. <a class="cite" href="#q-t3_openrouter_prompt_caching">Quelle</a></p>
+  <p><b>Standard-Routing.</b> OpenRouters Standard-Routing rechnet laut Doku schon mit dem effektiven Preis inklusive echter Cache-Trefferquote. <a class="cite" href="#q-t3_openrouter_provider_routing">Quelle</a></p>
+</div>
+
+<h2 id="rechner">Rechner: Was kostet ein Subagent?</h2>
+
+<p>Der Rechner bildet eine Subagent-Schleife nach. Pro Schritt i (0 bis n−1) ist der Kontext G + i·z. Neuer Input ist z, im ersten Schritt G. Cache-Read ist der Rest des Kontexts. Dazu kommen n × o Output-Tokens. Die Kosten sind die Summe aus neuem Input, Cache-Reads und Output, jeweils zum Preis des gewählten Endpunkts. Bei einer <code>steps</code>-Grenze s wird die Arbeit in k = ceil(n/s) Teile geteilt. Jeder Teil startet bei G, ab dem zweiten mit 2.000 Tokens Übergabe (Schätzung).</p>
+
+<div class="tool">
+  <div class="calcgrid">
+    <div>
+      <div class="ctrl">
+        <label for="cG">Grundlast</label>
+        <input type="range" id="cG" min="8000" max="40000" step="1" value="27434">
+        <output id="cGv" for="cG">27.434</output>
+      </div>
+      <div class="ctrl">
+        <label for="cZ">Zuwachs je Schritt</label>
+        <input type="range" id="cZ" min="500" max="10000" step="1" value="3670">
+        <output id="cZv" for="cZ">3.670</output>
+      </div>
+      <div class="ctrl">
+        <label for="cN">Schritte</label>
+        <input type="range" id="cN" min="1" max="250" step="1" value="19">
+        <output id="cNv" for="cN">19</output>
+      </div>
+      <div class="ctrl">
+        <label for="cO">Output + Reasoning je Schritt</label>
+        <input type="range" id="cO" min="200" max="4000" step="1" value="1214">
+        <output id="cOv" for="cO">1.214</output>
+      </div>
+      <div class="ctrl">
+        <label for="cDay">Subagents pro Tag</label>
+        <input type="range" id="cDay" min="1" max="100" step="1" value="20">
+        <output id="cDayv" for="cDay">20</output>
+      </div>
+
+      <div class="fieldrow">
+        <label for="cEp">Endpunkt</label>
+        <select id="cEp"></select>
+      </div>
+
+      <div class="meashead">Maßnahmen</div>
+      <div class="check">
+        <input type="checkbox" id="mAgents">
+        <label for="mAgents">AGENTS.md entschlacken</label>
+        <span class="hint">Grundlast −5.400 Tokens. Die Abschnitte ketch-Doku und Produktsuche (rund 20 KB) in Skills verschieben. Rechnung aus 23.130 Byte Dateigröße.</span>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="mReason">
+        <label for="mReason">Reasoning low statt high</label>
+        <span class="hint">Output × 0,67 (low kostet 0,53×, high 0,79× von max) und Zuwachs × 0,9 (Schätzung, weniger altes Reasoning im Verlauf). <a href="#q-t3_libertai_reasoning_effort">Quelle</a></span>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="mMask">
+        <label for="mMask">Alte Tool-Ausgaben ausblenden</label>
+        <span class="hint">Zuwachs × 0,5. In der Complexity-Trap-Studie −50,9 % bis −57,1 % Kosten bei gleicher Lösungsrate. In opencode v2 kein eingebauter Schalter, nur per Plugin (DCP) oder Arbeitsweise. <a href="#q-t4_complexity_trap_html">Quelle</a> <a href="#q-t1_dcp_readme">Plugin</a></span>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="mSteps">
+        <label for="mSteps">steps-Grenze anwenden</label>
+        <span class="hint">Schritte darüber werden auf neue Subagents aufgeteilt, jeder zahlt Grundlast plus 2.000 Tokens Übergabe (Schätzung).</span>
+      </div>
+      <div class="ctrl" id="stepsCtrl" hidden>
+        <label for="cS">steps</label>
+        <input type="range" id="cS" min="10" max="100" step="5" value="40">
+        <output id="cSv" for="cS">40</output>
+      </div>
+    </div>
+
+    <div class="respanel" id="calcOut" aria-live="polite">
+      <p class="resbig" id="rTok">1.148.816</p>
+      <p class="rescap">verarbeitete Input-Tokens pro Subagent (Cache-Read + neuer Input)</p>
+      <div class="resdiv"></div>
+      <div class="resrow"><span>Cache-Read</span><b id="rCache">1.055.322</b></div>
+      <div class="resrow"><span>Neuer Input</span><b id="rIn">93.494</b></div>
+      <div class="resrow"><span>Output</span><b id="rOut">23.066</b></div>
+      <div class="resdiv"></div>
+      <p class="rescost" id="rCost">0,025 $</p>
+      <p class="rescap" id="rCostCap">pro Subagent</p>
+      <div class="resrow"><span>pro Tag</span><b id="rDay">0,49 $</b></div>
+      <div class="resrow"><span>30 Tage</span><b id="rMonth">14,75 $</b></div>
+      <div class="resdiv"></div>
+      <p class="rescap" id="rParts"></p>
+    </div>
+  </div>
+
+  <div class="cmp">
+    <div class="cmpitem">
+      <div class="cmpline"><span>ohne Maßnahmen</span><b id="barBaseV"></b></div>
+      <div class="cmptrack"><div class="cmpbar base" id="barBase" style="width:100%"></div></div>
+    </div>
+    <div class="cmpitem">
+      <div class="cmpline"><span>mit Maßnahmen</span><b id="barWithV"></b></div>
+      <div class="cmptrack"><div class="cmpbar" id="barWith" style="width:60%"></div></div>
+    </div>
+    <p class="cmpsave" id="cmpSave"></p>
+  </div>
+
+  <div class="cmp">
+    <p class="small" style="margin:4px 0 6px">Dieselbe Schleife, pro Subagent</p>
+    <div class="cmpitem">
+      <div class="cmpline"><span>DeepSeek, gewählter Endpunkt</span><b id="ocDeep"></b></div>
+      <div class="cmptrack"><div class="cmpbar" id="ocDeepBar" style="width:2%"></div></div>
+    </div>
+    <div class="cmpitem">
+      <div class="cmpline"><span>Opus 5.5 zum API-Preis</span><b id="ocOpus"></b></div>
+      <div class="cmptrack"><div class="cmpbar base" id="ocOpusBar" style="width:100%"></div></div>
+    </div>
+    <p class="cmpsave" id="ocFactor"></p>
+  </div>
+</div>
+
+<p class="note">Modell, keine Messung. Die Startwerte stammen aus den eigenen Daten (Medianwerte), die Maßnahmen-Faktoren aus den genannten Studien. Die Kosten gelten für einen Subagent-Durchlauf, also für die ganze Kette, wenn die <code>steps</code>-Grenze die Arbeit auf mehrere Subagents verteilt.</p>
+
+<h2 id="massnahmen">Die Maßnahmen, nach Wirkung sortiert</h2>
+
+<ol>
+  <li class="measure">
+    <p><strong>Subagent-Aufträge klein schneiden und <code>steps</code> begrenzen.</strong> Die Kosten wachsen etwa mit dem Quadrat der Schritte. Der größte Subagent hatte 248 Schritte und 65,9 Mio. Tokens, also 12 % des Projekts. Die 8 größten Sessions machen 42 %. In der Agent-Datei reicht <code>steps: 40</code>. Die Doku sagt: „On the final step, OpenCode removes tools and asks the model to summarize in text“ <a class="cite" href="#q-t1_docs_agents">Quelle</a>.</p>
+    <p class="fact">Im Rechner nachstellbar: 248 Schritte in einem Stück gegen 7 Subagents à höchstens 40 Schritte. Die Arbeit bleibt gleich, die gelesene Fläche wird kleiner.</p>
+  </li>
+  <li class="measure">
+    <p><strong>Reasoning-Stufe pro Aufgabe.</strong> Bei DeepSeek ist Thinking standardmäßig an, Standardstufe ist <code>high</code>. Es gibt low, high und max, <code>medium</code> wird zu high <a class="cite" href="#q-t3_deepseek_thinking_mode">Quelle</a>. LibertAI hat 3.738 Jobs gemessen: low kostet 0,53×, high 0,79× von max. Tool-Use (tau-bench) lag bei low 80,4 %, high 82,6 %, max 77,0 % <a class="cite" href="#q-t3_libertai_reasoning_effort">Quelle</a>.</p>
+    <p class="fact">Empfehlung: Recherche, Suchen, Zusammenfassen auf <code>low</code>. Code schreiben und Review auf <code>high</code>. <code>max</code> praktisch nie. Eigene Daten über alle Projekte: 6.504 Schritte auf Standard, 245 auf low. Opus 5.5 hat Standard-Effort <code>medium</code>, und <code>low</code> ist laut Anthropic ausdrücklich für Subagents gedacht <a class="cite" href="#q-t2_effort">Quelle</a>. Im Projekt lief Opus fast nur auf high (908 von 929 Schritten).</p>
+  </li>
+  <li class="measure">
+    <p><strong>Subagent-Modell fest in der Agent-Datei setzen.</strong> Ohne <code>model:</code> erbt ein Subagent das Modell der Eltern-Session, also Opus <a class="cite" href="#q-t1_docs_agents">Quelle</a>. Das Subagent-Tool von opencode v2 hat laut Doku keinen <code>model</code>-Parameter <a class="cite" href="#q-t1_docs_tools">Quelle</a>. OpenChamber reicht einen durch, aber die Agent-Datei ist der sichere Weg. Auch die eingebauten <code>general</code> und <code>explore</code> lassen sich umstellen, getestet in Abschnitt 9.</p>
+  </li>
+  <li class="measure">
+    <p><strong>Endpunkt bewusst wählen.</strong> Bis etwa −55 % bei gleichen Tokens (Rechnung in Abschnitt 3). Aber Cache-Verlust bei Anbieterwechsel beachten.</p>
+  </li>
+  <li class="measure">
+    <p><strong>Grundlast senken.</strong> AGENTS.md hat 23.130 Byte, also rund 6.000 Tokens, und wird in jeder Session und jedem Subagent geladen. Die Abschnitte ketch-Doku und Produktsuche (rund 20 KB, rund 5.400 Tokens) braucht fast kein Subagent. In Skills verschieben: Skills stehen nur mit Name und Beschreibung im Prompt, der Inhalt lädt erst bei Bedarf <a class="cite" href="#q-t1_docs_skills">Quelle</a>. Verschachtelte AGENTS.md in Unterordnern laden erst, wenn dort gearbeitet wird <a class="cite" href="#q-t1_docs_instructions">Quelle</a>.</p>
+    <p class="fact">Wirkung im Projekt: 5.400 × 5.034 Schritte ≈ 27 Mio. Tokens, rund 5 % des Inputs (Rechnung). Bei MCP ist Code Mode in v2 Standard, die Tools stehen nur im Katalog und nicht als volle Definitionen im Prompt. <code>execute</code> deshalb nicht verbieten, sonst landen alle Tools wieder nativ im Prompt <a class="cite" href="#q-t1_docs_mcp_servers">Quelle</a>. MCP pro Agent abschalten: <code>{ "action": "&lt;server&gt;_*", "resource": "*", "effect": "deny" }</code>.</p>
+  </li>
+  <li class="measure">
+    <p><strong>Gezielt lesen statt ganze Dateien.</strong> 69 % aller Tool-Zeichen sind <code>read</code>. Zeilenbereiche, <code>grep</code> und Code Mode <code>execute</code> für viele Suchen in einem Aufruf (ein Ergebnis statt 20) <a class="cite" href="#q-t1_docs_tools">Quelle</a>. SWE-agent begrenzt den Datei-Viewer auf 100 Zeilen und zeigt bei der Suche nur Dateien mit Treffer <a class="cite" href="#q-t4_sweagent_aci_docs">Quelle</a>.</p>
+  </li>
+  <li class="measure">
+    <p><strong>Opus als Dirigent, nicht als Arbeiter.</strong> Der Opus-Kontext ist teuer (Cache-Write 5 $ pro Mio.) und zählt aufs Abo. 71,3 % der Opus-Schritte sind reine Tool-Aufrufe, <code>shell</code> 499×, <code>read</code> 129×. Lesen und Suchen an <code>explore</code> oder <code>scout</code> geben. Opus bekommt nur den kurzen Bericht, bisher Median 234 Tokens. Das funktioniert schon gut.</p>
+  </li>
+  <li class="measure">
+    <p><strong>Früh komprimieren oder neue Session pro Aufgabe.</strong> Die Compaction senkte den Kontext im Median von 168.718 auf 40.634 Tokens. Anthropic empfiehlt <code>/compact</code> vor einer Pause, weil Zusammenfassen billiger ist, solange der Cache noch warm ist. Eine neue Session zwischen Aufgaben sei „the single most effective lever“ <a class="cite" href="#q-t2_blog_maximizing_sessions">Quelle</a> <a class="cite" href="#q-t2_support_models_usage_limits_claude_code">Quelle</a>. In opencode: <code>compaction.buffer</code> (Standard 15 %, mindestens 16k) und <code>keep.tokens</code> (Standard 15.000) <a class="cite" href="#q-t1_docs_compaction">Quelle</a>. Compaction kann feste Instruktionen und Tool-Schemas nicht kleiner machen.</p>
+    <p class="fact">Wartungsagenten <code>title</code>, <code>summary</code> und <code>compaction</code> auf DeepSeek legen <a class="cite" href="#q-t1_docs_compaction">Quelle</a> <a class="cite" href="#q-t1_docs_migrate_v1">Quelle</a>. Hinweis: Subagents scheitern manchmal an der Compaction bei sehr großen Dateien (Issue #56862) <a class="cite" href="#q-t1_issue_56862_subagent_compaction">Quelle</a>.</p>
+  </li>
+  <li class="measure">
+    <p><strong>Cache nicht kaputt machen.</strong> Die Liste steht in Abschnitt 6. Kurz: stabiler System-Prompt, kein Modellwechsel mitten in der Session, keine Pausen über die Cache-Lebensdauer, kein Anbieterwechsel.</p>
+  </li>
+  <li class="measure">
+    <p><strong>Free-Tier-Ausfälle vermeiden.</strong> 17,6 % der Free-Spawns starteten leer, und ein leerer Lauf kostet Orchestrator-Kontext und Zeit <a class="cite" href="#q-t1_issue_59051_subagent_empty">Quelle</a>. Das Free-Limit ist ein Tageskontingent pro Netzwerk oder IP ohne veröffentlichte Zahl <a class="cite" href="#q-t3_github_55816">Quelle</a> <a class="cite" href="#q-t3_everpod_free_limit">Quelle</a>. Bei „Free usage limit reached“ sofort auf OpenRouter wechseln statt erneut zu spawnen.</p>
+  </li>
+</ol>
+
+<h2 id="cache">Was den Cache bricht</h2>
+
+<ul>
+  <li><strong>Text im System-Prompt, der sich pro Schritt ändert.</strong> Ein Plugin schrieb die Session-Größe hinein. Der Cache-Treffer fiel von 97,7 % auf 14,6 %, die Schritte wurden 4- bis 6-mal teurer. <a class="cite" href="#q-t1_issue_58175_cache_broken_by_plugin">Quelle</a></li>
+  <li><strong>Modellwechsel mitten in der Session.</strong> Das ist ein neuer Cache. <a class="cite" href="#q-t2_cc_prompt_caching">Quelle</a></li>
+  <li><strong>Tools hinzufügen oder entfernen, MCP-Server umschalten.</strong> Die Tool-Definitionen stehen vorne im Prefix. Die Reihenfolge ist tools, system, messages. <a class="cite" href="#q-t2_prompt_caching">Quelle</a></li>
+  <li><strong>Effort-Wechsel.</strong> Bei Opus 5.5 ist er cache-neutral <a class="cite" href="#q-t2_cc_prompt_caching">Quelle</a>, und opencode hält den Cache mit <code>supportsEffortUpdates</code> <a class="cite" href="#q-t1_docs_models">Quelle</a>. Kein Problem.</li>
+  <li><strong>Pause länger als die Cache-Lebensdauer.</strong> Bei Anthropic sind es standardmäßig 5 Minuten, optional 1 Stunde (Write 2× statt 1,25× Input) <a class="cite" href="#q-t1_docs_models">Quelle</a> <a class="cite" href="#q-t2_prompt_caching">Quelle</a>. Der Proxy CLIProxyAPI hebt bei OAuth automatisch auf 1 h <a class="cite" href="#q-t2_cpa_issue5557">Quelle</a>. Das Warming von opencode hält den Cache warm, aber nicht für Subagents <a class="cite" href="#q-t1_docs_warming">Quelle</a>.</li>
+  <li><strong>Proxy-Fehler.</strong> CLIProxyAPI schrieb auf dem „cloaked“-Pfad jede Runde neu, weil ein Fingerprint der letzten Nachricht im System-Block stand. Behoben am 11.09.2026 (Commit 377c315). Workaround: <code>cloak_mode: never</code> <a class="cite" href="#q-t2_cpa_issue5730">Quelle</a>. Eigene Daten: Opus-Cache-Trefferquote 96,3 %, das Setup cached also.</li>
+  <li><strong>OpenRouter: Anbieterwechsel.</strong> Der Cache ist weg. <a class="cite" href="#q-t3_openrouter_caching_blog">Quelle</a></li>
+  <li><strong>Gut zu wissen.</strong> DeepSeek cached automatisch auf Festplatte, „best effort“. Ein Cache-Hit kostet beim Anbieter DeepSeek nur 2 % des Miss-Preises <a class="cite" href="#q-t3_deepseek_kvcache">Quelle</a> <a class="cite" href="#q-t3_deepseek_pricing">Quelle</a>.</li>
+</ul>
+
+<h2 id="mythen">Mythen-Check: Spart das?</h2>
+
+<p>Acht Behauptungen, drei Antworten. Nach der Antwort steht die Messung.</p>
+
+<div class="tool" id="quiz">
+  <p class="quizmeta" id="quizMeta"></p>
+  <p class="quizclaim" id="quizClaim"></p>
+  <div class="qopts" id="quizOpts"></div>
+  <div class="qfb" id="quizFb"></div>
+  <div class="quiznav" id="quizNav"></div>
+</div>
+
+<p>Was nachweislich wirkt: Prompt-Caching (ohne Cache wäre SWE-bench Pro mit Opus 5.5 3,3× so teuer), Observation Masking (−50,9 bis −57,1 % Kosten bei gleicher Lösungsrate), AgentDiet (−39,9 bis −59,7 % Input, −21,1 bis −35,9 % Kosten) und niedriger Effort mit hohem Effort nur bei Fehlschlägen (rund 40 % günstiger). <a class="cite" href="#q-t4_anthropic_optimizing_cost">Quelle</a> <a class="cite" href="#q-t4_complexity_trap_html">Quelle</a> <a class="cite" href="#q-t4_agentdiet_abs">Quelle</a></p>
+
+<h2 id="vergleich">Wann DeepSeek, wann Opus?</h2>
+
+<div class="tablewrap">
+<table class="smalltable">
+  <caption>Gleiche Coding-Sessions bei bito.ai und Terminal-Bench 4.0</caption>
+  <thead>
+    <tr><th>Kennzahl</th><th class="num">Opus 5.5</th><th class="num">DeepSeek 1017</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>bito, alle Sessions</td><td class="num win">86,9 %</td><td class="num">73,2 %</td></tr>
+    <tr><td>bito, One-Shot</td><td class="num">nicht gemessen</td><td class="num">80,7 %</td></tr>
+    <tr><td>bito, harte 5-Turn-Session</td><td class="num">nicht gemessen</td><td class="num">64,9 %</td></tr>
+    <tr><td>Kosten pro 20-Turn-Session</td><td class="num">43,37 $</td><td class="num win">3,28 $ (−92 %)</td></tr>
+    <tr><td>Terminal-Bench 4.0</td><td class="num win">66,4</td><td class="num">42,3</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="small">Zum Vergleich: Sonnet 5.5 liegt bei bito bei 72,3 %, Haiku 5.5 bei 70,9 % und auf Terminal-Bench bei 39,2. <a class="cite" href="#q-t3_bito_compare">Quelle</a> <a class="cite" href="#q-t3_anthropic_opus55">Quelle</a> <a class="cite" href="#q-t3_hf_1017">Quelle</a> <a class="cite" href="#q-t3_anthropic_haiku55">Quelle</a></p>
+
+<p>DeepSeek passt für Suchen, Lesen, Zusammenfassen und klar beschriebene Umsetzung. Opus passt für Planung, schwierige Fehlersuche und Review. Faktenaussagen von DeepSeek gegen Quellen prüfen: Der AA-Omniscience-Wert liegt bei 46,4 % <a class="cite" href="#q-t3_benchgap_deepseek">Quelle</a>. Und der Harness zählt: Dasselbe Opus kostete in Claude Code 6,74 $ und in opencode 1,10 $ <a class="cite" href="#q-t4_akita_planner_executor_test">Quelle</a>.</p>
+
+<h2 id="config">Fertige Konfiguration zum Kopieren</h2>
+
+<p>Getestet am 23.11.2026 mit <code>opencode debug agents</code> und <code>opencode debug config</code> (opencode 2.3.0). Alle Felder werden angenommen und richtig aufgelöst. Nicht getestet: echte Läufe mit <code>provider.only</code>. <a class="cite" href="#q-t1_lokal_cli_stats">Quelle</a></p>
+
+<h3>Agent für Recherche</h3>
+<div class="codebox">
+  <button class="copybtn" type="button">Kopieren</button>
+<pre><code>---
+description: Liest Dateien und sucht im Web, gibt einen kurzen Bericht zurück
+mode: subagent
+model: openrouter/deepseek/deepseek-v4.1-flash-1017#low
+steps: 40
+permissions:
+  - action: edit
+    resource: "*"
+    effect: deny
+---
+Arbeite nur lesend. Lies gezielt (Zeilenbereiche, grep). Antworte am Ende mit höchstens 300 Wörtern:
+Befund, Dateipfade, offene Fragen. Keine Dateiinhalte zurückgeben.</code></pre>
+</div>
+
+<h3>Agent für Umsetzung</h3>
+<div class="codebox">
+  <button class="copybtn" type="button">Kopieren</button>
+<pre><code>---
+description: Setzt einen klaren Plan in Code um und testet ihn
+mode: subagent
+model: openrouter/deepseek/deepseek-v4.1-flash-1017#high
+steps: 60
+---
+Halte dich an den Plan. Antworte am Ende mit geänderten Dateien und Testergebnis, höchstens 200 Wörter.</code></pre>
+</div>
+
+<h3>Projektkonfiguration</h3>
+<div class="codebox">
+  <button class="copybtn" type="button">Kopieren</button>
+<pre><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "agents": {
+    "general": { "model": "openrouter/deepseek/deepseek-v4.1-flash-1017#low", "steps": 40 },
+    "explore": { "model": "openrouter/deepseek/deepseek-v4.1-flash-1017#low" },
+    "title": { "model": "openrouter/deepseek/deepseek-v4.1-flash-1017#low" },
+    "summary": { "model": "openrouter/deepseek/deepseek-v4.1-flash-1017#low" },
+    "compaction": { "model": "openrouter/deepseek/deepseek-v4.1-flash-1017" }
+  },
+  "compaction": { "auto": true, "keep": { "tokens": 15000 } },
+  "providers": {
+    "openrouter": {
+      "models": {
+        "deepseek/deepseek-v4.1-flash-1017": {
+          "body": { "provider": { "only": ["deepseek", "alibaba", "deepinfra"], "allow_fallbacks": true } }
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+
+<p class="small"><code>#low</code> und <code>#high</code> wählen die Reasoning-Variante. <code>steps</code> ist eine harte Grenze. <code>permissions</code> mit <code>edit deny</code> verbietet Änderungen <a class="cite" href="#q-t1_docs_permissions">Quelle</a>. <code>provider.only</code> erlaubt nur diese Anbieter, Vorsicht bei Cache und Sticky Routing, erst eine Woche messen <a class="cite" href="#q-t1_docs_config">Quelle</a>. <code>title</code>, <code>summary</code> und <code>compaction</code> sind Wartungsaufrufe, die damit nicht auf Opus laufen. In V1-Anleitungen heißt es noch <code>agent</code>, <code>maxSteps</code>, <code>tools</code>, <code>small_model</code>, <code>prune</code>. Das ist in v2 falsch <a class="cite" href="#q-t1_docs_migrate_v1">Quelle</a>.</p>
+
+<h3>Prompt-Bausteine für den Orchestrator</h3>
+<div class="codebox">
+  <button class="copybtn" type="button">Kopieren</button>
+<pre><code>Gib nur Befund und Dateipfade zurück, höchstens 300 Wörter, keine Dateiinhalte.
+Lies Dateien nur in Zeilenbereichen; nutze grep, bevor du liest.
+Ein Auftrag pro Subagent; wenn du mehr als 40 Schritte brauchst, höre auf und berichte den Stand.</code></pre>
+</div>
+
+<p>Messen: <code>opencode stats --project . --models --cost</code> <a class="cite" href="#q-t1_lokal_cli_stats">Quelle</a>. Eine Woche vorher und nachher vergleichen. Dem Selbstbericht von Tools nicht glauben.</p>
+
+<h2 id="grenzen">Grenzen und offene Punkte</h2>
+
+<details>
+  <summary>Was diese Auswertung nicht zeigen kann</summary>
+  <ul>
+    <li>Keine Studie misst genau „Opus 5.5 + DeepSeek V4.1 Flash“. Die Übertragung kommt aus anderen Setups.</li>
+    <li>Zeichen/3,5 ist eine Schätzung. Bild-Reads (502 Teile) sind nicht mitgezählt.</li>
+    <li>Der Kosten-Fit beruht auf den von opencode verbuchten Kosten.</li>
+    <li>Ob <code>provider.only</code> das Sticky Routing ändert, ist nicht dokumentiert.</li>
+    <li>Die Abo-Gewichtung von Cache-Reads bei Anthropic ist nicht veröffentlicht.</li>
+    <li>Zahlen aus Abstracts (AgentDiet) sind nicht unabhängig nachgeprüft.</li>
+  </ul>
+</details>
+
+<h2 id="quellen">Quellen</h2>
+
+<h3>opencode</h3>
+<ul class="sources">
+<li id="q-t1_docs_agents"><a href="https://opencode.ai/docs/agents/">Agents</a> <span class="loc">Lokal: <a href="sources/t1_docs_agents.md">sources/t1_docs_agents.md</a></span></li>
+<li id="q-t1_docs_config"><a href="https://opencode.ai/docs/config/">Config</a> <span class="loc">Lokal: <a href="sources/t1_docs_config.md">sources/t1_docs_config.md</a></span></li>
+<li id="q-t1_docs_instructions"><a href="https://opencode.ai/docs/instructions/">Instructions</a> <span class="loc">Lokal: <a href="sources/t1_docs_instructions.md">sources/t1_docs_instructions.md</a></span></li>
+<li id="q-t1_docs_mcp_servers"><a href="https://opencode.ai/docs/mcp-servers/">MCP servers</a> <span class="loc">Lokal: <a href="sources/t1_docs_mcp_servers.md">sources/t1_docs_mcp_servers.md</a></span></li>
+<li id="q-t1_docs_models"><a href="https://opencode.ai/docs/models/">Models</a> <span class="loc">Lokal: <a href="sources/t1_docs_models.md">sources/t1_docs_models.md</a></span></li>
+<li id="q-t1_docs_permissions"><a href="https://opencode.ai/docs/permissions/">Permissions</a> <span class="loc">Lokal: <a href="sources/t1_docs_permissions.md">sources/t1_docs_permissions.md</a></span></li>
+<li id="q-t1_docs_skills"><a href="https://opencode.ai/docs/skills/">Skills</a> <span class="loc">Lokal: <a href="sources/t1_docs_skills.md">sources/t1_docs_skills.md</a></span></li>
+<li id="q-t1_docs_tools"><a href="https://opencode.ai/docs/tools/">Tools</a> <span class="loc">Lokal: <a href="sources/t1_docs_tools.md">sources/t1_docs_tools.md</a></span></li>
+<li id="q-t1_docs_compaction"><a href="https://opencode.ai/docs/compaction/">Compaction</a> <span class="loc">Lokal: <a href="sources/t1_docs_compaction.md">sources/t1_docs_compaction.md</a></span></li>
+<li id="q-t1_docs_warming"><a href="https://opencode.ai/docs/warming/">Warming</a> <span class="loc">Lokal: <a href="sources/t1_docs_warming.md">sources/t1_docs_warming.md</a></span></li>
+<li id="q-t1_docs_migrate_v1"><a href="https://opencode.ai/docs/migrate-v1/">Migrate from V1</a> <span class="loc">Lokal: <a href="sources/t1_docs_migrate_v1.md">sources/t1_docs_migrate_v1.md</a></span></li>
+<li id="q-t1_dcp_readme"><a href="https://github.com/Tarquinen/opencode-dynamic-context-pruning">Dynamic Context Pruning Plugin</a> <span class="loc">Lokal: <a href="sources/t1_dcp_readme.md">sources/t1_dcp_readme.md</a></span></li>
+<li id="q-t1_issue_56862_subagent_compaction"><a href="https://github.com/anomalyco/opencode/issues/56862">#56862 Subagents kept failing with context compaction</a> <span class="loc">Lokal: <a href="sources/t1_issue_56862_subagent_compaction.md">sources/t1_issue_56862_subagent_compaction.md</a></span></li>
+<li id="q-t1_issue_58175_cache_broken_by_plugin"><a href="https://github.com/anomalyco/opencode/issues/58175">#58175 deepseek-v4.1-flash prompt cache collapses above ~256k context: local plugin rewriting the system prompt, not Zen</a> <span class="loc">Lokal: <a href="sources/t1_issue_58175_cache_broken_by_plugin.md">sources/t1_issue_58175_cache_broken_by_plugin.md</a></span></li>
+<li id="q-t1_issue_59051_subagent_empty"><a href="https://github.com/anomalyco/opencode/issues/59051">#59051 subagent: completed child returns an empty result to the parent (v2, idle_outcome=succeeded with real token usage)</a> <span class="loc">Lokal: <a href="sources/t1_issue_59051_subagent_empty.md">sources/t1_issue_59051_subagent_empty.md</a></span></li>
+<li id="q-t1_lokal_cli_stats"><span>opencode 2.3.0: lokale Prüfung von Agenten und Konfiguration</span> <span class="loc">Lokal: <a href="sources/t1_lokal_cli_stats.md">sources/t1_lokal_cli_stats.md</a></span></li>
+</ul>
+<h3>Anthropic und Claude</h3>
+<ul class="sources">
+<li id="q-t2_pricing"><a href="https://platform.claude.com/docs/en/about-claude/pricing">Pricing</a> <span class="loc">Lokal: <a href="sources/t2_pricing.md">sources/t2_pricing.md</a></span></li>
+<li id="q-t2_effort"><a href="https://platform.claude.com/docs/en/build-with-claude/effort">Effort</a> <span class="loc">Lokal: <a href="sources/t2_effort.md">sources/t2_effort.md</a></span></li>
+<li id="q-t2_prompt_caching"><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching">Prompt caching</a> <span class="loc">Lokal: <a href="sources/t2_prompt_caching.md">sources/t2_prompt_caching.md</a></span></li>
+<li id="q-t2_cc_prompt_caching"><a href="https://code.claude.com/docs/en/prompt-caching">How Claude Code uses prompt caching</a> <span class="loc">Lokal: <a href="sources/t2_cc_prompt_caching.md">sources/t2_cc_prompt_caching.md</a></span></li>
+<li id="q-t2_blog_maximizing_sessions"><a href="https://claude.com/blog/maximizing-the-value-of-your-claude-code-sessions">Maximizing the value of your Claude Code sessions</a> <span class="loc">Lokal: <a href="sources/t2_blog_maximizing_sessions.md">sources/t2_blog_maximizing_sessions.md</a></span></li>
+<li id="q-t2_support_models_usage_limits_claude_code"><a href="https://support.claude.com/en/articles/14552983-models-usage-and-limits-in-claude-code">Models, usage, and limits in Claude Code</a> <span class="loc">Lokal: <a href="sources/t2_support_models_usage_limits_claude_code.md">sources/t2_support_models_usage_limits_claude_code.md</a></span></li>
+<li id="q-t2_cpa_issue5557"><a href="https://github.com/router-for-me/CLIProxyAPI/issues/5557">[Bug] Claude prompt caching is never engaged for OpenAI-protocol clients: cache_control is only forwarded, never originated · Issue #5557 · </a> <span class="loc">Lokal: <a href="sources/t2_cpa_issue5557.md">sources/t2_cpa_issue5557.md</a></span></li>
+<li id="q-t2_cpa_issue5730"><a href="https://github.com/router-for-me/CLIProxyAPI/issues/5730">Cloaked (non-Claude-Code) clients: prompt cache is written on every request and never read back · Issue #5730 · router-for-me/CLIProxyAPI · </a> <span class="loc">Lokal: <a href="sources/t2_cpa_issue5730.md">sources/t2_cpa_issue5730.md</a></span></li>
+<li id="q-t3_anthropic_opus55"><a href="https://www.anthropic.com/claude-opus-5-5">Introducing Claude Opus 5.5 \ Anthropic</a> <span class="loc">Lokal: <a href="sources/t3_anthropic_opus55.md">sources/t3_anthropic_opus55.md</a></span></li>
+<li id="q-t3_anthropic_haiku55"><a href="https://www.anthropic.com/claude-haiku-5-5">Introducing Claude Haiku 5.5 \ Anthropic</a> <span class="loc">Lokal: <a href="sources/t3_anthropic_haiku55.md">sources/t3_anthropic_haiku55.md</a></span></li>
+</ul>
+<h3>DeepSeek und OpenRouter</h3>
+<ul class="sources">
+<li id="q-t3_deepseek_thinking_mode"><a href="https://api-docs.deepseek.com/guides/thinking_mode">Thinking Mode</a> <span class="loc">Lokal: <a href="sources/t3_deepseek_thinking_mode.md">sources/t3_deepseek_thinking_mode.md</a></span></li>
+<li id="q-t3_deepseek_pricing"><a href="https://api-docs.deepseek.com/quick_start/pricing">Models &amp; Pricing</a> <span class="loc">Lokal: <a href="sources/t3_deepseek_pricing.md">sources/t3_deepseek_pricing.md</a></span></li>
+<li id="q-t3_deepseek_kvcache"><a href="https://api-docs.deepseek.com/guides/kv_cache">Context Caching</a> <span class="loc">Lokal: <a href="sources/t3_deepseek_kvcache.md">sources/t3_deepseek_kvcache.md</a></span></li>
+<li id="q-t3_libertai_reasoning_effort"><a href="https://labs.libertai.io/notes/dsv41-1017-reasoning-effort">What reasoning effort buys on DeepSeek-V4.1-Flash-1017</a> <span class="loc">Lokal: <a href="sources/t3_libertai_reasoning_effort.md">sources/t3_libertai_reasoning_effort.md</a></span></li>
+<li id="q-t3_bito_compare"><a href="https://bito.ai/blog/deepseek-vs-claude-for-coding-v4-1-flash-1017-against-opus-5-5-sonnet-5-5-and-haiku-5-5/">DeepSeek vs Claude for coding: V4.1 Flash 1017 benchmark</a> <span class="loc">Lokal: <a href="sources/t3_bito_compare.md">sources/t3_bito_compare.md</a></span></li>
+<li id="q-t3_benchgap_deepseek"><a href="https://benchgap.net/model/deepseek-v4-1-flash">DeepSeek V4.1 Flash 1017 benchmark scores</a> <span class="loc">Lokal: <a href="sources/t3_benchgap_deepseek.md">sources/t3_benchgap_deepseek.md</a></span></li>
+<li id="q-t3_hf_1017"><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017">deepseek-ai / DeepSeek-V4.1-Flash-1017</a> <span class="loc">Lokal: <a href="sources/t3_hf_1017.md">sources/t3_hf_1017.md</a></span></li>
+<li id="q-t3_cmp_wiki_toolcalls"><a href="https://cmp.wiki/wiki/DeepSeek_V4_and_V4.1:_tool-call_leaks,_loops_and_crashes">DeepSeek V4 and V4.1: tool-call leaks, loops and crashes</a> <span class="loc">Lokal: <a href="sources/t3_cmp_wiki_toolcalls.md">sources/t3_cmp_wiki_toolcalls.md</a></span></li>
+<li id="q-t3_openrouter_prompt_caching"><a href="https://openrouter.ai/docs/guides/best-practices/prompt-caching">Prompt Caching</a> <span class="loc">Lokal: <a href="sources/t3_openrouter_prompt_caching.md">sources/t3_openrouter_prompt_caching.md</a></span></li>
+<li id="q-t3_openrouter_provider_routing"><a href="https://openrouter.ai/docs/guides/routing/provider-selection">Provider Routing</a> <span class="loc">Lokal: <a href="sources/t3_openrouter_provider_routing.md">sources/t3_openrouter_provider_routing.md</a></span></li>
+<li id="q-t3_openrouter_caching_blog"><a href="https://openrouter.ai/blog/tutorials/prompt-caching-sticky-routing">OpenRouter Prompt Caching: What Cached Tokens Cost</a> <span class="loc">Lokal: <a href="sources/t3_openrouter_caching_blog.md">sources/t3_openrouter_caching_blog.md</a></span></li>
+<li id="q-t3_openrouter_endpoints_deepseek"><span>OpenRouter: aktive Endpunkte für DeepSeek V4.1 Flash 1017, abgerufen am 23.11.2026</span> <span class="loc">Lokal: <a href="sources/t3_openrouter_endpoints_deepseek.json">sources/t3_openrouter_endpoints_deepseek.json</a></span></li>
+<li id="q-t3_github_55816"><a href="https://github.com/anomalyco/opencode/issues/55816">Zen free models: publish the current free-usage limit and return it in 429 responses · Issue #55816 · anomalyco/opencode · GitHub</a> <span class="loc">Lokal: <a href="sources/t3_github_55816.md">sources/t3_github_55816.md</a></span></li>
+<li id="q-t3_everpod_free_limit"><a href="https://everpod.ai/guides/opencode-free-usage-limit-reached">OpenCode free usage limit reached: why, and what ends it</a> <span class="loc">Lokal: <a href="sources/t3_everpod_free_limit.md">sources/t3_everpod_free_limit.md</a></span></li>
+</ul>
+<h3>Forschung und Tests</h3>
+<ul class="sources">
+<li id="q-t4_anthropic_optimizing_cost"><a href="https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence">Optimizing for cost and intelligence</a> <span class="loc">Lokal: <a href="sources/t4_anthropic_optimizing_cost.md">sources/t4_anthropic_optimizing_cost.md</a></span></li>
+<li id="q-t4_complexity_trap_html"><a href="https://arxiv.org/html/2508.21433v1">The Complexity Trap: Simple Observation Masking Is as Efficient as LLM Summarization for Agent Context Management</a> <span class="loc">Lokal: <a href="sources/t4_complexity_trap_html.md">sources/t4_complexity_trap_html.md</a></span></li>
+<li id="q-t4_agentdiet_abs"><a href="https://arxiv.org/abs/2509.23586">[2509.23586] Reducing Cost of LLM Agents with Trajectory Reduction</a> <span class="loc">Lokal: <a href="sources/t4_agentdiet_abs.md">sources/t4_agentdiet_abs.md</a></span></li>
+<li id="q-t4_sweagent_aci_docs"><a href="https://github.com/SWE-agent/SWE-agent/blob/main/docs/background/aci.md">SWE-agent/docs/background/aci.md at main · SWE-agent/SWE-agent · GitHub</a> <span class="loc">Lokal: <a href="sources/t4_sweagent_aci_docs.md">sources/t4_sweagent_aci_docs.md</a></span></li>
+<li id="q-t4_akita_planner_executor_test"><a href="https://akitaonrails.com/en/2026/04/25/llm-benchmarks-vale-a-pena-misturar-2-modelos">LLM Benchmarks: Is It Worth ($$) Mixing 2 Models? (Planner + Executor)</a> <span class="loc">Lokal: <a href="sources/t4_akita_planner_executor_test.md">sources/t4_akita_planner_executor_test.md</a></span></li>
+<li id="q-t4_rtk_jetbrains_test"><a href="https://blog.jetbrains.com/ai/2026/07/rtk-claude-code-token-savings/">rtk Claude Code Token Savings: A Skill Trial Benchmark</a> <span class="loc">Lokal: <a href="sources/t4_rtk_jetbrains_test.md">sources/t4_rtk_jetbrains_test.md</a></span></li>
+<li id="q-t4_caveman_jetbrains_test"><a href="https://blog.jetbrains.com/ai/2026/07/speak-to-ai-agents-like-cavemen-tosave-tokens">Speaking to AI Agents like Cavemen Saves 65% of Tokens. We Test.</a> <span class="loc">Lokal: <a href="sources/t4_caveman_jetbrains_test.md">sources/t4_caveman_jetbrains_test.md</a></span></li>
+<li id="q-t4_serena_zenn_benchmark"><a href="https://zenn.dev/minedia/articles/serena-mcp-token-benchmark">Serenaを入れてもClaude Codeのコンテキストは減らなかった。80h規模のリファクタリングで実測した 📉</a> <span class="loc">Lokal: <a href="sources/t4_serena_zenn_benchmark.md">sources/t4_serena_zenn_benchmark.md</a></span></li>
+<li id="q-t4_subagent_tax_systima"><a href="https://systima.ai/blog/subagent-tax">The Subagent Tax. Claude Code Fan-Outs Cost Up to 5.9x the Tokens, and Were Never Faster</a> <span class="loc">Lokal: <a href="sources/t4_subagent_tax_systima.md">sources/t4_subagent_tax_systima.md</a></span></li>
+<li id="q-t4_subagents_216_test"><a href="https://dev.to/jaehyun_cho_0dff271e0d2e5/i-told-claude-code-to-use-subagents-216-times-it-found-nothing-more-and-cost-up-to-221-more-14ea">I told Claude Code to use subagents 216 times. It found nothing more and cost up to 221% more.</a> <span class="loc">Lokal: <a href="sources/t4_subagents_216_test.md">sources/t4_subagents_216_test.md</a></span></li>
+<li id="q-t4_superpowers_subagent_cost"><a href="https://tim-schipper.nl/en/blog/superpowers-subagent-driven-development-cost">Claude Code Superpowers: what subagent-driven development costs in tokens</a> <span class="loc">Lokal: <a href="sources/t4_superpowers_subagent_cost.md">sources/t4_superpowers_subagent_cost.md</a></span></li>
+<li id="q-t1_rtk_savings"><a href="https://www.rtk-ai.app/docs/resources/savings-explained">How RTK Savings Work</a> <span class="loc">Lokal: <a href="sources/t1_rtk_savings.md">sources/t1_rtk_savings.md</a></span></li>
+<li id="q-t1_quesma_rtk_benchmark"><a href="https://quesma.com/blog/does-rtk-make-ai-coding-cheaper">RTK reports huge token savings, but our cost benchmarks disagree</a> <span class="loc">Lokal: <a href="sources/t1_quesma_rtk_benchmark.md">sources/t1_quesma_rtk_benchmark.md</a></span></li>
+</ul>
+<h3>Eigene Messung</h3>
+<ul class="sources">
+<li id="q-_notizen_t5"><span>Notizen zur Auswertung T5 (lokal erstellt am 23.11.2026)</span> <span class="loc">Lokal: <a href="sources/_notizen_t5.md">sources/_notizen_t5.md</a></span></li>
+<li id="q-t5_analyse"><span>Rohauswertung der opencode-Datenbank (JSON, lokal erstellt am 23.11.2026)</span> <span class="loc">Lokal: <a href="sources/t5_analyse.json">sources/t5_analyse.json</a></span></li>
+<li id="q-t5_analyse_py"><span>Auswertungsskript (lokal erstellt am 23.11.2026)</span> <span class="loc">Lokal: <a href="sources/t5_analyse.py">sources/t5_analyse.py</a></span></li>
+<li id="q-stats_proj"><span>opencode stats für dieses Projekt (JSON, lokal erstellt am 23.11.2026)</span> <span class="loc">Lokal: <a href="sources/stats_proj.json">sources/stats_proj.json</a></span></li>
+<li id="q-stats_all"><span>opencode stats über alle Projekte (JSON, lokal erstellt am 23.11.2026)</span> <span class="loc">Lokal: <a href="sources/stats_all.json">sources/stats_all.json</a></span></li>
+<li id="q-endpunkt_rechnung"><span>Rechnung der Endpunkt-Kosten (JSON, lokal erstellt am 23.11.2026)</span> <span class="loc">Lokal: <a href="sources/endpunkt_rechnung.json">sources/endpunkt_rechnung.json</a></span></li>
+</ul>
+
+<p class="small">Alle Zahlen im Text stehen in den genannten Quellen oder in den lokalen Auswertungen. Preise und Endpunkte: Stand 23.11.2026.</p>
+
+<p class="foot">Recherche am 23.11.2026 mit Subagents (DeepSeek V4.1 Flash 1017) und eigener Auswertung der opencode-Datenbank. Preise Stand 23.11.2026. <a href="../../index.html">← Zur Übersicht</a></p>
+
+</div>
+
+<script type="application/json" id="data">{"hinweis":"Aus sources/t5_analyse.json und sources/endpunkt_rechnung.json extrahiert fuer bericht.html. Kurve 'Ideen-Universum' ist auf 200 Punkte ausgeduennt (248 Schritte).","sessions":[{"t":"Ideen-Universum bauen","sub":true,"m":"deepseek","steps":248,"max":412326,"sum":65870298,"cost":0.8026},{"t":"HTML-Bericht bauen","sub":true,"m":"deepseek","steps":137,"max":322336,"sum":31924591,"cost":0.3944},{"t":"Bericht v2 neu bauen","sub":true,"m":"deepseek","steps":114,"max":279771,"sum":25574807,"cost":0.1516},{"t":"Universum in Bericht integrieren","sub":true,"m":"deepseek","steps":135,"max":256489,"sum":22254395,"cost":0.2683},{"t":"Build interactive HTML report","sub":true,"m":"deepseek","steps":114,"max":268938,"sum":20589486,"cost":0.3054},{"t":"Recherche Teil 2: Zyklus & Superintelligenz","sub":true,"m":"deepseek","steps":154,"max":225592,"sum":20442242,"cost":0.2587},{"t":"Bericht-HTML bauen","sub":true,"m":"deepseek","steps":110,"max":204869,"sum":18382687,"cost":0.2193},{"t":"HTML Bericht PenGPT","sub":true,"m":"deepseek","steps":113,"max":227124,"sum":17419231,"cost":0.2433},{"t":"Chris Koerner Business-Ideen","sub":false,"m":"opus","steps":158,"max":168152,"sum":15977502,"cost":0},{"t":"Recherche Single-Binary Voice-Stacks","sub":true,"m":"deepseek","steps":115,"max":158598,"sum":10828567,"cost":0.1381},{"t":"KI-Englischtutor mit Sprachausgabe","sub":false,"m":"opus","steps":110,"max":167699,"sum":9982147,"cost":0},{"t":"Recherche beheizte Unterhose","sub":true,"m":"deepseek","steps":102,"max":146700,"sum":9546974,"cost":0.126},{"t":"Recherche STT/LLM/TTS-Modelle 3090","sub":true,"m":"deepseek","steps":102,"max":157372,"sum":9387008,"cost":0.1207},{"t":"Build HTML report","sub":true,"m":"deepseek","steps":83,"max":149721,"sum":9367361,"cost":0.1411},{"t":"Produktvergleich in der Suche","sub":false,"m":"opus","steps":83,"max":171562,"sum":8562530,"cost":0},{"t":"Recherche Unmute/Kyutai Stack","sub":true,"m":"deepseek","steps":86,"max":156618,"sum":8213661,"cost":0.1046},{"t":"Produktsuche Trainingshose Bericht","sub":true,"m":"deepseek","steps":97,"max":128163,"sum":7954977,"cost":0.1026},{"t":"Recherche Teil 1: Entpackung","sub":true,"m":"deepseek","steps":87,"max":150993,"sum":7551027,"cost":0.1069},{"t":"Build interactive GRH report HTML","sub":true,"m":"deepseek","steps":73,"max":138558,"sum":6986935,"cost":0},{"t":"Umbau GPS-Tracker","sub":true,"m":"deepseek","steps":80,"max":118235,"sum":6949899,"cost":0.0868},{"t":"Sci-fi idea bank explorer","sub":false,"m":"opus","steps":62,"max":163475,"sum":6520183,"cost":0},{"t":"Interaktive Sci-Fi-Ideenbank","sub":false,"m":"opus","steps":73,"max":170067,"sum":6419807,"cost":0},{"t":"Recherche Teil 3: Weiße Löcher","sub":true,"m":"deepseek","steps":72,"max":153504,"sum":6044706,"cost":0.093},{"t":"PAJ GPS Recherche + Bilder","sub":true,"m":"deepseek","steps":77,"max":115858,"sum":5859526,"cost":0.0805},{"t":"Universum als Entpackungsmaschine","sub":false,"m":"opus","steps":54,"max":152610,"sum":5517595,"cost":0},{"t":"Recherche Wissensdarstellung","sub":true,"m":"deepseek","steps":66,"max":141335,"sum":5452713,"cost":0.048},{"t":"Music of the primes interactive explainer","sub":false,"m":"opus","steps":69,"max":169283,"sum":5414567,"cost":0},{"t":"Beheizbare Radunterhose","sub":false,"m":"opus","steps":52,"max":152319,"sum":5283727,"cost":0},{"t":"Recherche Sprachtutor-Apps & Didaktik","sub":true,"m":"deepseek","steps":58,"max":135925,"sum":4964960,"cost":0.0696},{"t":"Umbau 3D-Druck-Trainer","sub":true,"m":"deepseek","steps":54,"max":105382,"sum":3956336,"cost":0.0579},{"t":"Extract ideas batch B25","sub":true,"m":"deepseek","steps":34,"max":156087,"sum":3950878,"cost":0.0662},{"t":"Extract ideas batch B20","sub":true,"m":"deepseek","steps":33,"max":155033,"sum":3913879,"cost":0.066},{"t":"3D-Druck Fußtrainer Bericht","sub":true,"m":"deepseek","steps":80,"max":74626,"sum":3848620,"cost":0},{"t":"Bruce Lee motivation video","sub":false,"m":"opus","steps":57,"max":101219,"sum":3761968,"cost":0.0551},{"t":"Bericht-HTML erstellen","sub":true,"m":"deepseek","steps":46,"max":97797,"sum":3749305,"cost":0.0567},{"t":"PAJ GPS Produkte und Gebühren","sub":false,"m":"opus","steps":39,"max":145456,"sum":3717072,"cost":0},{"t":"Umbau Cluster Dextrin","sub":true,"m":"deepseek","steps":44,"max":102074,"sum":3469161,"cost":0.0485},{"t":"Stiftplotter Produktsuche bauen","sub":true,"m":"deepseek","steps":59,"max":78582,"sum":3328706,"cost":0},{"t":"Umbau Flockenquetsche","sub":true,"m":"deepseek","steps":51,"max":80802,"sum":3059968,"cost":0.043},{"t":"Umbau Balance Board","sub":true,"m":"deepseek","steps":49,"max":83770,"sum":2877052,"cost":0.0429},{"t":"Research related sci-fi sources","sub":true,"m":"deepseek","steps":43,"max":95369,"sum":2706057,"cost":0.0419},{"t":"Übersetzung Chunk 09-10","sub":true,"m":"deepseek","steps":37,"max":104091,"sum":2598363,"cost":0.0532},{"t":"Habits-Seite bauen (OpenRouter)","sub":true,"m":"deepseek","steps":43,"max":76465,"sum":2578058,"cost":0.0421},{"t":"PenGPT deutsche Seite mit Bildern","sub":false,"m":"opus","steps":37,"max":110635,"sum":2570978,"cost":0},{"t":"Extract ideas batch B32","sub":true,"m":"deepseek","steps":24,"max":148651,"sum":2519706,"cost":0.0496},{"t":"Trainingshosen fürs Kreuzheben","sub":false,"m":"opus","steps":31,"max":117144,"sum":2428011,"cost":0},{"t":"Recherche Nasenstrips (OpenRouter)","sub":true,"m":"deepseek","steps":37,"max":95570,"sum":2420321,"cost":0.042},{"t":"Extract ideas batch B29","sub":true,"m":"deepseek","steps":25,"max":144846,"sum":2380928,"cost":0.0454},{"t":"Übersichtsseite neu kategorisieren","sub":false,"m":"sonnet","steps":35,"max":95391,"sum":2334789,"cost":0},{"t":"Übersetzung Chunk 03-04","sub":true,"m":"deepseek","steps":33,"max":111155,"sum":2301953,"cost":0.0492},{"t":"Extract ideas batch B10","sub":true,"m":"deepseek","steps":24,"max":137426,"sum":2192063,"cost":0.0415},{"t":"Habits: Nacken- und Hüftmobilität","sub":false,"m":"opus","steps":28,"max":95862,"sum":2119534,"cost":0},{"t":"Extract ideas batch B30","sub":true,"m":"deepseek","steps":22,"max":142841,"sum":2081870,"cost":0.0416},{"t":"Extract ideas batch B02","sub":true,"m":"deepseek","steps":21,"max":176728,"sum":2067539,"cost":0.0621},{"t":"Extract ideas batch B22","sub":true,"m":"deepseek","steps":20,"max":156963,"sum":1923130,"cost":0.0477},{"t":"Match YouTube URLs to sources","sub":true,"m":"deepseek","steps":37,"max":65497,"sum":1909133,"cost":0.0283},{"t":"Übersetzung Chunk 07-08","sub":true,"m":"deepseek","steps":24,"max":110779,"sum":1840684,"cost":0.0462},{"t":"Extract ideas batch B27","sub":true,"m":"deepseek","steps":19,"max":140874,"sum":1803260,"cost":0.0413},{"t":"Übersetzung Chunk 15-16","sub":true,"m":"deepseek","steps":27,"max":105584,"sum":1797779,"cost":0.043},{"t":"Extract ideas batch B28","sub":true,"m":"deepseek","steps":23,"max":129871,"sum":1754633,"cost":0.0352},{"t":"Extract ideas batch B12","sub":true,"m":"deepseek","steps":22,"max":136716,"sum":1732055,"cost":0.0401},{"t":"Übersetzung Chunk 13-14","sub":true,"m":"deepseek","steps":23,"max":111818,"sum":1678521,"cost":0.0438},{"t":"Extract ideas batch B13","sub":true,"m":"deepseek","steps":19,"max":152072,"sum":1643008,"cost":0.042},{"t":"Extract ideas batch B09","sub":true,"m":"deepseek","steps":18,"max":129274,"sum":1571608,"cost":0.0349},{"t":"Extract ideas batch B08","sub":true,"m":"deepseek","steps":18,"max":145350,"sum":1560445,"cost":0.0408},{"t":"Übersetzung Chunk 05-06","sub":true,"m":"deepseek","steps":23,"max":101052,"sum":1535567,"cost":0.041},{"t":"Extract ideas batch B33","sub":true,"m":"deepseek","steps":18,"max":132049,"sum":1528096,"cost":0.0374},{"t":"Übersetzung Chunk 11-12","sub":true,"m":"deepseek","steps":23,"max":108573,"sum":1512075,"cost":0.0421},{"t":"Übersetzung Chunk 17-18","sub":true,"m":"deepseek","steps":22,"max":110052,"sum":1492485,"cost":0.0448},{"t":"Extract ideas batch B37","sub":true,"m":"deepseek","steps":20,"max":141364,"sum":1487888,"cost":0.0437},{"t":"Extract ideas batch B05","sub":true,"m":"deepseek","steps":20,"max":136836,"sum":1465295,"cost":0.0354},{"t":"Extract ideas batch B34","sub":true,"m":"deepseek","steps":18,"max":133296,"sum":1456583,"cost":0.0352},{"t":"Extract ideas batch B36","sub":true,"m":"deepseek","steps":16,"max":153766,"sum":1454356,"cost":0.0421},{"t":"Extract ideas batch B18","sub":true,"m":"deepseek","steps":16,"max":149901,"sum":1442776,"cost":0.0376},{"t":"Extract ideas batch B39","sub":true,"m":"deepseek","steps":19,"max":125134,"sum":1424460,"cost":0.0368},{"t":"Synthesis principles & patterns","sub":true,"m":"deepseek","steps":16,"max":163675,"sum":1418285,"cost":0.0291},{"t":"Extract ideas batch B31","sub":true,"m":"deepseek","steps":19,"max":109321,"sum":1323826,"cost":0.0257},{"t":"Extract ideas batch B21","sub":true,"m":"deepseek","steps":17,"max":143920,"sum":1305020,"cost":0.0341},{"t":"Extract ideas batch B03","sub":true,"m":"deepseek","steps":15,"max":161209,"sum":1289797,"cost":0.0437},{"t":"Extract ideas batch B19","sub":true,"m":"deepseek","steps":15,"max":150303,"sum":1274683,"cost":0.0361},{"t":"HTML Bericht Nasenstrips","sub":true,"m":"deepseek","steps":24,"max":59024,"sum":1257896,"cost":0.02},{"t":"Extract ideas batch B16","sub":true,"m":"deepseek","steps":16,"max":145509,"sum":1254817,"cost":0.037},{"t":"Extract ideas batch B14","sub":true,"m":"deepseek","steps":15,"max":149978,"sum":1230595,"cost":0.0408},{"t":"Extract ideas batch B36","sub":true,"m":"deepseek","steps":18,"max":112307,"sum":1229615,"cost":0.0438},{"t":"Token-Sparen mit Subagents","sub":false,"m":"opus","steps":22,"max":84308,"sum":1201234,"cost":0},{"t":"Extract ideas batch B24","sub":true,"m":"deepseek","steps":15,"max":140455,"sum":1197287,"cost":0.0346},{"t":"Bild auf Motivationsseite","sub":false,"m":"sonnet","steps":27,"max":67749,"sum":1187321,"cost":0},{"t":"Extract ideas batch B15","sub":true,"m":"deepseek","steps":15,"max":144686,"sum":1178486,"cost":0.0371},{"t":"Extract ideas batch B23","sub":true,"m":"deepseek","steps":15,"max":140238,"sum":1170644,"cost":0.0363},{"t":"Extract ideas batch B17","sub":true,"m":"deepseek","steps":14,"max":157580,"sum":1169445,"cost":0.0435},{"t":"Extract ideas batch B01","sub":true,"m":"deepseek","steps":13,"max":157697,"sum":1159286,"cost":0.0414},{"t":"Planungsseite Anreise Scheidegg","sub":true,"m":"deepseek","steps":31,"max":48051,"sum":1151142,"cost":0},{"t":"Extract ideas batch B41","sub":true,"m":"deepseek","steps":14,"max":143222,"sum":1145727,"cost":0.0354},{"t":"Übersetzung Chunk 01-02","sub":true,"m":"deepseek","steps":18,"max":97873,"sum":1132837,"cost":0.0347},{"t":"Extract ideas batch B04","sub":true,"m":"deepseek","steps":16,"max":124695,"sum":1119093,"cost":0.03},{"t":"Merge sci-fi idea data","sub":true,"m":"deepseek","steps":24,"max":59049,"sum":1067343,"cost":0.0216},{"t":"Extract ideas batch B26","sub":true,"m":"deepseek","steps":14,"max":149979,"sum":1010385,"cost":0.0378},{"t":"Extract ideas batch B06","sub":true,"m":"deepseek","steps":13,"max":143991,"sum":994547,"cost":0.0337},{"t":"Extract ideas batch B11","sub":true,"m":"deepseek","steps":13,"max":136941,"sum":989533,"cost":0.0269},{"t":"Extract ideas batch B35","sub":true,"m":"deepseek","steps":14,"max":141206,"sum":989466,"cost":0.0398},{"t":"Extract ideas batch B07","sub":true,"m":"deepseek","steps":13,"max":147478,"sum":981686,"cost":0.0377},{"t":"Extract ideas batch B42","sub":true,"m":"deepseek","steps":15,"max":115955,"sum":937386,"cost":0.0297},{"t":"Extract ideas batch B38","sub":true,"m":"deepseek","steps":13,"max":120468,"sum":900738,"cost":0.0268},{"t":"Extract ideas batch B40","sub":true,"m":"deepseek","steps":14,"max":133300,"sum":892050,"cost":0.0363},{"t":"Bericht mit Weiterleitungslinks","sub":false,"m":"opus","steps":17,"max":62573,"sum":815720,"cost":0},{"t":"Extract ideas batch B41","sub":true,"m":"deepseek","steps":12,"max":104649,"sum":715062,"cost":0.0342},{"t":"HTML Bericht beheizte Unterhose","sub":true,"m":"deepseek","steps":12,"max":56659,"sum":601113,"cost":0.0107},{"t":"Dedup K03, K04","sub":true,"m":"deepseek","steps":11,"max":64082,"sum":579523,"cost":0.0148},{"t":"Dedup K09","sub":true,"m":"deepseek","steps":11,"max":71304,"sum":533339,"cost":0.0148},{"t":"Semantische Karte berechnen","sub":true,"m":"deepseek","steps":14,"max":48608,"sum":530952,"cost":0.0115},{"t":"Dedup K14, K17","sub":true,"m":"deepseek","steps":10,"max":52840,"sum":419843,"cost":0.011},{"t":"Dedup K13, K15, K16","sub":true,"m":"deepseek","steps":10,"max":45353,"sum":387826,"cost":0.0081},{"t":"Dedup K18, K19","sub":true,"m":"deepseek","steps":7,"max":64955,"sum":355427,"cost":0.0144},{"t":"Whisper transcription script","sub":true,"m":"deepseek","steps":10,"max":49383,"sum":352280,"cost":0.008},{"t":"Dedup K05, K06","sub":true,"m":"deepseek","steps":7,"max":61828,"sum":345947,"cost":0.0133},{"t":"Glossar übersetzen","sub":true,"m":"deepseek","steps":8,"max":48221,"sum":337637,"cost":0.0122},{"t":"Umbau Balance Board","sub":true,"m":"deepseek","steps":12,"max":34159,"sum":307327,"cost":0},{"t":"Umbau 3D-Druck-Trainer","sub":true,"m":"deepseek","steps":10,"max":38824,"sum":275627,"cost":0},{"t":"Umbau GPS-Tracker","sub":true,"m":"deepseek","steps":9,"max":47388,"sum":272704,"cost":0},{"t":"Umbau Cluster Dextrin","sub":true,"m":"deepseek","steps":10,"max":37727,"sum":269990,"cost":0},{"t":"Dedup K01","sub":true,"m":"deepseek","steps":5,"max":54047,"sum":229155,"cost":0.0091},{"t":"Dedup K10, K12","sub":true,"m":"deepseek","steps":5,"max":46743,"sum":195719,"cost":0.0065},{"t":"Dedup K02","sub":true,"m":"deepseek","steps":4,"max":60399,"sum":193667,"cost":0.0097},{"t":"Dedup K08","sub":true,"m":"deepseek","steps":4,"max":52478,"sum":174137,"cost":0.0074},{"t":"Umbau Flockenquetsche","sub":true,"m":"deepseek","steps":9,"max":26248,"sum":168348,"cost":0},{"t":"Dedup K07","sub":true,"m":"deepseek","steps":4,"max":49752,"sum":166149,"cost":0.0072},{"t":"Dedup K11","sub":true,"m":"deepseek","steps":4,"max":46335,"sum":158190,"cost":0.0061},{"t":"T1 opencode Doku Recherche","sub":true,"m":"deepseek","steps":3,"max":30880,"sum":60933,"cost":0.0017},{"t":"Google-Aktie für KI-Investment","sub":false,"m":"opus","steps":2,"max":26074,"sum":50352,"cost":0},{"t":"T5 Nutzungsdaten auswerten","sub":true,"m":"deepseek","steps":3,"max":30215,"sum":30215,"cost":0.0005},{"t":"T3 DeepSeek V4.1 Flash","sub":true,"m":"deepseek","steps":3,"max":30096,"sum":30096,"cost":0.0005},{"t":"T2 Anthropic Opus Caching","sub":true,"m":"deepseek","steps":3,"max":29993,"sum":29993,"cost":0.0005},{"t":"Extract ideas batch B01","sub":true,"m":"deepseek","steps":1,"max":0,"sum":0,"cost":0},{"t":"Match YouTube URLs to sources","sub":true,"m":"deepseek","steps":1,"max":0,"sum":0,"cost":0},{"t":"PAJ GPS Recherche + Bilder","sub":true,"m":"deepseek","steps":1,"max":0,"sum":0,"cost":0},{"t":"Research related sci-fi sources","sub":true,"m":"deepseek","steps":1,"max":0,"sum":0,"cost":0},{"t":"Merge sci-fi idea data","sub":true,"m":"deepseek","steps":1,"max":0,"sum":0,"cost":0},{"t":"Glossar übersetzen","sub":true,"m":"deepseek","steps":1,"max":0,"sum":0,"cost":0},{"t":"Whisper transcription script","sub":true,"m":"deepseek","steps":1,"max":0,"sum":0,"cost":0},{"t":"Recherche Nasenstrips Links/Preise","sub":true,"m":"deepseek","steps":1,"max":0,"sum":0,"cost":0},{"t":"Habits-Seite bauen","sub":true,"m":"deepseek","steps":1,"max":0,"sum":0,"cost":0},{"t":"Produktsuche Trainingshose Bericht","sub":true,"m":"deepseek","steps":1,"max":0,"sum":0,"cost":0},{"t":"T4 Forschung Kontext-Techniken","sub":true,"m":"deepseek","steps":2,"max":0,"sum":0,"cost":0}],"curves":[{"t":"Chris Koerner Business-Ideen","sub":false,"model":"claude-opus-5-5","steps_total":158,"points":[23945,35157,47544,47978,51081,51490,52272,53572,54258,55747,56162,59990,61109,64299,65156,66755,67713,69191,70328,75631,76024,76763,84997,85893,86675,87253,88448,89232,90211,90997,91482,92265,93094,93877,94666,95449,96125,96908,98729,99565,100346,101194,101977,102833,103616,104358,105514,106296,106911,107695,108335,109119,109805,110589,111203,111987,112552,113337,114388,114975,115759,116454,117237,117950,118735,119503,120285,120846,121629,122253,123036,123612,124395,125088,126817,128448,129133,129916,130435,131222,131815,132598,135435,136382,138416,139474,140985,141838,142800,143137,143885,144455,145069,145939,147195,147735,149437,151659,152721,153700,155317,155840,156446,157652,158034,166494,167252,168152,50794,54516,55896,56972,58733,62619,63232,63744,64028,64961,69538,71017,71611,73405,74305,74890,75294,78191,79572,80916,84798,85737,86361,87239,87545,87918,88055,88326,88785,91194,93511,94027,96813,97748,99997,100343,101132,101764,102304,102805,103074,103801,104392,104923,105259,106666,107185,107531,108027,108332]},{"t":"Ideen-Universum bauen","sub":true,"model":"deepseek/deepseek-v4.1-flash-1017","steps_total":248,"points":[28012,51874,53211,54720,56702,67630,75288,75928,76743,104899,106119,107006,150708,158994,159475,159740,161805,163086,163504,163964,164338,164881,165070,165317,165560,166149,166424,166693,167065,167333,168208,168482,168863,169719,171121,171348,172437,173780,174202,175921,176324,176816,177987,178410,178862,178968,179347,179815,180821,181516,185326,186162,186725,187597,190594,192378,193295,194867,199860,206086,207493,208663,210180,217408,218126,220853,223756,225831,226511,227916,230298,231448,232751,232954,233850,236402,238038,239372,239870,240569,243459,244114,245109,245518,248641,249875,252129,254055,257371,260676,262000,262270,265430,266321,266691,267406,268265,269419,270731,270934,272499,273277,274425,276490,276763,278596,278799,279455,280615,283699,284354,285817,286896,287675,288570,289857,290951,293996,294765,297989,298553,301315,302605,304278,306079,308923,309285,310208,311369,312230,315378,315865,317308,317578,319754,320066,322120,323186,325249,325371,326260,326916,330095,330865,332101,334208,336000,337754,338513,339963,342798,345366,346119,346775,347693,350094,351044,352142,353005,354681,356673,357422,358077,360497,360766,361421,362094,364539,365361,366330,368221,372870,373898,374397,374913,377723,379356,382627,383432,383743,385600,386850,388378,388668,390447,377456,378120,380805,382480,383376,384859,386391,388944,390471,404822,405501,407501,408156,410007,412326]},{"t":"Extract ideas batch B08","sub":true,"model":"deepseek/deepseek-v4.1-flash-1017","steps_total":18,"points":[27434,32384,32646,45129,57661,59431,72971,75947,78078,79316,87029,92674,102922,142064,142643,142963,143803,145350]}],"endpoints":[{"provider":"Ambient","tag":"ambient/fp4","input":0.045,"cache_read":0.0025,"output":0.25,"projekt_usd":2.72},{"provider":"Particle AI","tag":"particle-ai/us/flex","input":0.025,"cache_read":0.001,"output":0.45,"projekt_usd":2.77},{"provider":"DeepInfra","tag":"deepinfra/fp8/flex","input":0.0784,"cache_read":0.0024,"output":0.235,"projekt_usd":2.97},{"provider":"Pearl Research","tag":"pearl-research/fp8","input":0.05,"cache_read":0.003,"output":0.3,"projekt_usd":3.21},{"provider":"Ant Digital","tag":"antdigital/fp8","input":0.09,"cache_read":0.0018,"output":0.36,"projekt_usd":3.44},{"provider":"Alibaba","tag":"alibaba","input":0.09,"cache_read":0.0018,"output":0.36,"projekt_usd":3.44},{"provider":"DeepInfra","tag":"deepinfra/fp8","input":0.098,"cache_read":0.0029,"output":0.294,"projekt_usd":3.71},{"provider":"Baidu","tag":"baidu/fp8","input":0.0977,"cache_read":0.0021,"output":0.394,"projekt_usd":3.81},{"provider":"Sail Research","tag":"sail-research/fp4/us","input":0.04,"cache_read":0.007,"output":0.1,"projekt_usd":3.87},{"provider":"Sail Research","tag":"sail-research/fp4","input":0.04,"cache_read":0.007,"output":0.1,"projekt_usd":3.87},{"provider":"Cohere","tag":"cohere/fp8","input":0.115,"cache_read":0.0025,"output":0.4,"projekt_usd":4.21},{"provider":"StreamLake","tag":"streamlake/fp8","input":0.111,"cache_read":0.0022,"output":0.444,"projekt_usd":4.25},{"provider":"River","tag":"river","input":0.12,"cache_read":0.0024,"output":0.48,"projekt_usd":4.59},{"provider":"Relace","tag":"relace/fp4","input":0.12,"cache_read":0.003,"output":0.5,"projekt_usd":4.94},{"provider":"Cloudflare","tag":"cloudflare","input":0.1,"cache_read":0.003,"output":0.6,"projekt_usd":5.16},{"provider":"Morph","tag":"morph/fp8","input":0.059,"cache_read":0.005,"output":0.52,"projekt_usd":5.17},{"provider":"Particle AI","tag":"particle-ai/us","input":0.05,"cache_read":0.002,"output":0.9,"projekt_usd":5.53},{"provider":"DeepInfra","tag":"deepinfra/fp8/priority","input":0.147,"cache_read":0.0044,"output":0.441,"projekt_usd":5.57},{"provider":"Fireworks","tag":"fireworks/spot","input":0.15,"cache_read":0.003,"output":0.6,"projekt_usd":5.74},{"provider":"SiliconFlow","tag":"siliconflow/fp8","input":0.15,"cache_read":0.003,"output":0.6,"projekt_usd":5.74},{"provider":"DeepSeek","tag":"deepseek","input":0.15,"cache_read":0.003,"output":0.6,"projekt_usd":5.74},{"provider":"Wafer","tag":"wafer/mxfp4","input":0.066,"cache_read":0.0065,"output":0.5,"projekt_usd":5.79},{"provider":"Novita","tag":"novita/fp8","input":0.165,"cache_read":0.0033,"output":0.66,"projekt_usd":6.31},{"provider":"Inceptron","tag":"inceptron/fp4","input":0.1,"cache_read":0.006,"output":0.6,"projekt_usd":6.43},{"provider":"Nebius","tag":"nebius/fp4","input":0.18,"cache_read":0.0036,"output":0.72,"projekt_usd":6.89},{"provider":"Wafer","tag":"wafer/us","input":0.036,"cache_read":0.01,"output":0.5,"projekt_usd":6.92},{"provider":"PrimeIntellect","tag":"primeintellect","input":0.075,"cache_read":0.007,"output":0.7,"projekt_usd":7.02},{"provider":"InferenceNet","tag":"inference-net/us","input":0.08,"cache_read":0.008,"output":0.666,"projekt_usd":7.34},{"provider":"InferenceNet","tag":"inference-net/fp8","input":0.08,"cache_read":0.008,"output":0.666,"projekt_usd":7.34},{"provider":"DigitalOcean","tag":"digitalocean","input":0.195,"cache_read":0.0039,"output":0.78,"projekt_usd":7.46},{"provider":"ModelRun","tag":"modelrun/fp4","input":0.17,"cache_read":0.006,"output":0.67,"projekt_usd":7.55},{"provider":"Crusoe","tag":"crusoe/fp8","input":0.1885,"cache_read":0.0046,"output":0.78,"projekt_usd":7.66},{"provider":"Makora","tag":"makora/fp8","input":0.15,"cache_read":0.006,"output":0.8,"projekt_usd":7.92},{"provider":"OpenInference","tag":"open-inference/fp4","input":0.055,"cache_read":0.012,"output":0.54,"projekt_usd":8.16},{"provider":"Krea","tag":"krea/fp8","input":0.16,"cache_read":0.006,"output":1.0,"projekt_usd":8.95},{"provider":"PrimaLabs","tag":"primalabs","input":0.24,"cache_read":0.0048,"output":0.96,"projekt_usd":9.18},{"provider":"Modal","tag":"modal","input":0.25,"cache_read":0.005,"output":1.0,"projekt_usd":9.56},{"provider":"Ionstream","tag":"ionstream","input":0.21,"cache_read":0.0105,"output":0.62,"projekt_usd":9.69},{"provider":"Google","tag":"google-vertex/global","input":0.3,"cache_read":0.006,"output":1.2,"projekt_usd":11.48},{"provider":"CoreWeave","tag":"coreweave/fp8","input":0.3,"cache_read":0.006,"output":1.2,"projekt_usd":11.48},{"provider":"Near AI","tag":"near-ai","input":0.3,"cache_read":0.006,"output":1.2,"projekt_usd":11.48},{"provider":"Reka","tag":"reka","input":0.3,"cache_read":0.006,"output":1.2,"projekt_usd":11.48},{"provider":"Together","tag":"together","input":0.3,"cache_read":0.006,"output":1.2,"projekt_usd":11.48},{"provider":"Fireworks","tag":"fireworks","input":0.3,"cache_read":0.006,"output":1.2,"projekt_usd":11.48},{"provider":"Parasail","tag":"parasail/fp8","input":0.3,"cache_read":0.006,"output":1.2,"projekt_usd":11.48},{"provider":"Mistral","tag":"mistral/fp8","input":0.3,"cache_read":0.007,"output":1.2,"projekt_usd":11.9},{"provider":"BaseTen","tag":"baseten","input":0.3,"cache_read":0.007,"output":1.2,"projekt_usd":11.9},{"provider":"Venice","tag":"venice/fp8","input":0.3,"cache_read":0.0075,"output":1.2,"projekt_usd":12.11},{"provider":"Together","tag":"together/us","input":0.375,"cache_read":0.0075,"output":1.5,"projekt_usd":14.35},{"provider":"Fireworks","tag":"fireworks/us","input":0.45,"cache_read":0.009,"output":1.8,"projekt_usd":17.21},{"provider":"Morph","tag":"morph/fast","input":0.6,"cache_read":0.014,"output":2.4,"projekt_usd":23.8},{"provider":"BaseTen","tag":"baseten/fast","input":0.6,"cache_read":0.014,"output":2.4,"projekt_usd":23.8}],"projekt_deepseek_tokens_M":{"input":11.541193,"output_plus_reasoning":4.568611,"cache_read":421.922873},"eigener_fit":{"input":0.041,"output_plus_reasoning":0.47,"cache_read":0.0094,"r2":0.92,"steps":6749}}</script>
+
+<script>
+(function(){
+'use strict';
+var DATA;
+try { DATA = JSON.parse(document.getElementById('data').textContent); } catch (e) { return; }
+
+var nf = new Intl.NumberFormat('de-DE');
+function el(id){ return document.getElementById(id); }
+function num(v){ return nf.format(Math.round(v)); }
+function dec(v,d){ return v.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function usd(v){
+  var d = v >= 1 ? 2 : (v >= 0.1 ? 3 : 4);
+  return v.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:d})+' $';
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function tok(v){
+  if(v>=1000000) return dec(v/1e6,2)+' Mio.';
+  return num(v);
+}
+function axisTick(v){
+  if(v>=1000000) return nf.format(Math.round(v/1e6*10)/10)+' Mio.';
+  if(v>=1000) return num(v/1000)+' k';
+  return num(v);
+}
+
+/* ---------- 1. Schritte: gestapelte Balken ---------- */
+var G0 = 27434, Z0 = 3670, stepN = 19;
+
+function drawSteps(n){
+  var host = el('stepChart');
+  if (!host) return;
+  var w = Math.max(260, Math.floor(host.clientWidth || 640));
+  var narrow = w < 520;
+  var h = narrow ? 238 : 296;
+  var ml = narrow ? 44 : 56, mr = narrow ? 84 : 104, mt = 22, mb = 30;
+  var pw = w - ml - mr, ph = h - mt - mb;
+  var yMax = 140000;
+  function Y(v){ return mt + ph - (v / yMax) * ph; }
+  var base = mt + ph;
+  var s = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Gestapelte Balken je Schritt: Grundlast, alter Verlauf, neuer Teil.">';
+
+  [0, 50000, 100000].forEach(function(v){
+    var y = Y(v);
+    if (v > 0){
+      s += '<line x1="' + ml + '" y1="' + y.toFixed(1) + '" x2="' + (ml + pw) + '" y2="' + y.toFixed(1) + '" stroke="#f0ece4" stroke-width="1"/>';
+    }
+    s += '<text x="' + (ml - 6) + '" y="' + (y + 3.5).toFixed(1) + '" text-anchor="end" font-size="' + (narrow ? 9.5 : 10.5) + '" fill="#66625a">' + (v === 0 ? '0' : num(v / 1000) + ' k') + '</text>';
+  });
+
+  var slot = pw / n, bw = Math.max(3, slot * 0.7);
+  var fs = narrow ? 9 : 10;
+  for (var k = 1; k <= n; k++){
+    var x = ml + (k - 1) * slot + (slot - bw) / 2;
+    var total = G0 + (k - 1) * Z0;
+    var yG = Y(G0);
+    s += '<rect x="' + x.toFixed(1) + '" y="' + yG.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + (base - yG).toFixed(1) + '" fill="#cfc7b8"/>';
+    if (k >= 2){
+      var yOld = Y(total - Z0);
+      var yTop = Y(total);
+      s += '<rect x="' + x.toFixed(1) + '" y="' + yOld.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + (yG - yOld).toFixed(1) + '" fill="#e6dfd2"/>';
+      s += '<rect x="' + x.toFixed(1) + '" y="' + yTop.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + (yOld - yTop).toFixed(1) + '" fill="#3a3733"/>';
+    }
+  }
+
+  if (n >= 4){
+    var lx = ml + pw + 6;
+    var totalN = G0 + (n - 1) * Z0;
+    s += '<text x="' + lx + '" y="' + (Y(totalN) - 4).toFixed(1) + '" font-size="' + fs + '" fill="#3a3733">neu ' + num(Z0) + '</text>';
+    s += '<text x="' + lx + '" y="' + (Y(G0 + (totalN - G0) / 2) + 3).toFixed(1) + '" font-size="' + fs + '" fill="#66625a">alter Verlauf</text>';
+    s += '<text x="' + lx + '" y="' + (Y(G0 / 2) + 3).toFixed(1) + '" font-size="' + fs + '" fill="#66625a">Grundlast ' + num(G0) + '</text>';
+  }
+
+  var xTicks = [1, n];
+  if (n >= 12) xTicks.push(Math.round(n / 2));
+  xTicks.sort(function(a,b){ return a-b; });
+  xTicks.forEach(function(k){
+    var xc = ml + (k - 1) * slot + slot / 2;
+    s += '<text x="' + xc.toFixed(1) + '" y="' + (base + 15) + '" text-anchor="middle" font-size="' + (narrow ? 9 : 10) + '" fill="#66625a">' + k + '</text>';
+  });
+  s += '<text x="' + (ml + pw / 2) + '" y="' + (h - 4) + '" text-anchor="middle" font-size="' + (narrow ? 9 : 10) + '" fill="#8a8378">Schritt</text>';
+  s += '</svg>';
+  host.innerHTML = s;
+
+  el('stepOut').textContent = String(n);
+  var processed = n * G0 + Z0 * n * (n - 1) / 2;
+  el('stepSum').textContent = num(processed);
+  el('stepExtra').textContent = 'Kontext im letzten Schritt ' + num(G0 + (n - 1) * Z0) + ' Tokens';
+}
+
+function drawSum(n){
+  var host = el('sumChart');
+  if (!host) return;
+  var w = Math.max(260, Math.floor(host.clientWidth || 640));
+  var narrow = w < 520;
+  var h = narrow ? 96 : 108;
+  var ml = narrow ? 44 : 56, mr = 16, mt = 18, mb = 18;
+  var pw = w - ml - mr, ph = h - mt - mb;
+  var sums = [], k;
+  for (k = 1; k <= 30; k++) sums.push(k * G0 + Z0 * k * (k - 1) / 2);
+  var yMax = sums[29];
+  function X(i){ return ml + (i / 29) * pw; }
+  function Y(v){ return mt + ph - (v / yMax) * ph; }
+  var base = mt + ph;
+  var pts = sums.map(function(v,i){ return X(i).toFixed(1) + ',' + Y(v).toFixed(1); }).join(' ');
+  var s = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Summe der verarbeiteten Tokens bis 30 Schritte, quadratisch wachsend.">';
+  s += '<polygon points="' + ml + ',' + base + ' ' + pts + ' ' + X(29) + ',' + base + '" fill="#35586f" opacity="0.08"/>';
+  s += '<polyline points="' + pts + '" fill="none" stroke="#35586f" stroke-width="2"/>';
+  s += '<line x1="' + ml + '" y1="' + base + '" x2="' + (ml + pw) + '" y2="' + base + '" stroke="#cfc7b8" stroke-width="1"/>';
+  s += '<text x="' + (ml + 2) + '" y="' + (mt + 2) + '" font-size="' + (narrow ? 9 : 10) + '" fill="#8a8378">bei 30 Schritten ' + dec(sums[29]/1e6,1) + ' Mio.</text>';
+  var ci = n - 1;
+  var cx = X(ci), cy = Y(sums[ci]);
+  s += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="4" fill="#211f1b"/>';
+  var lx = cx, anchor = 'middle';
+  if (n > 24){ lx = cx - 8; anchor = 'end'; }
+  s += '<text x="' + lx.toFixed(1) + '" y="' + (cy - 8).toFixed(1) + '" text-anchor="' + anchor + '" font-size="' + (narrow ? 9.5 : 10.5) + '" fill="#211f1b">' + dec(sums[ci]/1e6,2) + ' Mio.</text>';
+  s += '</svg>';
+  host.innerHTML = s;
+}
+
+if (el('stepRange')){
+  el('stepRange').addEventListener('input', function(){
+    stepN = +this.value;
+    drawSteps(stepN); drawSum(stepN);
+  });
+  el('stepNext').addEventListener('click', function(){
+    stepN = stepN >= 30 ? 1 : stepN + 1;
+    el('stepRange').value = String(stepN);
+    drawSteps(stepN); drawSum(stepN);
+  });
+}
+
+/* ---------- 2a. Kontextkurven ---------- */
+var curveIdx = 0, curveHover = -1, curveGeo = null;
+
+function curveSum(title){
+  var s = DATA.sessions.filter(function(x){ return x.t === title; })[0];
+  return s ? s.sum : 0;
+}
+
+function drawCurve(){
+  var host = el('curveChart');
+  if (!host || !DATA.curves || !DATA.curves.length) return;
+  var c = DATA.curves[curveIdx];
+  var pts = c.points;
+  var w = Math.max(260, Math.floor(host.clientWidth || 720));
+  var narrow = w < 520;
+  var h = narrow ? 258 : 336;
+  var ml = narrow ? 46 : 58, mr = 14, mt = 22, mb = 40;
+  var pw = w - ml - mr, ph = h - mt - mb;
+  var maxv = Math.max.apply(null, pts);
+  var yMax = Math.ceil(maxv * 1.05 / 50000) * 50000;
+  if (yMax <= maxv) yMax += 50000;
+  function X(i){ return ml + (i / (pts.length - 1)) * pw; }
+  function Y(v){ return mt + ph - (v / yMax) * ph; }
+  var base = mt + ph;
+  var line = pts.map(function(v,i){ return (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(v).toFixed(1); }).join(' ');
+  var yTop = yMax;
+
+  var s = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Kontextgröße je Schritt der gewählten Session.">';
+  [0, yMax / 2, yMax].forEach(function(v){
+    var y = Y(v);
+    if (v > 0) s += '<line x1="' + ml + '" y1="' + y.toFixed(1) + '" x2="' + (ml + pw) + '" y2="' + y.toFixed(1) + '" stroke="#f0ece4" stroke-width="1"/>';
+    s += '<text x="' + (ml - 6) + '" y="' + (y + 3.5).toFixed(1) + '" text-anchor="end" font-size="' + (narrow ? 9.5 : 10.5) + '" fill="#66625a">' + axisTick(v) + '</text>';
+  });
+
+  s += '<path d="' + line + ' L' + X(pts.length - 1).toFixed(1) + ' ' + base + ' L' + ml + ' ' + base + ' Z" fill="#35586f" opacity="0.08"/>';
+  s += '<path d="' + line + '" fill="none" stroke="#35586f" stroke-width="2" stroke-linejoin="round"/>';
+  s += '<line x1="' + ml + '" y1="' + base + '" x2="' + (ml + pw) + '" y2="' + base + '" stroke="#cfc7b8" stroke-width="1"/>';
+
+  var gy = Y(27434);
+  s += '<line x1="' + ml + '" y1="' + gy.toFixed(1) + '" x2="' + (ml + pw) + '" y2="' + gy.toFixed(1) + '" stroke="#b9b2a4" stroke-width="1" stroke-dasharray="4 3"/>';
+  s += '<text x="' + (ml + pw - 2) + '" y="' + (gy - 5).toFixed(1) + '" text-anchor="end" font-size="' + (narrow ? 9 : 10) + '" fill="#8a8378">Grundlast 27.434</text>';
+
+  s += '<text x="' + (ml + 10) + '" y="' + (base - 7) + '" font-size="' + (narrow ? 9.5 : 10.5) + '" fill="#66625a">gelesen: ' + dec(curveSum(c.t) / 1e6, 1) + ' Mio. Tokens</text>';
+
+  if (curveIdx === 0){
+    var dropI = 1, dropMax = 0;
+    for (var j = 1; j < pts.length; j++){
+      var d = pts[j-1] - pts[j];
+      if (d > dropMax){ dropMax = d; dropI = j; }
+    }
+    var dx = X(dropI), dy = Y(pts[dropI - 1]);
+    s += '<line x1="' + dx.toFixed(1) + '" y1="' + (dy - 4).toFixed(1) + '" x2="' + dx.toFixed(1) + '" y2="' + (Y(pts[dropI]) - 2).toFixed(1) + '" stroke="#a9554b" stroke-width="1.5"/>';
+    s += '<text x="' + (dx - 6).toFixed(1) + '" y="' + (dy - 8).toFixed(1) + '" text-anchor="end" font-size="' + (narrow ? 9 : 10) + '" fill="#a9554b">Compaction</text>';
+  }
+
+  var stepMax = c.steps_total - 1;
+  [0, Math.round(pts.length / 2), pts.length - 1].forEach(function(i){
+    var st = Math.round(i / (pts.length - 1) * stepMax);
+    s += '<text x="' + X(i).toFixed(1) + '" y="' + (base + 15) + '" text-anchor="middle" font-size="' + (narrow ? 9 : 10) + '" fill="#66625a">' + st + '</text>';
+  });
+  s += '<text x="' + (ml + pw / 2) + '" y="' + (h - 3) + '" text-anchor="middle" font-size="' + (narrow ? 9 : 10) + '" fill="#8a8378">Schritt</text>';
+
+  if (curveHover >= 0 && curveHover < pts.length){
+    var hx = X(curveHover), hy = Y(pts[curveHover]);
+    s += '<line x1="' + hx.toFixed(1) + '" y1="' + mt + '" x2="' + hx.toFixed(1) + '" y2="' + base + '" stroke="#b9b2a4" stroke-width="1"/>';
+    s += '<circle cx="' + hx.toFixed(1) + '" cy="' + hy.toFixed(1) + '" r="4" fill="#211f1b"/>';
+  }
+  s += '</svg>';
+  host.innerHTML = s;
+  curveGeo = {ml: ml, pw: pw, len: pts.length, mt: mt, base: base, h: h, stepMax: stepMax, yMax: yTop};
+
+  var notes = [
+    'Opus-Hauptsession, 158 Schritte. Bis Schritt 108 wächst der Kontext auf 168.718 Tokens, dann fällt er durch die Compaction auf 40.634.',
+    'DeepSeek-Subagent, 248 Schritte, für die Anzeige auf 200 Punkte ausgedünnt. Maximum 412.326 Tokens. Die Summe von 65,9 Mio. Tokens ist echt.',
+    'DeepSeek-Subagent, 18 Schritte, Maximum 145.350 Tokens. Ein kurzer Lauf, der schon früh große Dateien liest.'
+  ];
+  el('curveNote').textContent = notes[curveIdx];
+}
+
+(function(){
+  var host = el('curveChart');
+  if (!host) return;
+  var tip = el('curveTip');
+  var raf = null;
+  function move(e){
+    if (!curveGeo) return;
+    var r = host.getBoundingClientRect();
+    var x = e.clientX - r.left;
+    var i = Math.round((x - curveGeo.ml) / curveGeo.pw * (curveGeo.len - 1));
+    i = Math.max(0, Math.min(curveGeo.len - 1, i));
+    if (i === curveHover) return;
+    curveHover = i;
+    if (raf) return;
+    raf = requestAnimationFrame(function(){
+      raf = null;
+      drawCurve();
+      if (!curveGeo) return;
+      var c = DATA.curves[curveIdx];
+      var pts = c.points;
+      var px = curveGeo.ml + (i / (pts.length - 1)) * curveGeo.pw;
+      var py = curveGeo.base - (pts[i] / curveGeo.yMax) * (curveGeo.base - curveGeo.mt);
+      var st = Math.round(i / (pts.length - 1) * curveGeo.stepMax);
+      tip.textContent = 'Schritt ' + st + ' · ' + num(pts[i]) + ' Tokens';
+      tip.style.left = Math.max(70, Math.min(host.clientWidth - 70, px)) + 'px';
+      tip.style.top = Math.max(24, py) + 'px';
+      tip.classList.add('on');
+    });
+  }
+  host.addEventListener('pointermove', move);
+  host.addEventListener('pointerdown', move);
+  host.addEventListener('pointerleave', function(){
+    curveHover = -1;
+    tip.classList.remove('on');
+    drawCurve();
+  });
+  document.querySelectorAll('[data-curve]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      curveIdx = +btn.getAttribute('data-curve');
+      curveHover = -1;
+      tip.classList.remove('on');
+      document.querySelectorAll('[data-curve]').forEach(function(b){
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      drawCurve();
+    });
+  });
+})();
+
+/* ---------- 2b. Sessions-Streudiagramm ---------- */
+var MC = {opus:'#7d5a3c', deepseek:'#35586f', sonnet:'#4f7a5b'};
+var MM = {opus:'Opus', deepseek:'DeepSeek', sonnet:'Sonnet'};
+var SCAT = DATA.sessions.filter(function(x){ return x.sum > 0; });
+
+function drawScatter(){
+  var host = el('scatterChart');
+  if (!host || !DATA.sessions) return;
+  var list = SCAT;
+  var w = Math.max(260, Math.floor(host.clientWidth || 720));
+  var narrow = w < 520;
+  var h = narrow ? 308 : 408;
+  var ml = narrow ? 50 : 62, mr = 16, mt = 26, mb = 42;
+  var pw = w - ml - mr, ph = h - mt - mb;
+  var maxSteps = Math.max.apply(null, list.map(function(s){ return s.steps; }));
+  var minSum = Math.min.apply(null, list.map(function(s){ return s.sum; }));
+  var maxSum = Math.max.apply(null, list.map(function(s){ return s.sum; }));
+  var lo = Math.floor(Math.log(minSum) / Math.LN10);
+  var hi = Math.ceil(Math.log(maxSum) / Math.LN10);
+  if (hi - lo < 2) hi = lo + 2;
+  function X(v){ return ml + (v / (maxSteps || 1)) * pw; }
+  function Y(v){
+    var l = Math.log(v) / Math.LN10;
+    return mt + ph - ((l - lo) / (hi - lo)) * ph;
+  }
+  var s = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Streudiagramm der Sessions: Schritte gegen verarbeitete Tokens.">';
+  for (var d = lo; d <= hi; d++){
+    var y = Y(Math.pow(10, d));
+    s += '<line x1="' + ml + '" y1="' + y.toFixed(1) + '" x2="' + (ml + pw) + '" y2="' + y.toFixed(1) + '" stroke="#f0ece4" stroke-width="1"/>';
+    s += '<text x="' + (ml - 6) + '" y="' + (y + 3.5).toFixed(1) + '" text-anchor="end" font-size="' + (narrow ? 9 : 10) + '" fill="#66625a">' + axisTick(Math.pow(10, d)) + '</text>';
+  }
+  s += '<line x1="' + ml + '" y1="' + (mt + ph) + '" x2="' + (ml + pw) + '" y2="' + (mt + ph) + '" stroke="#cfc7b8" stroke-width="1"/>';
+  [0, Math.round(maxSteps / 2), maxSteps].forEach(function(v){
+    s += '<text x="' + X(v).toFixed(1) + '" y="' + (mt + ph + 16) + '" text-anchor="middle" font-size="' + (narrow ? 9 : 10) + '" fill="#66625a">' + v + '</text>';
+  });
+  s += '<text x="' + (ml + pw / 2) + '" y="' + (h - 4) + '" text-anchor="middle" font-size="' + (narrow ? 9 : 10) + '" fill="#8a8378">Schritte</text>';
+
+  list.forEach(function(x, i){
+    var cx = X(x.steps), cy = Y(x.sum);
+    s += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="' + (narrow ? 3 : 3.6) + '" fill="' + (MC[x.m] || '#66625a') + '" opacity="0.72" data-i="' + i + '"/>';
+  });
+
+  var bySum = list.slice().sort(function(a,b){ return b.sum - a.sum; });
+  var picks = [bySum[0]];
+  ['opus','sonnet'].forEach(function(m){
+    var best = bySum.filter(function(x){ return x.m === m; })[0];
+    if (best) picks.push(best);
+  });
+  var placed = [];
+  picks.forEach(function(x){
+    var cx = X(x.steps), cy = Y(x.sum);
+    var maxLbl = narrow ? 15 : 21;
+    var label = x.t.length > maxLbl ? x.t.slice(0, maxLbl - 1) + '…' : x.t;
+    label = label + ' · ' + (MM[x.m] || x.m);
+    var lw = label.length * (narrow ? 4.4 : 5.0);
+    var cands = [
+      {x: cx + 8, y: cy - 7, a: 'start'},
+      {x: cx - 8, y: cy - 7, a: 'end'},
+      {x: cx + 8, y: cy + 15, a: 'start'},
+      {x: cx - 8, y: cy + 15, a: 'end'},
+      {x: cx + 8, y: cy - 21, a: 'start'},
+      {x: cx - 8, y: cy - 21, a: 'end'},
+      {x: cx + 8, y: cy - 40, a: 'start'},
+      {x: cx - 8, y: cy - 40, a: 'end'}
+    ];
+    var pick = null;
+    for (var ci = 0; ci < cands.length && !pick; ci++){
+      var cd = cands[ci];
+      var left = cd.a === 'start' ? cd.x : cd.x - lw;
+      var right = left + lw;
+      var top = cd.y - 10, bot = cd.y + 3;
+      if (left < ml || right > ml + pw) continue;
+      var hits = placed.some(function(p){
+        return !(right < p.left - 3 || left > p.right + 3 || bot < p.top || top > p.bottom);
+      });
+      if (!hits){ pick = cd; placed.push({left: left, right: right, top: top, bottom: bot}); }
+    }
+    if (!pick){
+      pick = cands[0];
+      placed.push({left: pick.x, right: pick.x + lw, top: pick.y - 10, bottom: pick.y + 3});
+    }
+    var dist = Math.abs(pick.y - (cy - 7));
+    if (dist > 24){
+      var lx = pick.a === 'start' ? pick.x - 3 : pick.x + 3;
+      s += '<line x1="' + cx.toFixed(1) + '" y1="' + (cy - 4).toFixed(1) + '" x2="' + lx.toFixed(1) + '" y2="' + (pick.y + 3).toFixed(1) + '" stroke="' + (MC[x.m] || '#66625a') + '" stroke-width="0.8" opacity="0.55"/>';
+    }
+    s += '<text x="' + pick.x.toFixed(1) + '" y="' + pick.y.toFixed(1) + '" text-anchor="' + pick.a + '" font-size="' + (narrow ? 8.5 : 9.5) + '" fill="' + (MC[x.m] || '#66625a') + '" paint-order="stroke" stroke="#fcfbf8" stroke-width="3" stroke-linejoin="round">' + esc(label) + '</text>';
+  });
+  s += '</svg>';
+  host.innerHTML = s;
+}
+
+(function(){
+  var host = el('scatterChart');
+  if (!host) return;
+  var tip = el('scatterTip');
+  function show(e){
+    var t = e.target;
+    if (!t || !t.getAttribute) return;
+    var i = t.getAttribute('data-i');
+    if (i === null){ tip.classList.remove('on'); return; }
+    var x = SCAT[+i];
+    var cx = +t.getAttribute('cx'), cy = +t.getAttribute('cy');
+    tip.innerHTML = '<b>' + esc(x.t) + '</b><br>' + (MM[x.m] || x.m) + (x.sub ? ', Subagent' : ', Hauptsession') + ' · ' + x.steps + ' Schritte<br>' + num(x.sum) + ' Tokens';
+    tip.style.left = Math.max(90, Math.min(host.clientWidth - 90, cx)) + 'px';
+    tip.style.top = Math.max(30, cy) + 'px';
+    tip.classList.add('on');
+  }
+  host.addEventListener('pointermove', show);
+  host.addEventListener('pointerdown', show);
+  host.addEventListener('pointerleave', function(){ tip.classList.remove('on'); });
+})();
+
+/* ---------- 3. Endpunkte ---------- */
+var epSort = {k: 'projekt_usd', dir: 1};
+function epPrice(v){
+  if (v < 0.01) return dec(v, 4);
+  if (v < 0.1) return dec(v, 3);
+  return dec(v, 2);
+}
+
+function renderEp(){
+  var body = el('epBody');
+  if (!body || !DATA.endpoints) return;
+  var rows = DATA.endpoints.slice();
+  var k = epSort.k, dir = epSort.dir;
+  rows.sort(function(a,b){
+    if (k === 'provider') return dir * a.provider.localeCompare(b.provider, 'de');
+    return dir * (a[k] - b[k]);
+  });
+  var max = Math.max.apply(null, DATA.endpoints.map(function(e){ return e.projekt_usd; }));
+  var html = '<tr class="base"><td>tatsächlich bezahlt (eigener Fit)<span class="epmini">Input 0,041 · Cache-Read 0,0094 · Output 0,47</span></td><td class="num">0,041</td><td class="num">0,0094</td><td class="num">0,47</td><td class="num">6,65 $</td></tr>';
+  rows.forEach(function(e){
+    var bw = Math.max(2, Math.round(e.projekt_usd / max * 100));
+    html += '<tr><td>' + esc(e.provider) + ' <span class="tag">' + esc(e.tag) + '</span>' +
+      '<span class="epmini">Input ' + epPrice(e.input) + ' · Cache-Read ' + epPrice(e.cache_read) + ' · Output ' + epPrice(e.output) + '</span></td>' +
+      '<td class="num">' + epPrice(e.input) + '</td>' +
+      '<td class="num">' + epPrice(e.cache_read) + '</td>' +
+      '<td class="num">' + epPrice(e.output) + '</td>' +
+      '<td class="num"><div class="ebarcell"><span>' + dec(e.projekt_usd,2) + ' $</span><div class="ebartrack"><div class="ebar" style="width:' + bw + '%"></div></div></div></td></tr>';
+  });
+  body.innerHTML = html;
+  document.querySelectorAll('#epTable [data-sort]').forEach(function(b){
+    var key = b.getAttribute('data-sort');
+    var th = b.parentNode;
+    if (th && th.tagName === 'TH') th.setAttribute('aria-sort', key === k ? (dir > 0 ? 'ascending' : 'descending') : 'none');
+  });
+}
+
+document.querySelectorAll('#epTable [data-sort]').forEach(function(b){
+  b.addEventListener('click', function(){
+    var key = b.getAttribute('data-sort');
+    if (key === epSort.k) epSort.dir *= -1;
+    else { epSort.k = key; epSort.dir = key === 'provider' ? 1 : 1; }
+    renderEp();
+  });
+});
+
+/* ---------- 4. Rechner ---------- */
+var C = {
+  G: el('cG'), Z: el('cZ'), N: el('cN'), O: el('cO'), DAY: el('cDay'), S: el('cS'),
+  sel: el('cEp'), mAgents: el('mAgents'), mReason: el('mReason'), mMask: el('mMask'), mSteps: el('mSteps')
+};
+
+function fillEndpoints(){
+  if (!C.sel) return;
+  var opts = ['<option value="fit">eigener Fit (bisher bezahlt)</option>'];
+  var idx = DATA.endpoints.map(function(e,i){ return {e:e, i:i}; });
+  idx.sort(function(a,b){ return a.e.projekt_usd - b.e.projekt_usd; });
+  idx.forEach(function(o){
+    opts.push('<option value="' + o.i + '">' + esc(o.e.provider) + ' (' + esc(o.e.tag) + ') · ' + dec(o.e.projekt_usd,2) + ' $</option>');
+  });
+  C.sel.innerHTML = opts.join('');
+}
+
+function prices(){
+  if (!C.sel || C.sel.value === 'fit') return {in: 0.041, cr: 0.0094, out: 0.47};
+  var e = DATA.endpoints[+C.sel.value];
+  if (!e) return {in: 0.041, cr: 0.0094, out: 0.47};
+  return {in: e.input, cr: e.cache_read, out: e.output};
+}
+
+function loop(G, z, n, o, s){
+  var parts = s && n > s ? Math.ceil(n / s) : 1;
+  var left = n, res = {in: 0, cr: 0, out: 0, parts: parts, per: []};
+  for (var p = 0; p < parts; p++){
+    var steps = s ? Math.min(s, left) : n;
+    var baseG = G + (p > 0 ? 2000 : 0);
+    var newin = baseG + (steps - 1) * z;
+    var total = steps * baseG + z * steps * (steps - 1) / 2;
+    res.in += newin;
+    res.cr += total - newin;
+    res.out += steps * o;
+    res.per.push(steps);
+    left -= steps;
+    if (!s) break;
+  }
+  res.total = res.in + res.cr + res.out;
+  return res;
+}
+
+function calc(){
+  if (!C.G) return;
+  var G = +C.G.value, z = +C.Z.value, n = +C.N.value, o = +C.O.value;
+  var days = +C.DAY.value, s = +C.S.value;
+  var p = prices();
+
+  var G2 = G, z2 = z, o2 = o;
+  if (C.mAgents.checked) G2 = Math.max(8000, G2 - 5400);
+  if (C.mReason.checked){ o2 = o2 * 0.67; z2 = z2 * 0.9; }
+  if (C.mMask.checked) z2 = z2 * 0.5;
+
+  var useS = C.mSteps.checked && n > s ? s : 0;
+  var r = loop(G2, z2, n, o2, useS);
+  var base = loop(G, z, n, o, 0);
+
+  var cost = (r.in * p.in + r.cr * p.cr + r.out * p.out) / 1e6;
+  var costBase = (base.in * p.in + base.cr * p.cr + base.out * p.out) / 1e6;
+  var opus = (r.in * 5 + r.cr * 0.20 + r.out * 20) / 1e6;
+
+  el('cGv').textContent = num(G);
+  el('cZv').textContent = num(z);
+  el('cNv').textContent = String(n);
+  el('cOv').textContent = num(o);
+  el('cDayv').textContent = String(days);
+  el('cSv').textContent = String(s);
+
+  el('rTok').textContent = num(r.in + r.cr);
+  el('rCache').textContent = num(r.cr);
+  el('rIn').textContent = num(r.in);
+  el('rOut').textContent = num(r.out);
+  el('rCost').textContent = usd(cost);
+  el('rDay').textContent = usd(cost * days);
+  el('rMonth').textContent = usd(cost * days * 30);
+  var ocFactor = cost > 0 ? opus / cost : 0;
+  el('ocDeep').textContent = usd(cost);
+  el('ocOpus').textContent = usd(opus);
+  el('ocDeepBar').style.width = Math.max(1.5, Math.round(cost / Math.max(opus, 1e-9) * 100)) + '%';
+  el('ocFactor').textContent = ocFactor > 0
+    ? 'Opus wäre ' + dec(ocFactor, 0) + '-mal so teuer. Deshalb lohnt die Delegation an DeepSeek trotz schwächerer Benchmarks.'
+    : '';
+  el('rParts').textContent = r.parts > 1
+    ? n + ' Schritte in ' + r.parts + ' Teile (je höchstens ' + s + ', Start bei ' + num(G2) + ' bzw. ' + num(G2 + 2000) + ')'
+    : n + ' Schritte in einem Subagent';
+
+  var maxCost = Math.max(costBase, cost, 1e-9);
+  el('barBase').style.width = Math.max(1, Math.round(costBase / maxCost * 100)) + '%';
+  el('barWith').style.width = Math.max(1, Math.round(cost / maxCost * 100)) + '%';
+  el('barBaseV').textContent = usd(costBase * days) + ' / Tag';
+  el('barWithV').textContent = usd(cost * days) + ' / Tag';
+  var save = costBase > 0 ? (1 - cost / costBase) * 100 : 0;
+  el('cmpSave').textContent = save > 0.5
+    ? 'Ersparnis ' + dec(save, 0) + ' % bei gleicher Arbeit: ' + usd(costBase * days) + ' gegen ' + usd(cost * days) + ' pro Tag.'
+    : 'Keine Maßnahme aktiv, beide Balken sind gleich.';
+
+  el('stepsCtrl').hidden = !C.mSteps.checked;
+}
+
+if (C.G){
+  fillEndpoints();
+  ['cG','cZ','cN','cO','cDay','cS'].forEach(function(id){
+    el(id).addEventListener('input', calc);
+  });
+  ['mAgents','mReason','mMask','mSteps'].forEach(function(id){
+    el(id).addEventListener('change', calc);
+  });
+  C.sel.addEventListener('change', calc);
+  calc();
+}
+
+/* ---------- 7. Mythen-Quiz ---------- */
+var QS = [
+  {q: 'RTK kürzt die Ausgabe um 60 bis 90 Prozent. Wird die Rechnung dadurch ähnlich viel kleiner?', a: 1,
+   fb: '<b>Nein.</b> JetBrains maß +7,6 % teurer bei low effort und ±0 % bei high. Quesma: +5 % Rohkosten, +17 % pro Aufgabe bei DeepSeek. RTK selbst schreibt: „90 % weniger Output ist nicht 90 % billiger.“ <a class="cite" href="#q-t4_rtk_jetbrains_test">JetBrains</a> <a class="cite" href="#q-t1_quesma_rtk_benchmark">Quesma</a> <a class="cite" href="#q-t1_rtk_savings">RTK</a>'},
+  {q: 'Caveman-Prompts versprechen 65 % weniger Output. Sparst du damit viel Geld?', a: 1,
+   fb: '<b>Kaum.</b> Gemessen wurden 8,5 % Output-Ersparnis. Output ist aber nur ein kleiner Teil der Tokens, hier 3,36 von 533,9 Mio. <a class="cite" href="#q-t4_caveman_jetbrains_test">Quelle</a>'},
+  {q: 'Serena MCP ist ein Werkzeug zum Kontextsparen.', a: 1,
+   fb: '<b>Nein.</b> 36 Tool-Definitionen bringen rund 25k Kontext (etwa 11,4k Tokens). Die Kosten blieben gleich (2,14 $ gegen 2,28 $). <a class="cite" href="#q-t4_serena_zenn_benchmark">Quelle</a>'},
+  {q: 'Subagents sparen immer Tokens, weil sie getrennt arbeiten.', a: 1,
+   fb: '<b>Nein.</b> Fan-outs brauchten 2,6- bis 5,9-mal mehr Input-Tokens und waren nie schneller. Auf ein billigeres Modell gepinnt: −37 %. Opus ruft Opus: +143 % bis +221 % Kosten. <a class="cite" href="#q-t4_subagent_tax_systima">Quelle</a> <a class="cite" href="#q-t4_subagents_216_test">Quelle</a>'},
+  {q: 'Ein Advisor oder Planer davor senkt die Kosten.', a: 2,
+   fb: '<b>Kommt drauf an.</b> Anthropic intern: +1,7 Punkte für rund 2,1-mal die Kosten. Nur sinnvoll, wenn der Ausführer wirklich feststeckt. <a class="cite" href="#q-t4_anthropic_optimizing_cost">Quelle</a>'},
+  {q: 'compaction.prune einschalten spart Kontext.', a: 1,
+   fb: '<b>Nein.</b> Den Schalter gibt es in v2 nicht mehr. Er wird mit einer Warnung ignoriert, die Anleitung ist veraltet. <a class="cite" href="#q-t1_docs_migrate_v1">Quelle</a>'},
+  {q: 'Output kürzen ist der größte Hebel beim Sparen.', a: 1,
+   fb: '<b>Nein.</b> In einem großen Subagent-Datensatz war Output 0,06 % der Tokens. Hier sind es 3,36 von 533,9 Mio. Der Hebel sind Input und Schritte, außer bei der Reasoning-Stufe. <a class="cite" href="#q-t4_superpowers_subagent_cost">Quelle</a>'},
+  {q: 'Alte Tool-Ausgaben ausblenden (Observation Masking) senkt die Kosten.', a: 0,
+   fb: '<b>Ja.</b> −50,9 % bis −57,1 % Kosten bei gleicher Lösungsrate. Das ist eine der wenigen Maßnahmen mit belastbarer Messung.'}
+];
+var OPTS = ['Ja', 'Nein', 'Kommt drauf an'];
+var qi = 0, qScore = 0, qAnswered = false;
+
+function renderQ(){
+  var meta = el('quizMeta'), claim = el('quizClaim'), box = el('quizOpts'), fb = el('quizFb'), nav = el('quizNav');
+  if (!meta) return;
+  meta.textContent = 'Frage ' + (qi + 1) + ' von ' + QS.length + (qScore ? ' · ' + qScore + ' richtig' : '');
+  claim.textContent = QS[qi].q;
+  fb.innerHTML = '';
+  fb.style.minHeight = '';
+  nav.innerHTML = '';
+  box.innerHTML = '';
+  OPTS.forEach(function(label, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'qopt';
+    b.textContent = label;
+    b.addEventListener('click', function(){ answerQ(i, b); });
+    box.appendChild(b);
+  });
+  qAnswered = false;
+}
+
+function answerQ(i, btn){
+  if (qAnswered) return;
+  qAnswered = true;
+  var q = QS[qi];
+  var buttons = el('quizOpts').querySelectorAll('button');
+  buttons.forEach(function(b, j){
+    b.disabled = true;
+    if (j === q.a) b.classList.add('is-right');
+    else if (j === i) b.classList.add('is-wrong');
+  });
+  if (i === q.a) qScore++;
+  el('quizFb').innerHTML = (i === q.a ? '<b>Richtig.</b> ' : '<b>Nicht ganz.</b> ') + q.fb;
+  var nav = el('quizNav');
+  var next = document.createElement('button');
+  next.type = 'button';
+  next.className = 'btn';
+  next.textContent = qi < QS.length - 1 ? 'Nächste Frage' : 'Ergebnis';
+  next.addEventListener('click', function(){
+    if (qi < QS.length - 1){ qi++; renderQ(); }
+    else finishQuiz();
+  });
+  nav.appendChild(next);
+}
+
+function finishQuiz(){
+  el('quizMeta').textContent = 'Fertig';
+  el('quizClaim').textContent = 'Du hattest ' + qScore + ' von ' + QS.length + ' richtig.';
+  el('quizOpts').innerHTML = '';
+  el('quizFb').innerHTML = '<b>Kern in einem Satz:</b> Sparen heißt weniger Schritte und ein kleinerer Kontext, nicht kürzere Ausgabe. Prüfe jede Maßnahme an deinen eigenen Zahlen.';
+  var nav = el('quizNav');
+  nav.innerHTML = '';
+  var again = document.createElement('button');
+  again.type = 'button';
+  again.className = 'btn';
+  again.textContent = 'Nochmal';
+  again.addEventListener('click', function(){
+    qi = 0; qScore = 0; renderQ();
+  });
+  nav.appendChild(again);
+}
+
+if (el('quiz')) renderQ();
+
+/* ---------- 9. Kopierknöpfe ---------- */
+document.querySelectorAll('.copybtn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var pre = btn.parentNode.querySelector('pre');
+    if (!pre) return;
+    var text = pre.innerText;
+    function done(){
+      btn.textContent = 'Kopiert';
+      btn.classList.add('ok');
+      setTimeout(function(){ btn.textContent = 'Kopieren'; btn.classList.remove('ok'); }, 1600);
+    }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'absolute';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); }
+      catch (e) { btn.textContent = 'Nicht möglich'; }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+});
+
+/* ---------- Start und Größenänderung ---------- */
+drawSteps(stepN);
+drawSum(stepN);
+drawCurve();
+drawScatter();
+renderEp();
+
+var rz = null;
+window.addEventListener('resize', function(){
+  if (rz) return;
+  rz = requestAnimationFrame(function(){
+    rz = null;
+    drawSteps(stepN);
+    drawSum(stepN);
+    drawCurve();
+    drawScatter();
+  });
+});
+})();
+</script>
+</body>
+</html>

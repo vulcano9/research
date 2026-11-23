@@ -8,6 +8,7 @@ Sammlung meiner Forschungsberichte. Jeder Bericht ist eine einzelne HTML-Datei. 
 
 | Datum | Thema | Bericht |
 | --- | --- | --- |
+| 23.11.2026 | Tokens sparen mit opencode: Opus 5.5 als Orchestrator, DeepSeek V4.1 Flash als Subagents. Eigene Messung, wo die Tokens hingehen, Kostenrechner, Endpunkt-Preise, Mythen-Check und fertige Config | [bericht.html](researches/26.11.23_token_sparen_opencode_subagents/bericht.html) |
 | 23.11.2026 | PenGPT von Sam Greydanus auf Deutsch: ein kleiner Transformer schreibt Handschrift in vielen Händen und zeichnet nach Text (mit allen Bildern, Tokenizer zum Ausprobieren) | [bericht.html](researches/26.11.23_pengpt_handschrift_skizzen/bericht.html) |
 | 22.11.2026 | Englisch-KI-Tutor als Sprachtandem, lokal auf der RTX 3090: llama-server, audio.cpp, LocalAI und Unmute im Vergleich, Modelle, VRAM, Stimmklonen und wie ein Tutor gut korrigiert | [bericht.html](researches/26.11.22_englisch_ki_tutor_sprachtandem/bericht.html) |
 | 22.11.2026 | Beheizte, knielange Unterhose fürs Pendeln mit dem Rad: Lenz Heat Pants 1.0 vs. Alpenheat Fire-Pantliner kurz (Produktsuche) | [bericht.html](researches/26.11.22_beheizte_unterhose_radfahren/bericht.html) |
