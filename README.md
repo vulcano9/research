@@ -8,6 +8,7 @@ Sammlung meiner Forschungsberichte. Jeder Bericht ist eine einzelne HTML-Datei. 
 
 | Datum | Thema | Bericht |
 | --- | --- | --- |
+| 23.11.2026 | PenGPT von Sam Greydanus auf Deutsch: ein kleiner Transformer schreibt Handschrift in vielen Händen und zeichnet nach Text (mit allen Bildern, Tokenizer zum Ausprobieren) | [bericht.html](researches/26.11.23_pengpt_handschrift_skizzen/bericht.html) |
 | 22.11.2026 | Englisch-KI-Tutor als Sprachtandem, lokal auf der RTX 3090: llama-server, audio.cpp, LocalAI und Unmute im Vergleich, Modelle, VRAM, Stimmklonen und wie ein Tutor gut korrigiert | [bericht.html](researches/26.11.22_englisch_ki_tutor_sprachtandem/bericht.html) |
 | 22.11.2026 | Beheizte, knielange Unterhose fürs Pendeln mit dem Rad: Lenz Heat Pants 1.0 vs. Alpenheat Fire-Pantliner kurz (Produktsuche) | [bericht.html](researches/26.11.22_beheizte_unterhose_radfahren/bericht.html) |
 | 22.11.2026 | Trainingshose für Kniebeuge und Kreuzheben: UA Unstoppable Jogger vs. Lululemon License to Train (Produktsuche) | [bericht.html](researches/26.11.22_trainingshose_kniebeuge_kreuzheben/bericht.html) |
