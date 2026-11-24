@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tool-Aufrufe bündeln, MCP-Gateways, Codegraph: Was spart wirklich Tokens?</title>
+<meta name="description" content="Deutsche, interaktive Auswertung: wie viel Bündeln von Tool-Aufrufen, ein MCP-Gateway und ein Codegraph statt grep in opencode und Claude Code an Tokens sparen. Mit eigener Messung der opencode-Datenbank und einem Versuch mit 24 Läufen.">
+<style>
+:root{
+  --paper:#fcfbf8;
+  --ink:#211f1b;
+  --muted:#66625a;
+  --rule:#e2ddd3;
+  --soft:#f4f1ea;
+  --card:#ffffff;
+  --link:#35586f;
+  --good:#4f7a5b;
+  --bad:#a9554b;
+  --c-base:#bdb5a6;
+  --c-old:#e6e0d3;
+  --c-new:#6f8ca0;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Noto Sans",sans-serif;
+  font-size:17px;
+  line-height:1.65;
+}
+.wrap{max-width:820px;margin:0 auto;padding:26px 20px 72px}
+a{color:var(--link);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+a:hover{color:#1f3d50}
+.back{display:inline-block;font-size:.88rem;color:var(--muted);text-decoration:none;margin-bottom:18px}
+.back:hover{color:var(--ink);text-decoration:underline}
+h1{font-size:clamp(1.75rem,4.4vw,2.35rem);line-height:1.18;letter-spacing:-.015em;font-weight:600;margin:0 0 .55rem}
+.sub{font-size:1rem;color:var(--muted);margin:0 0 1.7rem;max-width:44em}
+h2{font-size:1.45rem;line-height:1.25;font-weight:600;letter-spacing:-.01em;margin:2.9rem 0 .8rem}
+h3{font-size:1.08rem;line-height:1.35;font-weight:600;margin:2rem 0 .5rem}
+p{margin:.7rem 0}
+ul,ol{padding-left:1.25rem;margin:.7rem 0}
+li{margin:.35rem 0}
+strong{font-weight:600}
+.small{font-size:.88rem;color:var(--muted)}
+.dim{color:var(--muted)}
+.summary{
+  background:var(--soft);
+  border:1px solid var(--rule);
+  border-radius:8px;
+  padding:16px 20px 14px;
+  margin:0 0 1.8rem;
+}
+.sumtitle{font-weight:600;margin:0 0 .35rem}
+.summary ul{margin:0;padding-left:1.15rem}
+.summary li{margin:.4rem 0}
+.note{
+  background:#f7f4ed;border:1px solid var(--rule);border-radius:6px;
+  padding:11px 15px;font-size:.9rem;line-height:1.55;color:#48443c;margin:1.2rem 0;
+}
+.note p{margin:.4rem 0}
+.note p:first-child{margin-top:0}
+.note p:last-child{margin-bottom:0}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:8px;background:var(--card);margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.89rem}
+caption{caption-side:top;text-align:left;font-weight:600;font-size:.9rem;padding:.65rem .75rem;border-bottom:1px solid var(--rule)}
+th,td{padding:.52rem .75rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}
+thead th{font-weight:600;color:var(--muted);font-size:.8rem;line-height:1.3}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.base td{background:#f7f4ed;font-weight:600}
+td.win{background:#eef3ec}
+pre{
+  background:var(--soft);border:1px solid var(--rule);border-radius:6px;
+  padding:12px 14px;overflow-x:auto;margin:.8rem 0;
+}
+pre code{background:none;padding:0;border:0;font-size:.82rem;line-height:1.55;white-space:pre}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  font-size:.88em;background:var(--soft);padding:1px 4px;border-radius:3px;
+}
+.btn{
+  font:inherit;font-size:.88rem;line-height:1.2;
+  min-height:38px;padding:.45rem .8rem;
+  border:1px solid #cdc6b8;border-radius:6px;
+  background:#fff;color:var(--ink);cursor:pointer;
+}
+.btn:hover{background:#f6f2ea}
+.btn[aria-pressed="true"]{background:#2a2824;border-color:#2a2824;color:#fff}
+.btn:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,.imgbtn:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.tool{
+  background:var(--card);border:1px solid var(--rule);border-radius:8px;
+  padding:16px;margin:1.5rem 0;
+}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.ctrl{display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+.ctrl:first-child{margin-top:0}
+.ctrl[hidden]{display:none}
+.ctrl label{font-size:.88rem;color:var(--muted)}
+.ctrl input[type="range"]{flex:1;min-width:140px;accent-color:#2a2824;height:26px}
+.ctrl output{font-variant-numeric:tabular-nums;font-size:.88rem;min-width:2.2em;text-align:right}
+.chartwrap{position:relative}
+.chartbox{margin-top:14px}
+.chartbox svg{display:block;width:100%;height:auto}
+.tip{
+  position:absolute;pointer-events:none;background:#fffdf9;border:1px solid var(--rule);
+  border-radius:4px;padding:4px 8px;font-size:.78rem;line-height:1.35;color:var(--ink);
+  white-space:nowrap;transform:translate(-50%,-118%);opacity:0;
+  box-shadow:0 1px 2px rgb(0 0 0 / .05);
+}
+.tip.on{opacity:1}
+.sumbar{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-top:12px}
+.sumbar .big{font-size:1.3rem;font-weight:600;font-variant-numeric:tabular-nums}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin:1.2rem 0;border-top:1px solid var(--rule)}
+.kpi{display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--rule)}
+.kpi span{font-size:.86rem;color:var(--muted);line-height:1.4}
+.kpi b{font-size:1rem;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.formula{
+  background:var(--soft);border:1px solid var(--rule);border-radius:6px;
+  padding:10px 14px;margin:1rem 0;font-size:.9rem;line-height:1.6;
+  font-variant-numeric:tabular-nums;
+}
+.check{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:start;padding:9px 0;border-bottom:1px solid #efece4}
+.check:last-of-type{border-bottom:0}
+.check input{width:18px;height:18px;accent-color:#2a2824;margin:3px 0 0}
+.check label{font-size:.9rem;line-height:1.4;font-weight:600}
+.check .hint{grid-column:2;font-size:.79rem;color:var(--muted);line-height:1.45;margin-bottom:2px}
+.check .hint a{color:var(--muted)}
+select{
+  font:inherit;font-size:.88rem;padding:.4rem .6rem;border:1px solid #cdc6b8;
+  border-radius:6px;background:#fff;color:var(--ink);max-width:100%;
+}
+.fieldrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
+.fieldrow label{font-size:.88rem;color:var(--muted)}
+.calcgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,304px);gap:24px;align-items:start}
+.respanel{background:#fffdf9;border:1px solid var(--rule);border-radius:8px;padding:14px 16px}
+.resbig{font-size:1.55rem;font-weight:600;line-height:1.15;font-variant-numeric:tabular-nums;margin:0}
+.rescap{font-size:.82rem;color:var(--muted);margin:2px 0 0;line-height:1.4}
+.resrow{display:flex;justify-content:space-between;gap:12px;font-size:.86rem;padding:3px 0;color:var(--muted)}
+.resrow b{color:var(--ink);font-variant-numeric:tabular-nums;font-weight:600}
+.resdiv{border-top:1px solid var(--rule);margin:10px 0}
+.rescost{font-size:1.3rem;font-weight:600;font-variant-numeric:tabular-nums;margin:0}
+.cmp{margin-top:14px}
+.cmpitem{margin:8px 0}
+.cmpline{display:flex;justify-content:space-between;gap:12px;font-size:.83rem;color:var(--muted);margin-bottom:4px}
+.cmpline b{color:var(--ink);font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.cmptrack{height:12px;border-radius:3px;background:#f0ece4;overflow:hidden}
+.cmpbar{height:100%;border-radius:3px;background:var(--link);min-width:2px}
+.cmpbar.base{background:#b9b0a0}
+.cmpsave{font-size:.85rem;color:var(--ink);margin:10px 0 0}
+details{margin:.7rem 0}
+summary{cursor:pointer;font-weight:600;font-size:.95rem;padding:.35rem 0}
+details[open] summary{margin-bottom:.3rem}
+.codebox{position:relative;margin:.8rem 0}
+.codebox pre{margin:0;padding-right:92px}
+.copybtn{
+  position:absolute;top:8px;right:8px;font:inherit;font-size:.76rem;
+  padding:.28rem .55rem;min-height:30px;border:1px solid #cdc6b8;border-radius:5px;
+  background:#fff;color:var(--ink);cursor:pointer;
+}
+.copybtn:hover{background:#f6f2ea}
+.copybtn.ok{background:#2a2824;color:#fff;border-color:#2a2824}
+.cite{font-size:.76rem;text-decoration:none;color:var(--muted)}
+.cite:hover{color:var(--link);text-decoration:underline}
+.sources{list-style:none;padding-left:0}
+.sources li{margin:.5rem 0;line-height:1.5;font-size:.92rem}
+.sources .loc{color:var(--muted);font-size:.85rem;display:block;margin-top:1px;word-break:break-word}
+.sources h3{margin-top:1.6rem}
+.foot{font-size:.84rem;color:var(--muted);border-top:1px solid var(--rule);margin-top:2.6rem;padding-top:14px;line-height:1.55}
+.foot a{color:var(--muted)}
+.quote{margin:1.2rem 0;padding:1px 0 1px 16px;border-left:2px solid var(--rule);color:var(--muted);font-size:.96rem}
+.quote p{margin:.4rem 0}
+blockquote{margin:1.2rem 0;padding:1px 0 1px 16px;border-left:2px solid var(--rule);color:#48443c}
+blockquote p{margin:.5rem 0}
+blockquote cite{font-style:normal;font-size:.85rem;color:var(--muted)}
+.barlist{margin-top:12px}
+.baritem{margin:9px 0}
+.barlabel{display:flex;justify-content:space-between;gap:10px;font-size:.83rem;color:var(--muted);margin-bottom:4px}
+.barlabel b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.track{height:14px;border-radius:3px;background:var(--soft);overflow:hidden}
+.fill{height:100%;border-radius:3px;background:var(--link);min-width:2px}
+.fill.alt{background:#b9b0a0}
+.chkrow{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:start;padding:9px 0;border-bottom:1px solid #efece4}
+.chkrow:last-of-type{border-bottom:0}
+.chkrow input{width:18px;height:18px;accent-color:#2a2824;margin:3px 0 0}
+.chkrow label{font-size:.9rem;line-height:1.4;font-weight:600}
+.chkrow .hint{grid-column:2;font-size:.79rem;color:var(--muted);line-height:1.45}
+.verdict{background:var(--soft);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;margin-top:14px}
+.verdict h3{margin:0 0 4px;font-size:1rem}
+.verdict p{margin:.35rem 0;font-size:.9rem}
+.qgroup{margin-top:14px}
+.qgroup:first-of-type{margin-top:0}
+.qgroup .qlabel{font-size:.88rem;color:var(--muted);margin:0 0 6px}
+.keyline{font-size:.8rem;color:var(--muted);margin-top:6px}
+svg .ax{stroke:var(--rule);stroke-width:1}
+svg .lbl{fill:var(--muted);font-size:12px}
+svg .num{fill:var(--ink);font-size:12px;font-variant-numeric:tabular-nums}
+svg .strong{fill:var(--ink);font-size:13px;font-weight:600}
+svg .zero{stroke:#b9b0a0;stroke-width:1}
+@media (max-width:720px){
+  .calcgrid{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .ctrl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px}
+  .ctrl label{grid-column:1 / -1;margin-bottom:2px}
+  .ctrl input[type="range"]{grid-column:1;min-width:0;width:100%}
+  .ctrl output{grid-column:2;min-width:2.6em}
+  .ctrl .btn{grid-column:1 / -1;justify-self:start;margin-top:4px}
+  .fieldrow{display:grid;grid-template-columns:1fr;gap:4px}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:20px 16px 60px}
+  h2{font-size:1.3rem;margin-top:2.4rem}
+  .kpis{grid-template-columns:1fr;gap:0}
+  table{font-size:.84rem}
+  table.smalltable{min-width:0}
+  table.smalltable th,table.smalltable td{padding:.45rem .5rem;font-size:.8rem}
+  .resbig{font-size:1.4rem}
+  pre code{font-size:.76rem}
+  .copybtn{font-size:.72rem;padding:.24rem .45rem;position:static;display:block;margin:0 0 6px auto}
+  .codebox pre{padding-right:14px}
+  svg .lbl{font-size:18px}
+  svg .num{font-size:18px}
+  svg .strong{font-size:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important}
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#171614;--ink:#ece8df;--muted:#a9a39a;--rule:#37332d;--soft:#201e1b;
+    --card:#1b1a18;--link:#8fb3c7;--good:#7fae8b;--bad:#d08b80;
+    --c-base:#4b463e;--c-old:#2e2b26;--c-new:#7d99ab;
+  }
+  .btn{background:#242220;border-color:#4a453d;color:var(--ink)}
+  .btn:hover{background:#2b2926}
+  .btn[aria-pressed="true"]{background:#e7e2d8;border-color:#e7e2d8;color:#1b1a18}
+  .note{background:#1f1d1a;color:#c9c3b8}
+  .respanel{background:#1c1a18}
+  .tip{background:#242220;color:var(--ink)}
+  blockquote{color:#c9c3b8}
+  select{background:#242220;color:var(--ink);border-color:#4a453d}
+  .copybtn{background:#242220;color:var(--ink);border-color:#4a453d}
+  .copybtn:hover{background:#2b2926}
+  .copybtn.ok{background:#e7e2d8;color:#1b1a18;border-color:#e7e2d8}
+  td.win{background:#1e2b22}
+  tr.base td{background:#201e1b}
+  .chkrow,.check{border-color:var(--rule)}
+  a:hover{color:#b9d3e2}
+  input[type="range"],.check input,.chkrow input{accent-color:var(--ink)}
+  .cmptrack,.track{background:#2a2723}
+  .cmpbar.base,.fill.alt{background:#5a544a}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="back" href="../../index.html">← Zur Übersicht</a>
+
+<header>
+  <h1>Tool-Aufrufe bündeln, MCP-Gateways, Codegraph: Was spart wirklich Tokens?</h1>
+  <p class="sub">Deep Research · 24.11.2026 · opencode v2.3.0, Claude Code, DeepSeek V4.1 Flash 1017</p>
+
+  <div class="summary">
+    <p class="sumtitle">Kurz gesagt</p>
+    <ul>
+      <li><strong>Bündeln spart, weil jeder Schritt den ganzen Verlauf neu liest.</strong> Anthropic: „A 40-turn task sends its first turn 40 times“, die Kosten wachsen etwa mit dem Quadrat der Schrittzahl. Drei Tool-Aufrufe pro Schritt senkten in einer Studie die Kosten um 35,9 % bei gleicher oder besserer Trefferquote (W&amp;D). opencode v2 kann das schon: parallele Tool-Aufrufe und <code>execute</code> (Code Mode). Claude Code führt lesende Tools parallel aus und testet seit v2.1.323 einen eigenen Code Mode.</li>
+      <li><strong>Im eigenen Projekt wird kaum gebündelt.</strong> 81,5 % aller Schritte enthalten genau einen Tool-Aufruf. Fast die Hälfte der Schritte (49,9 %) sind Ketten aus reinem Lesen, Suchen und Shell. Bündeln zu Dreiergruppen hätte rechnerisch bis zu 30,9 % der Input-Tokens gespart (Obergrenze), sicher nur 5,8 % (reine Lese-Ketten). Ein bloßer Prompt-Satz „bündle“ hat im eigenen Versuch die Schrittzahl aber nicht gesenkt.</li>
+      <li><strong>Ein MCP-Gateway (viele Tools hinter einem MCP) spart unter opencode v2 und Claude Code kaum noch.</strong> Beide haben die Tool-Suche schon eingebaut: opencode deckelt den Tool-Katalog auf 2.000 Tokens, Claude Code lädt MCP-Tools erst bei Bedarf. Gemessen: unter opencode 2.0.32 nur −26 % Input und etwa −12 % Kosten; unter Claude Code war ein Gateway sogar 37 bis 46 % teurer. Gateways lohnen sich für Zugangsdaten, Rechte und Protokolle, nicht fürs Sparen.</li>
+      <li><strong>Ein Codegraph (ein Index der Beziehungen im Code) statt grep (Textsuche) spart nicht pauschal.</strong> Die beste Agenten-Messung: Trefferquote 89,7 % → 90,3 % (nicht signifikant), dafür +44 % Prompt-Tokens. Im eigenen Versuch mit Serena: alle Antworten richtig, aber +28 % Input und +31 % Schritte. Cursor hat seine semantische Suche wieder entfernt, Claude Code setzt auf grep. Ein Graph hilft bei „wer ruft X auf“ in sehr großen Codebasen und bei kleinen Modellen, nicht in einem HTML- und Text-Projekt wie diesem.</li>
+      <li><strong>Der größte Hebel bleibt: weniger Schritte und eine kleine Grundlast.</strong> Im eigenen Versuch waren 78 bis 84 % des Inputs die Grundlast (≈ 23.600 Tokens), die in jedem Schritt neu gelesen wird. Konkrete Bausteine dafür stehen in Abschnitt 8.</li>
+    </ul>
+  </div>
+</header>
+
+<div class="quote">
+  <p>„Kann man nicht Tokens sparen, indem man die Tool-Calls bündelt, wie es aktuell Claude Code macht? Bzw. MCP-Server nutzt, die die Tools hinter einem einzigen MCP bündeln? Oder auch statt grep einen Codegraphen benutzt?“</p>
+</div>
+
+<p class="small">Vorbericht: <a href="../26.11.23_token_sparen_opencode_subagents/bericht.html">Tokens sparen mit opencode, 23.11.2026</a></p>
+
+<h2 id="warum">1. Warum Bündeln überhaupt etwas bringen kann</h2>
+
+<p><strong>Token</strong> ist ein kleines Textstück, im Deutschen etwa drei bis vier Zeichen. Ein <strong>Schritt</strong> ist ein Request (eine Anfrage ans Modell). Der <strong>Kontext</strong> ist alles, was in diesem Request steht: System-Prompt, Tool-Beschreibungen, Instruktionsdateien, alle bisherigen Nachrichten und alle Tool-Ergebnisse. Ein <strong>Cache-Read</strong> ist ein Treffer im Zwischenspeicher des Anbieters. Er ist billiger als neuer Text, aber nicht gratis. Die <strong>Grundlast</strong> ist der Kontext des ersten Schritts: System-Prompt, Tool-Beschreibungen und Instruktionen, bevor der Agent etwas getan hat.</p>
+
+<p>Ein Agent ist eine Schleife. Jeder Schritt schickt den ganzen bisherigen Verlauf noch einmal. Anthropic beschreibt das so: „by default every turn of an agentic task resends the entire growing conversation: system prompt, tool definitions, and every prior turn.“ Und: „A 40-turn task sends its first turn 40 times, so task cost grows with roughly the square of turn count.“ <a class="cite" href="#q-r1_anthropic_optimizing_cost">Quelle</a></p>
+
+<p><strong>Ein Schritt mit n Tool-Aufrufen ist ein einziger Request.</strong> Ein Tool-Aufruf ist ein einzelner Aufruf eines Werkzeugs; mehrere davon in einer Antwort heißen parallel. Die n Ergebnisse kommen gesammelt zurück. Bündeln senkt damit die <strong>Anzahl</strong> der Wiederholungen, nicht die <strong>Größe</strong> dessen, was wiederholt wird: Die Ergebnisse bleiben im Kontext und werden in allen Folgeschritten erneut gelesen. <a class="cite" href="#q-r1_anthropic_parallel_tool_use">Quelle</a></p>
+
+<p>Rechenbeispiel mit der Formel T·n(n+1)/2, 1.000 neue Tokens pro Schritt: 20 Schritte mit je einem Aufruf lesen 210.000 Tokens, 10 Schritte mit je zwei Aufrufen nur 110.000. Das sind 48 % weniger (Rechnung). <a class="cite" href="#q-r1_agentic_design_quadratic">Quelle</a></p>
+
+<p>Eine Messung aus einem Gateway: Eine normale Feature-Umsetzung kostete 12,93 $, am Ende waren 87 % der Kosten Cache-Reads. Die Hälfte der Kosten war schon bei 27.500 Tokens Kontext erreicht (Nutzer-Messung). <a class="cite" href="#q-r1_exedev_quadratic">Quelle</a> Im <a href="../26.11.23_token_sparen_opencode_subagents/bericht.html">Vorbericht</a> waren 97,1 % aller Input-Tokens Cache-Reads. Dort steht auch, warum die Grundlast und die Schrittzahl die stärksten Regler sind.</p>
+
+<p>Die folgende Animation zeigt dieselben 12 Tool-Ergebnisse in zwei Reihen: oben einzeln, unten zu Dreiergruppen gebündelt. Die Grundlast beträgt 23.600 Tokens, jedes Tool-Ergebnis 3.670 Tokens. Beides sind Startwerte aus Abschnitt 3.</p>
+
+<div class="tool">
+  <div class="ctrl">
+    <label for="aStep">Schritt</label>
+    <input type="range" id="aStep" min="1" max="12" step="1" value="12">
+    <output id="aStepOut" for="aStep">12</output>
+    <button class="btn" type="button" id="aPlay">Abspielen</button>
+  </div>
+  <div class="chartbox">
+    <svg id="aChart" viewBox="0 0 720 345" role="img" aria-label="Gestapelte Balken: einzeln 12 Schritte, gebündelt 4 Schritte"></svg>
+  </div>
+  <div class="sumbar">
+    <span class="small">einzeln gelesen</span>
+    <span class="big" id="aTop">525.420</span>
+    <span class="small">gebündelt gelesen</span>
+    <span class="big" id="aBot">160.460</span>
+    <span class="small" id="aDiff">69,5 % weniger</span>
+  </div>
+  <p class="keyline">Grau: Grundlast. Hell: bisheriger Verlauf. Dunkel: neues Tool-Ergebnis. Die Summe zählt nur, was bis zum gewählten Schritt gelesen wurde (Rechnung).</p>
+</div>
+
+<h2 id="mechanismen">2. Was es zum Bündeln heute gibt</h2>
+
+<p><strong>Code Mode</strong> heißt: Das Modell schreibt ein kleines Programm, das mehrere Tools aufruft. In opencode heißt dieses Werkzeug <code>execute</code>. <strong>MCP</strong> ist das Protokoll, mit dem ein Agent Werkzeuge von externen Servern aufruft. Ein <strong>Gateway</strong> bündelt mehrere dieser Server hinter einem Endpunkt.</p>
+
+<div class="tablewrap">
+<table>
+  <caption>Mechanismen, mit denen Tool-Aufrufe gebündelt werden</caption>
+  <thead>
+    <tr><th>Mechanismus</th><th>Wo</th><th>Was passiert</th><th>Zahl</th><th>Quelle</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Parallele Tool-Aufrufe</td>
+      <td>Anthropic-API, DeepSeek, OpenRouter</td>
+      <td>Mehrere Tool-Blöcke in einer Antwort, die Ergebnisse kommen als eine Nachricht zurück.</td>
+      <td>Claude 4 und neuer: Standard, wenn mehrere Tools helfen. DeepSeek ignoriert <code>parallel_tool_calls</code>, „parallel tool calling is always enabled“. OpenRouter: Standard <code>true</code>, für <code>deepseek-v4.1-flash-1017</code> unterstützt.</td>
+      <td><a class="cite" href="#q-r1_anthropic_parallel_tool_use">Anthropic</a> <a class="cite" href="#q-r1_deepseek_responses_api">DeepSeek</a> <a class="cite" href="#q-r1_openrouter_parameters">OpenRouter</a> <a class="cite" href="#q-r1_openrouter_model_deepseek_v41_flash">Modellkarte</a></td>
+    </tr>
+    <tr>
+      <td>Claude Code Agent-Loop</td>
+      <td>Claude Code</td>
+      <td>Lesende Tools (Read, Glob, Grep, lesende MCP-Tools) laufen gleichzeitig, Edit, Write und Bash nacheinander.</td>
+      <td>kein Batch-Tool in der Tool-Liste. <code>/batch</code> ist etwas anderes: 5 bis 30 Subagents in eigenen Worktrees.</td>
+      <td><a class="cite" href="#q-r1_claude_code_agent_loop">Loop</a> <a class="cite" href="#q-r1_claude_code_tools_reference">Tools</a> <a class="cite" href="#q-r1_claude_code_commands">Befehle</a></td>
+    </tr>
+    <tr>
+      <td>Claude Code Code Mode</td>
+      <td>Claude Code, experimentell</td>
+      <td>Claude schreibt ein JavaScript-Stück mit mehreren Tool-Aufrufen und gibt nur das Nötige zurück.</td>
+      <td>seit v2.1.323, <code>CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1</code>, standardmäßig aus. Fremde Messung (8 Läufe, Sonnet 5.5): Kontext 20 bis 25 % kleiner, bei der größeren Aufgabe 37 % weniger Tokens und 19 % weniger Kosten, „not faster, and on a tiny task it cost more“.</td>
+      <td><a class="cite" href="#q-r1_claude_code_code_mode">Doku</a> <a class="cite" href="#q-r1_infoq_claude_code_mode">Messung</a></td>
+    </tr>
+    <tr>
+      <td>Programmatic Tool Calling</td>
+      <td>Anthropic-API</td>
+      <td>Claude schreibt Python, Zwischenergebnisse bleiben aus dem Kontext.</td>
+      <td>43.588 → 27.297 Tokens (−37 %) bei komplexen Rechercheaufgaben; +11 % Leistung bei −24 % Input (eine Web-Such-Eval). Hersteller-Angaben. Bei Sonnet sanken die preisgewichteten Tokens, bei Opus stiegen sie.</td>
+      <td><a class="cite" href="#q-r1_anthropic_programmatic_tool_calling">PTC</a> <a class="cite" href="#q-r1_anthropic_advanced_tool_use">Zahlen</a> <a class="cite" href="#q-r1_anthropic_dynamic_filtering">Filtering</a></td>
+    </tr>
+    <tr>
+      <td>Cloudflare Code Mode</td>
+      <td>Cloudflare-API</td>
+      <td>Die ganze API mit zwei Tools: <code>search()</code> und <code>execute()</code>.</td>
+      <td>über 2.500 Endpunkte, etwa 1.000 statt 1,17 Mio. Tokens Tool-Definitionen (−99,9 %, Hersteller-Angabe, gilt für Definitionen, nicht für eine ganze Aufgabe).</td>
+      <td><a class="cite" href="#q-r1_cloudflare_code_mode_2026">Cloudflare</a></td>
+    </tr>
+    <tr>
+      <td>opencode v1 <code>batch</code></td>
+      <td>opencode v1</td>
+      <td>Bis zu 25 Aufrufe gleichzeitig, nur eingebaute Tools, keine MCP-Tools.</td>
+      <td>PR #2983, gemerged 15.11.2025. Autor: „I haven't actually made legit benchmarks“. Bekannte Probleme: Reihenfolge bei Rückfragen (#4094), „random tool duplication“.</td>
+      <td><a class="cite" href="#q-r1_opencode_pr_2983">PR</a> <a class="cite" href="#q-r1_opencode_batch_v1_source">Quellcode</a> <a class="cite" href="#q-r1_opencode_changelog_v1_1_26">Changelog</a> <a class="cite" href="#q-r1_opencode_issue_4094">#4094</a> <a class="cite" href="#q-r1_opencode_pr_9275">#9275</a></td>
+    </tr>
+    <tr>
+      <td>opencode v2 <code>execute</code></td>
+      <td>opencode v2</td>
+      <td>JavaScript in Code Mode. <code>batch_tool</code> wird ignoriert.</td>
+      <td>„useful for parallel independent calls and for processing results without adding every intermediate value to the model context“. Nutzer-Messung #58708: 8 URLs prüfen, einzeln 34.489 Tokens / 0,00783 $, als ein Programm 1.257 Tokens / 0,00057 $, also 27,4× weniger Tokens und 13,6× billiger.</td>
+      <td><a class="cite" href="#q-r1_opencode_docs_migrate_v1">Migration</a> <a class="cite" href="#q-r1_opencode_docs_tools_v2">Tools</a> <a class="cite" href="#q-r1_opencode_issue_58708_codemode_tokens">#58708</a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p class="small">Der Geld-Abstand in #58708 ist kleiner als der Token-Abstand, weil der Cache den wiederholten Anfang billig macht.</p>
+
+<h3>Studien</h3>
+
+<div class="tablewrap">
+<table class="smalltable">
+  <caption>Messungen zu parallelen Aufrufen und Code-basierten Aufrufen</caption>
+  <thead>
+    <tr><th>Studie</th><th class="num">vorher</th><th class="num">nachher</th><th>Ergebnis</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>W&amp;D, „Scaling Parallel Tool Calling“ (BrowseComp, GPT-5-Medium)</td><td class="num">66 %, 102,5 $, 1.522,6 s, 45,7 Schritte</td><td class="num">68 %, 65,7 $, 904,2 s, 23,8 Schritte</td><td>−35,9 % Kosten, −40,6 % Zeit bei 3 Tools pro Schritt. Offene Modelle (u. a. DeepSeek-V3.2) profitieren nur wenig.</td></tr>
+    <tr><td>LLMCompiler (ICML 2024)</td><td class="num">ReAct</td><td class="num">DAG-Planer</td><td>bis 3,7× schneller, bis 6,7× billiger, bis etwa 9 % genauer als ReAct.</td></tr>
+    <tr><td>„The Bitter Lesson of Tool Calling“</td><td class="num">JSON-Aufrufe</td><td class="num">Code-Aufrufe</td><td>Code-basierte Aufrufe sind in 11 von 14 Modellen mindestens so gut wie JSON.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="small">Quellen: <a class="cite" href="#q-r1_wd_parallel_toolcalling_html">W&amp;D</a> <a class="cite" href="#q-r1_llmcompiler_abs">LLMCompiler</a> <a class="cite" href="#q-r1_bitter_lesson_tool_calling_abs">Bitter Lesson</a></p>
+
+<h3>Wann Bündeln nicht spart</h3>
+
+<ul>
+  <li><strong>Abhängige Schritte.</strong> B braucht das Ergebnis von A, dann darf es nicht parallel laufen. <a class="cite" href="#q-r1_anthropic_parallel_tool_use">Quelle</a></li>
+  <li><strong>Große Ergebnisse bleiben im Kontext.</strong> Sie werden in allen Folgeschritten erneut gelesen, auch wenn sie gebündelt entstanden sind.</li>
+  <li><strong>Code schreiben kostet selbst Tokens.</strong> Bei Mini-Aufgaben ist Code Mode teurer <a class="cite" href="#q-r1_infoq_claude_code_mode">Quelle</a>, bei kleinen MCP-Servern 17 bis 35 % teurer <a class="cite" href="#q-r3_jahanzaib_codemode_measurement">Quelle</a>.</li>
+  <li><strong>Keine Reaktion auf Zwischenergebnisse.</strong> Bei parallelen Aufrufen kann das Modell nicht nachsteuern; bei großem Schrittbudget hilft mehr Breite nicht immer. <a class="cite" href="#q-r1_wd_parallel_toolcalling_html">Quelle</a></li>
+  <li><strong>Parallele Subagents sind kein Bündeln.</strong> Multi-Agent-Systeme brauchen etwa 15× mehr Tokens als ein Chat (Hersteller-Angabe). <a class="cite" href="#q-r1_anthropic_multiagent_research">Quelle</a></li>
+</ul>
+
+<h2 id="rechner">3. Rechner: Was bringt Bündeln bei einem Subagent?</h2>
+
+<p>Der Rechner bildet eine Subagent-Schleife nach. <strong>G</strong> ist die Grundlast, <strong>z</strong> das Tool-Ergebnis je Aufruf, <strong>n</strong> die Schrittzahl, <strong>p</strong> der Anteil bündelbarer Schritte, <strong>b</strong> die Bündelgröße. <strong>Zusatz</strong> ist der Code, den ein gebündelter Schritt zusätzlich schreibt, <strong>o</strong> ist Output plus Reasoning je Schritt.</p>
+
+<div class="formula">
+  nb = round(n · p) &nbsp;(p als Anteil, 50 % = 0,5) &nbsp;·&nbsp; m = (n − nb) + ceil(nb / b)<br>
+  gelesen ≈ m · G + z · n · (m − 1) / 2 &nbsp;&nbsp;(ohne Bündeln: n · G + z · n · (n − 1) / 2)<br>
+  neuer Input ≈ G + n · z &nbsp;·&nbsp; Cache-Read = gelesen − neuer Input<br>
+  Output = m · o + ceil(nb / b) · Zusatz
+</div>
+
+<p class="small">Das Modell nimmt an, dass die gebündelten Aufrufe wirklich unabhängig sind, und verteilt dieselben n Tool-Ergebnisse auf m Schritte. Preise DeepSeek (eigener Fit, $ pro Mio. Tokens): Input 0,041, Cache-Read 0,0094, Output 0,47. Opus 5.5 zum API-Preis: neuer Input als Cache-Write 5, Cache-Read 0,20, Output 20.</p>
+
+<div class="tool">
+  <div class="calcgrid">
+    <div>
+      <div class="ctrl">
+        <label for="cG">Grundlast G</label>
+        <input type="range" id="cG" min="8000" max="40000" step="100" value="23600">
+        <output id="cGv" for="cG">23.600</output>
+      </div>
+      <div class="ctrl">
+        <label for="cZ">Tool-Ergebnis je Aufruf z</label>
+        <input type="range" id="cZ" min="500" max="10000" step="10" value="3670">
+        <output id="cZv" for="cZ">3.670</output>
+      </div>
+      <div class="ctrl">
+        <label for="cN">Schritte n</label>
+        <input type="range" id="cN" min="2" max="150" step="1" value="19">
+        <output id="cNv" for="cN">19</output>
+      </div>
+      <div class="ctrl">
+        <label for="cP">Anteil bündelbarer Schritte p</label>
+        <input type="range" id="cP" min="0" max="100" step="1" value="50">
+        <output id="cPv" for="cP">50 %</output>
+      </div>
+      <div class="ctrl">
+        <label for="cB">Bündelgröße b</label>
+        <input type="range" id="cB" min="2" max="8" step="1" value="3">
+        <output id="cBv" for="cB">3</output>
+      </div>
+      <div class="ctrl">
+        <label for="cX">Zusatz-Output je gebündeltem Schritt</label>
+        <input type="range" id="cX" min="0" max="1000" step="10" value="200">
+        <output id="cXv" for="cX">200</output>
+      </div>
+      <div class="fieldrow">
+        <span class="small">Output plus Reasoning je Schritt o: 1.214 (Vorbericht, fest)</span>
+      </div>
+      <div class="fieldrow">
+        <button class="btn" type="button" id="pSure">sicher 9 %</button>
+        <button class="btn" type="button" id="pTop">Obergrenze 50 %</button>
+        <button class="btn" type="button" id="pAll">alle Tool-Ketten 64 %</button>
+      </div>
+    </div>
+
+    <div class="respanel">
+      <p class="resbig" id="cSave">32,6 %</p>
+      <p class="rescap">weniger gelesene Tokens</p>
+      <div class="resdiv"></div>
+      <div class="resrow"><span>Schritte</span><b id="cSteps">19 → 13</b></div>
+      <div class="resrow"><span>gelesen</span><b id="cRead">1.075.970 → 725.180</b></div>
+      <div class="resrow"><span>neuer Input</span><b id="cNewIn">93.330</b></div>
+      <div class="resrow"><span>Cache-Read</span><b id="cCache">982.640 → 631.850</b></div>
+      <div class="resrow"><span>Output</span><b id="cOut">23.066 → 16.582</b></div>
+      <div class="resdiv"></div>
+      <div class="resrow"><span>DeepSeek je Subagent</span><b id="cCostDS">0,0239 $ → 0,0176 $</b></div>
+      <div class="resrow"><span>Opus API je Subagent</span><b id="cCostOp">1,12 $ → 0,92 $</b></div>
+      <div class="resrow"><span>DeepSeek, 100 Subagents</span><b id="cCostDS100">2,39 $ → 1,76 $</b></div>
+      <div class="resrow"><span>Opus API, 100 Subagents</span><b id="cCostOp100">112,45 $ → 92,47 $</b></div>
+    </div>
+  </div>
+
+  <div class="chartbox">
+    <svg id="cChart" viewBox="0 0 720 170" role="img" aria-label="Kosten je Subagent vorher und nachher"></svg>
+  </div>
+  <p class="keyline">Kosten je Subagent in Dollar, direkt beschriftet (Rechnung mit den Preisen oben).</p>
+</div>
+
+<div class="note">
+  <p>Modell, keine Messung. Es nimmt an, dass die gebündelten Aufrufe wirklich unabhängig sind. Shell-Ketten sind das oft nicht.</p>
+</div>
+
+<h2 id="eigene-daten">4. Eigene Daten: Wie viel wird hier schon gebündelt?</h2>
+
+<p>Grundlage ist eine Kopie der opencode-Datenbank, nur lesend geöffnet. Gelesen wurden nur Zähler, Toolnamen und Längen, keine Inhalte. Stand 24.11.2026 15:56, Projekt Deep-Research_Opus. Mehrere Aufrufe in einer Antwort sind ein Schritt. <a class="cite" href="#q-_notizen_r4">Notizen</a> <a class="cite" href="#q-r4_analyse">Rohdaten</a> <a class="cite" href="#q-r4_analyse_py">Skript</a></p>
+
+<div class="kpis">
+  <div class="kpi"><span>Sessions</span><b>149</b></div>
+  <div class="kpi"><span>Schritte</span><b>5.659</b></div>
+  <div class="kpi"><span>Tool-Aufrufe</span><b>6.313</b></div>
+  <div class="kpi"><span>verarbeiteter Input</span><b>595,61 Mio.</b></div>
+  <div class="kpi"><span>genau 1 Aufruf je Schritt</span><b>81,5 %</b></div>
+  <div class="kpi"><span>verbuchte Kosten</span><b>7,41 $</b></div>
+</div>
+
+<p>Abgleich mit dem Vorbericht: bis 23.11. 21:35 waren es 5.016 Schritte und 533,47 Mio. Tokens, der Vorbericht nennt 5.034 und 533,94 Mio. Die kleine Lücke kommt vom Zeitpunkt der Datenbank-Kopie.</p>
+
+<h3>Verteilung der Tool-Aufrufe je Schritt</h3>
+
+<div class="tool">
+  <div class="chartbox">
+    <svg id="r4Tools" viewBox="0 0 720 250" role="img" aria-label="Balken: Anteil der Schritte mit 0, 1, 2, 3 und 4 oder mehr Tool-Aufrufen"></svg>
+  </div>
+  <p class="keyline">Anteil aller 5.659 Schritte. Direkt beschriftet mit Anzahl und Prozent.</p>
+</div>
+
+<p>13,6 % der Schritte enthalten zwei oder mehr Aufrufe, 4,9 % gar keinen. Bei Opus sind 73,9 % der Schritte Einzelaufrufe, bei den DeepSeek-Subagents 83,4 %. Höchstens 12 Aufrufe standen in einem Schritt (Opus), bei DeepSeek höchstens 5. Im Schnitt sind es 1,17 Aufrufe je Tool-Schritt.</p>
+
+<p><strong>Code Mode wird schon genutzt, aber nur für Recherche.</strong> 251 <code>execute</code>-Aufrufe (4,0 % aller Tool-Aufrufe) enthalten 535 Unteraufrufe, also 2,13 je <code>execute</code>; 43,4 % haben zwei oder mehr. Fast alles davon ist ketch-Recherche (<code>ketch.search</code> 207, <code>ketch.scrape</code> 138) und Browser (<code>openchamber_web</code> 100). Lesen und Suchen in Dateien läuft fast nie über <code>execute</code>.</p>
+
+<div class="tablewrap">
+<table class="smalltable">
+  <caption>Tool-Rangliste im Projekt</caption>
+  <thead>
+    <tr><th>Tool</th><th class="num">Aufrufe</th><th class="num">Anteil</th><th class="num">Zeichen</th><th>Bemerkung</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>shell</code></td><td class="num">3.620</td><td class="num">57,3 %</td><td class="num">8,27 Mio.</td><td>der größte Posten bei den Aufrufen</td></tr>
+    <tr><td><code>read</code></td><td class="num">1.416</td><td class="num">22,4 %</td><td class="num win">16,93 Mio.</td><td>63 % aller Tool-Zeichen</td></tr>
+    <tr><td><code>edit</code></td><td class="num">485</td><td class="num">7,7 %</td><td class="num">37.823</td><td></td></tr>
+    <tr><td><code>write</code></td><td class="num">332</td><td class="num">5,3 %</td><td class="num">29.468</td><td></td></tr>
+    <tr><td><code>execute</code></td><td class="num">251</td><td class="num">4,0 %</td><td class="num">1,39 Mio.</td><td>535 Unteraufrufe</td></tr>
+    <tr><td><code>grep</code></td><td class="num">22</td><td class="num">0,4 %</td><td class="num">113.457</td><td>kaum genutzt, Suche steckt in Shell</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Muster:</strong> Auf grep folgt in 45,5 % der Fälle direkt ein read, read → read kommt 683-mal vor, read → shell 385-mal. Fehler sind kein Hebel: 18 fehlerhafte Aufrufe (0,3 %), 7 davon wurden gleich wiederholt.</p>
+
+<h3>Ketten: aufeinanderfolgende Schritte ohne Text</h3>
+
+<p>Eine <strong>Kette</strong> ist eine Folge von Schritten, die nur Tool-Aufrufe enthalten und keinen Text. Drei Arten: nur read/grep/glob („sicher bündelbar“), dieselben plus Shell, und alle Tool-Ketten. Die folgende Auswahl zeigt, was Bündeln in diesen Ketten rechnerisch ändern würde.</p>
+
+<div class="tool">
+  <p class="qlabel">Kettenart</p>
+  <div class="seg" role="group" aria-label="Kettenart wählen">
+    <button class="btn" type="button" data-chain="nur_lesend" aria-pressed="true">nur lesen</button>
+    <button class="btn" type="button" data-chain="rggs" aria-pressed="false">mit Shell</button>
+    <button class="btn" type="button" data-chain="alle" aria-pressed="false">alle Tool-Ketten</button>
+  </div>
+  <p class="qlabel" style="margin-top:12px">Bündelgröße</p>
+  <div class="seg" role="group" aria-label="Bündelgröße wählen">
+    <button class="btn" type="button" data-bundle="3" aria-pressed="true">3</button>
+    <button class="btn" type="button" data-bundle="5" aria-pressed="false">5</button>
+  </div>
+
+  <div class="respanel" style="margin-top:16px">
+    <p class="resbig" id="kSaved">34,6 Mio.</p>
+    <p class="rescap" id="kSavedCap">gesparte gelesene Tokens, 5,8 % des gesamten Projekt-Inputs</p>
+    <div class="resdiv"></div>
+    <div class="resrow"><span>Ketten</span><b id="kChains">140</b></div>
+    <div class="resrow"><span>Schritte in Ketten</span><b id="kSteps">521 (9,2 %)</b></div>
+    <div class="resrow"><span>Länge median / p90 / max</span><b id="kLen">3 / 7,1 / 11</b></div>
+    <div class="resrow"><span>entfallende Schritte</span><b id="kDrop">306 (5,4 %)</b></div>
+    <div class="resrow"><span>Kosten gemischt</span><b id="kCost">0,63 $</b></div>
+    <div class="resrow"><span>wenn alles DeepSeek wäre</span><b id="kCostDS">0,38 $</b></div>
+  </div>
+
+  <div class="chartbox">
+    <svg id="r4Hist" viewBox="0 0 720 230" role="img" aria-label="Histogramm der Kettenlängen von 2 bis 10 Schritten"></svg>
+  </div>
+  <p class="keyline" id="histNote">Kettenlängen 2 bis 10. Längere Ketten sind in dieser Verteilung nicht enthalten.</p>
+</div>
+
+<p>Die Hauptvariante mit Shell: 578 Ketten, 2.824 Schritte (49,9 %), Median 3, p90 9, längste 86. Davon sind 328 reine Shell-Ketten. In Geld (3er, mit Shell): 6,56 $ gemischt, davon 1,58 $ echte DeepSeek-Kosten (21 % der verbuchten 7,41 $) und 4,98 $ Opus zum API-Preis. Über alle Projekte sind es 33,7 %.</p>
+
+<div class="note">
+  <p>Obergrenze. Die meisten Ketten sind Shell-Befehle; die hängen oft voneinander ab (erst bauen, dann testen). Sicher bündelbar sind nur die reinen Lese-Ketten: 5,8 %.</p>
+</div>
+
+<h2 id="versuch">5. Eigener Versuch: normal, „bündle!“, mit Codegraph</h2>
+
+<p>Aufbau: opencode 2.3.0, DeepSeek V4.1 Flash 1017 über OpenRouter, Repo httpx bei Commit 7cff5f7 (154 Dateien, 60 Python-Dateien), Serena 2.1.1.dev0 mit 21 Tools. Drei Aufgaben: wer ruft <code>Client.send</code> auf; der Weg von <code>httpx.get</code> bis zum Socket; die Timeout-Defaults. Dazu vier Varianten und zwei Wiederholungen, also 24 Läufe mit 600 s Zeitlimit. <a class="cite" href="#q-_notizen_r5">Notizen</a> <a class="cite" href="#q-r5_experiment">Rohdaten</a> <a class="cite" href="#q-r5_scores">Punkte</a> <a class="cite" href="#q-r5_antworten">Antworten</a></p>
+
+<p>Die Varianten: <strong>A</strong> Standard. <strong>B</strong> A plus Anweisung, unabhängige Zugriffe in einem <code>execute</code> oder parallel zu bündeln. <strong>C</strong> A plus Serena ohne Hinweis. <strong>D</strong> A plus Serena plus Hinweis „nutze Serena zuerst“.</p>
+
+<details>
+  <summary>Der Text der Bündel-Anweisung aus Variante B (wörtlich)</summary>
+  <div class="codebox">
+    <button class="copybtn" type="button">Kopieren</button>
+<pre><code># Arbeitsweise: Zugriffe bündeln
+
+Bündele unabhängige Suchen und Lesezugriffe. Fasse mehrere `grep`, `glob` und `read`
+in EINEM `execute`-Aufruf zusammen (`Promise.all` bzw. `Promise.allSettled`) oder
+starte sie als parallele Tool-Aufrufe in derselben Antwort. Ein Aufruf pro Schritt
+ist zu langsam und zu teuer. Wiederhole einen fehlgeschlagenen Aufruf nicht unverändert.</code></pre>
+  </div>
+  <p class="small">Aus <a class="cite" href="#q-r5_config_b_instructions">r5_config_b_instructions.md</a>, eingebunden über <code>instructions</code> in der Projekt-Config. Der Hinweis in Variante D steht in <a class="cite" href="#q-r5_config_d_instructions">r5_config_d_instructions.md</a>.</p>
+</details>
+
+<div class="tablewrap">
+<table>
+  <caption>Mittelwerte je Variante (6 Läufe), Median in Klammern</caption>
+  <thead>
+    <tr><th>Variante</th><th class="num">Schritte</th><th class="num">Tool-Aufrufe</th><th class="num">Input</th><th class="num">Kosten $</th><th class="num">Zeit s</th><th class="num">Punkte</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>A Standard</td><td class="num">8,67 (7,0)</td><td class="num">13,2</td><td class="num">260.441 (180.264)</td><td class="num">0,0043</td><td class="num">66</td><td class="num">2,0</td></tr>
+    <tr><td>B Bündeln</td><td class="num">8,67 (8,5)</td><td class="num">13,5</td><td class="num">243.998 (226.080)</td><td class="num">0,0040</td><td class="num">48</td><td class="num">2,0</td></tr>
+    <tr><td>C Serena ohne Hinweis</td><td class="num">7,33 (5,5)</td><td class="num">10,8</td><td class="num">222.632 (151.188)</td><td class="num">0,0040</td><td class="num">49</td><td class="num">2,0</td></tr>
+    <tr><td>D Serena mit Hinweis</td><td class="num">11,33 (9,5)</td><td class="num">18,2</td><td class="num">334.054 (292.168)</td><td class="num">0,0053</td><td class="num">81</td><td class="num">2,0</td></tr>
+  </tbody>
+</table>
+</div>
+
+<ul>
+  <li><strong>Alle 24 Antworten sind richtig</strong> (2 von 2 Punkten). Die Aufgaben trennen also nur im Aufwand.</li>
+  <li><strong>Die Grundlast dominiert.</strong> Im ersten Schritt 23.563 bis 23.840 Tokens. 78 bis 84 % des gesamten Inputs ist diese Grundlast, einmal pro Schritt. Sparen heißt hier: Schritte sparen.</li>
+  <li><strong>B: gleiche Schrittzahl wie A.</strong> <code>execute</code> lief 4-mal statt 0-mal. Die Anweisung allein hat nicht verlässlich gebündelt.</li>
+  <li><strong>C: Serena wurde nie aufgerufen.</strong> Die Grundlast blieb trotz 21 Serena-Tools fast gleich (23.656 gegen 23.566), weil Code Mode die Tool-Beschreibungen versteckt. Der Preis: Ohne Hinweis findet der Agent das Tool nicht.</li>
+  <li><strong>D: Serena rege genutzt</strong> (16× <code>find_symbol</code>, 4× <code>search_for_pattern</code>, 3× <code>get_symbols_overview</code>, 5× <code>initial_instructions</code>), grep und read liefen trotzdem mit. Ergebnis: +28 % Input, +31 % Schritte, +22 % Kosten gegenüber A, bei gleicher Korrektheit.</li>
+  <li><strong>Gesamtkosten aller 24 Läufe:</strong> 0,1051 $.</li>
+</ul>
+
+<div class="tool">
+  <div class="seg" role="group" aria-label="Kennzahl für das Punktdiagramm wählen">
+    <button class="btn" type="button" data-metric="processed_input" aria-pressed="true">Input</button>
+    <button class="btn" type="button" data-metric="steps" aria-pressed="false">Schritte</button>
+    <button class="btn" type="button" data-metric="cost" aria-pressed="false">Kosten</button>
+    <button class="btn" type="button" data-metric="runtime_s" aria-pressed="false">Zeit</button>
+  </div>
+  <div class="chartwrap chartbox">
+    <svg id="r5Chart" viewBox="0 0 720 300" role="img" aria-label="Punktdiagramm aller 24 Läufe nach Variante und Aufgabe"></svg>
+    <div class="tip" id="r5Tip"></div>
+  </div>
+  <p class="keyline" id="r5Key">Jeder Punkt ist ein Lauf. Kreis: T1, Quadrat: T2, Dreieck: T3. Der kurze Strich zeigt den Mittelwert der Variante.</p>
+</div>
+
+<div class="note">
+  <p><strong>Grenzen:</strong> n = 2 je Zelle, große Streuung (T2: 310.350 bis 656.228 Input in derselben Variante D/B), ein Repo, ein Modell, Deckeneffekt. Zwei D-Läufe melden im ersten Schritt nur 10.086 Tokens (Abrechnungs-Artefakt, darum Median). Kein Signifikanztest.</p>
+</div>
+
+<h2 id="gateways">6. MCP-Gateways: viele Tools hinter einem MCP</h2>
+
+<p>Ein <strong>Gateway</strong> (auch Aggregator oder Proxy) sitzt zwischen Agent und vielen MCP-Servern. Es kann fünf verschiedene Dinge sein, und nicht alle sparen Tokens. <a class="cite" href="#q-_notizen_r2">Notizen</a></p>
+
+<div class="tablewrap">
+<table>
+  <caption>Fünf Bauarten von Gateways</caption>
+  <thead>
+    <tr><th>Bauart</th><th>Wirkung auf Tokens</th><th>Beispiel</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Transport-Proxy</td><td>spart nichts</td><td>sparfenyuk/mcp-proxy</td></tr>
+    <tr><td>Aggregator plus Filter</td><td>spart nur, wenn Tools wirklich weggelassen werden</td><td>MetaMCP, MCPJungle, Envoy</td></tr>
+    <tr><td>Aggregator plus Meta-Tools oder Suche</td><td>spart, kostet aber einen Suchschritt</td><td>ToolHive, agentgateway Search, MCPHub</td></tr>
+    <tr><td>Aggregator plus Code Mode</td><td>spart, zusätzlich weniger Zwischenergebnisse</td><td>Docker Dynamic MCP, Bifrost</td></tr>
+    <tr><td>Lösung im Client</td><td>spart ohne Netzwerk-Roundtrip</td><td>Claude Tool Search, opencode v2 Code Mode</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Der Kernpunkt:</strong> Ein Gateway spart nur, wenn der Client <strong>alle</strong> Tool-Beschreibungen in jeden Request schreibt. Das tun opencode v2 und Claude Code nicht mehr.</p>
+
+<ul>
+  <li><strong>opencode v2:</strong> MCP läuft standardmäßig über Code Mode (<code>codemode: true</code>). Der Katalog ist im Code auf <code>INLINE_BUDGET = 2_000</code> Tokens gedeckelt, egal wie viele Server verbunden sind; der Rest läuft über <code>search()</code>. 207 Tools wären als volle Definitionen 1.033.360 Tokens, mit <code>search()</code> etwa 6,6k. <a class="cite" href="#q-r2_opencode_codemode_source">Quellcode</a> <a class="cite" href="#q-r2_opencode_v2_mcp_servers">Doku</a> <a class="cite" href="#q-r2_opencode_issue_58708">#58708</a></li>
+  <li><strong>Claude Code:</strong> „Tool search is enabled by default“, alle MCP-Tools werden erst bei Bedarf geladen. <code>ENABLE_TOOL_SEARCH=auto</code> setzt die Schwelle auf 10 % des Kontextfensters. <a class="cite" href="#q-r2_claude_code_mcp_tool_search">Doku</a> <a class="cite" href="#q-r2_claude_code_changelog">Changelog 2.1.7</a></li>
+</ul>
+
+<h3>Was typische MCP-Server an Beschreibungen kosten</h3>
+
+<div class="tool">
+  <div class="chkrow">
+    <input type="checkbox" id="mcpGithub" checked>
+    <label for="mcpGithub">GitHub MCP, 46 Tools</label>
+    <span class="hint">11.207 bis 19.436 Tokens, je nach Tokenizer und Feldern <a class="cite" href="#q-r2_importstatic_mcp_token_overhead">Quelle</a> <a class="cite" href="#q-r2_openrouter_mcp_vs_cli_vs_skills">Quelle</a></span>
+  </div>
+  <div class="chkrow">
+    <input type="checkbox" id="mcpSerena" checked>
+    <label for="mcpSerena">Serena, 29 bis 36 Tools</label>
+    <span class="hint">8.204 bis 11.494 Tokens <a class="cite" href="#q-r2_context_cost_serena">Quelle</a> <a class="cite" href="#q-r3_serena_zenn_benchmark">Quelle</a></span>
+  </div>
+  <div class="chkrow">
+    <input type="checkbox" id="mcpChrome" checked>
+    <label for="mcpChrome">Chrome DevTools, 30 Tools</label>
+    <span class="hint">6.527 Tokens <a class="cite" href="#q-r2_doccraft_mcp_context_cost">Quelle</a></span>
+  </div>
+  <div class="chkrow">
+    <input type="checkbox" id="mcpPlaywright" checked>
+    <label for="mcpPlaywright">Playwright, 25 Tools</label>
+    <span class="hint">4.450 Tokens <a class="cite" href="#q-r2_doccraft_mcp_context_cost">Quelle</a></span>
+  </div>
+
+  <div class="chartbox">
+    <svg id="mcpChart" viewBox="0 0 720 270" role="img" aria-label="Balken: Tokens der Tool-Beschreibungen je MCP-Server und der gedeckelte opencode-Katalog"></svg>
+  </div>
+
+  <div class="sumbar">
+    <span class="small">Summe der gewählten Server</span>
+    <span class="big" id="mcpSum">30.388 bis 41.907</span>
+    <span class="small">Tokens</span>
+  </div>
+  <p class="keyline">Heller Rest: obere Spanne. Fester Balken unten: der Katalog von opencode v2 mit höchstens 2.000 Tokens. Bei Spannen steht der untere Wert als voller Balken, der obere als heller Rest.</p>
+
+  <div class="ctrl" style="margin-top:16px">
+    <label for="mcpSteps">Schritte pro Session</label>
+    <input type="range" id="mcpSteps" min="1" max="60" step="1" value="19">
+    <output id="mcpStepsOut" for="mcpSteps">19</output>
+  </div>
+  <p class="small" id="mcpRead" style="margin:.6rem 0 0">Bei 19 Schritten würden 577.372 bis 796.233 Tokens allein für Tool-Beschreibungen gelesen. Der Katalog von opencode v2 kostet in 19 Schritten höchstens 38.000 Tokens.</p>
+</div>
+
+<h3>Messungen: Hersteller gegen unabhängig</h3>
+
+<div class="tablewrap">
+<table>
+  <caption>Was Gateways und Tool-Suche sparen, und wer es gemessen hat</caption>
+  <thead>
+    <tr><th>Messung</th><th>Ergebnis</th><th>wer misst</th><th>Quelle</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Anthropic Tool Search</td><td>55k Tokens herunter auf etwa 8,7k, „85 % reduction“</td><td>Hersteller</td><td><a class="cite" href="#q-r2_anthropic_advanced_tool_use">Anthropic</a></td></tr>
+    <tr><td>Anthropic Code Execution</td><td>150.000 auf 2.000 Tokens (−98,7 %)</td><td>Hersteller</td><td><a class="cite" href="#q-r2_anthropic_code_execution">Anthropic</a></td></tr>
+    <tr><td>Bifrost Code Mode</td><td>bis −92,8 % bei 508 Tools</td><td>Hersteller</td><td><a class="cite" href="#q-r2_bifrost_code_mode">Bifrost</a></td></tr>
+    <tr><td>mcp-funnel</td><td>25,4k auf 2,4k Tokens</td><td>Hersteller</td><td><a class="cite" href="#q-r2_mcp_funnel_readme">mcp-funnel</a></td></tr>
+    <tr><td>OpenRouter, ganze Aufgabe mit Tool Search</td><td>Sonnet −49 %, GPT −78 %, Gemini +6 %, Haiku +56 % (Haiku riet Felder falsch und wiederholte 3- bis 4-mal)</td><td>unabhängig, OpenRouter ist Anbieter der Funktion</td><td><a class="cite" href="#q-r2_openrouter_mcp_vs_cli_vs_skills">OpenRouter</a></td></tr>
+    <tr><td>Toolport, opencode 1.19.3 (alle Definitionen im Prompt)</td><td>mit Gateway 6,1× weniger Tokens</td><td>Fremdmessung, Autor ist Toolport-Hersteller</td><td><a class="cite" href="#q-r2_toolport_benchmark">Toolport</a></td></tr>
+    <tr><td>Toolport, opencode 2.0.32 (Code Mode)</td><td>nur −26 % Input, 0,014 statt 0,016 $, 134 statt 132 s</td><td>Fremdmessung</td><td><a class="cite" href="#q-r2_toolport_benchmark">Toolport</a></td></tr>
+    <tr><td>Toolport, Claude Code</td><td>Gateway „Lazy“ 37 bis 46 % mehr Tokens als die eingebaute Suche, erst ab etwa 700 bis 1.200 Tools besser</td><td>Fremdmessung</td><td><a class="cite" href="#q-r2_toolport_benchmark">Toolport</a></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="tool">
+  <div class="chartbox">
+    <svg id="orChart" viewBox="0 0 720 220" role="img" aria-label="Balken: Veränderung der Tokens einer ganzen Aufgabe mit Tool Search je Modell"></svg>
+  </div>
+  <p class="keyline">Ganze Aufgabe mit Tool Search gegen alle Definitionen im Prompt, in Prozent. Die Nulllinie trennt Sparen von Mehrkosten. Direkt beschriftet.</p>
+</div>
+
+<h3>Nachteile</h3>
+
+<ul>
+  <li><strong>Zusätzlicher Suchschritt.</strong> 2 bis 5 Suchen je Aufgabe. <a class="cite" href="#q-r2_toolport_benchmark">Quelle</a></li>
+  <li><strong>Cache-Bruch.</strong> Die MCP-Spezifikation warnt: „Adding or removing tool definitions mid-conversation invalidates that cache“ und empfiehlt: „you may prefer the platform's tool search over a custom implementation“. <a class="cite" href="#q-r2_mcp_spec_client_best_practices">Quelle</a></li>
+  <li><strong>Schwache Modelle wählen falsch.</strong> Haiku wurde mit Tool Search 56 % teurer. <a class="cite" href="#q-r2_openrouter_mcp_vs_cli_vs_skills">Quelle</a></li>
+  <li><strong>Ein Gateway bündelt auch alle Zugangsdaten.</strong> Es ist ein Konzentrator für Credentials und braucht ein eigenes Bedrohungsmodell. <a class="cite" href="#q-r2_docker_gateway_security">Quelle</a></li>
+</ul>
+
+<p>Wofür ein Gateway trotzdem gut ist: ein Endpunkt für viele Server, zentrale Zugangsdaten und OAuth, Rechte und Filter, Protokolle, und gekürzte Ergebnisse. Tool-Ergebnisse sind oft größer als alle Definitionen: ein Wikipedia-Abruf kostet 31.565 Tokens, alle 95 Tool-Definitionen zusammen 15.950. <a class="cite" href="#q-r2_doccraft_mcp_context_cost">Quelle</a></p>
+
+<div class="tablewrap">
+<table class="smalltable">
+  <caption>Status der Gateways, GitHub-API am 24.11.2026</caption>
+  <thead>
+    <tr><th>Projekt</th><th class="num">Sterne</th><th>letzte Aktivität</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ToolHive</td><td class="num">2.355</td><td>Release 23.11.2026</td><td>aktiv</td></tr>
+    <tr><td>MCPHub</td><td class="num">2.756</td><td>Push 24.11.2026</td><td>aktiv</td></tr>
+    <tr><td>1MCP</td><td class="num">536</td><td>23.11.2026</td><td>aktiv</td></tr>
+    <tr><td>MCPJungle</td><td class="num">1.640</td><td>30.10.2026</td><td>aktiv</td></tr>
+    <tr><td>Docker MCP Gateway</td><td class="num">1.648</td><td>19.11.2026</td><td>aktiv</td></tr>
+    <tr><td>MetaMCP</td><td class="num">2.761</td><td>19.12.2025</td><td>archiviert</td></tr>
+    <tr><td>Klavis, Repo</td><td class="num">5.821</td><td>nicht gefunden</td><td>archiviert, als veraltet markiert</td></tr>
+    <tr><td>Rube (Composio)</td><td class="num">nicht gefunden</td><td>16.05.2026</td><td>eingestellt</td></tr>
+    <tr><td>Smithery Toolbox</td><td class="num">nicht gefunden</td><td>nicht gefunden</td><td>HTTP 404</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="small">Quelle: <a class="cite" href="#q-r2_github_stats">GitHub-API, 24.11.2026</a>. Sterne sagen nichts über die Wirkung.</p>
+
+<h2 id="codegraph">7. Codegraph statt grep</h2>
+
+<p><strong>grep</strong> ist eine Textsuche: Es findet Zeilen, in denen ein Muster steht. Ein <strong>Codegraph</strong> ist ein Index der Beziehungen: wer ruft wen auf, wer erbt von wem, was bricht bei einer Änderung. <strong>Embeddings</strong> oder semantische Suche finden Stellen, die „ähnlich gemeint“ sind. <strong>LSP</strong> ist der Sprachserver wie im Editor und beantwortet Definition, Referenzen und Umbenennen compiler-genau. <a class="cite" href="#q-_notizen_r3">Notizen</a></p>
+
+<div class="tablewrap">
+<table>
+  <caption>Werkzeuge für Code-Verständnis (Stand November 2026)</caption>
+  <thead>
+    <tr><th>Werkzeug</th><th>Mechanik</th><th>Form</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Serena</td><td>LSP, Symbol-Retrieval und Editing, kein gespeicherter Graph</td><td>MCP, im Versuch 21 Tools</td></tr>
+    <tr><td>Claude Context</td><td>AST-Chunking, Embeddings, Hybrid BM25</td><td>MCP mit 4 Tools, braucht Milvus</td></tr>
+    <tr><td>CodeGraphContext</td><td>Tree-sitter, optional SCIP</td><td>MCP mit 20 Tools, FalkorDB oder Neo4j</td></tr>
+    <tr><td>codebase-memory-mcp</td><td>Tree-sitter plus LSP-Typauflösung</td><td>MCP mit 17 Tools, SQLite</td></tr>
+    <tr><td>GitNexus</td><td>Tree-sitter plus Knowledge Graph</td><td>MCP mit 19 Tools, nicht-kommerzielle Lizenz</td></tr>
+    <tr><td>Aider Repo-Map</td><td>Tree-sitter-Signaturen plus Graph-Ranking</td><td>kein MCP, im Prozess</td></tr>
+    <tr><td>Sourcegraph MCP</td><td>Such- und Navigationsindex über mehrere Repos</td><td>MCP, Enterprise</td></tr>
+    <tr><td>Augment Context Engine</td><td>semantische Suche über einen gepflegten Index</td><td>MCP mit 1 Tool</td></tr>
+    <tr><td>Cursor</td><td>semantische Suche 2026 entfernt, jetzt Instant Grep</td><td>eingebaut</td></tr>
+    <tr><td>opencode v2</td><td>LSP nur für Fehlermeldungen, standardmäßig aus</td><td>kein LSP-Tool</td></tr>
+    <tr><td>Claude Code</td><td>LSP-Tool über Plugins je Sprache</td><td>1 Tool, opt-in</td></tr>
+    <tr><td>ast-grep</td><td>AST- und CST-Muster, Rewrites</td><td>CLI und MCP</td></tr>
+    <tr><td>ctags</td><td>Symbol-Index in einer tags-Datei</td><td>kein MCP</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="small">Quellen: <a class="cite" href="#q-_notizen_r3">Notizen R3</a>. Graph beantwortet Beziehungen, Embeddings beantworten „ähnlich gemeint“, LSP antwortet compiler-genau, AST antwortet auf Formfragen.</p>
+
+<div class="tablewrap">
+<table>
+  <caption>Messungen: spart ein Codegraph Tokens?</caption>
+  <thead>
+    <tr><th>Messung</th><th>Ergebnis</th><th>Urteil</th><th>wer misst</th><th>Quelle</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Pipeshub, 300 SWE-bench-Lite-Issues</td><td>richtige Datei 89,7 % → 90,3 %, p = 0,80, +44 % Prompt-Tokens, +51 % Zeit</td><td>neutral bis teurer</td><td>Anbieter, selbstkritisch</td><td><a class="cite" href="#q-r3_pipeshub_code_graph_benchmark">Pipeshub</a></td></tr>
+    <tr><td>Serena in Claude Code</td><td>25k mehr Kontext, 2,14 gegen 2,28 $, 36 Tools etwa 11,4k Tokens</td><td>kostet mehr Kontext</td><td>Fremdmessung, Einzelfall</td><td><a class="cite" href="#q-r3_serena_zenn_benchmark">Zenn</a></td></tr>
+    <tr><td>ast-grep-MCP gegen ripgrep, 331 Sessions</td><td>rg gewinnt 9 von 12 Abfragearten, 1.576 Tokens Fixkosten, die sich nie lohnten</td><td>kostet mehr</td><td>Fremdmessung</td><td><a class="cite" href="#q-r3_astgrep_benchmark">ast-grep</a></td></tr>
+    <tr><td>Eigener Versuch D</td><td>+28 % Input bei gleicher Korrektheit</td><td>kostet mehr</td><td>eigene Messung</td><td><a class="cite" href="#q-_notizen_r5">R5</a></td></tr>
+    <tr><td>Claude Context</td><td>−39,4 % Tokens, 30 Aufgaben, GPT-4o-mini</td><td>spart</td><td>Hersteller</td><td><a class="cite" href="#q-r3_claude_context_eval_readme">Claude Context</a></td></tr>
+    <tr><td>Sourcegraph MCP</td><td>−30 % Kosten, −38 % Agentenzeit bei großen und Multi-Repo-Aufgaben. Agenten nutzten trotzdem 4.813× Stichwortsuche und nur 8× Deep Search.</td><td>spart bei großen Repos</td><td>Hersteller</td><td><a class="cite" href="#q-r3_sourcegraph_codescalebench">Sourcegraph</a></td></tr>
+    <tr><td>CodeCompass, Preprint</td><td>+23,2 Prozentpunkte nur bei versteckten Abhängigkeiten, kein Vorteil bei normalen Suchen, Graph nur in 42 % der Läufe überhaupt aufgerufen</td><td>neutral</td><td>Preprint, ein Autor</td><td><a class="cite" href="#q-r3_paper_navigation_paradox">Paper</a></td></tr>
+    <tr><td>Kleine Modelle, Paper</td><td>+17 bis 21 Punkte bei 1,7 bis 4B, nur 4 bis 5 Punkte bei 32B</td><td>spart bei kleinen Modellen</td><td>Paper</td><td><a class="cite" href="#q-r3_paper_small_agents_code_graphs">Paper</a></td></tr>
+    <tr><td>Cursor semantische Suche</td><td>+12,5 % Genauigkeit (Hersteller), später entfernt: „Semantic search has been removed. Use Grep.“</td><td>zurückgenommen</td><td>Hersteller, dann eigene Doku</td><td><a class="cite" href="#q-r3_cursor_semsearch_blog">Cursor-Blog</a> <a class="cite" href="#q-r3_cursor_semantic_docs">Doku</a> <a class="cite" href="#q-r3_nardit_agentic_vs_rag">Analyse</a></td></tr>
+    <tr><td>Token ist nicht Rechnung</td><td>Cache-Erzeugung plus Cache-Reads etwa 87 % der Kosten, sichtbare Tool-Ausgaben nur etwa 6 %</td><td>Erklärung</td><td>Paper</td><td><a class="cite" href="#q-r3_paper_token_not_cost">Paper</a></td></tr>
+  </tbody>
+</table>
+</div>
+
+<blockquote>
+  <p>„Early versions of Claude Code used RAG + a local vector db, but we found pretty quickly that agentic search generally works better.“</p>
+  <p><cite>Boris Cherny (Claude Code) <a class="cite" href="#q-r3_cherny_x_grep_rag">Quelle</a>. Im Interview nennt er als Preis „at the cost of latency and tokens“ <a class="cite" href="#q-r3_officechai_cherny_agentic">Quelle</a> und sagt selbst, die Grundlage sei „mostly vibes“.</cite></p>
+</blockquote>
+
+<h3>Entscheidungshelfer: Lohnt sich ein Codegraph oder Gateway für mich?</h3>
+
+<div class="tool" id="decide">
+  <div class="qgroup">
+    <p class="qlabel">Client</p>
+    <div class="seg" role="group" aria-label="Client wählen">
+      <button class="btn" type="button" data-q="client" data-v="opencode" aria-pressed="true">opencode v2</button>
+      <button class="btn" type="button" data-q="client" data-v="claude" aria-pressed="false">Claude Code</button>
+      <button class="btn" type="button" data-q="client" data-v="other" aria-pressed="false">anderer Client</button>
+    </div>
+  </div>
+  <div class="qgroup">
+    <p class="qlabel">Wie viele MCP-Tools insgesamt?</p>
+    <div class="seg" role="group" aria-label="Anzahl MCP-Tools wählen">
+      <button class="btn" type="button" data-q="tools" data-v="low" aria-pressed="true">unter 30</button>
+      <button class="btn" type="button" data-q="tools" data-v="mid" aria-pressed="false">30 bis 700</button>
+      <button class="btn" type="button" data-q="tools" data-v="high" aria-pressed="false">über 700</button>
+    </div>
+  </div>
+  <div class="qgroup">
+    <p class="qlabel">Brauchst du zentrale Zugangsdaten, Rechte, Protokolle?</p>
+    <div class="seg" role="group" aria-label="Zentrale Zugangsdaten wählen">
+      <button class="btn" type="button" data-q="creds" data-v="yes" aria-pressed="false">ja</button>
+      <button class="btn" type="button" data-q="creds" data-v="no" aria-pressed="true">nein</button>
+    </div>
+  </div>
+  <div class="qgroup">
+    <p class="qlabel">Projektart</p>
+    <div class="seg" role="group" aria-label="Projektart wählen">
+      <button class="btn" type="button" data-q="project" data-v="html" aria-pressed="true">HTML, Text, Doku</button>
+      <button class="btn" type="button" data-q="project" data-v="code" aria-pressed="false">normaler Code</button>
+      <button class="btn" type="button" data-q="project" data-v="big" aria-pressed="false">sehr groß oder mehrere Repos</button>
+    </div>
+  </div>
+  <div class="qgroup">
+    <p class="qlabel">Typische Frage</p>
+    <div class="seg" role="group" aria-label="Typische Frage wählen">
+      <button class="btn" type="button" data-q="question" data-v="find" aria-pressed="true">„finde Datei oder Stelle“</button>
+      <button class="btn" type="button" data-q="question" data-v="relations" aria-pressed="false">„wer ruft X auf, was bricht bei Änderung“</button>
+    </div>
+  </div>
+  <div class="qgroup">
+    <p class="qlabel">Modell</p>
+    <div class="seg" role="group" aria-label="Modellgröße wählen">
+      <button class="btn" type="button" data-q="model" data-v="strong" aria-pressed="true">stark (Opus, Sonnet, DeepSeek V4.1)</button>
+      <button class="btn" type="button" data-q="model" data-v="small" aria-pressed="false">klein (unter 8B)</button>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <h3 id="vGatewayTitle">Gateway: lohnt nicht</h3>
+    <p id="vGatewayText"></p>
+  </div>
+  <div class="verdict">
+    <h3 id="vGraphTitle">Codegraph: grep reicht</h3>
+    <p id="vGraphText"></p>
+  </div>
+</div>
+
+<h2 id="massnahmen">8. Was ich konkret tun würde</h2>
+
+<p>Reihenfolge nach Wirkung. Die ersten zwei Punkte bringen mehr als alle Tools zusammen.</p>
+
+<ol>
+  <li>
+    <p><strong>Schritte sparen bleibt der Hebel.</strong> Grundlast und Schrittzahl (siehe Vorbericht: kurze Subagents, <code>steps</code>-Grenze, Reasoning <code>low</code> für Recherche). Bündeln ist eine Ergänzung, kein Ersatz.</p>
+  </li>
+  <li>
+    <p><strong>Parallele Lese-Aufrufe ausdrücklich verlangen, aber messen.</strong> Baustein für AGENTS.md oder Agent-Dateien:</p>
+    <div class="codebox">
+      <button class="copybtn" type="button">Kopieren</button>
+<pre><code>## Tool-Aufrufe
+- Wenn du mehrere Dateien lesen oder mehrere Suchen brauchst und sie nicht voneinander abhängen,
+  stelle sie als parallele Tool-Aufrufe in DERSELBEN Antwort.
+- Viele gleichartige Abrufe (mehrere URLs, viele Dateien prüfen): ein `execute`-Programm mit
+  `Promise.allSettled`, das nur die nötige Zusammenfassung zurückgibt.
+- Shell: unabhängige Prüfbefehle in einem Aufruf ausführen, abhängige nacheinander.
+- Lies erst gezielt (grep, Zeilenbereich), dann ganz.</code></pre>
+    </div>
+    <p>Ehrlich dazuschreiben: Im eigenen Versuch (B) änderte eine ähnliche Anweisung die Schrittzahl nicht. Die Wirkung eine Woche lang mit den eigenen Zahlen prüfen, zum Beispiel dem Anteil der Schritte mit genau einem Tool-Aufruf (heute 81,5 %).</p>
+  </li>
+  <li>
+    <p><strong><code>execute</code> für Massenarbeit.</strong> Viele URLs, viele Dateien, Filtern großer Ergebnisse; dort ist der Effekt groß (27,4× weniger Tokens in #58708). Nicht für zwei oder drei kleine Reads. <a class="cite" href="#q-r1_opencode_issue_58708_codemode_tokens">Quelle</a></p>
+  </li>
+  <li>
+    <p><strong>Kein MCP-Gateway zum Sparen.</strong> Code Mode nicht abschalten: Wer <code>execute</code> verbietet, bekommt alle MCP-Tools wieder mit voller Beschreibung in jeden Request. <a class="cite" href="#q-r3_opencode_v2_tools_docs">Quelle</a></p>
+  </li>
+  <li>
+    <p><strong>Codegraph nur gezielt.</strong> Für Code-Projekte mit Beziehungsfragen in einem eigenen Subagent, nicht global. Getestete Config aus dem Versuch (opencode 2.3.0, Pfad anpassen):</p>
+    <div class="codebox">
+      <button class="copybtn" type="button">Kopieren</button>
+<pre><code>{
+  "mcp": {
+    "servers": {
+      "serena": {
+        "type": "local",
+        "command": ["uvx", "--from", "git+https://github.com/oraios/serena", "serena",
+          "start-mcp-server", "--context", "ide-assistant", "--agent-interface", "tools",
+          "--project", "/pfad/zum/repo", "--enable-web-dashboard", "False",
+          "--open-web-dashboard", "False", "--log-level", "WARNING"]
+      }
+    }
+  }
+}</code></pre>
+    </div>
+    <p>Dazu der Hinweistext, sonst wird Serena nicht genutzt:</p>
+    <div class="codebox">
+      <button class="copybtn" type="button">Kopieren</button>
+<pre><code># Arbeitsweise: Codegraph Serena
+
+Dieses Projekt hat den MCP-Server `serena` (Codegraph über Language Server). Seine
+Werkzeuge erreichst du in Code Mode über `tools.serena.*`, u. a.
+`get_symbols_overview`, `find_symbol`, `find_referencing_symbols`, `search_for_pattern`.
+Nutze sie für Code-Verständnis zuerst (Name-Pfad-Notation `Klasse/methode`, Parameter
+`relative_path`); `grep`/`read` nur ergänzend. Rufe zu Beginn einmal
+`tools.serena.initial_instructions()` auf.</code></pre>
+    </div>
+    <p>Ohne Hinweis wird Serena nicht genutzt; mit Hinweis kostete es im Versuch mehr. Für dieses Projekt (HTML-Berichte) nicht nötig. <a class="cite" href="#q-r5_config_d">Config</a> <a class="cite" href="#q-r5_config_d_instructions">Hinweis</a></p>
+  </li>
+  <li>
+    <p><strong>Claude Code</strong> (falls genutzt): Tool Search ist schon an; Code Mode testweise mit <code>CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1</code> (ab v2.1.323, nur interaktives Terminal, native Installation). Bei kleinen Aufgaben kann es teurer sein. <a class="cite" href="#q-r1_claude_code_code_mode">Quelle</a></p>
+  </li>
+</ol>
+
+<h2 id="mythen">9. Mythen-Check</h2>
+
+<p>Sieben Behauptungen, je mit Messung und Urteil. Zum Aufklappen.</p>
+
+<details>
+  <summary>„Bündeln spart immer“</summary>
+  <p>Es spart nur bei unabhängigen Aufrufen. Die Ergebnisse bleiben im Kontext, und Mini-Aufgaben mit Code Mode werden teurer. <strong>Urteil:</strong> spart bei langen Lese-Ketten. <a class="cite" href="#q-r1_infoq_claude_code_mode">Quelle</a> <a class="cite" href="#q-r3_jahanzaib_codemode_measurement">Quelle</a></p>
+</details>
+
+<details>
+  <summary>„Ein Satz im Prompt reicht“</summary>
+  <p>Im eigenen Versuch B war die Schrittzahl genau wie in A (8,67), nur <code>execute</code> lief 4-mal statt 0-mal. <strong>Urteil:</strong> nicht verlässlich. <a class="cite" href="#q-_notizen_r5">Quelle</a></p>
+</details>
+
+<details>
+  <summary>„Gateways sparen 90 %“</summary>
+  <p>Herstellerzahlen beziehen sich auf Tool-Beschreibungen in Clients ohne eigene Suche. Unter opencode 2.0.32 waren es −26 % Input, unter Claude Code war ein Gateway 37 bis 46 % teurer. <strong>Urteil:</strong> hier nicht. <a class="cite" href="#q-r2_toolport_benchmark">Quelle</a></p>
+</details>
+
+<details>
+  <summary>„Code Mode ist immer billiger“</summary>
+  <p>Bei kleinen MCP-Servern kostet es 17 bis 35 % mehr Tokens <a class="cite" href="#q-r3_jahanzaib_codemode_measurement">Quelle</a>. Große APIs und verkettete Aufgaben werden stark günstiger. <strong>Urteil:</strong> kommt auf die Größe an.</p>
+</details>
+
+<details>
+  <summary>„Codegraph spart 40 % Tokens“</summary>
+  <p>Die Zahl kommt von Herstellern (Claude Context, GPT-4o-mini). Unabhängige Agenten-Messungen zeigen +44 % (Pipeshub) und +28 % (eigener Versuch). <strong>Urteil:</strong> im Alltag nein. <a class="cite" href="#q-r3_pipeshub_code_graph_benchmark">Quelle</a> <a class="cite" href="#q-r3_claude_context_eval_readme">Quelle</a></p>
+</details>
+
+<details>
+  <summary>„Semantische Suche ist Stand der Technik“</summary>
+  <p>Cursor hat sie entfernt, Claude Code nutzt grep. <strong>Urteil:</strong> grep ist der starke Standard. <a class="cite" href="#q-r3_cursor_semantic_docs">Quelle</a> <a class="cite" href="#q-r3_cherny_x_grep_rag">Quelle</a></p>
+</details>
+
+<details>
+  <summary>„Weniger Tool-Output-Tokens heißt weniger Kosten“</summary>
+  <p>Ein Paper senkte die Tool-Ausgaben um 38,4 %, die Rechnung stieg aber um 6,8 %. <strong>Urteil:</strong> Schritte und Cache zählen, nicht die sichtbare Ausgabe. <a class="cite" href="#q-r3_paper_token_not_cost">Quelle</a></p>
+</details>
+
+<h2 id="grenzen">10. Grenzen und offene Punkte</h2>
+
+<details>
+  <summary>Was diese Auswertung nicht zeigen kann</summary>
+  <ul>
+    <li>Die R4-Ersparnis ist eine Obergrenze: Es wird angenommen, dass Aufrufe in einer Kette unabhängig sind.</li>
+    <li>R5: n = 2 je Zelle, ein Repo, ein Modell, Deckeneffekt, kein Signifikanztest.</li>
+    <li>Fast alle Gateway- und Codegraph-Zahlen stammen von Anbietern; unabhängige Replikate fehlen.</li>
+    <li>Es gibt keine offizielle Zahl von Anthropic zum Claude-Code-Code-Mode.</li>
+    <li>Es gibt keinen offiziellen Grund, warum opencode v2 das <code>batch</code>-Tool entfernt hat.</li>
+    <li>Opus-Dollarbeträge sind Gedankenpreise zum API-Preis; im Abo zählen sie aufs Limit, nicht aufs Geld.</li>
+    <li>opencode v2 hat (Stand 24.11.2026) kein LSP-Tool; das kann sich ändern. <a class="cite" href="#q-r3_opencode_issue_44759_lsp_default">Quelle</a></li>
+  </ul>
+</details>
+
+<h2 id="quellen">11. Quellen</h2>
+
+<h3>Bündeln und Code Mode</h3>
+<ul class="sources">
+<li id="q-r1_anthropic_optimizing_cost"><a href="https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence">Optimizing for cost and intelligence</a> <span class="loc">Lokal: <a href="sources/r1_anthropic_optimizing_cost.md">sources/r1_anthropic_optimizing_cost.md</a></span></li>
+<li id="q-r1_anthropic_parallel_tool_use"><a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use">Parallel tool use</a> <span class="loc">Lokal: <a href="sources/r1_anthropic_parallel_tool_use.md">sources/r1_anthropic_parallel_tool_use.md</a></span></li>
+<li id="q-r1_agentic_design_quadratic"><a href="https://agentic-design.ai/field-notes/why-agent-bills-grow-quadratically">Why your agent bill grows quadratically</a> <span class="loc">Lokal: <a href="sources/r1_agentic_design_quadratic.md">sources/r1_agentic_design_quadratic.md</a></span></li>
+<li id="q-r1_exedev_quadratic"><a href="https://blog.exe.dev/expensively-quadratic">Expensively Quadratic: the LLM Agent Cost Curve</a> <span class="loc">Lokal: <a href="sources/r1_exedev_quadratic.md">sources/r1_exedev_quadratic.md</a></span></li>
+<li id="q-r1_deepseek_responses_api"><a href="https://api-docs.deepseek.com/guides/responses_api">Using the Responses API</a> <span class="loc">Lokal: <a href="sources/r1_deepseek_responses_api.md">sources/r1_deepseek_responses_api.md</a></span></li>
+<li id="q-r1_openrouter_parameters"><a href="https://openrouter.ai/docs/api/reference/parameters">Complete Guide to Request Configuration</a> <span class="loc">Lokal: <a href="sources/r1_openrouter_parameters.md">sources/r1_openrouter_parameters.md</a></span></li>
+<li id="q-r1_openrouter_model_deepseek_v41_flash"><a href="https://openrouter.ai/api/v1/models">OpenRouter Models API: deepseek-v4.1-flash-1017</a> <span class="loc">Lokal: <a href="sources/r1_openrouter_model_deepseek_v41_flash.json">sources/r1_openrouter_model_deepseek_v41_flash.json</a></span></li>
+<li id="q-r1_claude_code_agent_loop"><a href="https://code.claude.com/docs/en/agent-sdk/agent-loop">How the agent loop works</a> <span class="loc">Lokal: <a href="sources/r1_claude_code_agent_loop.md">sources/r1_claude_code_agent_loop.md</a></span></li>
+<li id="q-r1_claude_code_tools_reference"><a href="https://code.claude.com/docs/en/tools-reference">Tools reference</a> <span class="loc">Lokal: <a href="sources/r1_claude_code_tools_reference.md">sources/r1_claude_code_tools_reference.md</a></span></li>
+<li id="q-r1_claude_code_commands"><a href="https://code.claude.com/docs/en/commands">Commands</a> <span class="loc">Lokal: <a href="sources/r1_claude_code_commands.md">sources/r1_claude_code_commands.md</a></span></li>
+<li id="q-r1_claude_code_code_mode"><a href="https://code.claude.com/docs/en/code-mode">Run tool calls from code with Code Mode</a> <span class="loc">Lokal: <a href="sources/r1_claude_code_code_mode.md">sources/r1_claude_code_code_mode.md</a></span></li>
+<li id="q-r1_infoq_claude_code_mode"><a href="https://www.infoq.com/news/2026/11/claude-code-mode">Claude Code Adds Experimental Code Mode to Orchestrate Tool Calls with JavaScript</a> <span class="loc">Lokal: <a href="sources/r1_infoq_claude_code_mode.md">sources/r1_infoq_claude_code_mode.md</a></span></li>
+<li id="q-r1_anthropic_programmatic_tool_calling"><a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling">Programmatic tool calling</a> <span class="loc">Lokal: <a href="sources/r1_anthropic_programmatic_tool_calling.md">sources/r1_anthropic_programmatic_tool_calling.md</a></span></li>
+<li id="q-r1_anthropic_advanced_tool_use"><a href="https://www.anthropic.com/engineering/advanced-tool-use">Introducing advanced tool use for Claude · Anthropic</a> <span class="loc">Lokal: <a href="sources/r1_anthropic_advanced_tool_use.md">sources/r1_anthropic_advanced_tool_use.md</a></span></li>
+<li id="q-r1_anthropic_dynamic_filtering"><a href="https://claude.com/blog/improved-web-search-with-dynamic-filtering">Improved web search with dynamic filtering</a> <span class="loc">Lokal: <a href="sources/r1_anthropic_dynamic_filtering.md">sources/r1_anthropic_dynamic_filtering.md</a></span></li>
+<li id="q-r1_cloudflare_code_mode_2026"><a href="https://blog.cloudflare.com/code-mode-mcp">Code Mode: give agents an entire API in 1,000 tokens</a> <span class="loc">Lokal: <a href="sources/r1_cloudflare_code_mode_2026.md">sources/r1_cloudflare_code_mode_2026.md</a></span></li>
+<li id="q-r1_opencode_pr_2983"><a href="https://github.com/anomalyco/opencode/pull/2983">experimental batch tool</a> <span class="loc">Lokal: <a href="sources/r1_opencode_pr_2983.md">sources/r1_opencode_pr_2983.md</a></span></li>
+<li id="q-r1_opencode_batch_v1_source"><a href="https://github.com/hojiahao/opencode/blob/dev/packages/opencode/src/tool/batch.ts">opencode v1 batch.ts (Quellcode, Fork-Kopie)</a> <span class="loc">Lokal: <a href="sources/r1_opencode_batch_v1_source.md">sources/r1_opencode_batch_v1_source.md</a></span></li>
+<li id="q-r1_opencode_changelog_v1_1_26"><a href="https://opencode.ai/changelog/v1.1.26">Increase maximum batch tool limit from 10 to 25</a> <span class="loc">Lokal: <a href="sources/r1_opencode_changelog_v1_1_26.md">sources/r1_opencode_changelog_v1_1_26.md</a></span></li>
+<li id="q-r1_opencode_issue_4094"><a href="https://github.com/anomalyco/opencode/issues/4094">Bug: Permissioned tools in batched calls run out of order · Issue #4094 · anomalyco/opencode · GitHub</a> <span class="loc">Lokal: <a href="sources/r1_opencode_issue_4094.md">sources/r1_opencode_issue_4094.md</a></span></li>
+<li id="q-r1_opencode_pr_9275"><a href="https://github.com/anomalyco/opencode/pull/9275">tweak: experimental batch, up restrictive max batch tool from `10` to `25`</a> <span class="loc">Lokal: <a href="sources/r1_opencode_pr_9275.md">sources/r1_opencode_pr_9275.md</a></span></li>
+<li id="q-r1_opencode_docs_migrate_v1"><a href="https://opencode.ai/docs/migrate-v1/">Migrate from V1</a> <span class="loc">Lokal: <a href="sources/r1_opencode_docs_migrate_v1.md">sources/r1_opencode_docs_migrate_v1.md</a></span></li>
+<li id="q-r1_opencode_docs_tools_v2"><a href="https://opencode.ai/docs/tools">Tools</a> <span class="loc">Lokal: <a href="sources/r1_opencode_docs_tools_v2.md">sources/r1_opencode_docs_tools_v2.md</a></span></li>
+<li id="q-r1_opencode_issue_58708_codemode_tokens"><a href="https://github.com/anomalyco/opencode/issues/58708">[FEATURE]: Code Mode needs a token budget and a per-tool breakdown · Issue #58708 · anomalyco/opencode · GitHub</a> <span class="loc">Lokal: <a href="sources/r1_opencode_issue_58708_codemode_tokens.md">sources/r1_opencode_issue_58708_codemode_tokens.md</a></span></li>
+<li id="q-r1_wd_parallel_toolcalling_html"><a href="https://arxiv.org/html/2602.07359">W&amp;D: Scaling Parallel Tool Calling for Efficient Deep Research Agents</a> <span class="loc">Lokal: <a href="sources/r1_wd_parallel_toolcalling_html.md">sources/r1_wd_parallel_toolcalling_html.md</a></span></li>
+<li id="q-r1_llmcompiler_abs"><a href="https://arxiv.org/abs/2312.04511">[2312.04511] An LLM Compiler for Parallel Function Calling</a> <span class="loc">Lokal: <a href="sources/r1_llmcompiler_abs.md">sources/r1_llmcompiler_abs.md</a></span></li>
+<li id="q-r1_bitter_lesson_tool_calling_abs"><a href="https://arxiv.org/abs/2608.06370">[2608.06370] The Bitter Lesson of Tool Calling</a> <span class="loc">Lokal: <a href="sources/r1_bitter_lesson_tool_calling_abs.md">sources/r1_bitter_lesson_tool_calling_abs.md</a></span></li>
+<li id="q-r1_anthropic_multiagent_research"><a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">How we built our multi-agent research system · Anthropic</a> <span class="loc">Lokal: <a href="sources/r1_anthropic_multiagent_research.md">sources/r1_anthropic_multiagent_research.md</a></span></li>
+</ul>
+<h3>MCP-Gateways und Tool-Suche</h3>
+<ul class="sources">
+<li id="q-r2_opencode_codemode_source"><a href="https://github.com/anomalyco/opencode/blob/dev/packages/core/src/codemode/catalog.ts">OpenCode Code Mode – catalog.ts / instructions.ts</a> <span class="loc">Lokal: <a href="sources/r2_opencode_codemode_source.md">sources/r2_opencode_codemode_source.md</a></span></li>
+<li id="q-r2_opencode_v2_mcp_servers"><a href="https://opencode.ai/v2/docs/mcp-servers">MCP servers (OpenCode v2 docs)</a> <span class="loc">Lokal: <a href="sources/r2_opencode_v2_mcp_servers.md">sources/r2_opencode_v2_mcp_servers.md</a></span></li>
+<li id="q-r2_opencode_issue_58708"><a href="https://github.com/anomalyco/opencode/issues/58708">Code Mode needs a token budget and a per-tool breakdown (OpenCode #58708)</a> <span class="loc">Lokal: <a href="sources/r2_opencode_issue_58708.md">sources/r2_opencode_issue_58708.md</a></span></li>
+<li id="q-r2_claude_code_mcp_tool_search"><a href="https://code.claude.com/docs/en/mcp">Connect Claude Code to tools via MCP – Scale with MCP tool search</a> <span class="loc">Lokal: <a href="sources/r2_claude_code_mcp_tool_search.md">sources/r2_claude_code_mcp_tool_search.md</a></span></li>
+<li id="q-r2_claude_code_changelog"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">Claude Code CHANGELOG (Auszug)</a> <span class="loc">Lokal: <a href="sources/r2_claude_code_changelog.md">sources/r2_claude_code_changelog.md</a></span></li>
+<li id="q-r2_importstatic_mcp_token_overhead"><a href="https://importstatic.com/ai/mcp-tool-definition-token-overhead">MCP Token Overhead, Measured on Four Real Servers (ImportStatic)</a> <span class="loc">Lokal: <a href="sources/r2_importstatic_mcp_token_overhead.md">sources/r2_importstatic_mcp_token_overhead.md</a></span></li>
+<li id="q-r2_openrouter_mcp_vs_cli_vs_skills"><a href="https://openrouter.ai/blog/insights/mcp-vs-cli-vs-skills/">MCP vs CLI vs Skills: What Each Costs in Context (OpenRouter)</a> <span class="loc">Lokal: <a href="sources/r2_openrouter_mcp_vs_cli_vs_skills.md">sources/r2_openrouter_mcp_vs_cli_vs_skills.md</a></span></li>
+<li id="q-r2_context_cost_serena"><a href="https://github.com/athakur3/mcp-context-cost/blob/main/docs/servers/serena.md">serena · context cost (mcp-context-cost)</a> <span class="loc">Lokal: <a href="sources/r2_context_cost_serena.md">sources/r2_context_cost_serena.md</a></span></li>
+<li id="q-r2_doccraft_mcp_context_cost"><a href="https://doccraft.dev/blog/mcp-context-cost">MCP&#x27;s context problem, measured (Doccraft)</a> <span class="loc">Lokal: <a href="sources/r2_doccraft_mcp_context_cost.md">sources/r2_doccraft_mcp_context_cost.md</a></span></li>
+<li id="q-r2_anthropic_advanced_tool_use"><a href="https://www.anthropic.com/engineering/advanced-tool-use">Introducing advanced tool use on the Claude Developer Platform</a> <span class="loc">Lokal: <a href="sources/r2_anthropic_advanced_tool_use.md">sources/r2_anthropic_advanced_tool_use.md</a></span></li>
+<li id="q-r2_anthropic_code_execution"><a href="https://www.anthropic.com/engineering/code-execution-with-mcp">Code execution with MCP (Anthropic Engineering)</a> <span class="loc">Lokal: <a href="sources/r2_anthropic_code_execution.md">sources/r2_anthropic_code_execution.md</a></span></li>
+<li id="q-r2_bifrost_code_mode"><a href="https://www.getmaxim.ai/articles/cutting-mcp-token-costs-by-up-to-92-with-code-mode/">Cutting MCP Token Costs by Up to 92% with Code Mode (Bifrost)</a> <span class="loc">Lokal: <a href="sources/r2_bifrost_code_mode.md">sources/r2_bifrost_code_mode.md</a></span></li>
+<li id="q-r2_mcp_funnel_readme"><a href="https://www.npmjs.com/package/mcp-funnel">MCP Funnel README (npm)</a> <span class="loc">Lokal: <a href="sources/r2_mcp_funnel_readme.md">sources/r2_mcp_funnel_readme.md</a></span></li>
+<li id="q-r2_toolport_benchmark"><a href="https://github.com/tsouth89/toolport/blob/main/BENCHMARK.md">Toolport token benchmarks (inkl. OpenCode 1.x vs 2.x)</a> <span class="loc">Lokal: <a href="sources/r2_toolport_benchmark.md">sources/r2_toolport_benchmark.md</a></span></li>
+<li id="q-r2_mcp_spec_client_best_practices"><a href="https://modelcontextprotocol.io/docs/develop/clients/client-best-practices">Client Best Practices (MCP)</a> <span class="loc">Lokal: <a href="sources/r2_mcp_spec_client_best_practices.md">sources/r2_mcp_spec_client_best_practices.md</a></span></li>
+<li id="q-r2_docker_gateway_security"><a href="https://github.com/docker/mcp-gateway/blob/main/docs/security.md">MCP Gateway security (Docker)</a> <span class="loc">Lokal: <a href="sources/r2_docker_gateway_security.md">sources/r2_docker_gateway_security.md</a></span></li>
+<li id="q-r2_github_stats"><a href="https://api.github.com">GitHub-API-Statistik (Stars, letzter Push, Releases)</a> <span class="loc">Lokal: <a href="sources/r2_github_stats.md">sources/r2_github_stats.md</a></span></li>
+</ul>
+<h3>Codegraph und Suche</h3>
+<ul class="sources">
+<li id="q-r3_jahanzaib_codemode_measurement"><a href="https://www.jahanzaib.ai/blog/cloudflare-code-mode-mcp">Cloudflare Code Mode for MCP: How It Works, GitHub, Limits</a> <span class="loc">Lokal: <a href="sources/r3_jahanzaib_codemode_measurement.md">sources/r3_jahanzaib_codemode_measurement.md</a></span></li>
+<li id="q-r3_serena_zenn_benchmark"><a href="https://zenn.dev/minedia/articles/serena-mcp-token-benchmark">Serenaを入れてもClaude Codeのコンテキストは減らなかった。80h規模のリファクタリングで実測した 📉</a> <span class="loc">Lokal: <a href="sources/r3_serena_zenn_benchmark.md">sources/r3_serena_zenn_benchmark.md</a></span></li>
+<li id="q-r3_pipeshub_code_graph_benchmark"><a href="https://pipeshub.com/blog/code-graph-benchmark">Code Graph Benchmark: Accuracy, Performance &amp; Reliability</a> <span class="loc">Lokal: <a href="sources/r3_pipeshub_code_graph_benchmark.md">sources/r3_pipeshub_code_graph_benchmark.md</a></span></li>
+<li id="q-r3_astgrep_benchmark"><a href="https://onk3sh.github.io/post/rg-vs-ast-grep">Code search tool benchmark: rg, ast-grep, MCP, and what the data actually says</a> <span class="loc">Lokal: <a href="sources/r3_astgrep_benchmark.md">sources/r3_astgrep_benchmark.md</a></span></li>
+<li id="q-r3_claude_context_eval_readme"><a href="https://github.com/zilliztech/claude-context/blob/master/evaluation/README.md">claude-context/evaluation/README.md at master · zilliztech/claude-context · GitHub</a> <span class="loc">Lokal: <a href="sources/r3_claude_context_eval_readme.md">sources/r3_claude_context_eval_readme.md</a></span></li>
+<li id="q-r3_sourcegraph_codescalebench"><a href="https://sourcegraph.com/blog/codescalebench-testing-coding-agents-on-large-codebases-and-multi-repo-software-engineering-tasks">CodeScaleBench: Testing coding agents on large codebases and multi-repo software engineering tasks</a> <span class="loc">Lokal: <a href="sources/r3_sourcegraph_codescalebench.md">sources/r3_sourcegraph_codescalebench.md</a></span></li>
+<li id="q-r3_paper_navigation_paradox"><a href="https://arxiv.org/html/2602.20048">The Navigation Paradox in Large-Context Agentic Coding: Graph-Structured Dependency Navigation Outperforms Retrieval in Architecture-Heavy Tasks</a> <span class="loc">Lokal: <a href="sources/r3_paper_navigation_paradox.md">sources/r3_paper_navigation_paradox.md</a></span></li>
+<li id="q-r3_paper_small_agents_code_graphs"><a href="https://arxiv.org/html/2610.33958v1">How Do Small Coding Agents Use Code Graphs and Embeddings? A depth-stratified study of issue localization on SWE-bench Verified, with tool ablations, a 0.6B–32B scale curve, downstream repair, and linear probes of the repository graph</a> <span class="loc">Lokal: <a href="sources/r3_paper_small_agents_code_graphs.md">sources/r3_paper_small_agents_code_graphs.md</a></span></li>
+<li id="q-r3_cursor_semsearch_blog"><a href="https://cursor.com/blog/semsearch">Improving agent with semantic search</a> <span class="loc">Lokal: <a href="sources/r3_cursor_semsearch_blog.md">sources/r3_cursor_semsearch_blog.md</a></span></li>
+<li id="q-r3_cursor_semantic_docs"><a href="https://cursor.com/docs/context/semantic-search">Search</a> <span class="loc">Lokal: <a href="sources/r3_cursor_semantic_docs.md">sources/r3_cursor_semantic_docs.md</a></span></li>
+<li id="q-r3_nardit_agentic_vs_rag"><a href="https://max.nardit.com/articles/agentic-rag-vs-agentic-search-coding-agents">Agentic RAG vs agentic search: grep vs vector index for coding agents (Claude Code, Cursor Instant Grep)</a> <span class="loc">Lokal: <a href="sources/r3_nardit_agentic_vs_rag.md">sources/r3_nardit_agentic_vs_rag.md</a></span></li>
+<li id="q-r3_paper_token_not_cost"><a href="https://arxiv.org/html/2607.12161v5">Token Reduction Is Not Cost Reduction:An Empirical Study of End-to-End Efficiencyin API-Based Coding Agents</a> <span class="loc">Lokal: <a href="sources/r3_paper_token_not_cost.md">sources/r3_paper_token_not_cost.md</a></span></li>
+<li id="q-r3_cherny_x_grep_rag"><a href="https://x.com/bcherny/status/2017824286489383315">Boris Cherny auf X zu grep vs. RAG</a> <span class="loc">Lokal: <a href="sources/r3_cherny_x_grep_rag.md">sources/r3_cherny_x_grep_rag.md</a></span></li>
+<li id="q-r3_officechai_cherny_agentic"><a href="https://officechai.com/ai/claude-researcher-explains-how-agentic-search-performed-better-than-rag-for-code-generation">Claude Researcher Explains How Agentic Search Performed Better Than RAG For Code Generation</a> <span class="loc">Lokal: <a href="sources/r3_officechai_cherny_agentic.md">sources/r3_officechai_cherny_agentic.md</a></span></li>
+<li id="q-r3_opencode_v2_tools_docs"><a href="https://opencode.ai/v2/docs/tools">Tools</a> <span class="loc">Lokal: <a href="sources/r3_opencode_v2_tools_docs.md">sources/r3_opencode_v2_tools_docs.md</a></span></li>
+<li id="q-r3_opencode_issue_44759_lsp_default"><a href="https://github.com/anomalyco/opencode/issues/44759">[FEATURE]: Enable lsp tool by default · Issue #44759 · anomalyco/opencode · GitHub</a> <span class="loc">Lokal: <a href="sources/r3_opencode_issue_44759_lsp_default.md">sources/r3_opencode_issue_44759_lsp_default.md</a></span></li>
+</ul>
+<h3>Eigene Messung</h3>
+<ul class="sources">
+<li id="q-_notizen_r2"><span>Notizen zur Recherche R2: MCP-Gateways und Tool-Suche (lokal erstellt am 24.11.2026)</span> <span class="loc">Lokal: <a href="sources/_notizen_r2.md">sources/_notizen_r2.md</a></span></li>
+<li id="q-_notizen_r3"><span>Notizen zur Recherche R3: Codegraph, LSP, semantische Suche (lokal erstellt am 24.11.2026)</span> <span class="loc">Lokal: <a href="sources/_notizen_r3.md">sources/_notizen_r3.md</a></span></li>
+<li id="q-_notizen_r4"><span>Notizen zur Auswertung R4: Bündeln in der opencode-Datenbank (lokal erstellt am 24.11.2026)</span> <span class="loc">Lokal: <a href="sources/_notizen_r4.md">sources/_notizen_r4.md</a></span></li>
+<li id="q-r4_analyse"><span>Rohauswertung der opencode-Datenbank (JSON, lokal erstellt am 24.11.2026)</span> <span class="loc">Lokal: <a href="sources/r4_analyse.json">sources/r4_analyse.json</a></span></li>
+<li id="q-r4_analyse_py"><span>Auswertungsskript R4 (lokal erstellt am 24.11.2026)</span> <span class="loc">Lokal: <a href="sources/r4_analyse.py">sources/r4_analyse.py</a></span></li>
+<li id="q-_notizen_r5"><span>Notizen zum Versuch R5: normal, bündeln, Serena (lokal erstellt am 24.11.2026)</span> <span class="loc">Lokal: <a href="sources/_notizen_r5.md">sources/_notizen_r5.md</a></span></li>
+<li id="q-r5_experiment"><span>Rohdaten des Versuchs, alle 24 Läufe (JSON, lokal erstellt am 24.11.2026)</span> <span class="loc">Lokal: <a href="sources/r5_experiment.json">sources/r5_experiment.json</a></span></li>
+<li id="q-r5_scores"><span>Bewertung der 24 Antworten, 0 bis 2 Punkte (JSON, lokal erstellt am 24.11.2026)</span> <span class="loc">Lokal: <a href="sources/r5_scores.json">sources/r5_scores.json</a></span></li>
+<li id="q-r5_antworten"><span>Antworten der 24 Läufe im Wortlaut (lokal erstellt am 24.11.2026)</span> <span class="loc">Lokal: <a href="sources/r5_antworten.md">sources/r5_antworten.md</a></span></li>
+<li id="q-r5_config_b_instructions"><span>Bündel-Anweisung für Variante B (lokal erstellt am 24.11.2026)</span> <span class="loc">Lokal: <a href="sources/r5_config_b_instructions.md">sources/r5_config_b_instructions.md</a></span></li>
+<li id="q-r5_config_d"><span>Projekt-Config für Variante D mit Serena (lokal erstellt am 24.11.2026)</span> <span class="loc">Lokal: <a href="sources/r5_config_d.json">sources/r5_config_d.json</a></span></li>
+<li id="q-r5_config_d_instructions"><span>Serena-Hinweis für Variante D (lokal erstellt am 24.11.2026)</span> <span class="loc">Lokal: <a href="sources/r5_config_d_instructions.md">sources/r5_config_d_instructions.md</a></span></li>
+</ul>
+
+<p class="small">Alle Zahlen im Text stehen in den genannten Quellen oder in den lokalen Auswertungen. Preise und Endpunkte: Stand 23.11.2026. Die Datenbank-Auswertung und der Versuch wurden am 24.11.2026 lokal erstellt.</p>
+
+<p class="foot">Recherche am 24.11.2026 mit Subagents (DeepSeek V4.1 Flash 1017), eigener Auswertung der opencode-Datenbank und einem eigenen Versuch mit 24 Läufen. Preise Stand 23.11.2026. <a href="../../index.html">← Zur Übersicht</a></p>
+
+</div>
+
+<script type="application/json" id="data">{"r4":{"stand":"24.11.2026 15:56, Projekt Deep-Research_Opus","kennzahlen":{"schritte":5659,"sessions":149,"input":12882984,"cache_read":578915241,"cache_write":3814157,"processed_input":595612382,"toolaufrufe":6313,"tool_zeichen":26882727},"kennzahlen_alle_projekte":{"schritte":15953,"sessions":262,"input":32000012,"cache_read":2035945541,"cache_write":14694542,"processed_input":2082640095,"toolaufrufe":17993,"tool_zeichen":58660073},"tools_pro_schritt":{"gesamt":{"schritte":5659,"verteilung":{"0":{"n":277,"anteil":0.0489},"1":{"n":4610,"anteil":0.8146},"2":{"n":688,"anteil":0.1216},"3":{"n":50,"anteil":0.0088},"4+":{"n":34,"anteil":0.006}},"anteil_genau_1_aufruf":0.8146,"anteil_0_aufrufe":0.0489,"anteil_parallel_ab2":0.1364,"anteil_parallel_ab2_unter_toolschritten":0.1434,"max_aufrufe_pro_schritt":12,"aufrufe_summe":6313,"aufrufe_je_toolschritt":1.17},"main_opus":{"schritte":1031,"anteil_genau_1_aufruf":0.7391,"anteil_parallel_ab2":0.1358,"aufrufe_je_toolschritt":1.26,"max_aufrufe_pro_schritt":12},"sub_deepseek":{"schritte":4601,"anteil_genau_1_aufruf":0.8339,"anteil_parallel_ab2":0.1354,"aufrufe_je_toolschritt":1.15,"max_aufrufe_pro_schritt":5}},"execute":{"execute_aufrufe":251,"anteil_aller_schritte":0.0444,"anteil_aller_toolaufrufe":0.0398,"unteraufrufe_summe":535,"unteraufrufe_je_execute":2.13,"verteilung_unteraufrufe":{"0":7,"1":135,"2":40,"3":28,"4":20,"5":6,"6":2,"7":3,"8":7,"10":1,"12":1,"15":1},"execute_mit_ab2_unteraufrufen":109,"anteil_mit_ab2":0.4343,"unteraufruf_tools_top":[["ketch.search",207],["ketch.scrape",138],["openchamber_web",100],["search",67],["openchamber",16],["ketch.code",5],["openchamber_memory",1],["fetch",1]]},"ketten":{"nur_lesend":{"definition":"aufeinanderfolgende Schritte ohne Text, Tools ⊆ {read,grep,glob} (gefahrlos bündelbar)","ketten":140,"schritte_in_ketten":521,"anteil_aller_schritte":0.0921,"laenge":{"n":140,"median":3.0,"mean":3.7,"p90":7.1,"max":11,"sum":521},"verteilung_laenge":{"2":65,"3":27,"4":10,"5":7,"6":8,"7":9,"8":7,"9":3,"10":3},"ketten_arten":{"nur_lesen":140},"buendel_3":{"entfallene_schritte":306,"anteil_schritte_entfaellt":0.0541,"ctx_tokens_gespart":34606412,"anteil_ctx_gespart":0.0581,"kosten_usd_gespart":0.6318,"kosten_usd_wenn_alles_deepseek":0.3783},"buendel_5":{"entfallene_schritte":349,"anteil_schritte_entfaellt":0.0617,"ctx_tokens_gespart":39178828,"anteil_ctx_gespart":0.0658,"kosten_usd_gespart":0.6923,"kosten_usd_wenn_alles_deepseek":0.4285}},"nur_read_grep_glob_shell":{"definition":"aufeinanderfolgende Schritte ohne Text, Tools ⊆ {read,grep,glob,shell}","ketten":578,"schritte_in_ketten":2824,"anteil_aller_schritte":0.499,"laenge":{"n":578,"median":3.0,"mean":4.9,"p90":9.0,"max":86,"sum":2824},"verteilung_laenge":{"2":206,"3":112,"4":68,"5":40,"6":39,"7":28,"8":20,"9":15,"10":11},"ketten_arten":{"nur_shell":328,"gemischt":213,"nur_lesen":37},"buendel_3":{"entfallene_schritte":1711,"anteil_schritte_entfaellt":0.3024,"ctx_tokens_gespart":184020369,"anteil_ctx_gespart":0.309,"kosten_usd_gespart":6.5587,"kosten_usd_wenn_alles_deepseek":1.8518},"buendel_5":{"entfallene_schritte":2004,"anteil_schritte_entfaellt":0.3541,"ctx_tokens_gespart":215203071,"anteil_ctx_gespart":0.3613,"kosten_usd_gespart":7.6242,"kosten_usd_wenn_alles_deepseek":2.1725}},"alle_tool_only":{"definition":"aufeinanderfolgende Schritte ohne Text, beliebige Tools","ketten":631,"schritte_in_ketten":3634,"anteil_aller_schritte":0.6422,"laenge":{"n":631,"median":4,"mean":5.8,"p90":10.0,"max":93,"sum":3634},"verteilung_laenge":{"2":190,"3":120,"4":80,"5":51,"6":33,"7":32,"8":23,"9":26,"10":20},"ketten_arten":{"gemischt":390,"nur_shell":192,"nur_lesen":27,"nur_edit":9,"nur_write":6,"nur_execute":3,"nur_subagent":3,"nur_webfetch":1},"buendel_3":{"entfallene_schritte":2229,"anteil_schritte_entfaellt":0.3939,"ctx_tokens_gespart":237415838,"anteil_ctx_gespart":0.3986,"kosten_usd_gespart":9.1204,"kosten_usd_wenn_alles_deepseek":2.3901},"buendel_5":{"entfallene_schritte":2646,"anteil_schritte_entfaellt":0.4676,"ctx_tokens_gespart":282472549,"anteil_ctx_gespart":0.4743,"kosten_usd_gespart":10.833,"kosten_usd_wenn_alles_deepseek":2.8407}}},"ketten_alle_projekte_rggs_3er_anteil_ctx":0.3373,"tool_rangliste":[{"tool":"shell","calls":3620,"anteil_calls":0.5734,"chars_sum":8270111,"chars_median":801},{"tool":"read","calls":1416,"anteil_calls":0.2243,"chars_sum":16931002,"chars_median":3523},{"tool":"edit","calls":485,"anteil_calls":0.0768,"chars_sum":37823,"chars_median":86},{"tool":"write","calls":332,"anteil_calls":0.0526,"chars_sum":29468,"chars_median":97},{"tool":"execute","calls":251,"anteil_calls":0.0398,"chars_sum":1394382,"chars_median":3048},{"tool":"subagent","calls":145,"anteil_calls":0.023,"chars_sum":69165,"chars_median":477},{"tool":"experimental_image_generate","calls":25,"anteil_calls":0.004,"chars_sum":15119,"chars_median":605},{"tool":"grep","calls":22,"anteil_calls":0.0035,"chars_sum":113457,"chars_median":1187},{"tool":"glob","calls":4,"anteil_calls":0.0006,"chars_sum":2028,"chars_median":351},{"tool":"rebuild_shell","calls":4,"anteil_calls":0.0006,"chars_sum":0,"chars_median":0}],"muster":{"grep_aufrufe":22,"grep_dann_read_im_naechsten_schritt":10,"quote_grep_mit_read_folge":0.4545,"grep_glob_aufrufe":26,"grep_glob_dann_read":12,"quote_suche_mit_read_folge":0.4615,"read_gefolgt_von_read":683,"read_aufrufe":1416,"read_dann_shell_im_naechsten_schritt":385,"shell_aufrufe":3620,"shell_dann_read_im_naechsten_schritt":433,"quote_shell_mit_read_folge":0.1196,"fehlerhafte_toolaufrufe":18,"fehler_mit_gleichem_tool_danach":7,"quote_fehler_wiederholt":0.3889,"sessions_mit_fehlerwiederholung":6},"kosten_verbucht_usd":{"project":{"sessions":149,"usd":7.408},"all":{"sessions":262,"usd":19.132}}},"r5":{"meta":{"opencode":"2.3.0","model":"openrouter/deepseek/deepseek-v4.1-flash-1017","repo":"https://github.com/encode/httpx @ 7cff5f79bc78649bbcd3fd9aa7a74c86e0f63016","db":"/tmp/opencode/exp/db/opencode.db","generated":"2026-11-24T16:43:14","n_runs":24},"varianten":{"A":{"runs":6,"mittel":{"steps":8.67,"tool_calls":13.17,"baseline_ctx":23566.0,"processed_input":260440.5,"output_plus_reasoning":2765.67,"cost":0.004306,"runtime_s":65.67,"score":2.0},"median":{"steps":7.0,"tool_calls":8.5,"baseline_ctx":23565.0,"processed_input":180263.5,"output_plus_reasoning":1426.5,"cost":0.00266,"runtime_s":14.0,"score":2.0},"tools":{"grep":10,"read":11,"shell":52,"glob":4,"webfetch":2}},"B":{"runs":6,"mittel":{"steps":8.67,"tool_calls":13.5,"baseline_ctx":23700.0,"processed_input":243998.0,"output_plus_reasoning":2533.67,"cost":0.003991,"runtime_s":47.72,"score":2.0},"median":{"steps":8.5,"tool_calls":11.5,"baseline_ctx":23699.0,"processed_input":226080.0,"output_plus_reasoning":1995.5,"cost":0.003416,"runtime_s":27.85,"score":2.0},"tools":{"grep":12,"execute":4,"execute:ketch.code":2,"read":16,"shell":46,"glob":1}},"C":{"runs":6,"mittel":{"steps":7.33,"tool_calls":10.83,"baseline_ctx":23656.0,"processed_input":222632.17,"output_plus_reasoning":2822.67,"cost":0.003969,"runtime_s":49.22,"score":2.0},"median":{"steps":5.5,"tool_calls":9.5,"baseline_ctx":23672.0,"processed_input":151187.5,"output_plus_reasoning":1819.0,"cost":0.002602,"runtime_s":24.65,"score":2.0},"tools":{"shell":22,"grep":13,"read":25,"execute":4,"glob":1}},"D":{"runs":6,"mittel":{"steps":11.33,"tool_calls":18.17,"baseline_ctx":19253.0,"processed_input":334054.33,"output_plus_reasoning":3259.5,"cost":0.005246,"runtime_s":81.18,"score":2.0},"median":{"steps":9.5,"tool_calls":17.5,"baseline_ctx":23833.0,"processed_input":292167.5,"output_plus_reasoning":2113.5,"cost":0.004272,"runtime_s":32.6,"score":2.0},"tools":{"execute":21,"grep":8,"execute:serena.initial_instructions":5,"shell":40,"execute:serena.find_symbol":16,"execute:ketch.code":2,"execute:serena.get_symbols_overview":3,"read":9,"glob":1,"execute:serena.search_for_pattern":4}}},"laeufe":[{"variant":"A","task":1,"rep":1,"steps":5,"tool_calls":6,"tools":{"grep":3,"read":2,"shell":1},"baseline_ctx":23565,"processed_input":126636,"output_plus_reasoning":1463,"cost":0.002655,"runtime_s":14.2,"score":2},{"variant":"A","task":1,"rep":2,"steps":6,"tool_calls":5,"tools":{"shell":5},"baseline_ctx":23565,"processed_input":154934,"output_plus_reasoning":995,"cost":0.002131,"runtime_s":13.8,"score":2},{"variant":"A","task":2,"rep":1,"steps":12,"tool_calls":22,"tools":{"shell":20,"glob":1,"read":1},"baseline_ctx":23570,"processed_input":360374,"output_plus_reasoning":5853,"cost":0.006948,"runtime_s":168.2,"score":2},{"variant":"A","task":2,"rep":2,"steps":15,"tool_calls":29,"tools":{"shell":19,"read":4,"glob":2,"grep":2,"webfetch":2},"baseline_ctx":23570,"processed_input":562133,"output_plus_reasoning":5869,"cost":0.009124,"runtime_s":173.2,"score":2},{"variant":"A","task":3,"rep":1,"steps":8,"tool_calls":7,"tools":{"shell":6,"read":1},"baseline_ctx":23563,"processed_input":205593,"output_plus_reasoning":1024,"cost":0.002665,"runtime_s":11.9,"score":2},{"variant":"A","task":3,"rep":2,"steps":6,"tool_calls":10,"tools":{"grep":5,"read":3,"shell":1,"glob":1},"baseline_ctx":23563,"processed_input":152973,"output_plus_reasoning":1390,"cost":0.002312,"runtime_s":12.7,"score":2},{"variant":"B","task":1,"rep":1,"steps":5,"tool_calls":10,"tools":{"grep":3,"execute":2,"execute:ketch.code":2,"read":2,"shell":1},"baseline_ctx":23699,"processed_input":126582,"output_plus_reasoning":1280,"cost":0.002571,"runtime_s":26.3,"score":2},{"variant":"B","task":1,"rep":2,"steps":4,"tool_calls":6,"tools":{"shell":5,"grep":1},"baseline_ctx":23699,"processed_input":104043,"output_plus_reasoning":917,"cost":0.001608,"runtime_s":7.9,"score":2},{"variant":"B","task":2,"rep":1,"steps":16,"tool_calls":26,"tools":{"shell":24,"execute":2},"baseline_ctx":23704,"processed_input":470853,"output_plus_reasoning":4985,"cost":0.007456,"runtime_s":164.7,"score":2},{"variant":"B","task":2,"rep":2,"steps":10,"tool_calls":19,"tools":{"read":9,"shell":7,"grep":2,"glob":1},"baseline_ctx":23704,"processed_input":310350,"output_plus_reasoning":4029,"cost":0.005479,"runtime_s":38.9,"score":2},{"variant":"B","task":3,"rep":1,"steps":8,"tool_calls":7,"tools":{"shell":7},"baseline_ctx":23697,"processed_input":204327,"output_plus_reasoning":1794,"cost":0.003038,"runtime_s":19.1,"score":2},{"variant":"B","task":3,"rep":2,"steps":9,"tool_calls":13,"tools":{"grep":6,"read":5,"shell":2},"baseline_ctx":23697,"processed_input":247833,"output_plus_reasoning":2197,"cost":0.003794,"runtime_s":29.4,"score":2},{"variant":"C","task":1,"rep":1,"steps":5,"tool_calls":4,"tools":{"shell":4},"baseline_ctx":23565,"processed_input":129320,"output_plus_reasoning":934,"cost":0.002387,"runtime_s":13.6,"score":2},{"variant":"C","task":1,"rep":2,"steps":4,"tool_calls":5,"tools":{"shell":3,"grep":2},"baseline_ctx":23673,"processed_input":107304,"output_plus_reasoning":1015,"cost":0.001778,"runtime_s":12.3,"score":2},{"variant":"C","task":2,"rep":1,"steps":12,"tool_calls":19,"tools":{"read":6,"shell":5,"execute":4,"grep":3,"glob":1},"baseline_ctx":23678,"processed_input":438603,"output_plus_reasoning":6718,"cost":0.008216,"runtime_s":174.9,"score":2},{"variant":"C","task":2,"rep":2,"steps":12,"tool_calls":18,"tools":{"read":9,"shell":8,"grep":1},"baseline_ctx":23678,"processed_input":358191,"output_plus_reasoning":4631,"cost":0.006228,"runtime_s":45.2,"score":2},{"variant":"C","task":3,"rep":1,"steps":6,"tool_calls":10,"tools":{"read":5,"grep":4,"shell":1},"baseline_ctx":23671,"processed_input":166352,"output_plus_reasoning":1567,"cost":0.002625,"runtime_s":22.9,"score":2},{"variant":"C","task":3,"rep":2,"steps":5,"tool_calls":9,"tools":{"read":5,"grep":3,"shell":1},"baseline_ctx":23671,"processed_input":136023,"output_plus_reasoning":2071,"cost":0.002578,"runtime_s":26.4,"score":2},{"variant":"D","task":1,"rep":1,"steps":6,"tool_calls":9,"tools":{"execute":3,"grep":2,"execute:serena.initial_instructions":1,"shell":1,"execute:serena.find_symbol":1,"execute:ketch.code":1},"baseline_ctx":10086,"processed_input":146148,"output_plus_reasoning":1382,"cost":0.002792,"runtime_s":19.5,"score":2},{"variant":"D","task":1,"rep":2,"steps":5,"tool_calls":7,"tools":{"shell":5,"execute":1,"execute:serena.initial_instructions":1},"baseline_ctx":23835,"processed_input":133871,"output_plus_reasoning":1454,"cost":0.002188,"runtime_s":19.7,"score":2},{"variant":"D","task":2,"rep":1,"steps":21,"tool_calls":31,"tools":{"shell":12,"execute":8,"execute:serena.find_symbol":8,"execute:serena.get_symbols_overview":2,"execute:serena.initial_instructions":1},"baseline_ctx":10091,"processed_input":656228,"output_plus_reasoning":5779,"cost":0.009696,"runtime_s":188.6,"score":2},{"variant":"D","task":2,"rep":2,"steps":13,"tool_calls":26,"tools":{"shell":15,"read":4,"execute":2,"grep":2,"execute:serena.initial_instructions":1,"glob":1,"execute:ketch.code":1},"baseline_ctx":23840,"processed_input":483744,"output_plus_reasoning":6929,"cost":0.008782,"runtime_s":194.1,"score":2},{"variant":"D","task":3,"rep":1,"steps":17,"tool_calls":31,"tools":{"execute":7,"execute:serena.find_symbol":7,"read":5,"execute:serena.search_for_pattern":4,"grep":4,"shell":2,"execute:serena.initial_instructions":1,"execute:serena.get_symbols_overview":1},"baseline_ctx":23833,"processed_input":428669,"output_plus_reasoning":2773,"cost":0.005751,"runtime_s":43.0,"score":2},{"variant":"D","task":3,"rep":2,"steps":6,"tool_calls":5,"tools":{"shell":5},"baseline_ctx":23833,"processed_input":155666,"output_plus_reasoning":1240,"cost":0.002264,"runtime_s":22.2,"score":2}],"aufgaben":{"1":"Wer ruft httpx Client.send direkt auf? (Datei:Zeile)","2":"Ablauf httpx.get() bis zum Socket","3":"Wo wird der Timeout gelesen, welche Defaults?"}}}</script>
+
+<script>
+(function(){
+'use strict';
+var DATA;
+try { DATA = JSON.parse(document.getElementById('data').textContent); } catch (e) { return; }
+
+var NS = 'http://www.w3.org/2000/svg';
+var nf = new Intl.NumberFormat('de-DE');
+function el(id){ return document.getElementById(id); }
+function int(v){ return nf.format(Math.round(v)); }
+function de(v,d){ return Number(v).toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function pct(v,d){ return de(v*100,d===undefined?1:d) + ' %'; }
+function usd(v,d){ return de(v,d===undefined?2:d) + ' $'; }
+
+function clear(svg){ while (svg.firstChild) svg.removeChild(svg.firstChild); }
+function add(svg, tag, attrs, text){
+  var n = document.createElementNS(NS, tag);
+  if (attrs) { for (var k in attrs) { if (attrs.hasOwnProperty(k)) n.setAttribute(k, attrs[k]); } }
+  if (text !== undefined && text !== null) n.textContent = text;
+  svg.appendChild(n);
+  return n;
+}
+function svgText(svg, x, y, s, cls, anchor){
+  var t = add(svg, 'text', {x:x, y:y, 'class':cls||'lbl'});
+  if (anchor) t.setAttribute('text-anchor', anchor);
+  t.textContent = s;
+  return t;
+}
+
+/* ---------- 1. Schritt-Animation ---------- */
+var A = {i:12, timer:null, G:23600, Z:3670};
+
+function drawA(){
+  var svg = el('aChart');
+  if (!svg) return;
+  clear(svg);
+  var G = A.G, Z = A.Z;
+  var maxV = G + 12*Z;
+  var topBase = 160, topH = 100, topUnit = topH/maxV;
+  var botBase = 322, botH = 100, botUnit = botH/maxV;
+
+  svgText(svg, 8, 20, 'einzeln: 12 Schritte mit je 1 Tool-Aufruf', 'strong');
+  svgText(svg, 8, 205, 'gebündelt: 4 Schritte mit je 3 Tool-Aufrufen', 'strong');
+
+  var i, k;
+  for (i = 1; i <= 12; i++){
+    var x = 30 + (i-1)*54;
+    var g = add(svg, 'g', {opacity: (i <= A.i ? 1 : 0.15)});
+    var hBase = G*topUnit, hOld = (i-1)*Z*topUnit, hNew = Z*topUnit;
+    var y = topBase;
+    y -= hBase; add(g, 'rect', {x:x, y:y, width:42, height:hBase, style:'fill:var(--c-base)'});
+    y -= hOld; add(g, 'rect', {x:x, y:y, width:42, height:hOld, style:'fill:var(--c-old)'});
+    y -= hNew; add(g, 'rect', {x:x, y:y, width:42, height:hNew, style:'fill:var(--c-new)'});
+    var t = svgText(svg, x+21, topBase+15, String(i), 'lbl', 'middle');
+    if (i === A.i) t.setAttribute('class', 'strong');
+    if (i === A.i) add(svg, 'rect', {x:x-1, y:topBase-(hBase+hOld+hNew)-1, width:44, height:hBase+hOld+hNew+2, fill:'none', stroke:'var(--ink)', 'stroke-width':1});
+  }
+
+  for (k = 1; k <= 4; k++){
+    var bx = 40 + (k-1)*156;
+    var active = k <= Math.ceil(A.i/3);
+    var bg = add(svg, 'g', {opacity: (active ? 1 : 0.15)});
+    var bBase = G*botUnit, bOld = 3*(k-1)*Z*botUnit, bNew = 3*Z*botUnit;
+    var by = botBase;
+    by -= bBase; add(bg, 'rect', {x:bx, y:by, width:124, height:bBase, style:'fill:var(--c-base)'});
+    by -= bOld; add(bg, 'rect', {x:bx, y:by, width:124, height:bOld, style:'fill:var(--c-old)'});
+    by -= bNew; add(bg, 'rect', {x:bx, y:by, width:124, height:bNew, style:'fill:var(--c-new)'});
+    svgText(svg, bx+62, botBase+15, String(k), 'lbl', 'middle');
+    if (active) add(svg, 'rect', {x:bx-1, y:botBase-(bBase+bOld+bNew)-1, width:126, height:bBase+bOld+bNew+2, fill:'none', stroke:'var(--ink)', 'stroke-width':1});
+  }
+
+  add(svg, 'line', {x1:20, y1:topBase, x2:700, y2:topBase, 'class':'ax'});
+  add(svg, 'line', {x1:20, y1:botBase, x2:700, y2:botBase, 'class':'ax'});
+
+  var top = 0, bot = 0;
+  for (k = 1; k <= A.i; k++) top += G + (k-1)*Z;
+  var bcount = Math.ceil(A.i/3);
+  for (k = 1; k <= bcount; k++) bot += G + 3*(k-1)*Z;
+
+  el('aTop').textContent = int(top);
+  el('aBot').textContent = int(bot);
+  el('aDiff').textContent = de((1 - bot/top)*100, 1) + ' % weniger';
+  var sl = el('aStep');
+  if (sl && Number(sl.value) !== A.i) sl.value = String(A.i);
+  var out = el('aStepOut');
+  if (out) out.textContent = String(A.i);
+}
+
+function stopA(){
+  if (A.timer){ clearInterval(A.timer); A.timer = null; }
+  var b = el('aPlay');
+  if (b) b.textContent = 'Abspielen';
+}
+
+if (el('aChart')){
+  drawA();
+  el('aStep').addEventListener('input', function(){
+    stopA();
+    A.i = Number(this.value);
+    drawA();
+  });
+  el('aPlay').addEventListener('click', function(){
+    if (A.timer){ stopA(); return; }
+    if (A.i >= 12) A.i = 0;
+    this.textContent = 'Pause';
+    A.timer = setInterval(function(){
+      A.i++;
+      drawA();
+      if (A.i >= 12){ stopA(); }
+    }, 750);
+  });
+}
+
+/* ---------- 3. Rechner ---------- */
+var PRICE = {dsIn:0.041, dsCache:0.0094, dsOut:0.47, opIn:5, opCache:0.20, opOut:20};
+var O_STEP = 1214;
+
+function calcState(){
+  return {
+    G: Number(el('cG').value),
+    z: Number(el('cZ').value),
+    n: Number(el('cN').value),
+    p: Number(el('cP').value),
+    b: Number(el('cB').value),
+    extra: Number(el('cX').value)
+  };
+}
+
+function calcNumbers(s){
+  var nb = Math.round(s.n * s.p / 100);
+  var bundles = Math.ceil(nb / s.b);
+  var m = (s.n - nb) + bundles;
+  var read = m*s.G + s.z*s.n*(m-1)/2;
+  var read0 = s.n*s.G + s.z*s.n*(s.n-1)/2;
+  var newIn = s.G + s.n*s.z;
+  var cache = Math.max(0, read - newIn);
+  var cache0 = Math.max(0, read0 - newIn);
+  var out = m*O_STEP + bundles*s.extra;
+  var out0 = s.n*O_STEP;
+  var ds = (newIn*PRICE.dsIn + cache*PRICE.dsCache + out*PRICE.dsOut)/1e6;
+  var ds0 = (newIn*PRICE.dsIn + cache0*PRICE.dsCache + out0*PRICE.dsOut)/1e6;
+  var op = (newIn*PRICE.opIn + cache*PRICE.opCache + out*PRICE.opOut)/1e6;
+  var op0 = (newIn*PRICE.opIn + cache0*PRICE.opCache + out0*PRICE.opOut)/1e6;
+  return {nb:nb, bundles:bundles, m:m, read:read, read0:read0, newIn:newIn, cache:cache, cache0:cache0, out:out, out0:out0, ds:ds, ds0:ds0, op:op, op0:op0};
+}
+
+function drawCalcBars(r){
+  var svg = el('cChart');
+  if (!svg) return;
+  clear(svg);
+  var max = Math.max(r.ds, r.ds0, r.op, r.op0, 0.0001);
+  var base = 130, h = 95;
+  var items = [
+    {x:80, v:r.ds0, label:'DeepSeek vorher', cls:'base'},
+    {x:210, v:r.ds, label:'DeepSeek nachher', cls:''},
+    {x:410, v:r.op0, label:'Opus vorher', cls:'base'},
+    {x:540, v:r.op, label:'Opus nachher', cls:''}
+  ];
+  for (var i=0; i<items.length; i++){
+    var it = items[i];
+    var bh = Math.max(2, it.v/max*h);
+    add(svg, 'rect', {x:it.x, y:base-bh, width:100, height:bh, rx:2, style:'fill:' + (it.cls==='base' ? '#b9b0a0' : 'var(--link)')});
+    svgText(svg, it.x+50, base-bh-6, usd(it.v, it.v < 0.1 ? 4 : 2), 'num', 'middle');
+    svgText(svg, it.x+50, base+16, it.label, 'lbl', 'middle');
+  }
+  add(svg, 'line', {x1:30, y1:base, x2:700, y2:base, 'class':'ax'});
+  svgText(svg, 8, 20, 'Kosten je Subagent, vorher und nachher', 'strong');
+}
+
+function renderCalc(){
+  var s = calcState();
+  el('cGv').textContent = int(s.G);
+  el('cZv').textContent = int(s.z);
+  el('cNv').textContent = String(s.n);
+  el('cPv').textContent = s.p + ' %';
+  el('cBv').textContent = String(s.b);
+  el('cXv').textContent = int(s.extra);
+  var r = calcNumbers(s);
+  el('cSave').textContent = de((1 - r.read/r.read0)*100, 1) + ' %';
+  el('cSteps').textContent = s.n + ' → ' + r.m;
+  el('cRead').textContent = int(r.read0) + ' → ' + int(r.read);
+  el('cNewIn').textContent = int(r.newIn);
+  el('cCache').textContent = int(r.cache0) + ' → ' + int(r.cache);
+  el('cOut').textContent = int(r.out0) + ' → ' + int(r.out);
+  el('cCostDS').textContent = usd(r.ds0,4) + ' → ' + usd(r.ds,4);
+  el('cCostOp').textContent = usd(r.op0,2) + ' → ' + usd(r.op,2);
+  el('cCostDS100').textContent = usd(r.ds0*100,2) + ' → ' + usd(r.ds*100,2);
+  el('cCostOp100').textContent = usd(r.op0*100,2) + ' → ' + usd(r.op*100,2);
+  drawCalcBars(r);
+}
+
+if (el('cG')){
+  ['cG','cZ','cN','cP','cB','cX'].forEach(function(id){
+    el(id).addEventListener('input', renderCalc);
+  });
+  el('pSure').addEventListener('click', function(){ el('cP').value = 9; renderCalc(); });
+  el('pTop').addEventListener('click', function(){ el('cP').value = 50; renderCalc(); });
+  el('pAll').addEventListener('click', function(){ el('cP').value = 64; renderCalc(); });
+  renderCalc();
+}
+
+/* ---------- 4. R4: Tools pro Schritt ---------- */
+function drawR4Tools(){
+  var svg = el('r4Tools');
+  if (!svg) return;
+  clear(svg);
+  var d = DATA.r4.tools_pro_schritt.gesamt.verteilung;
+  var keys = ['0','1','2','3','4+'];
+  var vals = keys.map(function(k){ return d[k].n; });
+  var max = Math.max.apply(null, vals);
+  var base = 195, h = 135;
+  svgText(svg, 8, 20, 'Schritte nach Anzahl der Tool-Aufrufe', 'strong');
+  for (var i=0; i<keys.length; i++){
+    var x = 60 + i*128;
+    var bh = vals[i]/max*h;
+    add(svg, 'rect', {x:x, y:base-bh, width:84, height:bh, rx:2, style:'fill:var(--link)'});
+    svgText(svg, x+42, base-bh-8, int(vals[i]), 'strong', 'middle');
+    svgText(svg, x+42, base+17, keys[i] + (keys[i]==='4+' ? ' Aufrufe' : (keys[i]==='1' ? ' Aufruf' : ' Aufrufe')), 'lbl', 'middle');
+    svgText(svg, x+42, base+34, pct(d[keys[i]].anteil), 'num', 'middle');
+  }
+  add(svg, 'line', {x1:30, y1:base, x2:700, y2:base, 'class':'ax'});
+}
+
+/* ---------- 4. R4: Ketten ---------- */
+var CHAIN = {chain:'nur_lesend', bundle:'3'};
+var CHAIN_KEY = {nur_lesend:'nur_lesend', rggs:'nur_read_grep_glob_shell', alle:'alle_tool_only'};
+var CHAIN_LABEL = {nur_lesend:'nur lesen', rggs:'mit Shell', alle:'alle Tool-Ketten'};
+
+function chainData(){
+  return DATA.r4.ketten[CHAIN_KEY[CHAIN.chain]];
+}
+
+function drawR4Hist(){
+  var svg = el('r4Hist');
+  if (!svg) return;
+  clear(svg);
+  var c = chainData();
+  var dist = c.verteilung_laenge;
+  var keys = Object.keys(dist).sort(function(a,b){ return Number(a)-Number(b); });
+  var vals = keys.map(function(k){ return dist[k]; });
+  var max = Math.max.apply(null, vals);
+  var base = 172, h = 120;
+  var step = 660/keys.length;
+  for (var i=0; i<keys.length; i++){
+    var x = 30 + i*step;
+    var bh = vals[i]/max*h;
+    add(svg, 'rect', {x:x+4, y:base-bh, width:step-14, height:bh, rx:2, style:'fill:var(--c-new)'});
+    svgText(svg, x+4+(step-14)/2, base-bh-6, int(vals[i]), 'num', 'middle');
+    svgText(svg, x+4+(step-14)/2, base+16, keys[i], 'lbl', 'middle');
+  }
+  add(svg, 'line', {x1:24, y1:base, x2:706, y2:base, 'class':'ax'});
+  svgText(svg, 8, 20, 'Ketten nach Länge, ' + CHAIN_LABEL[CHAIN.chain] + ', Bündel ' + CHAIN.bundle, 'strong');
+  var note = el('histNote');
+  if (note){
+    note.textContent = 'Kettenlängen 2 bis 10. Längere Ketten (bis ' + int(c.laenge.max) + ') sind in dieser Verteilung nicht enthalten.';
+  }
+}
+
+function renderChain(){
+  var c = chainData();
+  var b = CHAIN.bundle === '3' ? c.buendel_3 : c.buendel_5;
+  el('kSaved').textContent = de(b.ctx_tokens_gespart/1e6, 1) + ' Mio.';
+  el('kSavedCap').textContent = 'gesparte gelesene Tokens, ' + pct(b.anteil_ctx_gespart) + ' des gesamten Projekt-Inputs';
+  el('kChains').textContent = int(c.ketten);
+  el('kSteps').textContent = int(c.schritte_in_ketten) + ' (' + pct(c.anteil_aller_schritte) + ')';
+  el('kLen').textContent = de(c.laenge.median,0) + ' / ' + de(c.laenge.p90,1) + ' / ' + int(c.laenge.max);
+  el('kDrop').textContent = int(b.entfallene_schritte) + ' (' + pct(b.anteil_schritte_entfaellt) + ')';
+  el('kCost').textContent = usd(b.kosten_usd_gespart,2);
+  el('kCostDS').textContent = usd(b.kosten_usd_wenn_alles_deepseek,2);
+  drawR4Hist();
+}
+
+if (el('r4Tools')){
+  drawR4Tools();
+  var chainBtns = document.querySelectorAll('[data-chain]');
+  for (var ci=0; ci<chainBtns.length; ci++){
+    chainBtns[ci].addEventListener('click', function(){
+      CHAIN.chain = this.getAttribute('data-chain');
+      for (var j=0; j<chainBtns.length; j++){ chainBtns[j].setAttribute('aria-pressed', chainBtns[j]===this ? 'true' : 'false'); }
+      renderChain();
+    });
+  }
+  var bundleBtns = document.querySelectorAll('[data-bundle]');
+  for (var bi=0; bi<bundleBtns.length; bi++){
+    bundleBtns[bi].addEventListener('click', function(){
+      CHAIN.bundle = this.getAttribute('data-bundle');
+      for (var j=0; j<bundleBtns.length; j++){ bundleBtns[j].setAttribute('aria-pressed', bundleBtns[j]===this ? 'true' : 'false'); }
+      renderChain();
+    });
+  }
+  renderChain();
+}
+
+/* ---------- 5. R5: Punktdiagramm ---------- */
+var R5M = {
+  processed_input: {max:700000, fmt:function(v){ return int(v); }, ticks:[0,350000,700000]},
+  steps: {max:24, fmt:function(v){ return int(v); }, ticks:[0,12,24]},
+  cost: {max:0.011, fmt:function(v){ return usd(v,4); }, ticks:[0,0.0055,0.011]},
+  runtime_s: {max:210, fmt:function(v){ return int(v) + ' s'; }, ticks:[0,105,210]}
+};
+var R5 = {metric:'processed_input'};
+
+function r5Y(v, m){
+  var top = 55, bottom = 250;
+  return bottom - (v/m.max)*(bottom-top);
+}
+function r5Shape(svg, kind, x, y, title){
+  var n;
+  if (kind === 1){ n = add(svg, 'circle', {cx:x, cy:y, r:6}); }
+  else if (kind === 2){ n = add(svg, 'rect', {x:x-6, y:y-6, width:12, height:12, rx:1}); }
+  else { n = add(svg, 'polygon', {points:(x)+','+(y-7)+' '+(x+7)+','+(y+6)+' '+(x-7)+','+(y+6)}); }
+  n.setAttribute('style', 'fill:' + (kind===1 ? 'var(--link)' : (kind===2 ? 'var(--good)' : 'var(--bad)')) + ';stroke:var(--paper);stroke-width:1');
+  n.setAttribute('data-run', title);
+  return n;
+}
+
+function drawR5(){
+  var svg = el('r5Chart');
+  if (!svg) return;
+  clear(svg);
+  var m = R5M[R5.metric];
+  var xs = {A:130, B:290, C:450, D:610};
+  var top = 55, bottom = 250;
+
+  svgText(svg, 8, 20, 'Alle 24 Läufe je Variante', 'strong');
+  for (var t=0; t<m.ticks.length; t++){
+    var yy = r5Y(m.ticks[t], m);
+    svgText(svg, 78, yy+4, m.fmt(m.ticks[t]), 'num', 'end');
+    if (t === 0) add(svg, 'line', {x1:86, y1:yy, x2:700, y2:yy, 'class':'zero'});
+  }
+
+  var keys = ['A','B','C','D'];
+  for (var k=0; k<keys.length; k++){
+    var key = keys[k];
+    var runs = DATA.r5.laeufe.filter(function(r){ return r.variant === key; });
+    var sum = 0;
+    for (var i=0; i<runs.length; i++){
+      var r = runs[i];
+      var v = r[R5.metric];
+      sum += v;
+      var jx = xs[key] + (r.rep === 1 ? -18 : 12) + (r.task - 2)*9;
+      var py = r5Y(v, m);
+      var node = r5Shape(svg, r.task, jx, py, 'R');
+      node.setAttribute('data-label', key + ' T' + r.task + ' R' + r.rep);
+    }
+    var mean = sum/runs.length;
+    var my = r5Y(mean, m);
+    add(svg, 'line', {x1:xs[key]-38, y1:my, x2:xs[key]+38, y2:my, stroke:'var(--ink)', 'stroke-width':2});
+    svgText(svg, xs[key], my-7, m.fmt(mean), 'strong', 'middle');
+    svgText(svg, xs[key], bottom+22, key, 'strong', 'middle');
+    svgText(svg, xs[key], bottom+38, key==='A' ? 'Standard' : (key==='B' ? 'bündeln' : (key==='C' ? 'Serena' : 'Serena + Hinweis')), 'lbl', 'middle');
+  }
+
+  var tip = el('r5Tip');
+  var wrap = svg.parentNode;
+  var nodes = svg.querySelectorAll('[data-label]');
+  for (var q=0; q<nodes.length; q++){
+    var n = nodes[q];
+    var label = n.getAttribute('data-label');
+    var parts = label.split(' ');
+    var rr = DATA.r5.laeufe.filter(function(x){ return x.variant===parts[0] && x.task===Number(parts[1].replace('T','')) && x.rep===Number(parts[2].replace('R','')); })[0];
+    if (!rr) continue;
+    var tools = 0;
+    for (var tk in rr.tools){ if (rr.tools.hasOwnProperty(tk) && tk.indexOf('execute:') !== 0) tools += rr.tools[tk]; }
+    var html = '<b>' + label + '</b><br>' + rr.steps + ' Schritte, ' + rr.tool_calls + ' Tool-Aufrufe<br>' + int(rr.processed_input) + ' Input, ' + usd(rr.cost,4) + ', ' + de(rr.runtime_s,1) + ' s';
+    (function(node, content){
+      function show(ev){
+        var rect = wrap.getBoundingClientRect();
+        tip.innerHTML = content;
+        tip.style.left = (ev.clientX - rect.left) + 'px';
+        tip.style.top = (ev.clientY - rect.top) + 'px';
+        tip.classList.add('on');
+      }
+      node.addEventListener('mouseenter', show);
+      node.addEventListener('mousemove', show);
+      node.addEventListener('click', show);
+      node.addEventListener('mouseleave', function(){ tip.classList.remove('on'); });
+    })(n, html);
+  }
+}
+
+if (el('r5Chart')){
+  drawR5();
+  var mBtns = document.querySelectorAll('[data-metric]');
+  for (var mi=0; mi<mBtns.length; mi++){
+    mBtns[mi].addEventListener('click', function(){
+      R5.metric = this.getAttribute('data-metric');
+      for (var j=0; j<mBtns.length; j++){ mBtns[j].setAttribute('aria-pressed', mBtns[j]===this ? 'true' : 'false'); }
+      drawR5();
+    });
+  }
+}
+
+/* ---------- 6. MCP-Server ---------- */
+var MCP = [
+  {id:'mcpGithub', lo:11207, hi:19436, name:'GitHub', tools:'46 Tools'},
+  {id:'mcpSerena', lo:8204, hi:11494, name:'Serena', tools:'29 bis 36 Tools'},
+  {id:'mcpChrome', lo:6527, hi:6527, name:'Chrome DevTools', tools:'30 Tools'},
+  {id:'mcpPlaywright', lo:4450, hi:4450, name:'Playwright', tools:'25 Tools'}
+];
+
+function drawMCP(){
+  var svg = el('mcpChart');
+  if (!svg) return;
+  clear(svg);
+  var max = 22000;
+  var left = 230, right = 540, width = right-left;
+  svgText(svg, 8, 20, 'Tokens für Tool-Beschreibungen', 'strong');
+  var y = 48;
+  var sumLo = 0, sumHi = 0;
+  for (var i=0; i<MCP.length; i++){
+    var s = MCP[i];
+    var on = el(s.id).checked;
+    var lo = on ? s.lo : 0;
+    var hi = on ? s.hi : 0;
+    sumLo += lo; sumHi += hi;
+    var op = on ? 1 : 0.3;
+    svgText(svg, 8, y+12, s.name, on ? 'strong' : 'lbl');
+    svgText(svg, 8, y+26, s.tools, 'lbl');
+    add(svg, 'rect', {x:left, y:y, width:width, height:16, rx:2, style:'fill:var(--soft)'});
+    add(svg, 'rect', {x:left, y:y, width:Math.max(1, lo/max*width), height:16, rx:2, style:'fill:var(--link);opacity:' + op});
+    if (hi > lo) add(svg, 'rect', {x:left + lo/max*width, y:y, width:(hi-lo)/max*width, height:16, style:'fill:var(--c-new);opacity:' + (on ? 0.55 : 0.2)});
+    svgText(svg, right+12, y+12, on ? int(lo) + (hi>lo ? ' bis ' + int(hi) : '') : 'aus', 'num');
+    y += 46;
+  }
+  var capY = 245;
+  svgText(svg, 8, capY+12, 'opencode v2', 'strong');
+  svgText(svg, 8, capY+26, 'Katalog, max. 2.000', 'lbl');
+  add(svg, 'rect', {x:left, y:capY, width:width, height:16, rx:2, style:'fill:var(--soft)'});
+  add(svg, 'rect', {x:left, y:capY, width:2000/max*width, height:16, rx:2, style:'fill:var(--good)'});
+  svgText(svg, right+12, capY+12, '2.000', 'num');
+  add(svg, 'line', {x1:left, y1:capY-12, x2:right, y2:capY-12, 'class':'ax'});
+
+  el('mcpSum').textContent = int(sumLo) + (sumHi>sumLo ? ' bis ' + int(sumHi) : '');
+  var steps = Number(el('mcpSteps').value);
+  el('mcpStepsOut').textContent = String(steps);
+  el('mcpRead').textContent = 'Bei ' + steps + ' Schritten würden ' + int(sumLo*steps) + (sumHi>sumLo ? ' bis ' + int(sumHi*steps) : '') + ' Tokens allein für Tool-Beschreibungen gelesen. Der Katalog von opencode v2 kostet in ' + steps + ' Schritten höchstens ' + int(2000*steps) + ' Tokens.';
+}
+
+if (el('mcpChart')){
+  for (var mi2=0; mi2<MCP.length; mi2++){ el(MCP[mi2].id).addEventListener('change', drawMCP); }
+  el('mcpSteps').addEventListener('input', drawMCP);
+  drawMCP();
+}
+
+/* ---------- 6. OpenRouter ---------- */
+function drawOR(){
+  var svg = el('orChart');
+  if (!svg) return;
+  clear(svg);
+  var rows = [
+    {name:'Sonnet', v:-49},
+    {name:'GPT', v:-78},
+    {name:'Gemini', v:6},
+    {name:'Haiku', v:56}
+  ];
+  var zero = 500, sc = 2.4;
+  svgText(svg, 8, 20, 'Veränderung der Tokens einer ganzen Aufgabe mit Tool Search', 'strong');
+  add(svg, 'line', {x1:zero, y1:28, x2:zero, y2:196, 'class':'zero'});
+  svgText(svg, zero, 212, '0 %', 'lbl', 'middle');
+  for (var i=0; i<rows.length; i++){
+    var r = rows[i];
+    var y = 46 + i*36;
+    svgText(svg, 8, y+5, r.name, 'strong');
+    var w = Math.abs(r.v)*sc;
+    var x = r.v < 0 ? zero - w : zero;
+    add(svg, 'rect', {x:x, y:y-11, width:w, height:22, rx:2, style:'fill:' + (r.v < 0 ? 'var(--good)' : 'var(--bad)')});
+    if (r.v < 0) svgText(svg, x-8, y+5, '−' + Math.abs(r.v) + ' %', 'strong', 'end');
+    else svgText(svg, x+w+8, y+5, '+' + r.v + ' %', 'strong', 'start');
+  }
+}
+
+if (el('orChart')) drawOR();
+
+/* ---------- 7. Entscheidungshelfer ---------- */
+var DEC = {client:'opencode', tools:'low', creds:'no', project:'html', question:'find', model:'strong'};
+
+function renderDecision(){
+  var gateway, gatewayText;
+  if (DEC.client === 'other' || DEC.tools === 'high'){
+    gateway = 'Gateway: lohnt tokenmäßig';
+    gatewayText = DEC.client === 'other'
+      ? 'Dein Client schickt alle Tool-Beschreibungen in jeden Request. Ein Gateway mit Filter oder Suche kann diese Liste verkleinern. Der Beleg ist die ältere opencode-Version: 6,1× weniger Tokens mit Gateway, als alle Definitionen im Prompt standen.'
+      : 'Über 700 Tools: Erst ab etwa 700 bis 1.200 Tools war ein Gateway in der Toolport-Messung besser als die eingebaute Suche. Prüfe, ob dein Client schon eine eigene Tool-Suche hat.';
+    gatewayText += ' <a class="cite" href="#q-r2_toolport_benchmark">Quelle</a>';
+  } else if (DEC.creds === 'yes'){
+    gateway = 'Gateway: lohnt für Ordnung, nicht fürs Sparen';
+    gatewayText = 'Tokenmäßig bringt es hier nichts: ' + (DEC.client === 'claude' ? 'Claude Code lädt MCP-Tools standardmäßig erst bei Bedarf' : 'opencode v2 deckelt den Tool-Katalog auf 2.000 Tokens') + '. Für zentrale Zugangsdaten, Rechte und Protokolle ist ein Gateway trotzdem sinnvoll. <a class="cite" href="#q-r2_claude_code_mcp_tool_search">Claude Code</a> <a class="cite" href="#q-r2_opencode_codemode_source">opencode</a>';
+  } else {
+    gateway = 'Gateway: lohnt nicht';
+    gatewayText = 'Tokenmäßig nicht: ' + (DEC.client === 'claude' ? 'Claude Code hat Tool Search eingebaut und lädt MCP-Tools erst bei Bedarf' : (DEC.client === 'opencode' ? 'opencode v2 hält den Katalog bei höchstens 2.000 Tokens' : 'dein Client hat keine eigene Suche, aber unter 30 Tools ist die Liste klein')) + '. Ohne zentrale Zugangsdaten oder Rechte gibt es keinen zweiten Grund. <a class="cite" href="#q-r2_toolport_benchmark">Messung</a>';
+  }
+  el('vGatewayTitle').textContent = gateway;
+  el('vGatewayText').innerHTML = gatewayText;
+
+  var graph, graphText;
+  if (DEC.project === 'html'){
+    graph = 'Codegraph: nein, grep reicht';
+    graphText = 'HTML, Text und Doku haben kaum Aufrufbeziehungen. Ein Graph hätte wenig zu finden, kostet aber Tool-Beschreibungen und einen Suchschritt. Im eigenen Versuch mit Serena waren alle Antworten richtig, aber +28 % Input und +31 % Schritte. <a class="cite" href="#q-_notizen_r5">Quelle</a>';
+  } else if (DEC.question === 'relations' && (DEC.project === 'big' || DEC.model === 'small')){
+    graph = 'Codegraph: ja, testen';
+    graphText = 'Beziehungsfrage plus ' + (DEC.project === 'big' ? 'sehr große oder mehrere Repos' : 'kleines Modell') + ': Genau dort zeigen die Messungen einen Vorteil. Sourcegraph spart bei großen und Multi-Repo-Aufgaben 30 % Kosten und 38 % Agentenzeit, kleine Modelle gewinnen 17 bis 21 Punkte. <a class="cite" href="#q-r3_sourcegraph_codescalebench">Sourcegraph</a> <a class="cite" href="#q-r3_paper_small_agents_code_graphs">Paper</a> Als MCP über Code Mode einbinden, den Hinweis in AGENTS.md schreiben (sonst nutzt der Agent ihn nicht, siehe eigener Versuch C) und vorher sowie nachher messen.';
+  } else {
+    graph = 'Codegraph: grep reicht';
+    graphText = 'Für „finde Datei oder Stelle“ ist Textsuche der starke Standard. Die beste Agenten-Messung fand mit Graph 90,3 % statt 89,7 % (nicht signifikant) bei +44 % Prompt-Tokens. <a class="cite" href="#q-r3_pipeshub_code_graph_benchmark">Pipeshub</a> Claude Code und Cursor setzen ebenfalls auf grep. <a class="cite" href="#q-r3_cherny_x_grep_rag">Cherny</a>';
+  }
+  el('vGraphTitle').textContent = graph;
+  el('vGraphText').innerHTML = graphText;
+}
+
+if (el('decide')){
+  var dBtns = document.querySelectorAll('[data-q]');
+  for (var di=0; di<dBtns.length; di++){
+    dBtns[di].addEventListener('click', function(){
+      var q = this.getAttribute('data-q');
+      DEC[q] = this.getAttribute('data-v');
+      for (var j=0; j<dBtns.length; j++){
+        if (dBtns[j].getAttribute('data-q') === q){
+          dBtns[j].setAttribute('aria-pressed', dBtns[j]===this ? 'true' : 'false');
+        }
+      }
+      renderDecision();
+    });
+  }
+  renderDecision();
+}
+
+/* ---------- 9. Kopierknöpfe ---------- */
+document.querySelectorAll('.copybtn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var pre = btn.parentNode.querySelector('pre');
+    if (!pre) return;
+    var text = pre.innerText;
+    function done(){
+      btn.textContent = 'Kopiert';
+      btn.classList.add('ok');
+      setTimeout(function(){ btn.textContent = 'Kopieren'; btn.classList.remove('ok'); }, 1600);
+    }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'absolute';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); }
+      catch (e) { btn.textContent = 'Nicht möglich'; }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+});
+
+/* ---------- Größenänderung ---------- */
+var rz = null;
+window.addEventListener('resize', function(){
+  if (rz) return;
+  rz = requestAnimationFrame(function(){
+    rz = null;
+    drawA();
+    if (el('r4Tools')) drawR4Tools();
+    if (el('r4Hist')) drawR4Hist();
+    if (el('cChart')) drawCalcBars(calcNumbers(calcState()));
+    if (el('r5Chart')) drawR5();
+    if (el('mcpChart')) drawMCP();
+    if (el('orChart')) drawOR();
+  });
+});
+})();
+</script>
+</body>
+</html>
