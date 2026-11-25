@@ -8,6 +8,7 @@ Sammlung meiner Forschungsberichte. Jeder Bericht ist eine einzelne HTML-Datei. 
 
 | Datum | Thema | Bericht |
 | --- | --- | --- |
+| 25.11.2026 | Das Glücks-Handbuch (The Luck Field Manual, X-Post von @AlwaysKeepL): 6 Bilder per OCR abgeschrieben, 33 Regeln auf Deutsch, Faktencheck von 13 Behauptungen, Selbsttest zur Glücksfläche und Ruin-Simulator | [bericht.html](researches/26.11.25_exposure_to_opportunity_x_post/bericht.html) |
 | 24.11.2026 | Tool-Aufrufe bündeln, MCP-Gateways, Codegraph statt grep: Was spart wirklich Tokens? Kostenmechanik, eigene Auswertung (81,5 % Einzelaufrufe), eigener Versuch mit 24 Läufen, Bündel-Rechner und Entscheidungshelfer | [bericht.html](researches/26.11.24_toolcalls_buendeln_mcp_codegraph/bericht.html) |
 | 23.11.2026 | Tokens sparen mit opencode: Opus 5.5 als Orchestrator, DeepSeek V4.1 Flash als Subagents. Eigene Messung, wo die Tokens hingehen, Kostenrechner, Endpunkt-Preise, Mythen-Check und fertige Config | [bericht.html](researches/26.11.23_token_sparen_opencode_subagents/bericht.html) |
 | 23.11.2026 | PenGPT von Sam Greydanus auf Deutsch: ein kleiner Transformer schreibt Handschrift in vielen Händen und zeichnet nach Text (mit allen Bildern, Tokenizer zum Ausprobieren) | [bericht.html](researches/26.11.23_pengpt_handschrift_skizzen/bericht.html) |
