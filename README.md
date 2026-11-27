@@ -8,6 +8,7 @@ Sammlung meiner Forschungsberichte. Jeder Bericht ist eine einzelne HTML-Datei. 
 
 | Datum | Thema | Bericht |
 | --- | --- | --- |
+| 27.11.2026 | Heizhose: günstigerer Ersatz für den Lenz-Akku rcB 2000 oder neue Hose in Größe M: Lenz Heat Pants 1.0 + Heat Pack 2.0 vs. HeatPerformance ADVANCE (Produktsuche, mit Akku-Rechner) | [bericht.html](researches/26.11.27_heizhose_akku_ersatz_groesse_m/bericht.html) |
 | 25.11.2026 | Was haben 464 Zehnfach-Aktien gemeinsam? Das Multibagger-Paper von Anna Yartseva (2025), geprüft: Portfolio-Explorer, Modell-Explorer, Prognose-Check, eigene Zufalls-Simulation zur Auswahlverzerrung, Faktencheck der Tabelle A1 und Rezeption | [bericht.html](researches/26.11.25_multibagger_aktien_yartseva/bericht.html) |
 | 25.11.2026 | Das Glücks-Handbuch (The Luck Field Manual, X-Post von @AlwaysKeepL): 6 Bilder per OCR abgeschrieben, 33 Regeln auf Deutsch, Faktencheck von 13 Behauptungen, Selbsttest zur Glücksfläche und Ruin-Simulator | [bericht.html](researches/26.11.25_exposure_to_opportunity_x_post/bericht.html) |
 | 24.11.2026 | Tool-Aufrufe bündeln, MCP-Gateways, Codegraph statt grep: Was spart wirklich Tokens? Kostenmechanik, eigene Auswertung (81,5 % Einzelaufrufe), eigener Versuch mit 24 Läufen, Bündel-Rechner und Entscheidungshelfer | [bericht.html](researches/26.11.24_toolcalls_buendeln_mcp_codegraph/bericht.html) |
